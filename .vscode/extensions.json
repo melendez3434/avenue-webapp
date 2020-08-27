@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "octref.vetur",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "christian-kohler.npm-intellisense",
+    "bradlc.vscode-tailwindcss",
+    "shardulm94.trailing-spaces"
+  ]
+}
