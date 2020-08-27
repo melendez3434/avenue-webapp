@@ -3,14 +3,14 @@ import R64Components from '@64robots/r64components'
 
 Vue.use(R64Components, {
   R64Button: {
-    outlineClass: 'border bg-transparent text-white transition duration-150 ease-in-out py-3',
-    primaryOutlineClass: 'border-remate-gray text-gray-900 hover:bg-gray-800 hover:text-white',
-    secondaryOutlineClass: 'border-white text-white bg-remate-black hover:border-indigo-400',
-    smallClass: 'font-normal py-1 px-5 leading-none',
+    baseClass: 'block rounded inline-flex items-center justify-center',
+    primaryClass: 'bg-avenue-red-light text-white hover:bg-gray-800 w-full',
   },
-  R64Select: {
+  R64Input: {
+    wrapperClass: 'mb-1',
+    labelClass: 'block leading-tight text-white uppercase',
     baseClass:
-      'leading-snug w-full transition duration-150 ease-in-out appearance-none py-3 pr-10 pl-3 rounded',
-    secondaryClass: 'leading-tight py-1 border border-remate-lighter-gray rounded',
+      'leading-snug outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-avenue-grey rounded-md focus:shadow-outline focus:border-blue-400',
+    primaryClass: 'placeholder-avenue-white-light',
   },
 })
