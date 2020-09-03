@@ -10,7 +10,16 @@ Vue.use(R64Components, {
     wrapperClass: 'mb-1',
     labelClass: 'block leading-tight text-white uppercase',
     baseClass:
-      'leading-snug outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-avenue-grey rounded-md focus:shadow-outline focus:border-blue-400',
+      'leading-snug outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-avenue-grey rounded-md focus:shadow-outline focus:border-blue-400 uppercase',
     primaryClass: 'placeholder-avenue-white-light',
+    helpMessageClass: 'mt-1 text-xxs text-avenue-grey',
+  },
+  R64Select: {
+    wrapperClass: 'mb-1',
+    labelClass: 'block leading-tight text-white uppercase',
+    baseClass:
+      'leading-snug outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-avenue-grey rounded-md focus:shadow-outline focus:border-blue-400 h-38px appearance-none uppercase',
+    primaryClass: 'placeholder-avenue-white-light',
+    helpMessageClass: 'mt-1 text-xxs text-avenue-grey',
   },
 })

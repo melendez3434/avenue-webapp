@@ -21,7 +21,12 @@ module.exports = {
       },
 
       spacing: {
+        '38px': '38px',
         '96': '24rem',
+      },
+
+      fontSize: {
+        xxs: '0.58rem',
       },
     },
   },

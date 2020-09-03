@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <div class="min-h-screen bg-avenue-black">
-      <nuxt />
-    </div>
+  <div class="min-h-screen bg-avenue-black">
+    <nuxt />
   </div>
 </template>
 
