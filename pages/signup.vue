@@ -50,8 +50,8 @@
         <a href="#" class="text-avenue-white-light">Privacy Notice</a>
       </p>
 
-      <R64Button class="mt-8" :disabled="$v.form.$invalid" @click="login">
-        Login
+      <R64Button class="mt-8 uppercase" :disabled="$v.form.$invalid" @click="register">
+        Sign up
       </R64Button>
     </div>
   </div>
