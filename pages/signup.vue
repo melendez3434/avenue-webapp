@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center min-h-screen">
+  <div class="flex flex-col items-center justify-center min-h-screen py-16">
     <div class="bg-avenue-black-light rounded-lg py-10 px-6 w-96">
       <div class="flex uppercase space-x-6 mb-10 text-white">
         <nuxt-link :to="{ name: 'login' }">Log in</nuxt-link>
@@ -34,33 +34,6 @@
         error-message="Passwords should match"
       />
 
-      <div class="flex flex-col mt-8">
-        <label for="month" class="uppercase text-avenue-white">Date of birth</label>
-        <div class="flex space-x-2">
-          <R64Select
-            v-model="form.month"
-            class="w-2/4"
-            :options="monthsFormatted"
-            name="month"
-            :v="$v.form.month"
-          />
-          <R64Input
-            v-model="form.day"
-            name="day"
-            :v="$v.form.day"
-            class="w-1/4"
-            placeholder="day"
-          />
-          <R64Input
-            v-model="form.year"
-            name="year"
-            :v="$v.form.year"
-            class="w-1/4"
-            placeholder="year"
-          />
-        </div>
-      </div>
-
       <R64Input
         v-model="form.email"
         class="mt-8"
@@ -85,7 +58,7 @@
 </template>
 
 <script>
-import { email, required, sameAs, not } from 'vuelidate/lib/validators'
+import { email, required, sameAs } from 'vuelidate/lib/validators'
 
 export default {
   auth: false,
@@ -99,40 +72,14 @@ export default {
         password: '',
         confirmPassword: '',
         name: '',
-        month: '',
-        day: '',
-        year: '',
       },
-      months: [
-        'MONTH',
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-      ],
     }
   },
 
-  computed: {
-    monthsFormatted() {
-      return this.months.map(m => ({
-        label: m,
-        value: m.toLowerCase() === 'month' ? '' : m.toLowerCase(),
-      }))
-    },
-  },
-
   methods: {
-    async login() {
+    async register() {
       try {
+        await this.$api.signup.register(this.form)
         await this.$auth.loginWith('sanctum', {
           data: {
             identifier: this.form.email,
@@ -152,9 +99,6 @@ export default {
       password: { required },
       confirmPassword: { required, sameAsPassword: sameAs('password') },
       email: { email, required },
-      month: { required },
-      day: { required },
-      year: { required },
     },
   },
 }
