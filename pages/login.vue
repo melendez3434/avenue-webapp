@@ -27,6 +27,10 @@
         Trouble logging in?
       </nuxt-link>
 
+      <p v-if="error" class="bg-avenue-red text-white rounded py-1 px-3 mt-3 text-center">
+        {{ error }}
+      </p>
+
       <R64Button class="mt-8" :disabled="$v.form.$invalid" @click="login">
         Login
       </R64Button>
@@ -38,7 +42,7 @@
 import { email, required } from 'vuelidate/lib/validators'
 
 export default {
-  auth: false,
+  auth: 'guest',
 
   name: 'AuthLogin',
 
@@ -48,6 +52,7 @@ export default {
         email: '',
         password: '',
       },
+      error: null,
     }
   },
 
@@ -60,9 +65,10 @@ export default {
             password: this.form.password,
           },
         })
+        this.error = null
         this.$router.push({ path: '/' })
       } catch (e) {
-        console.log(e)
+        this.error = e.response.data.error
       }
     },
   },

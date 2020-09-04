@@ -61,7 +61,7 @@
 import { email, required, sameAs } from 'vuelidate/lib/validators'
 
 export default {
-  auth: false,
+  auth: 'guest',
 
   name: 'PageSignup',
 
