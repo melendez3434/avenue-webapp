@@ -122,6 +122,7 @@ export default {
               'Content-Type': 'application/json',
               Accept: 'application/json',
             },
+            propertyName: 'data',
           },
         },
         user: 'data',
