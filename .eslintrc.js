@@ -35,6 +35,7 @@ module.exports = {
   },
   globals: {
     $nuxt: true,
+    Twitch: true,
   },
   parserOptions: {
     parser: 'babel-eslint',
