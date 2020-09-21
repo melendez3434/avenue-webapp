@@ -43,6 +43,10 @@
         error-message="A valid email address is required"
       />
 
+      <p v-if="error" class="bg-avenue-red text-white rounded py-1 px-3 mt-3 text-center">
+        {{ error }}
+      </p>
+
       <p class="text-avenue-grey-dark text-xxs text-center mt-8">
         By clicking Sign Up, you are indicating that you have read and acknowledge the
         <a href="#" class="text-avenue-white-light">Terms and Service</a>
@@ -73,6 +77,7 @@ export default {
         confirmPassword: '',
         name: '',
       },
+      error: null,
     }
   },
 
@@ -88,7 +93,7 @@ export default {
         })
         this.$router.push({ path: '/' })
       } catch (e) {
-        console.log(e)
+        this.error = e.response.data.error
       }
     },
   },
