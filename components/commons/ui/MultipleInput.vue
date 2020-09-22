@@ -2,7 +2,7 @@
   <div class="flex flex-col">
     <div class="flex justify-between items-center mb-3">
       <div class="w-full">
-        <label for="link-0 text-xl">Social Networks</label>
+        <label for="link-0 text-xl">Social Networks *</label>
       </div>
       <button type="button" :disabled="maxLinksReached" class="mr-12" @click="addLink">
         <svg

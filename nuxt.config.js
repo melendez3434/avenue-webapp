@@ -70,6 +70,12 @@ export default {
   },
 
   auth: {
+    cookie: {
+      options: {
+        expires: 7,
+        secure: process.env.NODE_ENV !== 'development',
+      },
+    },
     redirect: {
       login: '/login',
       logout: '/',

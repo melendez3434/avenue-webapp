@@ -3,13 +3,40 @@
     <div class="w-full max-w-2xl mt-12">
       <h2 class="text-4xl font-medium">Sign up as a talent</h2>
       <form class="mt-3" @submit="createTalent">
-        <div class="mb-6"><R64Input v-model="form.twitch_channel" label="Twitch channel" /></div>
-        <div class="mb-6"><R64Input v-model="form.hometown" label="Home town" /></div>
-        <div class="mb-6"><R64Input v-model="form.merchandise_url" label="Merchandise URL" /></div>
+        <div class="mb-6">
+          <R64Input
+            v-model="form.twitch_channel"
+            label="Twitch channel *"
+            :v="$v.form.hometown"
+            error-message="Twitch channel is required"
+          />
+        </div>
+        <div class="mb-6">
+          <R64Input
+            v-model="form.hometown"
+            label="Home town *"
+            :v="$v.form.hometown"
+            error-message="Hometown is required"
+          />
+        </div>
+        <div class="mb-6">
+          <R64Input
+            v-model="form.merchandise_url"
+            label="Merchandise URL *"
+            :v="$v.form.merchandise_url"
+            error-message="Must be a well formed url"
+          />
+        </div>
         <!-- // TODO: Photo -->
-        <div class="mb-6"><R64Input v-model="form.name" label="Name" /></div>
-        <div class="mb-6"><R64Input v-model="form.email" label="Email" /></div>
-        <div class="mb-6"><R64Input v-model="form.cellphone" label="Cellphone" /></div>
+        <div class="mb-6">
+          <R64Input v-model="form.name" label="Name" />
+        </div>
+        <div class="mb-6">
+          <R64Input v-model="form.email" label="Email " />
+        </div>
+        <div class="mb-6">
+          <R64Input v-model="form.cellphone" label="Cellphone" />
+        </div>
         <div class="mb-6">
           <R64Input v-model="form.biography" label="biography" />
         </div>
@@ -27,12 +54,24 @@
           />
         </div>
 
-        <R64Button type="submit" class="mt-8">Sign up</R64Button>
+        <div class="mb-6">
+          <R64Checkbox
+            v-model="form.sign_user_agreement"
+            label="User agreement"
+            secondary
+            :v="$v.form.sign_user_agreement"
+            error-message="Must accept the user agreement"
+            @change="form.sign_user_agreement = $event"
+          />
+        </div>
+
+        <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid">Sign up</R64Button>
       </form>
     </div>
   </div>
 </template>
 <script>
+import { required, url, email } from 'vuelidate/lib/validators'
 import MultipleInput from '@/components/commons/ui/MultipleInput'
 
 export default {
@@ -54,9 +93,9 @@ export default {
         cellphone: '',
         biography: '',
         is_group: false,
-        sign_user_agreement: true,
         date_of_birth: '',
         social_media_links: [{ social_media_slug: 'facebook', url: '' }],
+        sign_user_agreement: true,
       },
       socialNetworkList: [
         { label: 'Facebook', value: 'facebook' },
@@ -77,6 +116,33 @@ export default {
       e.preventDefault()
       console.log('form', this.form)
     },
+  },
+
+  validations() {
+    const mustBeTrue = value => {
+      return value === true
+    }
+
+    const validations = {
+      form: {
+        twitch_channel: { required },
+        hometown: { required },
+        merchandise_url: { required, url },
+        sign_user_agreement: { required, mustBeTrue },
+        email: { email },
+      },
+    }
+
+    if (this.form.social_media_links.length) {
+      validations.form.social_media_links = {
+        $each: {
+          social_media_slug: { required },
+          url: { required, url },
+        },
+      }
+    }
+
+    return validations
   },
 }
 </script>
