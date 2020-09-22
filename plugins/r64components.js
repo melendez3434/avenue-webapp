@@ -22,4 +22,7 @@ Vue.use(R64Components, {
     primaryClass: 'placeholder-avenue-white-light',
     helpMessageClass: 'mt-1 text-xxs text-avenue-grey',
   },
+  R64Checkbox: {
+    labelClass: 'ml-2 text-white',
+  },
 })
