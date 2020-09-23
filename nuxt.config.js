@@ -45,6 +45,7 @@ export default {
     '~/plugins/r64components',
     '~/plugins/vuelidate',
     '~/plugins/auth-sanctum',
+    '~/plugins/vue-croppie.client.js',
   ],
 
   /*

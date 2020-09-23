@@ -55,6 +55,16 @@
         </div>
 
         <div class="mb-6">
+          <client-only>
+            <ImageUpload
+              :cropped.sync="form.photo"
+              :class="{ 'opacity-25': busy }"
+              class="w-full"
+            />
+          </client-only>
+        </div>
+
+        <div class="mb-6">
           <R64Checkbox
             v-model="form.sign_user_agreement"
             label="User agreement"
@@ -65,7 +75,9 @@
           />
         </div>
 
-        <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid">Sign up</R64Button>
+        <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid && !error">
+          Sign up
+        </R64Button>
       </form>
     </div>
   </div>
@@ -73,12 +85,14 @@
 <script>
 import { required, url, email } from 'vuelidate/lib/validators'
 import MultipleInput from '@/components/commons/ui/MultipleInput'
+import ImageUpload from '@/components/commons/ui/ImageUpload'
 
 export default {
   name: 'Talent',
 
   components: {
     MultipleInput,
+    ImageUpload,
   },
 
   data() {
@@ -108,13 +122,23 @@ export default {
         { label: 'Spotify', value: 'spotify' },
         { label: 'Soundcloud', value: 'sound-cloud' },
       ],
+      busy: false,
+      error: null,
     }
   },
 
   methods: {
-    createTalent(e) {
+    async createTalent(e) {
       e.preventDefault()
       console.log('form', this.form)
+      // Mock photo as backend is not ready
+      this.form.photo = 'https://www.8ball-band.co.uk/assets/bxslider/001_1538653226.jpg'
+      const { data: talent } = await this.$api.talent.register(this.form).catch(e => {
+        this.error = e.response.data.error
+      })
+
+      const data = await this.$api.talent.stripeAuthorize(talent.id)
+      console.log('data', data)
     },
   },
 
@@ -130,6 +154,7 @@ export default {
         merchandise_url: { required, url },
         sign_user_agreement: { required, mustBeTrue },
         email: { email },
+        photo: { required },
       },
     }
 
