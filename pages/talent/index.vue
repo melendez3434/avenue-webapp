@@ -137,8 +137,8 @@ export default {
         this.error = e.response.data.error
       })
 
-      const data = await this.$api.talent.stripeAuthorize(talent.id)
-      console.log('data', data)
+      const { data: url } = await this.$api.talent.stripeAuthorize(talent.id)
+      console.log('data', url)
     },
   },
 
