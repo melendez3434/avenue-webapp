@@ -145,7 +145,6 @@ export default {
       e.preventDefault()
       // const photo = await this.$api.global.uploadImage(this.form.photo)
       // const cover_photo = await this.$api.global.uploadImage(this.form.cover_photo)
-      // console.log('data', photo, cover_photo)
       // const payload = {
       //   ...this.form,
       //   ...{
