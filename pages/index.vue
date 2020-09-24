@@ -10,7 +10,7 @@
             <div class="w-10 h-10 bg-avenue-white rounded-full" />
           </div>
           <div class="bg-avenue-black-light rounded py-1 px-3 text-sm">
-            Lorem ipsum dolor sit amet, consectetur adipscing elit. Id vivamus.
+            Lorem ipsum dolor sit amet, consectetur adipscing elit. Id vivamus
           </div>
         </div>
       </div>
