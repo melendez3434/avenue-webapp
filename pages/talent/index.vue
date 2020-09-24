@@ -7,7 +7,7 @@
           <R64Input
             v-model="form.twitch_channel"
             label="Twitch channel *"
-            :v="$v.form.hometown"
+            :v="$v.form.twitch_channel"
             error-message="Twitch channel is required"
           />
         </div>
@@ -54,7 +54,8 @@
           />
         </div>
 
-        <div class="mb-6">
+        <!-- <div class="mb-6">
+          <p>Photo</p>
           <client-only>
             <ImageUpload
               :cropped.sync="form.photo"
@@ -63,6 +64,17 @@
             />
           </client-only>
         </div>
+
+        <div class="mb-6">
+          <p>Cover photo</p>
+          <client-only>
+            <ImageUpload
+              :cropped.sync="form.cover_photo"
+              :class="{ 'opacity-25': busy }"
+              class="w-full"
+            />
+          </client-only>
+        </div> -->
 
         <div class="mb-6">
           <R64Checkbox
@@ -85,14 +97,14 @@
 <script>
 import { required, url, email } from 'vuelidate/lib/validators'
 import MultipleInput from '@/components/commons/ui/MultipleInput'
-import ImageUpload from '@/components/commons/ui/ImageUpload'
+// import ImageUpload from '@/components/commons/ui/ImageUpload'
 
 export default {
   name: 'Talent',
 
   components: {
     MultipleInput,
-    ImageUpload,
+    // ImageUpload,
   },
 
   data() {
@@ -101,7 +113,8 @@ export default {
         twitch_channel: '',
         hometown: '',
         merchandise_url: '',
-        photo: '',
+        // photo: '',
+        // cover_photo: '',
         name: '',
         email: '',
         cellphone: '',
@@ -130,15 +143,24 @@ export default {
   methods: {
     async createTalent(e) {
       e.preventDefault()
-      console.log('form', this.form)
-      // Mock photo as backend is not ready
-      this.form.photo = 'https://www.8ball-band.co.uk/assets/bxslider/001_1538653226.jpg'
+      // const photo = await this.$api.global.uploadImage(this.form.photo)
+      // const cover_photo = await this.$api.global.uploadImage(this.form.cover_photo)
+      // console.log('data', photo, cover_photo)
+      // const payload = {
+      //   ...this.form,
+      //   ...{
+      //     photo: 'https://townsquare.media/site/366/files/2020/06/Creed.jpg?w=980&q=75',
+      //     cover_photo: 'https://townsquare.media/site/366/files/2020/06/Creed.jpg?w=980&q=75',
+      //   },
+      // }
+      console.log('payload', this.form)
       const { data: talent } = await this.$api.talent.register(this.form).catch(e => {
         this.error = e.response.data.error
       })
 
       const { data: url } = await this.$api.talent.stripeAuthorize(talent.id)
       console.log('data', url)
+      window.location.href = url
     },
   },
 
@@ -154,7 +176,7 @@ export default {
         merchandise_url: { required, url },
         sign_user_agreement: { required, mustBeTrue },
         email: { email },
-        photo: { required },
+        // photo: { required },
       },
     }
 
