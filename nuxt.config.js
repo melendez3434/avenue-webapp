@@ -45,6 +45,7 @@ export default {
     '~/plugins/r64components',
     '~/plugins/vuelidate',
     '~/plugins/auth-sanctum',
+    '~/plugins/vue-croppie.client.js',
   ],
 
   /*
@@ -70,6 +71,12 @@ export default {
   },
 
   auth: {
+    cookie: {
+      options: {
+        expires: 7,
+        secure: process.env.NODE_ENV !== 'development',
+      },
+    },
     redirect: {
       login: '/login',
       logout: '/',

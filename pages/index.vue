@@ -22,6 +22,8 @@
 export default {
   name: 'IndexPage',
 
+  auth: false,
+
   mounted() {
     new Twitch.Embed('twitch-streaming', {
       width: 940,
