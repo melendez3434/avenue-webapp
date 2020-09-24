@@ -27,7 +27,6 @@
             error-message="Must be a well formed url"
           />
         </div>
-        <!-- // TODO: Photo -->
         <div class="mb-6">
           <R64Input v-model="form.name" label="Name" />
         </div>
@@ -41,10 +40,11 @@
           <R64Input v-model="form.biography" label="biography" />
         </div>
         <div class="mb-6">
-          <R64Input v-model="form.date_of_birth" label="Date of birth" />
+          <R64Input v-model="form.date_of_birth" label="Date of birth" type="date" />
         </div>
         <div class="mb-6">
-          <R64Checkbox v-model="form.is_group" label="Group" secondary />
+          <input id="user-agreement" type="checkbox" />
+          <label for="user-agreement">Group</label>
         </div>
 
         <div class="mb-6">
@@ -77,14 +77,11 @@
         </div> -->
 
         <div class="mb-6">
-          <R64Checkbox
-            v-model="form.sign_user_agreement"
-            label="User agreement"
-            secondary
-            :v="$v.form.sign_user_agreement"
-            error-message="Must accept the user agreement"
-            @change="form.sign_user_agreement = $event"
-          />
+          <input id="user-agreement" v-model="form.sign_user_agreement" type="checkbox" />
+          <label for="user-agreement">User agreement</label>
+          <p v-if="$v.form.sign_user_agreement.$invalid">
+            Must accept the user agreement
+          </p>
         </div>
 
         <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid && !error">
