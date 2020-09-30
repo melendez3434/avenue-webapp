@@ -149,13 +149,11 @@ export default {
       //     cover_photo: 'https://townsquare.media/site/366/files/2020/06/Creed.jpg?w=980&q=75',
       //   },
       // }
-      console.log('payload', this.form)
       const { data: talent } = await this.$api.talent.register(this.form).catch(e => {
         this.error = e.response.data.error
       })
 
       const { data: url } = await this.$api.talent.stripeAuthorize(talent.id)
-      console.log('data', url)
       window.location.href = url
     },
   },
