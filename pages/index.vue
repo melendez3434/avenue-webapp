@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto flex-1 flex flex-col items-center justify-center text-avenue-white">
-    <div class="w-full flex h-full flex-1 h-content">
+    <!-- <div class="w-full flex h-full flex-1 h-content">
       <div id="twitch-streaming" class="flex-1" style="height: 85%" />
       <div
         class="w-full bg-avenue-black flex flex-col space-y-4 text-avenue-white-light px-8 py-4 overflow-y-scroll"
@@ -14,6 +14,11 @@
           </div>
         </div>
       </div>
+    </div> -->
+    <div class="container mx-auto bg-red-500">
+      <div class="flex">
+        <nuxt-link :to="{ name: 'index' }">Live</nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -24,13 +29,19 @@ export default {
 
   auth: false,
 
-  mounted() {
-    new Twitch.Embed('twitch-streaming', {
-      width: 940,
-      height: '100%',
-      channel: 'hotbeatstv',
-      layout: 'video',
-    })
+  // mounted() {
+  //   new Twitch.Embed('twitch-streaming', {
+  //     width: 940,
+  //     height: '100%',
+  //     channel: 'hotbeatstv',
+  //     layout: 'video',
+  //   })
+  // },
+
+  async asyncData({ $api }) {
+    const { data, links, meta } = await $api.events.list({ live: true })
+    console.log('data', data, links, meta)
+    return { events: data }
   },
 }
 </script>
