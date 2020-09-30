@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto pb-12">
     <div class="flex flex-col space-y-4 mt-8">
-      <EventListItem v-for="event in events" :key="event.id" :event="event" />
+      <ArtistListItem v-for="artist in artists" :key="artist.id" :artist="artist" />
     </div>
 
     <Pagination :prev="!!links.prev" :next="!!links.next" @next="next" @prev="prev" />
@@ -10,30 +10,30 @@
 <script>
 import hasPagination from '@/mixins/hasPagination'
 import Pagination from '@/components/commons/ui/Pagination'
-import EventListItem from '@/components/events/EventListItem'
+import ArtistListItem from '@/components/artists/ArtistListItem'
 
 export default {
-  name: 'Upcoming',
+  name: 'Artists',
 
   auth: false,
 
   components: {
-    EventListItem,
+    ArtistListItem,
     Pagination,
   },
 
   mixins: [hasPagination],
 
   async asyncData({ $api }) {
-    const { data: events, links, meta } = await $api.events.list()
-    return { events, links, meta }
+    const { data: artists, links, meta } = await $api.talent.list()
+    return { artists, links, meta }
   },
 
   methods: {
     async fetchPage(page) {
-      const { data: events, links, meta } = await this.$api.events.list({ page })
+      const { data: artists, links, meta } = await this.$api.artists.list({ page })
 
-      this.events = events
+      this.artists = artists
       this.links = links
       this.meta = meta
     },

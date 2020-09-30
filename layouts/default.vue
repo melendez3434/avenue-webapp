@@ -7,6 +7,9 @@
       <nuxt-link :to="{ name: 'upcoming' }" class="text-3xl text-avenue-grey">
         Upcoming
       </nuxt-link>
+      <nuxt-link :to="{ name: 'artists' }" class="text-3xl text-avenue-grey">
+        Artists
+      </nuxt-link>
     </div>
 
     <nuxt />

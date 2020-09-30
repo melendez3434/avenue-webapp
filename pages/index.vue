@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto flex-1 flex flex-col items-center justify-center text-avenue-white">
+  <div class="mx-auto flex-1 flex flex-col items-center justify-center text-avenue-white pb-12">
     <!-- <div class="w-full flex h-full flex-1 h-content">
       <div id="twitch-streaming" class="flex-1" style="height: 85%" />
       <div
@@ -15,33 +15,46 @@
         </div>
       </div>
     </div> -->
-    <div class="container mx-auto bg-red-500">
-      <div class="flex">
-        <nuxt-link :to="{ name: 'index' }">Live</nuxt-link>
+    <div class="container mx-auto">
+      <div class="mt-8 grid grid-cols-2 gap-6">
+        <LiveEventListItem v-for="event in events" :key="event.id" :event="event" />
       </div>
+
+      <Pagination :prev="!!links.prev" :next="!!links.next" @next="next" @prev="prev" />
     </div>
   </div>
 </template>
 
 <script>
+import hasPagination from '@/mixins/hasPagination'
+import Pagination from '@/components/commons/ui/Pagination'
+import LiveEventListItem from '@/components/events/LiveEventListItem'
+
 export default {
   name: 'IndexPage',
 
   auth: false,
 
-  // mounted() {
-  //   new Twitch.Embed('twitch-streaming', {
-  //     width: 940,
-  //     height: '100%',
-  //     channel: 'hotbeatstv',
-  //     layout: 'video',
-  //   })
-  // },
+  components: {
+    LiveEventListItem,
+    Pagination,
+  },
+
+  mixins: [hasPagination],
 
   async asyncData({ $api }) {
-    const { data, links, meta } = await $api.events.list({ live: true })
-    console.log('data', data, links, meta)
-    return { events: data }
+    const { data: events, links, meta } = await $api.events.list({ live: true })
+    return { events, links, meta }
+  },
+
+  methods: {
+    async fetchPage(page) {
+      const { data: events, links, meta } = await this.$api.events.list({ page })
+
+      this.events = events
+      this.links = links
+      this.meta = meta
+    },
   },
 }
 </script>
