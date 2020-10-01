@@ -3,8 +3,8 @@
     <div class="col-span-6 bg-avenue-black h-full">
       <div id="twitch-streaming" ref="streaming" />
     </div>
-    <div class="col-span-3 bg-avenue-black h-full">
-      chat
+    <div class="col-span-3 bg-avenue-black h-full flex justify-center">
+      <span class="text-4xl mt-12">CHAT</span>
     </div>
   </div>
 </template>
@@ -27,8 +27,18 @@ export default {
     }
   },
 
+  data() {
+    return {
+      dimensions: {
+        width: 1920,
+        height: 1080,
+      },
+    }
+  },
+
   mounted() {
-    const height = (480 / 900) * this.$refs.streaming.offsetWidth
+    const height =
+      (this.dimensions.height / this.dimensions.width) * this.$refs.streaming.offsetWidth
     new Twitch.Embed('twitch-streaming', {
       width: '100%',
       height: `${height}px`,
