@@ -4,9 +4,11 @@
       <h1 class="text-avenue-white-light">The avenue</h1>
     </div>
     <nav class="flex space-x-5 items-center text-sm">
-      <a href="#" class="uppercase text-avenue-white-light">shows</a>
-      <a href="#" class="uppercase text-avenue-white-light">artists</a>
-      <a href="#" class="uppercase text-avenue-white-light">search</a>
+      <nuxt-link :to="{ name: 'index' }" class="uppercase text-avenue-white-light">shows</nuxt-link>
+      <nuxt-link :to="{ name: 'artists' }" class="uppercase text-avenue-white-light">
+        artists
+      </nuxt-link>
+      <!-- <nuxt-link href="#" class="uppercase text-avenue-white-light">search</nuxt-link> -->
       <nuxt-link
         v-if="!$auth.loggedIn"
         :to="{ name: 'login' }"

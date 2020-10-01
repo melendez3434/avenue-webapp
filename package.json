@@ -15,11 +15,13 @@
     "@64robots/r64components": "^0.1.28",
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.10.3",
+    "date-fns": "^2.16.1",
     "nuxt": "^2.14.3",
     "vue-croppie": "^2.0.2",
     "vuelidate": "^0.7.5"
   },
   "devDependencies": {
+    "@nuxtjs/svg": "^0.1.12",
     "@nuxtjs/tailwindcss": "^3.0.0",
     "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.0.1",
