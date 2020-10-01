@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    :to="{ name: 'event-slug', slug: event.id }"
+    :to="{ name: 'event-slug', params: { slug: event.id } }"
     class="w-full bg-no-repeat h-86 bg-gray-800 bg-cover flex items-center justify-center relative"
     :style="{ backgroundImage: `url(${event.talent.cover_photo})` }"
   >
