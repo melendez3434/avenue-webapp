@@ -20,11 +20,13 @@ module.exports = {
           'grey-dark': '#666666',
           red: '#D00000',
           'red-light': '#EB5757',
+          'red-neon': '#FF2F2F',
         },
       },
 
       spacing: {
         '38px': '38px',
+        '86': '19rem',
         '96': '24rem',
       },
 
