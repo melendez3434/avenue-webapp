@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col chat-max-height">
     <ChatMessages ref="messages" class="flex-1" :event="event" />
     <div class=" bg-avenue-blue-light h-12 flex items-center justify-center px-8">
       <div v-if="!$auth.user">
@@ -55,3 +55,9 @@ export default {
   },
 }
 </script>
+<style>
+.chat-max-height {
+  /* get off the full scren the tip jar and navbar height */
+  max-height: calc(100vh - 256px - 69px);
+}
+</style>
