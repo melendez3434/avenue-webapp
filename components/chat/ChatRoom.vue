@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col chat-max-height">
+  <div ref="chat" class="flex flex-col">
     <ChatMessages ref="messages" class="flex-1" :event="event" />
     <div class=" bg-avenue-blue-light h-12 flex items-center justify-center px-8">
       <div v-if="!$auth.user">
@@ -39,6 +39,12 @@ export default {
     return {
       message: '',
     }
+  },
+
+  mounted() {
+    const streamHeight = document.getElementById('streaming').offsetHeight
+    // From the stream height  the tip jar height
+    this.$refs.chat.style.maxHeight = `calc(${streamHeight}px - 256px)`
   },
 
   methods: {
