@@ -1,10 +1,11 @@
 <template>
-  <div class="w-full grid grid-cols-9 grid-rows-1 min-h-content">
-    <div class="col-span-6 bg-avenue-black h-full">
+  <div class="w-full grid grid-cols-9 grid-rows-1">
+    <div class="col-span-6">
       <div id="streaming" ref="streaming" />
     </div>
-    <div class="col-span-3 bg-avenue-black h-full flex justify-center">
-      <span class="text-4xl mt-12">CHAT</span>
+    <div class="col-span-3 flex flex-col">
+      <TipJars class="h-64" />
+      <ChatRoom class="flex-1" :event="$route.params.slug" />
     </div>
   </div>
 </template>
