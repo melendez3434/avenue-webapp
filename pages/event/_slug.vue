@@ -53,6 +53,14 @@ export default {
       height: this.videoHeight,
     })
   },
+
+  head() {
+    return {
+      script: [
+        { src: `https://player.dacast.com/js/player.js?contentId=${this.event.talent.embed_code}` },
+      ],
+    }
+  },
 }
 </script>
 <style>
