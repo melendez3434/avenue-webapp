@@ -3,8 +3,30 @@
     <div class="container mx-auto">
       <div class="mb-5 mt-8">
         <ul class="flex space-x-5">
-          <li class="uppercase">All</li>
-          <li v-for="genre in genres" :key="genre.id" class="uppercase">{{ genre.name }}</li>
+          <nuxt-link
+            as="li"
+            :to="{ name: 'index' }"
+            class="uppercase"
+            :class="{
+              'text-avenue-grey': $route.query.venue,
+              'text-avenue-white-light': !$route.query.venue,
+            }"
+          >
+            All
+          </nuxt-link>
+          <nuxt-link
+            v-for="venue in venues"
+            :key="venue.id"
+            as="li"
+            :to="{ name: 'index', query: { venue: venue.id } }"
+            class="uppercase"
+            :class="{
+              'text-avenue-grey': $route.query.venue !== venue.id,
+              'text-avenue-white-light': $route.query.venue === venue.id,
+            }"
+          >
+            {{ venue.name }}
+          </nuxt-link>
         </ul>
       </div>
       <div class="mt-8 grid grid-cols-2 gap-6">
@@ -34,24 +56,44 @@ export default {
 
   mixins: [hasPagination],
 
-  async asyncData({ $api }) {
-    const { data: events, links, meta } = await $api.events.list({ live: true })
-    return { events, links, meta }
+  async fetch() {
+    await this.fetchPage()
+  },
+
+  data() {
+    return {
+      events: [],
+      meta: {},
+      links: {},
+    }
   },
 
   computed: {
     ...mapState({
-      genres: state => state.global.genres,
+      venues: state => state.global.venues,
     }),
   },
 
-  methods: {
-    async fetchPage(page) {
-      const { data: events, links, meta } = await this.$api.events.list({ page })
+  watch: {
+    async '$route.query.venue'(venueId) {
+      this.fetchPage(null, venueId)
+    },
+  },
 
-      this.events = events
-      this.links = links
-      this.meta = meta
+  methods: {
+    async fetchPage(page = null, venueId = null) {
+      const params = { live: true }
+      params.page = page ? page : this.meta.current_page
+      params.venue = venueId ? venueId : this.$route.query.venue
+
+      try {
+        const { data: events, links, meta } = await this.$api.events.list(params)
+        this.events = events
+        this.links = links
+        this.meta = meta
+      } catch (e) {
+        this.$router.push({ name: 'index' })
+      }
     },
   },
 }
