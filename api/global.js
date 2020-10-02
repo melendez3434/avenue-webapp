@@ -19,6 +19,10 @@ export default $axios => ({
 
     return `${data.key}.${extension}`
   },
+
+  genres() {
+    return $axios.$get('/api/genres')
+  },
 })
 
 function dataURItoBlob(dataURI, type) {

@@ -1,7 +1,7 @@
 export default {
   actions: {
-    async nuxtServerInit({ dispatch }, { req }) {
-      // FETCH INITIAL DATA
+    async nuxtServerInit({ dispatch }) {
+      await dispatch('global/fetchGenres')
     },
   },
 }
