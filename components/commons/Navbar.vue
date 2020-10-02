@@ -1,7 +1,9 @@
 <template>
   <div class="w-full flex py-5 px-8">
     <div class="flex-1 uppercase">
-      <h1 class="text-avenue-white-light">The avenue</h1>
+      <nuxt-link as="h1" :to="{ name: 'index' }" class="text-avenue-white-light">
+        The avenue
+      </nuxt-link>
     </div>
     <nav class="flex space-x-5 items-center text-sm">
       <nuxt-link :to="{ name: 'index' }" class="uppercase text-avenue-white-light">shows</nuxt-link>

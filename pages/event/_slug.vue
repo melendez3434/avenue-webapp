@@ -1,7 +1,7 @@
 <template>
   <div class="w-full grid grid-cols-9 grid-rows-1 min-h-content">
     <div class="col-span-6 bg-avenue-black h-full">
-      <div id="twitch-streaming" ref="streaming" />
+      <div id="streaming" ref="streaming" />
     </div>
     <div class="col-span-3 bg-avenue-black h-full flex justify-center">
       <span class="text-4xl mt-12">CHAT</span>
@@ -39,11 +39,10 @@ export default {
   mounted() {
     const height =
       (this.dimensions.height / this.dimensions.width) * this.$refs.streaming.offsetWidth
-    new Twitch.Embed('twitch-streaming', {
+
+    dacast(this.event.talent.embed_code, 'streaming', {
       width: '100%',
-      height: `${height}px`,
-      channel: this.event.twitch_channel,
-      layout: 'video',
+      height,
     })
   },
 }
@@ -51,5 +50,8 @@ export default {
 <style>
 .min-h-content {
   min-height: calc(100vh - 69px);
+}
+.dc-video-player-wrapper {
+  position: initial;
 }
 </style>
