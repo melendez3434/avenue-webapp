@@ -4,7 +4,7 @@
       v-model="form.password"
       type="password"
       label="New Password"
-      placeholder="*********"
+      placeholder="********"
       :v="$v.form.password"
       error-message="Password is required"
     />
@@ -13,7 +13,7 @@
       v-model="form.password_confirmation"
       type="password"
       label="Confirm Password"
-      placeholder="*********"
+      placeholder="********"
       :v="$v.form.password_confirmation"
       error-message="Passwords must match"
     />
