@@ -9,7 +9,7 @@ export default $axios => ({
     return $axios.$get(`${resource}/${talentId}/stripe/authorize-url`)
   },
 
-  list() {
-    return $axios.$get(`${resource}`)
+  list(params) {
+    return $axios.$get(`${resource}`, { params })
   },
 })
