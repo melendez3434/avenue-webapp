@@ -28,7 +28,7 @@ export default {
 
   computed: {
     dateFormatted() {
-      return format(new Date(this.event.starts_at), 'EEEE, LLLL / h:mm aa')
+      return format(new Date(this.event.starts_at), 'EEEE, LLLL d / h:mm aa')
     },
   },
 }
