@@ -45,6 +45,7 @@ export default {
     '~/plugins/r64components',
     '~/plugins/vuelidate',
     '~/plugins/auth-sanctum',
+    '~/plugins/chat-scroll.client.js',
     '~/plugins/vue-croppie.client.js',
   ],
 
@@ -55,6 +56,7 @@ export default {
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/svg',
+    '@nuxtjs/laravel-echo',
   ],
 
   /*
@@ -167,5 +169,16 @@ export default {
      ** You can extend webpack config here
      */
     // extend(config, ctx) {},
+  },
+
+  echo: {
+    broadcaster: 'pusher',
+    authModule: true,
+    connectOnLogin: true,
+    disconnectOnLogout: true,
+    key: process.env.PUSHER_KEY,
+    cluster: process.env.PUSHER_CLUSTER,
+    encrypted: true,
+    plugins: ['~/plugins/echo.js'],
   },
 }

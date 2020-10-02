@@ -1,7 +1,7 @@
 <template>
-  <div ref="chat" class="flex flex-col">
+  <div class="flex flex-col">
     <ChatMessages ref="messages" class="flex-1" :event="event" />
-    <div class=" bg-avenue-blue-light h-12 flex items-center justify-center px-8">
+    <div class=" bg-avenue-blue-light h-12 flex items-center justify-center px-8 py-2">
       <div v-if="!$auth.user">
         <span>Please,</span>
         <nuxt-link
@@ -41,12 +41,6 @@ export default {
     }
   },
 
-  mounted() {
-    const streamHeight = document.getElementById('streaming').offsetHeight
-    // From the stream height  the tip jar height
-    this.$refs.chat.style.maxHeight = `calc(${streamHeight}px - 256px)`
-  },
-
   methods: {
     addMessage() {
       if (!this.message) return
@@ -61,9 +55,3 @@ export default {
   },
 }
 </script>
-<style>
-.chat-max-height {
-  /* get off the full scren the tip jar and navbar height */
-  max-height: calc(100vh - 256px - 69px);
-}
-</style>

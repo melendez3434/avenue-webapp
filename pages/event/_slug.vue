@@ -5,7 +5,7 @@
     </div>
     <div class="col-span-3 flex flex-col">
       <TipJars class="h-64" />
-      <ChatRoom class="flex-1" :event="$route.params.slug" />
+      <ChatRoom class="flex-1" :event="$route.params.slug" :style="chatStyle" />
     </div>
   </div>
 </template>
@@ -30,6 +30,7 @@ export default {
 
   data() {
     return {
+      videoHeight: 0,
       dimensions: {
         width: 1920,
         height: 1080,
@@ -37,13 +38,19 @@ export default {
     }
   },
 
+  computed: {
+    chatStyle() {
+      return { maxHeight: `calc(${this.videoHeight}px - 256px)` }
+    },
+  },
+
   mounted() {
-    const height =
+    this.videoHeight =
       (this.dimensions.height / this.dimensions.width) * this.$refs.streaming.offsetWidth
 
     dacast(this.event.talent.embed_code, 'streaming', {
       width: '100%',
-      height,
+      height: this.videoHeight,
     })
   },
 }
