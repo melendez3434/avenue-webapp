@@ -7,6 +7,10 @@
     <div class="absolute top-0 left-0 ml-4 mt-1 text-avenue-red flex items-center z-10">
       <IcLive />
     </div>
+    <div class="absolute bottom-0 left-0 mb-6 ml-4 text-avenue-white-light z-10">
+      <p class="text-2xl">{{ event.name }}</p>
+      <p class="text-lg leading-4">{{ event.talent.name }}</p>
+    </div>
     <div class="w-full h-full absolute top-0 left-0" style="background: rgba(0,0,0,0.3)" />
     <svg
       class="text-avenue-black-light"
