@@ -5,14 +5,6 @@
       <form class="mt-3" @submit="createTalent">
         <div class="mb-6">
           <R64Input
-            v-model="form.twitch_channel"
-            label="Twitch channel *"
-            :v="$v.form.twitch_channel"
-            error-message="Twitch channel is required"
-          />
-        </div>
-        <div class="mb-6">
-          <R64Input
             v-model="form.hometown"
             label="Home town *"
             :v="$v.form.hometown"
@@ -107,7 +99,6 @@ export default {
   data() {
     return {
       form: {
-        twitch_channel: '',
         hometown: '',
         merchandise_url: '',
         // photo: '',
@@ -165,7 +156,6 @@ export default {
 
     const validations = {
       form: {
-        twitch_channel: { required },
         hometown: { required },
         merchandise_url: { required, url },
         sign_user_agreement: { required, mustBeTrue },
