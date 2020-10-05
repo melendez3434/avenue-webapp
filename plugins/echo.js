@@ -13,11 +13,17 @@ export default function({ $echo, $axios }) {
           .catch(error => {
             callback(true, error)
           })
-
-        $axios.setHeader('X-Socket-ID', socketId)
       },
     }
   }
 
   $echo.connect()
+
+  $axios.interceptors.request.use(config => {
+    if ($echo.socketId()) {
+      config.headers['X-Socket-Id'] = $echo.socketId()
+    }
+
+    return config
+  })
 }

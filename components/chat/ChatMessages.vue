@@ -37,7 +37,6 @@ export default {
 
   async mounted() {
     this.$echo.channel(`event.${this.event}`).listen('ChatMessageCreated', ({ chatMessage }) => {
-      if (this.$auth.loggedIn && chatMessage.user.id === this.$auth.user.id) return
       this.messages.push(chatMessage)
     })
   },
