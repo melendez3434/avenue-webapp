@@ -13,7 +13,7 @@
     </div>
     <div class="w-full h-full absolute top-0 left-0" style="background: rgba(0,0,0,0.3)" />
     <svg
-      class="text-avenue-black-light"
+      class="text-avenue-white-light z-10"
       width="124"
       height="124"
       viewBox="0 0 24 24"
