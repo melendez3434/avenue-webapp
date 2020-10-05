@@ -23,7 +23,12 @@
           <R64Input v-model="form.name" label="Name" />
         </div>
         <div class="mb-6">
-          <R64Input v-model="form.email" label="Email " />
+          <R64Input
+            v-model="form.email"
+            label="Email "
+            :v="$v.form.email"
+            error-message="Must be a valid email"
+          />
         </div>
         <div class="mb-6">
           <R64Input v-model="form.cellphone" label="Cellphone" />
@@ -32,7 +37,8 @@
           <R64Input v-model="form.biography" label="biography" />
         </div>
         <div class="mb-6">
-          <R64Input v-model="form.date_of_birth" label="Date of birth" type="date" />
+          <label for="user-agreement" class="uppercase">Date of birth</label>
+          <v-date-picker v-model="form.date_of_birth" color="red" type="date" class="bg-red-500" />
         </div>
         <div class="mb-6">
           <input id="user-agreement" type="checkbox" />
@@ -177,3 +183,14 @@ export default {
   },
 }
 </script>
+<style>
+input.vc-bg-white {
+  @apply bg-avenue-grey;
+}
+input.vc-text-gray-800 {
+  @apply text-avenue-white;
+}
+input.vc-border-gray-400 {
+  @apply border-none;
+}
+</style>

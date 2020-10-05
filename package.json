@@ -19,6 +19,7 @@
     "date-fns": "^2.16.1",
     "nuxt": "^2.14.3",
     "pusher-js": "^7.0.0",
+    "v-calendar": "^1.0.8",
     "vue-chat-scroll": "^1.4.0",
     "vue-croppie": "^2.0.2",
     "vuelidate": "^0.7.5"

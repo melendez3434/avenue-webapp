@@ -47,6 +47,7 @@ export default {
     '~/plugins/auth-sanctum',
     '~/plugins/chat-scroll.client.js',
     '~/plugins/vue-croppie.client.js',
+    '~/plugins/vcalendar.client.js',
   ],
 
   /*
