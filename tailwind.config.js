@@ -24,6 +24,23 @@ module.exports = {
           'blue-light': '#00182B',
           'blue-dark': '#00080E',
         },
+        theavenue: {
+          white: '#FFFFFF',
+          'off-white': '#EEEEEE',
+          gray: '#888888',
+          black: '#000000',
+          'background-dark': '#00080E',
+          background: '#001322',
+          'background-light': '#00182B',
+          'red-neon': '#FF2F2F',
+          'orange-neon': '#FF5E39',
+          'yellow-neon': '#FFD243',
+          'green-neon': '#3FED3F',
+          'turquoise-neon': '#2CD7FF',
+          'blue-neon': '#0066FF',
+          'purple-neon': '#8E46FF',
+          'pink-neon': '#FF39AF',
+        },
       },
 
       spacing: {
@@ -34,6 +51,11 @@ module.exports = {
 
       fontSize: {
         xxs: '0.58rem',
+      },
+
+      fontFamily: {
+        library: ['"LIBRARY 3 AM soft Regular"', 'sans-serif'],
+        'league-gothic': ['"League Gothic"', 'serif'], // Ensure fonts with spaces have " " surrounding it.
       },
     },
   },

@@ -1,29 +1,46 @@
 <template>
-  <div class="w-full flex py-5 px-8">
-    <div class="flex-1 uppercase">
-      <nuxt-link as="h1" :to="{ name: 'index' }" class="text-avenue-white-light">
+  <div class="w-full flex py-5 px-8 bg-theavenue-background-light">
+    <div class="flex-1 flex items-center uppercase">
+      <nuxt-link
+        tag="h1"
+        :to="{ name: 'index' }"
+        class="text-avenue-white-light font-library uppercase text-2xl text-light-white"
+      >
         The avenue
       </nuxt-link>
     </div>
     <nav class="flex space-x-5 items-center text-sm">
-      <nuxt-link :to="{ name: 'index' }" class="uppercase text-avenue-white-light">shows</nuxt-link>
-      <nuxt-link :to="{ name: 'artists' }" class="uppercase text-avenue-white-light">
-        artists
+      <nuxt-link
+        :to="{ name: 'index' }"
+        class="uppercase text-avenue-white-light font-library text-2xl text-light-white"
+      >
+        Music
       </nuxt-link>
-      <!-- <nuxt-link href="#" class="uppercase text-avenue-white-light">search</nuxt-link> -->
+      <nuxt-link
+        :to="{ name: 'index' }"
+        class="uppercase text-avenue-white-light font-library text-2xl text-light-white"
+      >
+        Food
+      </nuxt-link>
+      <nuxt-link
+        :to="{ name: 'artists' }"
+        class="uppercase text-avenue-white-light font-library text-2xl text-light-white"
+      >
+        Stand-Up
+      </nuxt-link>
       <nuxt-link
         v-if="!$auth.loggedIn"
         :to="{ name: 'login' }"
-        class="bg-avenue-grey text-avenue-white-light rounded-lg py-1 px-2 uppercase"
+        class="py-0.5 px-3 font-library uppercase text-2xl text-theavenue-turquoise-neon text-light-turquoise border border-theavenue-turquoise-neon rounded-lg"
       >
-        log in
+        Login
       </nuxt-link>
       <nuxt-link
         v-if="!$auth.loggedIn"
         :to="{ name: 'signup' }"
-        class="bg-avenue-white-light text-avenue-black-light rounded-lg py-1 px-2 uppercase"
+        class="py-0.5 px-3 font-library uppercase text-2xl text-theavenue-yellow-neon text-light-yellow border border-theavenue-yellow-neon rounded-lg"
       >
-        sign up
+        Sign Up
       </nuxt-link>
       <nuxt-link
         v-if="$auth.loggedIn"
@@ -43,8 +60,24 @@
   </div>
 </template>
 <script>
+import Logo from '@/assets/svg/logo.svg?inline'
+import Music from '@/assets/svg/music.svg?inline'
+import Food from '@/assets/svg/food.svg?inline'
+import StandUp from '@/assets/svg/standup.svg?inline'
+import LogIn from '@/assets/svg/login.svg?inline'
+import SignUp from '@/assets/svg/signup.svg?inline'
+
 export default {
   name: 'Navbar',
+
+  components: {
+    Logo,
+    Music,
+    Food,
+    StandUp,
+    LogIn,
+    SignUp,
+  },
 
   methods: {
     async logout() {
