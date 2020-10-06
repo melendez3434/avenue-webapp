@@ -60,24 +60,8 @@
   </div>
 </template>
 <script>
-import Logo from '@/assets/svg/logo.svg?inline'
-import Music from '@/assets/svg/music.svg?inline'
-import Food from '@/assets/svg/food.svg?inline'
-import StandUp from '@/assets/svg/standup.svg?inline'
-import LogIn from '@/assets/svg/login.svg?inline'
-import SignUp from '@/assets/svg/signup.svg?inline'
-
 export default {
   name: 'Navbar',
-
-  components: {
-    Logo,
-    Music,
-    Food,
-    StandUp,
-    LogIn,
-    SignUp,
-  },
 
   methods: {
     async logout() {
