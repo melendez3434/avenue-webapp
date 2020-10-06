@@ -37,6 +37,8 @@ export default {
    */
   css: [],
 
+  serverMiddleware: ['~/stream/update.js'],
+
   /*
    ** Plugins to load before mounting the App
    */
