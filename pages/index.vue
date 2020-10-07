@@ -1,5 +1,8 @@
 <template>
-  <div class="mx-auto flex-1 flex flex-col items-center justify-center text-avenue-white pb-12">
+  <div
+    class="mx-auto flex-1 flex flex-col items-center justify-center text-avenue-white pb-12 bg-theavenue-background-light"
+  >
+    <LogoBig class="w-full" />
     <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
       <LiveEventListItem v-for="event in events" :key="event.id" :event="event" />
     </el-collapse>
@@ -13,6 +16,8 @@ import { mapState } from 'vuex'
 import hasPagination from '@/mixins/hasPagination'
 import Pagination from '@/components/commons/ui/Pagination'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
+import LogoBig from '@/assets/svg/logo_big.svg?inline'
+
 export default {
   name: 'IndexPage',
 
@@ -21,6 +26,7 @@ export default {
   components: {
     LiveEventListItem,
     Pagination,
+    LogoBig,
   },
 
   mixins: [hasPagination],
@@ -51,7 +57,7 @@ export default {
 
   methods: {
     async fetchPage(page = null, venueId = null) {
-      const params = { live: true }
+      const params = {}
       params.page = page ? page : this.meta.current_page
       params.venue = venueId ? venueId : this.$route.query.venue
 

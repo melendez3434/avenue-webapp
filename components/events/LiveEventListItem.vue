@@ -2,17 +2,16 @@
   <el-collapse-item :name="event.id">
     <template slot="title">
       <div
-        class="w-full bg-theavenue-white text-theavenue-black flex items-center justify-center font-league-gothic py-2"
+        class="w-full bg-theavenue-white text-theavenue-black flex items-center justify-center font-league-gothic text-6xl py-2 uppercase"
       >
-        <p class="text-6xl uppercase">{{ event.talent.name }}</p>
-        <p class="text-6xl uppercase ml-6">{{ dateTitle }}</p>
-        <p class="text-6xl uppercase ml-6">{{ hourTitle }}</p>
+        <p>{{ event.talent.name }}</p>
+        <p class="ml-6">{{ dateTitle }}</p>
+        <p class="ml-6">{{ hourTitle }}</p>
+        <p v-if="isLive" class="text-theavenue-red-neon ml-6">live</p>
       </div>
     </template>
-    <nuxt-link
-      tag="div"
-      :to="{ name: 'event-slug', params: { slug: event.id } }"
-      class="cursor-pointer w-full bg-no-repeat h-86 bg-gray-800 bg-cover flex items-center justify-center relative"
+    <div
+      class="w-full bg-no-repeat h-86 bg-gray-800 bg-cover flex items-center justify-center relative"
       :style="{ backgroundImage: `url(${event.talent.cover_photo})` }"
     >
       <div class="dimmer-gradient w-full absolute top-0 left-0 h-full" />
@@ -30,16 +29,27 @@
             <p class="font-sans text-lg">{{ genres }}</p>
           </div>
         </div>
-        <div class="font-sans flex flex-col">
-          <p class="text-lg font-bold leading-6">{{ event.name }}</p>
-          <p class="text-base leading-6">{{ dateFormatted }}</p>
+        <div class="flex">
+          <div class="font-sans flex flex-col text-right">
+            <p class="text-lg font-bold leading-6">{{ event.name }}</p>
+            <p class="text-base leading-6">{{ dateFormatted }}</p>
+          </div>
+          <div v-if="isLive" class="ml-6">
+            <nuxt-link
+              :to="{ name: 'event-slug', params: { slug: event.id } }"
+              class="font-library border-2 py-2 px-3 uppercase text-theavenue-red-neon text-light-red text-3xl rounded-md border-theavenue-red-neon"
+              style="box-shadow: 1px 1px 7px #FF2F2F;"
+            >
+              WATCH NOW
+            </nuxt-link>
+          </div>
         </div>
       </div>
-    </nuxt-link>
+    </div>
   </el-collapse-item>
 </template>
 <script>
-import { format } from 'date-fns'
+import { format, isWithinInterval } from 'date-fns'
 
 export default {
   name: 'LiveEventListItem',
@@ -71,6 +81,13 @@ export default {
       )
 
       return genresString.slice(0, -1)
+    },
+
+    isLive() {
+      return isWithinInterval(new Date(), {
+        start: new Date(this.event.starts_at),
+        end: new Date(this.event.ends_at),
+      })
     },
   },
 }
