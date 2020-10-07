@@ -1,8 +1,8 @@
 <template>
   <div class="mx-auto flex-1 flex flex-col items-center justify-center text-avenue-white pb-12">
-    <div class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
+    <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
       <LiveEventListItem v-for="event in events" :key="event.id" :event="event" />
-    </div>
+    </el-collapse>
 
     <Pagination :prev="!!links.prev" :next="!!links.next" @next="next" @prev="prev" />
   </div>
@@ -13,7 +13,6 @@ import { mapState } from 'vuex'
 import hasPagination from '@/mixins/hasPagination'
 import Pagination from '@/components/commons/ui/Pagination'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
-
 export default {
   name: 'IndexPage',
 

@@ -48,6 +48,7 @@ export default {
     '~/plugins/chat-scroll.client.js',
     '~/plugins/vue-croppie.client.js',
     '~/plugins/vcalendar.client.js',
+    '~/plugins/elementui.js',
   ],
 
   /*
