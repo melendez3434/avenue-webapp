@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import socket from '~/plugins/socket.io.js'
+
 export default {
   name: 'Stream',
 
@@ -21,6 +23,13 @@ export default {
   },
 
   async mounted() {
+    socket.emit('create-ffmpeg-process', {
+      url: 'rtmp://lowlatency.dacast.com:1935/live-181563-565927',
+      user: '565927',
+      password: '356634',
+      path: 'mystream565927',
+    })
+
     this.cameraStream = await navigator.mediaDevices.getUserMedia({
       audio: true,
       video: true,
@@ -47,13 +56,7 @@ export default {
       videoBitsPerSecond: 3000000,
     })
     this.mediaRecorder.ondataavailable = async e => {
-      // Then send the binary data via the WebSocket connection!
-      // ws.send(e.data);
-      let formData = new FormData()
-      formData.append('blob', e.data)
-      await this.$axios.post('/stream/update', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      })
+      socket.emit('stream-video-chunk', { chunk: e.data, path: 'mystream565927' })
     }
     this.mediaRecorder.start(2000)
   },
