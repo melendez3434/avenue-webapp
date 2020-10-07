@@ -4,7 +4,7 @@
       <nuxt-link
         tag="h1"
         :to="{ name: 'index' }"
-        class="text-avenue-white-light font-library uppercase text-2xl text-light-white"
+        class="text-avenue-white-light font-library uppercase text-2xl text-light-white cursor-pointer"
       >
         The avenue
       </nuxt-link>
@@ -28,13 +28,14 @@
       >
         Stand-Up
       </nuxt-link>
-      <nuxt-link
+      <button
         v-if="!$auth.loggedIn"
-        :to="{ name: 'login' }"
+        type="button"
         class="py-0.5 px-3 font-library uppercase text-2xl text-theavenue-turquoise-neon text-light-turquoise border border-theavenue-turquoise-neon rounded-lg"
+        @click="$modal.show('login-modal')"
       >
         Login
-      </nuxt-link>
+      </button>
       <nuxt-link
         v-if="!$auth.loggedIn"
         :to="{ name: 'signup' }"

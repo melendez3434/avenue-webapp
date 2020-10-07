@@ -49,6 +49,7 @@ export default {
     '~/plugins/vue-croppie.client.js',
     '~/plugins/vcalendar.client.js',
     '~/plugins/elementui.js',
+    '~plugins/vue-js-modal.js',
   ],
 
   /*
