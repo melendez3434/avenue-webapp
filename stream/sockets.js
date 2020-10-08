@@ -20,15 +20,33 @@ export default function() {
       socket.on('create-ffmpeg-process', function({ stream_url, login, password, stream_name }) {
         const command = `ffmpeg -re -i pipe:0 -c:v libx264 -b:v 1600k -preset ultrafast -b:a 128k -x264opts keyint=50 -g 25 -pix_fmt yuv420p -f flv "${stream_url} flashver=FMLE/3.020(compatible;20FMSc/1.0) live=true pubUser=${login} pubPasswd=${password} playpath=${stream_name}"`
         processes[stream_name] = child_process.spawn(command, { shell: true })
+        //Todo: this should catch the console errors but it is dispatched even with good connections
+
+        // processes[stream_name].stderr.on('data', error => {
+        //   console.error(error)
+        //   if (processes[stream_name]) {
+        //     terminateProcess(stream_name)
+        //   }
+        // })
       })
 
       socket.on('stream-video-chunk', function({ stream_name, chunk }) {
-        processes[stream_name].stdin.write(chunk)
+        const ffmpegProcess = processes[stream_name]
+
+        if (!ffmpegProcess) return
+
+        ffmpegProcess.stdin.write(chunk)
       })
 
       socket.on('terminate-ffmpeg-process', function(stream_name) {
-        processes[stream_name].kill('SIGINT')
+        terminateProcess(stream_name)
       })
+
+      function terminateProcess(processName) {
+        processes[processName].kill('SIGINT')
+        processes[processName] = null
+        socket.emit(`${processName}-error`)
+      }
     })
   })
 }
