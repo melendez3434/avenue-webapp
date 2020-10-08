@@ -4,12 +4,12 @@
     <div class=" bg-avenue-blue-light h-12 flex items-center justify-center px-8 py-2">
       <div v-if="!$auth.user">
         <span>Please,</span>
-        <nuxt-link
-          :to="{ name: 'login' }"
+        <button
           class="text-avenue-grey uppercase font-bold border-b border-avenue-grey pb-1"
+          @click="$modal.show('user-access-modal', { active: 'login' })"
         >
           log in
-        </nuxt-link>
+        </button>
         <span>if you want to join the chat 🤠</span>
       </div>
       <input
