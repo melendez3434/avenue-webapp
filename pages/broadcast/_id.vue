@@ -23,15 +23,7 @@ export default {
 
       if (!data.dacast) redirect('/')
 
-      // return { dacast: data.dacast }
-      return {
-        dacast: {
-          stream_url: 'rtmp://lowlatency.dacast.com:1935/live-181563-565927',
-          stream_name: 'mystream565927',
-          login: '565927',
-          password: '356634',
-        },
-      }
+      return { dacast: data.dacast }
     } catch (e) {
       redirect('/')
     }
