@@ -1,37 +1,35 @@
 <template>
-  <div>
-    <form @submit="login">
-      <R64Input
-        v-model="form.email"
-        label="Email"
-        name="email"
-        :v="$v.form.email"
-        error-message="A valid email address is required"
-      />
+  <form @submit="login">
+    <R64Input
+      v-model="form.email"
+      label="Email"
+      name="email"
+      :v="$v.form.email"
+      error-message="A valid email address is required"
+    />
 
-      <R64Input
-        v-model="form.password"
-        type="password"
-        label="Password"
-        name="password"
-        class="mt-8"
-        :v="$v.form.password"
-        error-message="Password is required"
-      />
+    <R64Input
+      v-model="form.password"
+      type="password"
+      label="Password"
+      name="password"
+      class="mt-8"
+      :v="$v.form.password"
+      error-message="Password is required"
+    />
 
-      <nuxt-link class="text-avenue-white text-xs" :to="{ name: 'forgot' }">
-        Trouble logging in?
-      </nuxt-link>
+    <nuxt-link class="text-avenue-white text-xs" :to="{ name: 'forgot' }">
+      Trouble logging in?
+    </nuxt-link>
 
-      <p v-if="error" class="bg-avenue-red text-white rounded py-1 px-3 mt-3 text-center">
-        {{ error }}
-      </p>
+    <p v-if="error" class="bg-avenue-red text-white rounded py-1 px-3 mt-3 text-center">
+      {{ error }}
+    </p>
 
-      <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid">
-        Login
-      </R64Button>
-    </form>
-  </div>
+    <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid">
+      Login
+    </R64Button>
+  </form>
 </template>
 <script>
 import { email, required } from 'vuelidate/lib/validators'
@@ -60,7 +58,7 @@ export default {
           },
         })
         this.error = null
-        this.$router.push({ path: '/' })
+        this.$modal.hide('user-access-modal')
       } catch (e) {
         this.error = e.response.data.error
       }

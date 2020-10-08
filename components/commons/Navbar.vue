@@ -32,17 +32,18 @@
         v-if="!$auth.loggedIn"
         type="button"
         class="py-0.5 px-3 font-library uppercase text-2xl text-theavenue-turquoise-neon text-light-turquoise border border-theavenue-turquoise-neon rounded-lg"
-        @click="$modal.show('login-modal')"
+        @click="$modal.show('user-access-modal', { active: 'login' })"
       >
         Login
       </button>
-      <nuxt-link
+      <button
         v-if="!$auth.loggedIn"
         :to="{ name: 'signup' }"
         class="py-0.5 px-3 font-library uppercase text-2xl text-theavenue-yellow-neon text-light-yellow border border-theavenue-yellow-neon rounded-lg"
+        @click="$modal.show('user-access-modal', { active: 'signup' })"
       >
         Sign Up
-      </nuxt-link>
+      </button>
       <nuxt-link
         v-if="$auth.loggedIn"
         class="bg-avenue-white-light text-avenue-black-light rounded-lg py-1 px-2 uppercase"
@@ -67,7 +68,6 @@ export default {
   methods: {
     async logout() {
       await this.$auth.logout()
-      this.$router.push({ name: 'login' })
     },
   },
 }

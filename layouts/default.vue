@@ -3,8 +3,8 @@
     <Navbar />
     <nuxt />
 
-    <modal name="login-modal" adaptive height="auto">
-      <UserAccessModal />
+    <modal name="user-access-modal" adaptive height="auto" @before-open="beforeOpenUserAccess">
+      <UserAccessModal :active-tab="modal.active" />
     </modal>
   </div>
 </template>
@@ -19,6 +19,22 @@ export default {
   components: {
     Navbar,
     UserAccessModal,
+  },
+
+  data() {
+    return {
+      modal: {
+        active: 'login',
+      },
+    }
+  },
+
+  methods: {
+    beforeOpenUserAccess({ params }) {
+      if (params.active) {
+        this.modal.active = params.active
+      }
+    },
   },
 }
 </script>
