@@ -17,17 +17,17 @@ export default function() {
 
     // Add socket.io events
     io.on('connection', socket => {
-      socket.on('create-ffmpeg-process', function({ url, user, password, path }) {
-        const command = `ffmpeg -re -i pipe:0 -c:v libx264 -b:v 1600k -preset ultrafast -b:a 128k -x264opts keyint=50 -g 25 -pix_fmt yuv420p -f flv "${url} flashver=FMLE/3.020(compatible;20FMSc/1.0) live=true pubUser=${user} pubPasswd=${password} playpath=${path}"`
-        processes[path] = child_process.spawn(command, { shell: true })
+      socket.on('create-ffmpeg-process', function({ stream_url, login, password, stream_name }) {
+        const command = `ffmpeg -re -i pipe:0 -c:v libx264 -b:v 1600k -preset ultrafast -b:a 128k -x264opts keyint=50 -g 25 -pix_fmt yuv420p -f flv "${stream_url} flashver=FMLE/3.020(compatible;20FMSc/1.0) live=true pubUser=${login} pubPasswd=${password} playpath=${stream_name}"`
+        processes[stream_name] = child_process.spawn(command, { shell: true })
       })
 
-      socket.on('stream-video-chunk', function({ path, chunk }) {
-        processes[path].stdin.write(chunk)
+      socket.on('stream-video-chunk', function({ stream_name, chunk }) {
+        processes[stream_name].stdin.write(chunk)
       })
 
-      socket.on('terminate-ffmpeg-process', function(path) {
-        processes[path].kill('SIGINT')
+      socket.on('terminate-ffmpeg-process', function(stream_name) {
+        processes[stream_name].kill('SIGINT')
       })
     })
   })

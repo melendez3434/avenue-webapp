@@ -12,4 +12,8 @@ export default $axios => ({
   list(params) {
     return $axios.$get(`${resource}`, { params })
   },
+
+  get(id) {
+    return $axios.$get(`${resource}/${id}`)
+  },
 })

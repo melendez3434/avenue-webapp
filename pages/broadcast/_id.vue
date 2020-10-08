@@ -13,6 +13,20 @@ export default {
 
   auth: 'guest',
 
+  async asyncData({ $api, redirect, params }) {
+    if (!params.id) redirect('/')
+
+    try {
+      const { data } = await $api.talent.get(params.id)
+
+      if (!data.dacast) redirect('/')
+
+      return { dacast: data.dacast }
+    } catch (e) {
+      redirect('/')
+    }
+  },
+
   data() {
     return {
       video: null,
@@ -23,12 +37,7 @@ export default {
   },
 
   async mounted() {
-    socket.emit('create-ffmpeg-process', {
-      url: 'rtmp://lowlatency.dacast.com:1935/live-181563-565927',
-      user: '565927',
-      password: '356634',
-      path: 'mystream565927',
-    })
+    socket.emit('create-ffmpeg-process', this.dacast)
 
     this.cameraStream = await navigator.mediaDevices.getUserMedia({
       audio: true,
@@ -56,9 +65,13 @@ export default {
       videoBitsPerSecond: 3000000,
     })
     this.mediaRecorder.ondataavailable = async e => {
-      socket.emit('stream-video-chunk', { chunk: e.data, path: 'mystream565927' })
+      socket.emit('stream-video-chunk', { chunk: e.data, stream_name: this.dacast.stream_name })
     }
     this.mediaRecorder.start(2000)
+  },
+
+  beforeDestroy() {
+    socket.emit('terminate-ffmpeg-process', this.dacast.stream_name)
   },
 
   methods: {
