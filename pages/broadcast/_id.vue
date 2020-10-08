@@ -44,6 +44,7 @@ export default {
       context: null,
       cameraStream: null,
       mediaRecorder: null,
+      updateCanvasLoop: null,
     }
   },
 
@@ -59,22 +60,20 @@ export default {
       this.video.play()
       this.$refs.canvas.width = this.video.videoWidth
       this.$refs.canvas.height = this.video.videoHeight
-      requestAnimationFrame(this.updateCanvas)
+      this.updateCanvas()
     }
     this.context = this.$refs.canvas.getContext('2d')
 
-    const mediaStream = this.$refs.canvas.captureStream(30) // 30 frames per second
+    const mediaStream = this.$refs.canvas.captureStream(30)
     this.mediaRecorder = new MediaRecorder(mediaStream, {
       mimeType: 'video/webm',
       videoBitsPerSecond: 3000000,
     })
     this.mediaRecorder.ondataavailable = async e => {
-      console.log('sending video')
       socket.emit('stream-video-chunk', { chunk: e.data, stream_name: this.dacast.stream_name })
     }
 
     socket.on(`${this.dacast.stream_name}-error`, () => {
-      console.log('this has crashed')
       this.stopStreaming()
     })
   },
@@ -86,6 +85,9 @@ export default {
       }
     })
     socket.emit('terminate-ffmpeg-process', this.dacast.stream_name)
+    this.stopStreaming()
+    this.updateCanvasLoop = null
+    socket.disconnect()
   },
 
   methods: {
@@ -107,7 +109,7 @@ export default {
 
       this.context.drawImage(this.video, 0, 0, this.video.videoWidth, this.video.videoHeight)
 
-      requestAnimationFrame(this.updateCanvas)
+      this.updateCanvasLoop = requestAnimationFrame(this.updateCanvas)
     },
   },
 }

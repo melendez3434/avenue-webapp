@@ -18,16 +18,18 @@ export default function() {
     // Add socket.io events
     io.on('connection', socket => {
       socket.on('create-ffmpeg-process', function({ stream_url, login, password, stream_name }) {
-        const command = `ffmpeg -re -i pipe:0 -c:v libx264 -b:v 1600k -preset ultrafast -b:a 128k -x264opts keyint=50 -g 25 -pix_fmt yuv420p -f flv "${stream_url} flashver=FMLE/3.020(compatible;20FMSc/1.0) live=true pubUser=${login} pubPasswd=${password} playpath=${stream_name}"`
+        const command = `ffmpeg -loglevel error -re -i pipe:0 -c:v libx264 -b:v 1600k -preset ultrafast -b:a 128k -x264opts keyint=50 -g 25 -pix_fmt yuv420p -f flv "${stream_url} flashver=FMLE/3.020(compatible;20FMSc/1.0) live=true pubUser=${login} pubPasswd=${password} playpath=${stream_name}"`
         processes[stream_name] = child_process.spawn(command, { shell: true })
-        //Todo: this should catch the console errors but it is dispatched even with good connections
+        process.on('uncaughtException', error => {
+          console.error(error)
+        })
 
-        // processes[stream_name].stderr.on('data', error => {
-        //   console.error(error)
-        //   if (processes[stream_name]) {
-        //     terminateProcess(stream_name)
-        //   }
-        // })
+        processes[stream_name].stderr.on('data', error => {
+          console.error(String(error))
+          if (processes[stream_name]) {
+            terminateProcess(stream_name)
+          }
+        })
       })
 
       socket.on('stream-video-chunk', function({ stream_name, chunk }) {
@@ -42,7 +44,15 @@ export default function() {
         terminateProcess(stream_name)
       })
 
+      socket.on('disconnect', function() {
+        //
+      })
+
       function terminateProcess(processName) {
+        const ffmpegProcess = processes[processName]
+
+        if (!ffmpegProcess) return
+
         processes[processName].kill('SIGINT')
         processes[processName] = null
         socket.emit(`${processName}-error`)
