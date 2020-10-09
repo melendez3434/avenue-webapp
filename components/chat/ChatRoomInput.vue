@@ -21,8 +21,9 @@ export default {
   methods: {
     submit() {
       const html = this.$refs.editable.innerHTML
+      const path = process.env.NODE_ENV === 'production' ? '/_nuxt/img/' : '/_nuxt/assets/emojis/'
       const sanitized = html
-        .replaceAll('<img src="/_nuxt/assets/emojis/', ':')
+        .replaceAll(`<img src="${path}`, ':')
         .replaceAll('.png">', ':')
         .replaceAll('<br>', '')
         .replaceAll('<div>', '')

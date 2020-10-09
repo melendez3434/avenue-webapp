@@ -37,9 +37,10 @@ export default {
         fire: 'IcFire',
       }
       return this.message.message.split(':').map(message => {
+        const icon = message.split('.')[0] // nuxt adds an extra hash in production
         return {
           message,
-          type: icons[message] || 'span',
+          type: icons[icon] || 'span',
         }
       })
     },
