@@ -12,14 +12,26 @@
         </button>
         <span>if you want to join the chat 🤠</span>
       </div>
-      <input
-        v-else
-        v-model="message"
-        type="text"
-        class="bg-avenue-blue-dark rounded-lg w-full p-2 text-xs"
-        placeholder="write a comment..."
-        @keydown.enter="addMessage"
-      />
+      <div v-else class="w-full flex rounded-lg bg-avenue-blue-dark items-center">
+        <ChatRoomInput
+          ref="input"
+          class="bg-avenue-blue-dark flex-1 text-xs rounded-l-lg"
+          @submit="addMessage"
+        />
+        <div class="pr-2 flex">
+          <img
+            ref="heart"
+            src="~assets/emojis/heart.png"
+            @click="$refs.input.addEmoji($refs.heart)"
+          />
+          <img
+            ref="smile"
+            src="~assets/emojis/smile.png"
+            @click="$refs.input.addEmoji($refs.smile)"
+          />
+          <img ref="fire" src="~assets/emojis/fire.png" @click="$refs.input.addEmoji($refs.fire)" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -35,22 +47,20 @@ export default {
     },
   },
 
-  data() {
-    return {
-      message: '',
-    }
-  },
-
   methods: {
-    addMessage() {
-      if (!this.message) return
+    addMessage(message) {
+      if (!message) return
 
       this.$refs.messages.addNewMessage({
         user: this.$auth.user,
-        message: this.message,
+        message,
       })
 
-      this.message = ''
+      this.$refs.input.clear()
+    },
+
+    addEmoji(emoji) {
+      this.message = `${this.message}:${emoji}:`
     },
   },
 }
