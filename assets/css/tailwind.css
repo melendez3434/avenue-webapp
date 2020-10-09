@@ -3,3 +3,19 @@
 @import 'tailwindcss/components';
 /* purgecss end ignore */
 @import 'tailwindcss/utilities';
+
+.text-light-white {
+  text-shadow: 1px 1px 7px #FFFFFF;
+}
+
+.text-light-turquoise {
+  text-shadow: 1px 1px 7px #2CD7FF;
+}
+
+.text-light-yellow {
+  text-shadow: 1px 1px 7px #FFD243;
+}
+
+.text-light-red {
+  text-shadow: 1px 1px 7px #FF2F2F;
+}

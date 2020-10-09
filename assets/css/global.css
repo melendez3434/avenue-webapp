@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'League Gothic';
+    src: url('~assets/fonts/leaguegothic-regular-webfont.eot');
+    src: url('~assets/fonts/leaguegothic-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('~assets/fonts/leaguegothic-regular-webfont.woff') format('woff'),
+         url('~assets/fonts/leaguegothic-regular-webfont.ttf') format('truetype'),
+         url('~assets/fonts/leaguegothic-regular-webfont.svg#league_gothicregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+font-family: 'LIBRARY 3 AM soft Regular';
+font-style: normal;
+font-weight: normal;
+src: local('~assets/fonts/LIBRARY 3 AM soft Regular'), url('~assets/fonts/Library 3 am soft.woff') format('woff');
+}

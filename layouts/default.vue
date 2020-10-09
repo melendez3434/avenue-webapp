@@ -1,34 +1,50 @@
 <template>
   <div class="min-h-screen bg-avenue-black text-white">
     <Navbar />
-
-    <div class="container mx-auto mt-5 flex items-center space-x-8">
-      <nuxt-link :to="{ name: 'index' }" class="text-3xl text-avenue-grey">Live</nuxt-link>
-      <nuxt-link :to="{ name: 'upcoming' }" class="text-3xl text-avenue-grey">
-        Upcoming
-      </nuxt-link>
-      <nuxt-link :to="{ name: 'artists' }" class="text-3xl text-avenue-grey">
-        Artists
-      </nuxt-link>
-    </div>
-
     <nuxt />
+
+    <modal name="user-access-modal" adaptive height="auto" @before-open="beforeOpenUserAccess">
+      <UserAccessModal :active-tab="modal.active" />
+    </modal>
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/commons/Navbar'
+import UserAccessModal from '@/components/users/modals/UserAccessModal'
 
 export default {
   name: 'DefaultLayout',
 
   components: {
     Navbar,
+    UserAccessModal,
+  },
+
+  data() {
+    return {
+      modal: {
+        active: 'login',
+      },
+    }
+  },
+
+  methods: {
+    beforeOpenUserAccess({ params }) {
+      if (params.active) {
+        this.modal.active = params.active
+      }
+    },
   },
 }
 </script>
 <style>
 .nuxt-link-exact-active {
   @apply text-avenue-white-light;
+}
+
+.vm--container > .vm--modal {
+  @apply bg-theavenue-background-light;
+  @apply rounded-md;
 }
 </style>

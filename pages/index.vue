@@ -1,40 +1,13 @@
 <template>
-  <div class="mx-auto flex-1 flex flex-col items-center justify-center text-avenue-white pb-12">
-    <div class="container mx-auto">
-      <div class="mb-5 mt-8">
-        <ul class="flex space-x-5">
-          <nuxt-link
-            as="li"
-            :to="{ name: 'index' }"
-            class="uppercase"
-            :class="{
-              'text-avenue-grey': $route.query.venue,
-              'text-avenue-white-light': !$route.query.venue,
-            }"
-          >
-            All
-          </nuxt-link>
-          <nuxt-link
-            v-for="venue in venues"
-            :key="venue.id"
-            as="li"
-            :to="{ name: 'index', query: { venue: venue.id } }"
-            class="uppercase"
-            :class="{
-              'text-avenue-grey': $route.query.venue !== venue.id,
-              'text-avenue-white-light': $route.query.venue === venue.id,
-            }"
-          >
-            {{ venue.name }}
-          </nuxt-link>
-        </ul>
-      </div>
-      <div class="mt-8 grid grid-cols-2 gap-6">
-        <LiveEventListItem v-for="event in events" :key="event.id" :event="event" />
-      </div>
+  <div
+    class="mx-auto flex-1 flex flex-col items-center justify-center text-avenue-white pb-12 bg-theavenue-background-light"
+  >
+    <LogoLights class="w-full" />
+    <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
+      <LiveEventListItem v-for="event in events" :key="event.id" :event="event" />
+    </el-collapse>
 
-      <Pagination :prev="!!links.prev" :next="!!links.next" @next="next" @prev="prev" />
-    </div>
+    <Pagination :prev="!!links.prev" :next="!!links.next" @next="next" @prev="prev" />
   </div>
 </template>
 
@@ -43,6 +16,8 @@ import { mapState } from 'vuex'
 import hasPagination from '@/mixins/hasPagination'
 import Pagination from '@/components/commons/ui/Pagination'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
+import LogoBig from '@/assets/svg/logo_big.svg?inline'
+import LogoLights from '@/components/commons/LogoLights'
 
 export default {
   name: 'IndexPage',
@@ -52,6 +27,8 @@ export default {
   components: {
     LiveEventListItem,
     Pagination,
+    LogoBig,
+    LogoLights,
   },
 
   mixins: [hasPagination],
@@ -82,7 +59,7 @@ export default {
 
   methods: {
     async fetchPage(page = null, venueId = null) {
-      const params = { live: true }
+      const params = {}
       params.page = page ? page : this.meta.current_page
       params.venue = venueId ? venueId : this.$route.query.venue
 

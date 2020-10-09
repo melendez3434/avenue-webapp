@@ -35,7 +35,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['~/assets/css/global.css'],
 
   /*
    ** Plugins to load before mounting the App
@@ -48,6 +48,8 @@ export default {
     '~/plugins/chat-scroll.client.js',
     '~/plugins/vue-croppie.client.js',
     '~/plugins/vcalendar.client.js',
+    '~/plugins/elementui.js',
+    '~plugins/vue-js-modal.js',
   ],
 
   /*
