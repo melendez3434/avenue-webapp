@@ -1,7 +1,9 @@
 import http from 'http'
 import socketIO from 'socket.io'
 
-let child_process = require('child_process')
+const spawn = require('child_process').spawn
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path
+
 var processes = {}
 
 export default function() {
@@ -17,9 +19,9 @@ export default function() {
 
     // Add socket.io events
     io.on('connection', socket => {
-      socket.on('create-ffmpeg-process', function({ stream_url, login, password, stream_name }) {
-        const command = `ffmpeg -loglevel error -re -i pipe:0 -c:v libx264 -b:v 1600k -preset ultrafast -b:a 128k -x264opts keyint=50 -g 25 -pix_fmt yuv420p -f flv "${stream_url} flashver=FMLE/3.020(compatible;20FMSc/1.0) live=true pubUser=${login} pubPasswd=${password} playpath=${stream_name}"`
-        processes[stream_name] = child_process.spawn(command, { shell: true })
+      socket.on('create-ffmpeg-process', function({ auth_stream_url, stream_name }) {
+        const command = `${ffmpegPath} -loglevel error -re -i pipe:0 -c:v libx264 -b:v 1600k -preset ultrafast -b:a 128k -x264opts keyint=50 -g 25 -pix_fmt yuv420p -f flv "${auth_stream_url}"`
+        processes[stream_name] = spawn(command, { shell: true })
         process.on('uncaughtException', error => {
           console.error(error)
         })

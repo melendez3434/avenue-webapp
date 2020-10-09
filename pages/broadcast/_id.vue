@@ -23,7 +23,11 @@ export default {
 
       if (!data.dacast) redirect('/')
 
-      return { dacast: data.dacast }
+      const auth_stream_url = `rtmp://${data.dacast.login}:${
+        data.dacast.password
+      }@${data.dacast.stream_url.replace('rtmp://', '')}/${data.dacast.stream_name}`
+
+      return { dacast: { ...data.dacast, auth_stream_url } }
     } catch (e) {
       redirect('/')
     }
