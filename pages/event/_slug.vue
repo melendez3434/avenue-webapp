@@ -30,7 +30,7 @@
 </template>
 <script>
 import ArtistAvatar from '@/components/artists/ArtistAvatar'
-import SocialNetworkIcon from '@/components/commons/ui/SocialNetworkIcon'
+import SocialNetworkIcon from '@/components/commons/ui/SocialNetworkIcon.js'
 import IcAnchorArrow from '@/assets/svg/anchor_arrow.svg?inline'
 
 export default {

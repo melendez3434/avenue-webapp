@@ -1,4 +1,3 @@
-<script>
 import IcFacebook from '@/assets/svg/facebook.svg?inline'
 import IcInstagram from '@/assets/svg/instagram.svg?inline'
 import IcSpotify from '@/assets/svg/spotify.svg?inline'
@@ -40,4 +39,3 @@ export default {
     return h(this.icon)
   },
 }
-</script>
