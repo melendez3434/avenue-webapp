@@ -32,6 +32,7 @@ module.exports = {
           'background-dark': '#00080E',
           background: '#001322',
           'background-light': '#00182B',
+          'background-extra-light': '#00243F',
           'red-neon': '#FF2F2F',
           'orange-neon': '#FF5E39',
           'yellow-neon': '#FFD243',

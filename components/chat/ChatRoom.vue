@@ -1,7 +1,9 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col bg-avenue-blue-light">
     <ChatMessages ref="messages" class="flex-1" :event="event" />
-    <div class=" bg-avenue-blue-light h-12 flex items-center justify-center px-8 py-2">
+    <div
+      class=" bg-theavenue-background-extra-light h-20 flex items-center justify-center px-8 py-2"
+    >
       <div v-if="!$auth.user">
         <span>Please,</span>
         <button

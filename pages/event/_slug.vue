@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="col-span-3 flex flex-col">
-      <TipJars class="h-64" />
+      <TipJars class="h-96" :jars="event.tip_jars" />
       <ChatRoom class="flex-1" :event="$route.params.slug" :style="chatStyle" />
     </div>
   </div>
@@ -69,7 +69,7 @@ export default {
 
   computed: {
     chatStyle() {
-      return { minHeight: 'calc(100vh - 256px - 78px)' }
+      return { height: 'calc(100vh - 384px - 78px)' }
     },
   },
 
