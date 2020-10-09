@@ -65,7 +65,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/auth'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth', '~/stream/sockets'],
 
   /*
    ** Axios module configuration
