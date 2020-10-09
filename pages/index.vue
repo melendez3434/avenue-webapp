@@ -6,17 +6,16 @@
     <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
       <LiveEventListItem v-for="event in events" :key="event.id" :event="event" />
     </el-collapse>
-
-    <Pagination :prev="!!links.prev" :next="!!links.next" @next="next" @prev="prev" />
+    <div class="h-12 w-full">
+      <infinite-loading spinner="spiral" @infinite="fetchPage">
+        <div slot="no-more" class="mt-4">Thats all!</div>
+      </infinite-loading>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import hasPagination from '@/mixins/hasPagination'
-import Pagination from '@/components/commons/ui/Pagination'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
-import LogoBig from '@/assets/svg/logo_big.svg?inline'
 import LogoLights from '@/components/commons/LogoLights'
 
 export default {
@@ -26,48 +25,28 @@ export default {
 
   components: {
     LiveEventListItem,
-    Pagination,
-    LogoBig,
     LogoLights,
   },
 
-  mixins: [hasPagination],
+  async asyncData({ $api }) {
+    const { data: events, meta } = await $api.events.list()
 
-  async fetch() {
-    await this.fetchPage()
-  },
-
-  data() {
-    return {
-      events: [],
-      meta: {},
-      links: {},
-    }
-  },
-
-  computed: {
-    ...mapState({
-      venues: state => state.global.venues,
-    }),
-  },
-
-  watch: {
-    async '$route.query.venue'(venueId) {
-      this.fetchPage(null, venueId)
-    },
+    return { events, meta }
   },
 
   methods: {
-    async fetchPage(page = null, venueId = null) {
-      const params = {}
-      params.page = page ? page : this.meta.current_page
-      params.venue = venueId ? venueId : this.$route.query.venue
+    async fetchPage($state) {
+      const page = this.meta.current_page + 1
+
+      if (page > this.meta.last_page) {
+        return $state.complete()
+      }
 
       try {
-        const { data: events, links, meta } = await this.$api.events.list(params)
-        this.events = events
-        this.links = links
+        const { data: events, meta } = await this.$api.events.list({ page })
+        this.events = [...this.events, ...events]
         this.meta = meta
+        $state.loaded()
       } catch (e) {
         this.$router.push({ name: 'index' })
       }
@@ -75,8 +54,3 @@ export default {
   },
 }
 </script>
-<style>
-.h-content {
-  height: calc(100vh - 68.89px);
-}
-</style>
