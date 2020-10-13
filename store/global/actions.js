@@ -1,4 +1,4 @@
-import { SET_GENRES, SET_VENUES } from './mutation-types'
+import { SET_GENRES, SET_VENUES, SET_CATEGORIES } from './mutation-types'
 
 export default {
   async fetchGenres({ commit }) {
@@ -9,5 +9,10 @@ export default {
   async fetchVenues({ commit }) {
     const { data } = await this.$api.global.venues()
     commit(SET_VENUES, data)
+  },
+
+  async fetchCategories({ commit }) {
+    const { data } = await this.$api.global.categories()
+    commit(SET_CATEGORIES, data)
   },
 }

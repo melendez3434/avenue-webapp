@@ -10,14 +10,18 @@
     <modal name="talent-signup-modal" adaptive height="auto">
       <TalentSignUpModal />
     </modal>
+
+    <modal name="streaming-profile-modal" adaptive height="auto" width="350px">
+      <StreamingProfileModal />
+    </modal>
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/commons/Navbar'
 import UserAccessModal from '@/components/users/modals/UserAccessModal'
-import TalentSignUpModal from '@/components/talents/TalentSignUpModal'
-
+import TalentSignUpModal from '@/components/talents/modals/TalentSignUpModal'
+import StreamingProfileModal from '@/components/talents/modals/StreamingProfileModal'
 export default {
   name: 'DefaultLayout',
 
@@ -25,6 +29,7 @@ export default {
     Navbar,
     UserAccessModal,
     TalentSignUpModal,
+    StreamingProfileModal,
   },
 
   data() {
@@ -33,6 +38,10 @@ export default {
         active: 'login',
       },
     }
+  },
+
+  mounted() {
+    this.$modal.show('streaming-profile-modal')
   },
 
   methods: {

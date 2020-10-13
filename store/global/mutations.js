@@ -1,4 +1,4 @@
-import { SET_GENRES, SET_VENUES } from './mutation-types'
+import { SET_GENRES, SET_VENUES, SET_CATEGORIES } from './mutation-types'
 
 export default {
   [SET_GENRES](state, genres) {
@@ -7,5 +7,9 @@ export default {
 
   [SET_VENUES](state, venues) {
     state.venues = venues
+  },
+
+  [SET_CATEGORIES](state, categories) {
+    state.categories = categories
   },
 }

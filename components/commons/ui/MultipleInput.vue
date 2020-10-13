@@ -2,9 +2,9 @@
   <div class="flex flex-col">
     <div class="flex justify-between items-center mb-3">
       <div class="w-full">
-        <label for="link-0 text-xl">Social Networks *</label>
+        <label for="link-0 text-xl">Social Links *</label>
       </div>
-      <button type="button" :disabled="maxLinksReached" class="mr-12" @click="addLink">
+      <button type="button" :disabled="maxLinksReached" @click="addLink">
         <svg
           width="24"
           height="24"
@@ -25,29 +25,25 @@
       :class="{ 'mt-3': index }"
       class="w-full flex flex-col md:flex-row"
     >
-      <div class="w-full md:w-5/6 flex flex-col lg:flex-row mt-2">
+      <div class="w-full flex flex-col lg:flex-row mt-2">
         <div class="flex-1 md:mr-6">
           <label for="`link-${index}-name`" class="block leading-tight text-white">
             Name
           </label>
           <R64Select v-model="input.social_media_slug" :options="socialNetworkList" />
-          <!-- <input
-            :id="`link-${index}-name`"
-            v-model="input.name"
-            class=" leading-snug outline-none px-3 py-3 block w-full text-white rounded-md focus:shadow-outline focus:border-blue-400 border border-gray-400 placeholder-gray-400"
-          /> -->
         </div>
         <div class="flex-1">
           <R64Input
             :id="`link-${index}-url`"
             v-model="input.url"
             label="Link"
-            base-class="h-38px leading-snug outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-theavenue-background-dark rounded-md focus:shadow-outline focus:border-blue-400 mb-1"
+            base-class="h-38px leading-snug outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-theavenue-background-dark rounded-md focus:shadow-outline-white focus:border-white mb-1"
             wrapper-class="mb-0"
+            placeholder="Paste URL"
           />
         </div>
       </div>
-      <div class="w-full md:w-1/6 md:pl-10 flex mt-6">
+      <div class="w-full flex mt-6 flex-1 md:pl-3">
         <div class="flex items-center h-full">
           <span
             :class="{
@@ -57,18 +53,7 @@
             class="text-2xl"
             @click="removeLink(index)"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4 12C4 11.4477 4.44772 11 5 11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H5C4.44772 13 4 12.5523 4 12Z"
-                fill="currentColor"
-              />
-            </svg>
+            <IcRemoveCircle />
           </span>
         </div>
       </div>
@@ -76,8 +61,14 @@
   </div>
 </template>
 <script>
+import IcRemoveCircle from '@/assets/svg/remove_circle.svg?inline'
+
 export default {
   name: 'MultipleInput',
+
+  components: {
+    IcRemoveCircle,
+  },
 
   props: {
     value: {

@@ -3,6 +3,7 @@ export default {
     async nuxtServerInit({ dispatch }) {
       await dispatch('global/fetchGenres')
       await dispatch('global/fetchVenues')
+      await dispatch('global/fetchCategories')
     },
   },
 }

@@ -27,6 +27,10 @@ export default $axios => ({
   venues() {
     return $axios.$get('/api/venues')
   },
+
+  categories() {
+    return $axios.$get('/api/categories')
+  },
 })
 
 function dataURItoBlob(dataURI, type) {
