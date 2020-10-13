@@ -18,7 +18,7 @@ Vue.use(R64Components, {
     wrapperClass: 'mb-1',
     labelClass: 'block leading-tight text-white',
     baseClass:
-      'leading-snug outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-avenue-grey rounded-md focus:shadow-outline focus:border-blue-400 h-38px appearance-none',
+      'leading-snug outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-theavenue-background-dark rounded-md focus:shadow-outline focus:border-blue-400 h-38px appearance-none',
     primaryClass: 'placeholder-avenue-white-light',
     helpMessageClass: 'mt-1 text-xxs text-avenue-grey',
   },

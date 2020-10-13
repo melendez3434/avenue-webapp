@@ -45,13 +45,13 @@
         >
           Sign Up
         </button>
-        <nuxt-link
+        <button
           v-if="$auth.loggedIn"
           class="bg-avenue-white-light text-avenue-black-light rounded-lg py-1 px-2 uppercase"
-          :to="{ name: 'talent' }"
+          @click="$modal.show('talent-signup-modal')"
         >
           Sign up as a Talent
-        </nuxt-link>
+        </button>
         <button
           v-if="$auth.loggedIn"
           class="bg-avenue-white-light text-avenue-black-light rounded-lg py-1 px-2 uppercase"

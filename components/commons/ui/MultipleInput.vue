@@ -27,7 +27,7 @@
     >
       <div class="w-full md:w-5/6 flex flex-col lg:flex-row mt-2">
         <div class="flex-1 md:mr-6">
-          <label for="`link-${index}-name`" class="text-sm">
+          <label for="`link-${index}-name`" class="block leading-tight text-white">
             Name
           </label>
           <R64Select v-model="input.social_media_slug" :options="socialNetworkList" />
@@ -42,7 +42,7 @@
             :id="`link-${index}-url`"
             v-model="input.url"
             label="Link"
-            base-class="h-38px leading-snug outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-avenue-grey rounded-md focus:shadow-outline focus:border-blue-400 uppercase"
+            base-class="h-38px leading-snug outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-theavenue-background-dark rounded-md focus:shadow-outline focus:border-blue-400 mb-1"
             wrapper-class="mb-0"
           />
         </div>
