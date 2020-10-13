@@ -10,7 +10,7 @@
         error-message="Email address is required"
       />
 
-      <R64Button :disabled="$v.form.$invalid" @click="sendResetEmail">
+      <R64Button :disabled="$v.form.$invalid" full @click="sendResetEmail">
         Send Reset Email
       </R64Button>
 

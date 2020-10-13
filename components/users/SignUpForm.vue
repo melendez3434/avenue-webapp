@@ -56,7 +56,7 @@
       </p>
     </div>
 
-    <R64Button type="submit" class="mt-8 uppercase" :disabled="$v.form.$invalid">
+    <R64Button type="submit" class="mt-8 uppercase" :disabled="$v.form.$invalid" full>
       Sign up
     </R64Button>
   </form>

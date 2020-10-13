@@ -40,10 +40,6 @@ export default {
     }
   },
 
-  mounted() {
-    this.$modal.show('streaming-profile-modal')
-  },
-
   methods: {
     beforeOpenUserAccess({ params }) {
       if (params.active) {

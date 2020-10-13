@@ -31,7 +31,7 @@
         <MultipleInput v-model="form.social_media_links" :social-network-list="socialNetworkList" />
       </div>
 
-      <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid && !error">
+      <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid && !error" full>
         Confirm
       </R64Button>
     </form>
