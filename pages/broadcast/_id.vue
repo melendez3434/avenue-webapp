@@ -16,8 +16,6 @@ import socket from '~/plugins/socket.io.js'
 export default {
   name: 'BroadcastChannel',
 
-  auth: 'guest',
-
   async asyncData({ $api, params, error }) {
     try {
       const { data } = await $api.talent.get(params.id)
