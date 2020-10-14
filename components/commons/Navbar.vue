@@ -23,7 +23,7 @@
         Food
       </nuxt-link>
       <nuxt-link
-        :to="{ name: 'artists' }"
+        :to="{ name: 'index' }"
         class="uppercase text-avenue-white-light font-library text-2xl text-light-white"
       >
         Stand-Up

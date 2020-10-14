@@ -40,6 +40,15 @@
         <MultipleInput v-model="form.social_media_links" :social-network-list="socialNetworkList" />
       </div>
 
+      <div class="mb-6">
+        <R64Checkbox
+          :value="form.sign_user_agreement"
+          label="Terms and Conditions"
+          :v="$v.form.sign_user_agreement"
+          @change="form.sign_user_agreement = $event"
+        />
+      </div>
+
       <div v-if="error" class="mb-6 text-theavenue-red-neon text-center">{{ error }}</div>
 
       <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid && !error" full>
@@ -68,6 +77,7 @@ export default {
         website: '',
         social_media_links: [{ social_media_slug: 'facebook', url: '' }],
         artist_type: '',
+        sign_user_agreement: false,
       },
       socialNetworkList: [
         { label: 'Facebook', value: 'facebook' },
@@ -115,6 +125,11 @@ export default {
         name: { required },
         category_id: { required },
         website: { url },
+        sign_user_agreement: {
+          mustBeTrue(value) {
+            return !!value
+          },
+        },
       },
     }
 
