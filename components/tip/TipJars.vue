@@ -5,7 +5,8 @@
       <div
         v-for="(jar, index) in jars"
         :key="jar.id"
-        class="w-1/2 p-4 bg-theavenue-background-extra-light flex flex-col items-center justify-center rounded-lg"
+        class="w-1/2 p-4 bg-theavenue-background-extra-light flex flex-col items-center justify-center rounded-lg cursor-pointer"
+        @click="$emit('click:jar', jar.id)"
       >
         <IcTipjarA v-if="index === 0" />
         <IcTipjarB v-else />

@@ -3,7 +3,11 @@
     <Navbar />
     <nuxt />
     <modal name="user-access-modal" adaptive height="auto" @before-open="beforeOpenUserAccess">
-      <UserAccessModal :active-tab="modal.active" :title="modal.title" :subtitle="modal.subtitle" />
+      <UserAccessModal
+        :active-tab="modals.userAccess.active"
+        :title="modals.userAccess.title"
+        :subtitle="modals.userAccess.subtitle"
+      />
     </modal>
 
     <modal name="talent-signup-modal" adaptive height="auto">
@@ -13,6 +17,18 @@
     <modal name="streaming-profile-modal" adaptive height="auto" width="350px">
       <StreamingProfileModal />
     </modal>
+
+    <modal
+      name="streaming-donate-modal"
+      adaptive
+      height="auto"
+      @before-open="beforeOpenStreamingDonate"
+    >
+      <StreamingDonateModal
+        :event="modals.streamingDonate.event"
+        :jar="modals.streamingDonate.jar"
+      />
+    </modal>
   </div>
 </template>
 <script>
@@ -20,6 +36,7 @@ import Navbar from '@/components/commons/Navbar'
 import UserAccessModal from '@/components/users/modals/UserAccessModal'
 import TalentSignUpModal from '@/components/talents/modals/TalentSignUpModal'
 import StreamingProfileModal from '@/components/talents/modals/StreamingProfileModal'
+import StreamingDonateModal from '@/components/talents/modals/StreamingDonateModal'
 
 export default {
   name: 'EventDetail',
@@ -29,23 +46,35 @@ export default {
     UserAccessModal,
     TalentSignUpModal,
     StreamingProfileModal,
+    StreamingDonateModal,
   },
 
   data() {
     return {
-      modal: {
-        active: 'login',
-        title: 'Welcome to The Avenue',
-        subtitle: '',
+      modals: {
+        userAccess: {
+          active: 'login',
+          title: 'Welcome to The Avenue',
+          subtitle: '',
+        },
+        streamingDonate: {
+          event: null,
+          jar: null,
+        },
       },
     }
   },
 
   methods: {
     beforeOpenUserAccess({ params }) {
-      this.modal.active = params.active || 'login'
-      this.modal.title = params.title || 'Welcome to The Avenue'
-      this.modal.subtitle = params.subtitle || ''
+      this.modals.userAcess.active = params.active || 'login'
+      this.modals.userAcess.title = params.title || 'Welcome to The Avenue'
+      this.modals.userAcess.subtitle = params.subtitle || ''
+    },
+
+    beforeOpenStreamingDonate({ params }) {
+      this.modals.streamingDonate.event = params.event
+      this.modals.streamingDonate.jar = params.jar
     },
   },
 }
