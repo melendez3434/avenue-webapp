@@ -15,7 +15,7 @@
       </div>
 
       <div class="mb-6">
-        <R64Select v-model="form.category" :options="categoriesFormatted" label="Category" />
+        <R64Select v-model="form.category_id" :options="categoriesFormatted" label="Category" />
       </div>
 
       <div class="mb-6">
@@ -64,7 +64,7 @@ export default {
     return {
       form: {
         name: '',
-        category: 1,
+        category_id: 1,
         website: '',
         social_media_links: [{ social_media_slug: 'facebook', url: '' }],
         artist_type: '',
@@ -113,6 +113,7 @@ export default {
     const validations = {
       form: {
         name: { required },
+        category_id: { required },
         website: { url },
       },
     }
