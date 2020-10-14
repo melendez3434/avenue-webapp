@@ -7,7 +7,7 @@
       <UserAccessModal :active-tab="modal.active" :title="modal.title" :subtitle="modal.subtitle" />
     </modal>
 
-    <modal name="talent-signup-modal" adaptive height="auto">
+    <modal name="talent-signup-modal" adaptive height="auto" @before-open="oneMore">
       <TalentSignUpModal />
     </modal>
 
@@ -44,21 +44,7 @@ export default {
 
   methods: {
     beforeOpenUserAccess({ params }) {
-      console.log('params', params)
-      if (params.active) {
-        this.modal.active = params.active
-      }
-
-      if (params.title) {
-        this.modal.title = params.title
-      }
-
-      if (params.subtitle) {
-        this.modal.subtitle = params.subtitle
-      }
-      // this.modal.active = params.active || 'login'
-      // this.modal.title = params.title
-      // this.modal.subtitle = params.subtitle
+      this.modal.active = params.active || 'login'
     },
   },
 }
