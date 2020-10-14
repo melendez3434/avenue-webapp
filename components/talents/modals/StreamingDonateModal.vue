@@ -17,6 +17,7 @@
         <button
           v-for="(amount, key) in quickAmounts"
           :key="key"
+          type="button"
           class="font-library bg-theavenue-black px-5 py-2 rounded text-2xl text-theavenue-gray"
           :class="{ 'text-theavenue-green-neon': activeAmount === amount.value }"
           @click="setQuickAmount(amount.value)"
@@ -34,6 +35,7 @@
           class="font-library"
           placeholder="$ 0000.00"
           base-class="leading-snug text-5xl text-center outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-theavenue-background-dark rounded-md focus:shadow-outline-white focus:border-white"
+          :class="{ 'text-theavenue-green-neon': customAmount !== '0000.00' }"
           @input="setAmount($event)"
         />
       </div>
