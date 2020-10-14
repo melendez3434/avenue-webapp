@@ -38,8 +38,11 @@
           v-model="customAmount"
           class="font-library"
           placeholder="$ 0000.00"
-          base-class="leading-snug text-5xl text-center outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-theavenue-background-dark rounded-md focus:shadow-outline-white focus:border-white"
-          :class="{ 'text-theavenue-green-neon': customAmount !== '0000.00' }"
+          base-class="leading-snug text-5xl text-center outline-none mt-1 px-3 py-2 block w-full bg-theavenue-background-dark rounded-md focus:shadow-outline-white focus:border-white"
+          :class="{
+            'text-theavenue-green-neon': customAmount !== '0000.00',
+            ' text-avenue-white': customAmount === '0000.00',
+          }"
           @input="setAmount($event)"
         />
       </div>
