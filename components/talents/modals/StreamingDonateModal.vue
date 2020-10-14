@@ -78,9 +78,10 @@ export default {
   },
 
   methods: {
-    createDonation(e) {
+    async createDonation(e) {
       e.preventDefault()
-      console.log('create donation')
+      await this.$api.talent.tip({ tip_jar_id: this.jar, amount: this.donation.amount })
+      this.$modal.close('streaming-donate-modal')
     },
 
     setAmount(amount) {
