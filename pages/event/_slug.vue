@@ -24,7 +24,7 @@
     </div>
     <div class="col-span-3 flex flex-col">
       <TipJars class="h-96" :jars="event.tip_jars" @click:jar="openDonationModal" />
-      <ChatRoom class="flex-1" :event="event" :style="chatStyle" />
+      <ChatRoom class="flex-1" :event="event" :style="chatStyle" @click:jar="openDonationModal" />
     </div>
   </div>
 </template>
