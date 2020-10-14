@@ -9,11 +9,7 @@
         <R64Input v-model="donation.name" label="Name on Card" />
       </div>
       <div class="mt-3">
-        <StripeInput
-          ref="stripe"
-          class="py-4 border-b-4 border-gray-300 mb-8"
-          @change="onStripeChange"
-        />
+        <StripeInput ref="stripe" @change="onStripeChange" />
       </div>
 
       <p class="text-theavenue-white text-md mt-5">Quick Select Amount</p>

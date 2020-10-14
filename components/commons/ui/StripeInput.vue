@@ -35,8 +35,9 @@ export default {
     this.cardElement = this.elements.create('card', {
       style: {
         base: {
-          color: '#2d3748',
+          color: '#888888',
           fontSize: '18px',
+          fontStyle: 'normal',
           '::placeholder': {
             color: '#a0aec0',
           },
