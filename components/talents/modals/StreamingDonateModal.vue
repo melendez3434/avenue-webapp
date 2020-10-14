@@ -15,28 +15,13 @@
       <p class="text-theavenue-white text-md mt-5">Quick Select Amount</p>
       <div class="grid grid-cols-4 grid-rows-1 space-x-3 mt-3">
         <button
+          v-for="(amount, key) in quickAmounts"
+          :key="key"
           class="font-library bg-theavenue-black px-5 py-2 rounded text-2xl text-theavenue-gray"
-          @click="donation.amount = 200"
+          :class="{ 'text-theavenue-green-neon': activeAmount === amount.value }"
+          @click="setQuickAmount(amount.value)"
         >
-          $2.00
-        </button>
-        <button
-          class="font-library bg-theavenue-black px-5 py-2 rounded text-2xl text-theavenue-gray"
-          @click="donation.amount = 500"
-        >
-          $5.00
-        </button>
-        <button
-          class="font-library bg-theavenue-black px-5 py-2 rounded text-2xl text-theavenue-gray"
-          @click="donation.amount = 1000"
-        >
-          $10.00
-        </button>
-        <button
-          class="font-library bg-theavenue-black px-5 py-2 rounded text-2xl text-theavenue-gray"
-          @click="donation.amount = 2000"
-        >
-          $20.00
+          {{ amount.label }}
         </button>
       </div>
 
@@ -45,10 +30,11 @@
           Enter Custom Amount
         </label>
         <R64Input
-          v-model="donation.amount"
+          v-model="customAmount"
           class="font-library"
           placeholder="$ 0000.00"
           base-class="leading-snug text-5xl text-center outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-theavenue-background-dark rounded-md focus:shadow-outline-white focus:border-white"
+          @input="setAmount($event)"
         />
       </div>
 
@@ -80,6 +66,14 @@ export default {
         card: '',
         amount: '',
       },
+      activeAmount: null,
+      customAmount: '0000.00',
+      quickAmounts: [
+        { value: 200, label: '$2.00' },
+        { value: 500, label: '$5.00' },
+        { value: 1000, label: '$10.00' },
+        { value: 2000, label: '$20.00' },
+      ],
     }
   },
 
@@ -87,6 +81,17 @@ export default {
     createDonation(e) {
       e.preventDefault()
       console.log('create donation')
+    },
+
+    setAmount(amount) {
+      if (amount === '0000.00') return
+      this.donation.amount = amount
+      this.activeAmount = amount
+    },
+
+    setQuickAmount(amount) {
+      this.setAmount(amount)
+      this.customAmount = '0000.00'
     },
   },
 }
