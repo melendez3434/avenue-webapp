@@ -14,7 +14,7 @@
           $ 0.00
         </div>
         <div class="text-sm">Tip Jar #{{ index + 1 }}</div>
-        <div>{{ jar.text }}</div>
+        <div>{{ jar.name }}</div>
       </div>
     </div>
   </div>
