@@ -5,6 +5,7 @@ export default {
 
   publicRuntimeConfig: {
     baseURL: '${BASE_URL}',
+    stripeKey: process.env.STRIPE_KEY,
   },
 
   privateRuntimeConfig: {},
@@ -24,7 +25,10 @@ export default {
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    script: [{ src: 'https://player.dacast.com/js/player.js' }],
+    script: [
+      { src: 'https://player.dacast.com/js/player.js' },
+      { src: 'https://js.stripe.com/v3/' },
+    ],
   },
 
   /*

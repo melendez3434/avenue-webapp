@@ -9,7 +9,11 @@
         <R64Input v-model="donation.name" label="Name on Card" />
       </div>
       <div class="mt-3">
-        <R64Input v-model="donation.card" label="Credit Card" />
+        <StripeInput
+          ref="stripe"
+          class="py-4 border-b-4 border-gray-300 mb-8"
+          @change="onStripeChange"
+        />
       </div>
 
       <p class="text-theavenue-white text-md mt-5">Quick Select Amount</p>
@@ -47,8 +51,12 @@
   </div>
 </template>
 <script>
+import StripeInput from '@/components/commons/ui/StripeInput'
+
 export default {
   name: 'StreamingDonateModal',
+
+  components: { StripeInput },
 
   props: {
     event: {
@@ -76,10 +84,14 @@ export default {
         { value: 1000, label: '$10.00' },
         { value: 2000, label: '$20.00' },
       ],
+      stripeValidated: false,
     }
   },
 
   methods: {
+    onStripeChange(event) {
+      this.stripeValidated = event.complete
+    },
     async createDonation(e) {
       e.preventDefault()
       await this.$api.talent.tip({ tip_jar_id: this.jar, amount: this.donation.amount })

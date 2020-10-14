@@ -40,10 +40,15 @@
           <img ref="fire" src="~assets/emojis/fire.png" @click="$refs.input.addEmoji($refs.fire)" />
         </div>
       </div>
-      <el-popover v-model="jarsVisible" placement="top" trigger="click">
+      <el-popover v-model="jarsVisible" placement="top" trigger="manual">
         <div>
           <div>Make donation to:</div>
-          <div v-for="jar in event.tip_jars" :key="jar.id" @click="selectJar(jar.id)">
+          <div
+            v-for="jar in event.tip_jars"
+            :key="jar.id"
+            class="cursor-pointer py-2"
+            @click="selectJar(jar.id)"
+          >
             {{ jar.name }}
           </div>
         </div>
