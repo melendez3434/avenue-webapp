@@ -26,7 +26,7 @@
       {{ error }}
     </p>
 
-    <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid">
+    <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid" full>
       Login
     </R64Button>
   </form>

@@ -58,10 +58,14 @@ module.exports = {
         library: ['"LIBRARY 3 AM soft Regular"', 'sans-serif'],
         'league-gothic': ['"League Gothic"', 'serif'], // Ensure fonts with spaces have " " surrounding it.
       },
+
+      boxShadow: {
+        'outline-white': '0 0 0 3px rgba(255, 255, 255, 0.85)',
+      },
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [require('@tailwindcss/ui')],
   future: {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,

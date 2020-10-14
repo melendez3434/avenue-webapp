@@ -4,13 +4,14 @@ import R64Components from '@64robots/r64components'
 Vue.use(R64Components, {
   R64Button: {
     baseClass: 'block rounded inline-flex items-center justify-center',
-    primaryClass: 'bg-theavenue-white text-theavenue-black w-full',
+    primaryClass: 'bg-theavenue-white text-theavenue-black',
+    secondaryClass: 'bg-theavenue-black text-white',
   },
   R64Input: {
     wrapperClass: 'mb-1',
     labelClass: 'block leading-tight text-white',
     baseClass:
-      'leading-snug outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-theavenue-background-dark rounded-md focus:shadow-outline focus:border-blue-400',
+      'leading-snug outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-theavenue-background-dark rounded-md focus:shadow-outline-white focus:border-white',
     primaryClass: 'placeholder-avenue-white-light',
     helpMessageClass: 'mt-1 text-xxs text-avenue-grey',
   },
@@ -18,7 +19,7 @@ Vue.use(R64Components, {
     wrapperClass: 'mb-1',
     labelClass: 'block leading-tight text-white',
     baseClass:
-      'leading-snug outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-avenue-grey rounded-md focus:shadow-outline focus:border-blue-400 h-38px appearance-none',
+      'leading-snug outline-none mt-1 px-3 py-2 block w-full text-avenue-white bg-theavenue-background-dark rounded-md focus:shadow-outline-white focus:border-white h-38px appearance-none',
     primaryClass: 'placeholder-avenue-white-light',
     helpMessageClass: 'mt-1 text-xxs text-avenue-grey',
   },

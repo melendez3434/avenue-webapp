@@ -1,0 +1,162 @@
+<template>
+  <div>
+    <div class="px-6 pb-5 pt-10 bg-theavenue-background">
+      <p class="text-sm leading-5">Welcome</p>
+      <p class="text-2xl leading-tight font-medium">{{ $auth.user.name }}</p>
+    </div>
+    <form class="mt-3 px-6 pb-10 pt-5" @submit="createTalent">
+      <div class="mb-6">
+        <R64Input
+          v-model="form.name"
+          :v="$v.form.name"
+          label="Artist or Group Name"
+          error-message="Name is required"
+        />
+      </div>
+
+      <div class="mb-6">
+        <R64Select v-model="form.category_id" :options="categoriesFormatted" label="Category" />
+      </div>
+
+      <div class="mb-6">
+        <R64Input
+          v-model="form.artist_type"
+          label="Artist Type"
+          placeholder="i.e. Rock Band, Personal Chef, Comedian"
+        />
+      </div>
+
+      <div class="mb-6">
+        <R64Input
+          v-model="form.website"
+          label="Website"
+          :v="$v.form.website"
+          placeholder="Paste URL"
+          error-message="Must be a well formed url"
+        />
+      </div>
+
+      <div class="mb-6">
+        <MultipleInput v-model="form.social_media_links" :social-network-list="socialNetworkList" />
+      </div>
+
+      <div class="mb-6">
+        <R64Checkbox
+          :value="form.sign_user_agreement"
+          label="Terms and Conditions"
+          :v="$v.form.sign_user_agreement"
+          @change="form.sign_user_agreement = $event"
+        />
+      </div>
+
+      <div v-if="error" class="mb-6 text-theavenue-red-neon text-center">{{ error }}</div>
+
+      <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid && !error" full>
+        Confirm
+      </R64Button>
+    </form>
+  </div>
+</template>
+<script>
+import { mapState } from 'vuex'
+import { required, url } from 'vuelidate/lib/validators'
+import MultipleInput from '@/components/commons/ui/MultipleInput'
+
+export default {
+  name: 'TalentSignUpModal',
+
+  components: {
+    MultipleInput,
+  },
+
+  data() {
+    return {
+      form: {
+        name: '',
+        category_id: 1,
+        website: '',
+        social_media_links: [{ social_media_slug: 'facebook', url: '' }],
+        artist_type: '',
+        sign_user_agreement: false,
+      },
+      socialNetworkList: [
+        { label: 'Facebook', value: 'facebook' },
+        { label: 'Twitter', value: 'twitter' },
+        { label: 'Instagram', value: 'instagram' },
+        { label: 'TikTok', value: 'tiktok' },
+        { label: 'Patreon', value: 'patreon' },
+        { label: 'Go fund me', value: 'go-fund-me' },
+        { label: 'Bandcamp', value: 'bandcamp' },
+        { label: 'Spotify', value: 'spotify' },
+        { label: 'Soundcloud', value: 'sound-cloud' },
+      ],
+      busy: false,
+      error: null,
+    }
+  },
+
+  computed: {
+    ...mapState({
+      categories: state => state.global.categories,
+    }),
+
+    categoriesFormatted() {
+      return this.categories.map(c => ({ label: c.name, value: c.id }))
+    },
+  },
+
+  methods: {
+    async createTalent(e) {
+      e.preventDefault()
+
+      try {
+        const { data: talent } = await this.$api.talent.register(this.form)
+        const { data: url } = await this.$api.talent.stripeAuthorize(talent.id)
+        window.location.href = url
+      } catch (e) {
+        this.error = e.response.data.error
+      }
+    },
+  },
+
+  validations() {
+    const validations = {
+      form: {
+        name: { required },
+        category_id: { required },
+        website: { url },
+        sign_user_agreement: {
+          mustBeTrue(value) {
+            return !!value
+          },
+        },
+      },
+    }
+
+    if (this.form.social_media_links.length) {
+      validations.form.social_media_links = {
+        $each: {
+          social_media_slug: { required },
+          url: { required, url },
+        },
+      }
+    }
+
+    return validations
+  },
+}
+</script>
+<style>
+input.vc-bg-white {
+  @apply bg-theavenue-background-dark;
+}
+input.vc-text-gray-800 {
+  @apply text-avenue-white;
+}
+input.vc-border-gray-400 {
+  @apply border-none;
+}
+.vc-popover-content-wrapper.is-interactive {
+  @apply z-50;
+}
+</style>

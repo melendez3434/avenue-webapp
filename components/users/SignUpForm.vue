@@ -29,6 +29,11 @@
       error-message="Passwords should match"
     />
 
+    <div class="mt-8">
+      <label class="block leading-tight text-white">Date of birth</label>
+      <v-date-picker v-model="form.date_of_birth" color="red" type="date" />
+    </div>
+
     <R64Input
       v-model="form.email"
       class="mt-8"
@@ -42,14 +47,16 @@
       {{ error }}
     </p>
 
-    <p class="text-avenue-grey-dark text-xxs text-center mt-8">
-      By clicking Sign Up, you are indicating that you have read and acknowledge the
-      <a href="#" class="text-avenue-white-light">Terms and Service</a>
-      and
-      <a href="#" class="text-avenue-white-light">Privacy Notice</a>
-    </p>
+    <div class="w-full flex items-center justify-center mt-8">
+      <p class="text-theavenue-off-white text-xxs text-center w-1/2">
+        By clicking Sign Up, you are indicating that you have read and acknowledge the
+        <a href="#" class="text-theavenue-white font-medium">Terms and Service</a>
+        and
+        <a href="#" class="text-theavenue-white font-medium">Privacy Notice</a>
+      </p>
+    </div>
 
-    <R64Button type="submit" class="mt-8 uppercase" :disabled="$v.form.$invalid">
+    <R64Button type="submit" class="mt-8 uppercase" :disabled="$v.form.$invalid" full>
       Sign up
     </R64Button>
   </form>
@@ -67,6 +74,7 @@ export default {
         password: '',
         confirmPassword: '',
         name: '',
+        date_of_birth: '',
       },
       error: null,
     }
@@ -84,6 +92,7 @@ export default {
           },
         })
         this.$modal.hide('user-access-modal')
+        this.$modal.show('streaming-profile-modal')
       } catch (e) {
         this.error = e.response.data.error
       }
