@@ -4,10 +4,10 @@
     <nuxt />
 
     <modal name="user-access-modal" adaptive height="auto" @before-open="beforeOpenUserAccess">
-      <UserAccessModal :active-tab="modal.active" :title="modal.title" :subtitle="modal.subtitle" />
+      <UserAccessModal :active-tab="modal.active" />
     </modal>
 
-    <modal name="talent-signup-modal" adaptive height="auto" @before-open="oneMore">
+    <modal name="talent-signup-modal" adaptive height="auto">
       <TalentSignUpModal />
     </modal>
 
@@ -22,6 +22,7 @@ import Navbar from '@/components/commons/Navbar'
 import UserAccessModal from '@/components/users/modals/UserAccessModal'
 import TalentSignUpModal from '@/components/talents/modals/TalentSignUpModal'
 import StreamingProfileModal from '@/components/talents/modals/StreamingProfileModal'
+
 export default {
   name: 'DefaultLayout',
 
@@ -36,7 +37,7 @@ export default {
     return {
       modal: {
         active: 'login',
-        title: 'Welcome to The Avenueeeeee',
+        title: 'Welcome to The Avenue',
         subtitle: '',
       },
     }
