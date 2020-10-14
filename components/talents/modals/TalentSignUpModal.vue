@@ -1,6 +1,10 @@
 <template>
-  <div class="px-6 py-10">
-    <form class="mt-3" @submit="createTalent">
+  <div>
+    <div class="px-6 pb-5 pt-10 bg-theavenue-background">
+      <p class="text-sm leading-5">Welcome</p>
+      <p class="text-2xl leading-tight font-medium">{{ $auth.user.name }}</p>
+    </div>
+    <form class="mt-3 px-6 pb-10 pt-5" @submit="createTalent">
       <div class="mb-6">
         <R64Input v-model="form.name" label="Artist or Group Name" />
       </div>

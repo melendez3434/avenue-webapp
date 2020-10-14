@@ -24,7 +24,7 @@
     </div>
     <div class="col-span-3 flex flex-col">
       <TipJars class="h-96" :jars="event.tip_jars" />
-      <ChatRoom class="flex-1" :event="$route.params.slug" :style="chatStyle" />
+      <ChatRoom class="flex-1" :event="event" :style="chatStyle" />
     </div>
   </div>
 </template>

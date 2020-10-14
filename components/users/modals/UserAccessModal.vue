@@ -1,6 +1,10 @@
 <template>
-  <div class="px-6 py-10">
-    <div class="flex space-x-6">
+  <div>
+    <div class="px-6 py-10 bg-theavenue-background">
+      <p v-if="heading.subtitle" class="text-sm leading-5">{{ heading.subtitle }}</p>
+      <p class="text-2xl leading-tight font-medium">{{ heading.title }}</p>
+    </div>
+    <div class="flex space-x-6 px-6 pt-10">
       <button
         class="uppercase text-lg pb-0.5 border-b-2"
         :class="{
@@ -22,7 +26,7 @@
         Sign up
       </button>
     </div>
-    <div class="mt-8">
+    <div class="mt-8 px-6 pb-10">
       <LoginForm v-if="isLoginActive" />
       <SignUpForm v-if="isSignUpActive" />
     </div>
@@ -45,11 +49,23 @@ export default {
       type: String,
       default: 'login',
     },
+    title: {
+      type: String,
+      default: 'Welcome to The Avenue',
+    },
+    subtitle: {
+      type: String,
+      default: null,
+    },
   },
 
   data() {
     return {
       active: 'login',
+      heading: {
+        title: '',
+        subtitle: '',
+      },
     }
   },
 
@@ -68,6 +84,18 @@ export default {
       immediate: true,
       handler() {
         this.active = this.activeTab
+      },
+    },
+    title: {
+      immediate: true,
+      handler() {
+        this.heading.title = this.title
+      },
+    },
+    subtitle: {
+      immediate: true,
+      handler() {
+        this.heading.subtitle = this.subtitle
       },
     },
   },
