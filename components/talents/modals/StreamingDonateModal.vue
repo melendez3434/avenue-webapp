@@ -93,7 +93,15 @@ export default {
     },
     async createDonation(e) {
       e.preventDefault()
+      if (!this.$auth.user.has_stripe_customer_id) {
+        this.$refs.stripe.createToken().then(async data => {
+          const stripe_token = { token: data.token.id }
+          await this.$api.global.stripe({ stripe_token })
+        })
+      }
+
       await this.$api.talent.tip({ tip_jar_id: this.jar, amount: this.donation.amount })
+
       this.$modal.close('streaming-donate-modal')
     },
 

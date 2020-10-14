@@ -23,6 +23,10 @@ export default $axios => ({
   categories() {
     return $axios.$get('/api/categories')
   },
+
+  stripe(payload) {
+    return $axios.$post('/stripe/customer', payload)
+  },
 })
 
 function dataURItoBlob(dataURI, type) {
