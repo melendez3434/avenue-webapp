@@ -13,7 +13,7 @@
         >
           All
         </nuxt-link>
-        <nuxt-link
+        <!-- <nuxt-link
           v-for="genre in genres"
           :key="genre.id"
           as="li"
@@ -25,7 +25,7 @@
           }"
         >
           {{ genre.name }}
-        </nuxt-link>
+        </nuxt-link> -->
       </ul>
     </div>
 
@@ -37,7 +37,6 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
 import hasPagination from '@/mixins/hasPagination'
 import Pagination from '@/components/commons/ui/Pagination'
 import ArtistListItem from '@/components/artists/ArtistListItem'
@@ -64,12 +63,6 @@ export default {
       meta: {},
       links: {},
     }
-  },
-
-  computed: {
-    ...mapState({
-      genres: state => state.global.genres,
-    }),
   },
 
   watch: {

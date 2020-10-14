@@ -3,7 +3,7 @@
     <div class="col-span-6 flex flex-col justify-between">
       <div id="streaming" ref="streaming" class="relative" />
       <div class="pb-4 pt-8 bg-theavenue-background-dark px-4 flex justify-between items-center">
-        <ArtistAvatar :artist="event.talent" :genres="event.venues" size="sm" />
+        <ArtistAvatar :artist="event.talent" size="sm" />
         <div class="flex space-x-4 items-center">
           <SocialNetworkIcon
             v-for="socialNetwork in event.social_media_users"

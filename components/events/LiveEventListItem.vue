@@ -26,7 +26,7 @@
           />
           <div class="ml-5">
             <p class="font-sans text-2xl font-bold leading-6">{{ event.talent.name }}</p>
-            <p class="font-sans text-lg">{{ genres }}</p>
+            <p class="font-sans text-lg">{{ event.talent.artist_type }}</p>
           </div>
         </div>
         <div class="flex">
@@ -72,15 +72,6 @@ export default {
 
     hourTitle() {
       return format(new Date(this.event.starts_at), 'h:mm aa')
-    },
-
-    genres() {
-      const genresString = this.event.venues.reduce(
-        (string, genre) => `${string} ${genre.name},`,
-        ''
-      )
-
-      return genresString.slice(0, -1)
     },
 
     isLive() {

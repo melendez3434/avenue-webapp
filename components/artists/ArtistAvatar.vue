@@ -13,7 +13,7 @@
       >
         {{ artist.name }}
       </p>
-      <p class="font-sans" :class="{ 'text-lg': !isSmallSize }">{{ genresString }}</p>
+      <p class="font-sans" :class="{ 'text-lg': !isSmallSize }">{{ artist.artist_type }}</p>
     </div>
   </div>
 </template>
@@ -26,10 +26,6 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    genres: {
-      type: Array,
-      default: () => [],
-    },
     size: {
       type: String,
       default: 'base',
@@ -37,12 +33,6 @@ export default {
   },
 
   computed: {
-    genresString() {
-      const genresString = this.genres.reduce((string, genre) => `${string} ${genre.name},`, '')
-
-      return genresString.slice(0, -1)
-    },
-
     isSmallSize() {
       return this.size === 'sm'
     },

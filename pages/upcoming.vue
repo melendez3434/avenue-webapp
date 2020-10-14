@@ -13,7 +13,7 @@
         >
           All
         </nuxt-link>
-        <nuxt-link
+        <!-- <nuxt-link
           v-for="venue in venues"
           :key="venue.id"
           as="li"
@@ -25,7 +25,7 @@
           }"
         >
           {{ venue.name }}
-        </nuxt-link>
+        </nuxt-link> -->
       </ul>
     </div>
 
@@ -64,12 +64,6 @@ export default {
       meta: {},
       links: {},
     }
-  },
-
-  computed: {
-    ...mapState({
-      venues: state => state.global.venues,
-    }),
   },
 
   watch: {

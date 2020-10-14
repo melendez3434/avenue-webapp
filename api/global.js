@@ -20,14 +20,6 @@ export default $axios => ({
     return `${data.key}.${extension}`
   },
 
-  genres() {
-    return $axios.$get('/api/genres')
-  },
-
-  venues() {
-    return $axios.$get('/api/venues')
-  },
-
   categories() {
     return $axios.$get('/api/categories')
   },
