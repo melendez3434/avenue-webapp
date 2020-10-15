@@ -24,12 +24,12 @@ export default {
       console.log('html', html)
       const path = process.env.NODE_ENV === 'production' ? '/_nuxt/img/' : '/_nuxt/assets/emojis/'
       const sanitized = html
-        .replace(`/<img src="${path}/g`, ':')
-        .replace('/.png">/g', ':')
-        .replace('/<br>/g', '')
-        .replace('/<div>/g', '')
-        .replace('/</div>/g', '')
-        .replace('/&nbsp;/g', ' ')
+        .replaceAll(`<img src="${path}`, ':')
+        .replaceAll('.png">', ':')
+        .replaceAll('<br>', '')
+        .replaceAll('<div>', '')
+        .replaceAll('</div>', '')
+        .replaceAll('&nbsp;', ' ')
       this.$emit('submit', sanitized)
     },
 

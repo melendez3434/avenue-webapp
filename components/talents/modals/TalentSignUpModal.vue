@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div class="relative">
+    <div class="absolute text-theavenue-white top-0 right-0 mt-4 mr-6">
+      <IcClose class="cursor-pointer" @click="$modal.hide('talent-signup-modal')" />
+    </div>
     <div class="px-6 pb-5 pt-10 bg-theavenue-background">
       <p class="text-sm leading-5">Welcome</p>
       <p class="text-2xl leading-tight font-medium">{{ $auth.user.name }}</p>
@@ -61,12 +64,14 @@
 import { mapState } from 'vuex'
 import { required, url } from 'vuelidate/lib/validators'
 import MultipleInput from '@/components/commons/ui/MultipleInput'
+import IcClose from '@/assets/svg/close_2.svg?inline'
 
 export default {
   name: 'TalentSignUpModal',
 
   components: {
     MultipleInput,
+    IcClose,
   },
 
   data() {
