@@ -118,6 +118,7 @@ export default {
     if (this.isStripeCustomer) {
       const { data } = await this.$api.global.stripeCard()
       this.card = data
+      this.donation.name = this.card.name
     }
   },
 
@@ -129,7 +130,7 @@ export default {
     async createDonation() {
       try {
         if (!this.isStripeCustomer) {
-          const data = await this.$refs.stripe.createToken()
+          const data = await this.$refs.stripe.createToken({ name: this.donation.name })
           await this.$api.global.stripe(data.token.id)
           await this.$auth.fetchUser()
         } else if (!this.card) {

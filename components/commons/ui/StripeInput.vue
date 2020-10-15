@@ -57,8 +57,8 @@ export default {
   },
 
   methods: {
-    createToken() {
-      return this.stripe.createToken(this.cardElement)
+    createToken(params) {
+      return this.stripe.createToken(this.cardElement, params)
     },
   },
 }
