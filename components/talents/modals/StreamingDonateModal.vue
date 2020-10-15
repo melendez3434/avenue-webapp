@@ -131,7 +131,7 @@ export default {
         if (!this.isStripeCustomer) {
           const data = await this.$refs.stripe.createToken()
           await this.$api.global.stripe(data.token.id)
-          // Update user
+          await this.$auth.fetchUser()
         } else if (!this.card) {
           const data = await this.$refs.stripe.createToken()
           await this.$api.global.updateStripe(data.token.id)
