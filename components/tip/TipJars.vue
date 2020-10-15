@@ -11,7 +11,7 @@
         <IcTipjarA v-if="index === 0" />
         <IcTipjarB v-else />
         <div class="uppercase text-theavenue-green-neon font-library text-2xl my-3">
-          $ 0.00
+          $ {{ (jar.total_amount / 100).toFixed(2) }}
         </div>
         <div class="text-sm">Tip Jar #{{ index + 1 }}</div>
         <div>{{ jar.name }}</div>
@@ -30,10 +30,21 @@ export default {
   components: { IcTipjarA, IcTipjarB },
 
   props: {
-    jars: {
-      type: Array,
+    event: {
+      type: Object,
       required: true,
     },
+  },
+
+  async fetch() {
+    const { data } = await this.$api.events.getTipJars(this.event.id)
+    this.jars = data
+  },
+
+  data() {
+    return {
+      jars: [],
+    }
   },
 }
 </script>
