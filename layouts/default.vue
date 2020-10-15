@@ -3,11 +3,24 @@
     <Navbar />
     <nuxt />
 
-    <modal name="user-access-modal" adaptive height="auto" @before-open="beforeOpenUserAccess">
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="user-access-modal"
+      scrollable
+      height="auto"
+      @before-open="beforeOpenUserAccess"
+    >
       <UserAccessModal :active-tab="modal.active" />
     </modal>
 
-    <modal name="talent-signup-modal" adaptive height="auto">
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="talent-signup-modal"
+      scrollable
+      height="auto"
+    >
       <TalentSignUpModal />
     </modal>
 
