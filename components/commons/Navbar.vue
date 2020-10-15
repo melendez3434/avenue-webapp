@@ -1,71 +1,28 @@
 <template>
-  <div class="w-full flex py-5 px-8 bg-theavenue-background-light">
+  <div class="w-full flex py-5 lg:px-8 bg-theavenue-background-light relative">
     <div class="flex-1 flex items-center uppercase">
       <nuxt-link
         tag="h1"
         :to="{ name: 'index' }"
-        class="text-avenue-white-light font-library uppercase text-2xl text-light-white cursor-pointer"
+        class="whitespace-no-wrap flex-1 pl-2 md:ml-0 text-avenue-white-light font-library uppercase text-2xl text-light-white cursor-pointer"
       >
         The avenue
       </nuxt-link>
     </div>
-    <nav class="flex space-x-5 items-center text-sm">
-      <nuxt-link
-        :to="{ name: 'index' }"
-        class="uppercase text-avenue-white-light font-library text-2xl text-light-white"
-      >
-        Music
-      </nuxt-link>
-      <nuxt-link
-        :to="{ name: 'index' }"
-        class="uppercase text-avenue-white-light font-library text-2xl text-light-white"
-      >
-        Food
-      </nuxt-link>
-      <nuxt-link
-        :to="{ name: 'index' }"
-        class="uppercase text-avenue-white-light font-library text-2xl text-light-white"
-      >
-        Stand-Up
-      </nuxt-link>
-      <client-only>
-        <button
-          v-if="!$auth.loggedIn"
-          type="button"
-          class="py-0.5 px-3 font-library uppercase text-2xl text-theavenue-turquoise-neon text-light-turquoise border border-theavenue-turquoise-neon rounded-lg"
-          @click="$modal.show('user-access-modal', { active: 'login' })"
-        >
-          Login
-        </button>
-        <button
-          v-if="!$auth.loggedIn"
-          :to="{ name: 'signup' }"
-          class="py-0.5 px-3 font-library uppercase text-2xl text-theavenue-yellow-neon text-light-yellow border border-theavenue-yellow-neon rounded-lg"
-          @click="$modal.show('user-access-modal', { active: 'signup' })"
-        >
-          Sign Up
-        </button>
-        <button
-          v-if="$auth.loggedIn"
-          class="bg-avenue-white-light text-avenue-black-light rounded-lg py-1 px-2 uppercase"
-          @click="$modal.show('talent-signup-modal')"
-        >
-          Sign up as a Talent
-        </button>
-        <button
-          v-if="$auth.loggedIn"
-          class="bg-avenue-white-light text-avenue-black-light rounded-lg py-1 px-2 uppercase"
-          @click="logout"
-        >
-          Log out
-        </button>
-      </client-only>
+    <nav class="ta-hidden lg:flex items-center text-sm">
+      <MainMenu class="space-x-5" />
     </nav>
+    <MobileMenu class="flex lg:ta-hidden w-full justify-end" />
   </div>
 </template>
 <script>
+import MainMenu from '@/components/commons/MainMenu'
+import MobileMenu from '@/components/commons/MobileMenu'
+
 export default {
   name: 'Navbar',
+
+  components: { MainMenu, MobileMenu },
 
   methods: {
     async logout() {

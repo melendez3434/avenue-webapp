@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div class="relative">
+    <div class="absolute text-theavenue-white top-0 right-0 mt-4 mr-6">
+      <IcClose class="cursor-pointer" @click="$modal.hide('user-access-modal')" />
+    </div>
     <div class="px-6 py-10 bg-theavenue-background">
       <p v-if="heading.subtitle" class="text-sm leading-5">{{ heading.subtitle }}</p>
       <p class="text-2xl leading-tight font-medium">{{ heading.title }}</p>
@@ -35,6 +38,7 @@
 <script>
 import LoginForm from '@/components/users/LoginForm'
 import SignUpForm from '@/components/users/SignUpForm'
+import IcClose from '@/assets/svg/close_2.svg?inline'
 
 export default {
   name: 'UserAccessModal',
@@ -42,6 +46,7 @@ export default {
   components: {
     LoginForm,
     SignUpForm,
+    IcClose,
   },
 
   props: {
