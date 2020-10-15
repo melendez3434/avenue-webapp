@@ -2,12 +2,12 @@
   <el-collapse-item :name="event.id">
     <template slot="title">
       <div
-        class="w-full bg-theavenue-white text-theavenue-black flex items-center justify-center font-league-gothic text-6xl py-2 uppercase"
+        class="w-full bg-theavenue-white text-theavenue-black flex items-center justify-center font-league-gothic text-2xl md:text-6xl py-2 px-4 uppercase"
       >
-        <p>{{ event.talent.name }}</p>
-        <p class="ml-6">{{ dateTitle }}</p>
-        <p class="ml-6">{{ hourTitle }}</p>
-        <p v-if="isLive" class="text-theavenue-red-neon ml-6">live</p>
+        <p class="whitespace-no-wrap">{{ event.talent.name }}</p>
+        <p class="ml-2 lg:ml-6 whitespace-no-wrap">{{ dateTitle }}</p>
+        <p class="ml-2 lg:ml-6 whitespace-no-wrap">{{ hourTitle }}</p>
+        <p v-if="isLive" class="text-theavenue-red-neon ml-2 lg:ml-6">live</p>
       </div>
     </template>
     <div
@@ -18,7 +18,7 @@
       <div
         class="container mx-auto flex items-end justify-between h-full text-theavenue-white z-10 mb-12"
       >
-        <div class="flex items-center">
+        <div class="hidden md:flex items-center">
           <img
             :src="event.talent.photo"
             :alt="`${event.talent.name} photo`"
@@ -31,13 +31,13 @@
         </div>
         <div class="flex">
           <div class="font-sans flex flex-col text-right">
-            <p class="text-lg font-bold leading-6">{{ event.name }}</p>
-            <p class="text-base leading-6">{{ dateFormatted }}</p>
+            <p class="text-base md:text-lg font-bold leading-6">{{ event.name }}</p>
+            <p class="text-xs md:text-base leading-6 whitespace-no-wrap">{{ dateFormatted }}</p>
           </div>
           <div v-if="isLive" class="ml-6">
             <nuxt-link
               :to="{ name: 'event-slug', params: { slug: event.id } }"
-              class="font-library border-2 py-2 px-3 uppercase text-theavenue-red-neon text-light-red text-3xl rounded-md border-theavenue-red-neon"
+              class="font-library border-2 py-2 px-3 uppercase text-theavenue-red-neon text-light-red text-lg md:text-3xl rounded-md border-theavenue-red-neon"
               style="box-shadow: 1px 1px 7px #FF2F2F;"
             >
               WATCH NOW
