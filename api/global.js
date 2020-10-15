@@ -24,8 +24,16 @@ export default $axios => ({
     return $axios.$get('/api/categories')
   },
 
-  stripe(payload) {
-    return $axios.$post('/stripe/customer', payload)
+  stripe(stripe_token) {
+    return $axios.$post('/api/stripe/customer', { stripe_token })
+  },
+
+  updateStripe(stripe_token) {
+    return $axios.$put('/api/stripe/customer', { stripe_token })
+  },
+
+  stripeCard() {
+    return $axios.$get('/api/stripe/card')
   },
 })
 

@@ -9,7 +9,23 @@
         <R64Input v-model="donation.name" label="Name on Card" />
       </div>
       <div class="mt-3">
-        <StripeInput ref="stripe" @change="onStripeChange" />
+        <div v-if="card">
+          <span>Credit Card</span>
+          <div class="h-38px bg-theavenue-background-dark flex items-center justify-between px-3">
+            <span>**** **** **** {{ card.last4 }}</span>
+            <span>{{ card.exp_month }} / {{ card.exp_year }}</span>
+          </div>
+          <div class="w-full flex justify-end mt-2">
+            <button
+              type="button"
+              class="text-xs bg-theavenue-background-light border border-theavenue-off-white text-theavenue-off-white px-2 py-0.5 rounded"
+              @click="card = null"
+            >
+              Change card
+            </button>
+          </div>
+        </div>
+        <StripeInput v-else ref="stripe" @change="onStripeChange" />
       </div>
 
       <p class="text-theavenue-white text-md mt-5">Quick Select Amount</p>
@@ -44,7 +60,7 @@
       </div>
 
       <div class="mt-8">
-        <R64Button full>Confirm</R64Button>
+        <R64Button full type="submit">Confirm</R64Button>
       </div>
     </form>
   </div>
@@ -84,6 +100,20 @@ export default {
         { value: 2000, label: '$20.00' },
       ],
       stripeValidated: false,
+      card: null,
+    }
+  },
+
+  computed: {
+    isStripeCustomer() {
+      return this.$auth.user.has_stripe_customer_id
+    },
+  },
+
+  async created() {
+    if (this.isStripeCustomer) {
+      const { data } = await this.$api.global.stripeCard()
+      this.card = data
     }
   },
 
@@ -91,18 +121,29 @@ export default {
     onStripeChange(event) {
       this.stripeValidated = event.complete
     },
+
     async createDonation(e) {
       e.preventDefault()
-      if (!this.$auth.user.has_stripe_customer_id) {
-        this.$refs.stripe.createToken().then(async data => {
-          const stripe_token = { token: data.token.id }
-          await this.$api.global.stripe({ stripe_token })
-        })
+
+      try {
+        if (!this.isStripeCustomer) {
+          const data = await this.$refs.stripe.createToken()
+          await this.$api.global.stripe(data.token.id)
+          // Update user
+        } else if (!this.card) {
+          const data = await this.$refs.stripe.createToken()
+          await this.$api.global.updateStripe(data.token.id)
+        }
+
+        await this.$api.talent.tip({ tip_jar_id: this.jar, amount: this.donation.amount })
+
+        // Update tip jar
+
+        this.$modal.hide('streaming-donate-modal')
+      } catch (e) {
+        // Show error
+        console.error('HA PETAO TO')
       }
-
-      await this.$api.talent.tip({ tip_jar_id: this.jar, amount: this.donation.amount })
-
-      this.$modal.close('streaming-donate-modal')
     },
 
     setAmount(amount) {
