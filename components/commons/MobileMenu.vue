@@ -19,7 +19,6 @@
 
 <script>
 import MainMenu from '@/components/commons/MainMenu'
-
 import IcMenu from '@/assets/svg/hamburger.svg?inline'
 import IcClose from '@/assets/svg/close.svg?inline'
 
