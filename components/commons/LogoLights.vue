@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-64 justify-center">
+  <div class="flex mb-4 md:mb-12 justify-center">
     <transition name="component-fade" mode="in-out">
       <Lights1 v-if="currentLight === 1" class="h-full w-full" />
       <Lights2 v-if="currentLight === 2" class="h-full w-full" />

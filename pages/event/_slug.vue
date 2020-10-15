@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full grid grid-cols-9 grid-rows-1">
+  <div class="w-full grid grid-cols-1 md:grid-cols-9">
     <div class="col-span-6 flex flex-col justify-between">
       <div id="streaming" ref="streaming" class="relative" />
       <div class="pb-4 pt-8 bg-theavenue-background-dark px-4 flex justify-between items-center">
@@ -9,7 +9,7 @@
             v-for="socialNetwork in event.social_media_users"
             :key="socialNetwork.id"
             :social-network="socialNetwork.social_media_slug"
-            class="w-6 h-6"
+            class="w-6 h-6 ta-hidden md:inline-block"
           />
           <a
             :href="event.talent.merchandise_url"
@@ -23,8 +23,8 @@
       </div>
     </div>
     <div class="col-span-3 flex flex-col">
-      <TipJars class="h-96" :event="event" @click:jar="openDonationModal" />
-      <ChatRoom class="flex-1" :event="event" :style="chatStyle" @click:jar="openDonationModal" />
+      <TipJars class="md:h-96" :event="event" @click:jar="openDonationModal" />
+      <ChatRoom class="flex-1" :event="event" :style="chatStyle" @click:jar="openDonationModal"/>
     </div>
   </div>
 </template>
