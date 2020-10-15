@@ -21,14 +21,15 @@ export default {
   methods: {
     submit() {
       const html = this.$refs.editable.innerHTML
+      console.log('html', html)
       const path = process.env.NODE_ENV === 'production' ? '/_nuxt/img/' : '/_nuxt/assets/emojis/'
       const sanitized = html
-        .replaceAll(`<img src="${path}`, ':')
-        .replaceAll('.png">', ':')
-        .replaceAll('<br>', '')
-        .replaceAll('<div>', '')
-        .replaceAll('</div>', '')
-        .replaceAll('&nbsp;', ' ')
+        .replace(`/<img src="${path}/g`, ':')
+        .replace('/.png">/g', ':')
+        .replace('/<br>/g', '')
+        .replace('/<div>/g', '')
+        .replace('/</div>/g', '')
+        .replace('/&nbsp;/g', ' ')
       this.$emit('submit', sanitized)
     },
 

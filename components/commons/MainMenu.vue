@@ -56,5 +56,11 @@
 <script>
 export default {
   name: 'MainMenu',
+
+  methods: {
+    async logout() {
+      await this.$auth.logout()
+    },
+  },
 }
 </script>

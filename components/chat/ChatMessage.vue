@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="bg-avenue-blue-light rounded-lg inline-block p-4 mt-4">
+    <div
+      class="bg-avenue-blue-light rounded-lg inline-block px-4 py-2 md:px-4 md:py-4 mt-1 md:mt-4"
+    >
       <div class="font-bold">{{ message.user.name }}</div>
       <div class="text-avenue-grey flex">
         <component :is="comp.type" v-for="(comp, index) in messageComponents" :key="index">
