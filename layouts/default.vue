@@ -57,8 +57,10 @@ export default {
   },
 
   methods: {
-    beforeOpenUserAccess({ params }) {
-      this.modal.active = params.active || 'login'
+    beforeOpenUserAccess(data) {
+      const params = data.params || {}
+      const active = params.active || 'login'
+      this.modal.active = active
     },
   },
 }

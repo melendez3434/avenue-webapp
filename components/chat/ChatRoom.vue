@@ -40,13 +40,32 @@
           <img ref="fire" src="~assets/emojis/fire.png" @click="$refs.input.addEmoji($refs.fire)" />
         </div>
       </div>
+      <el-popover v-model="jarsVisible" placement="top" trigger="manual">
+        <div>
+          <div>Make donation to:</div>
+          <div
+            v-for="jar in event.tip_jars"
+            :key="jar.id"
+            class="cursor-pointer py-2"
+            @click="selectJar(jar.id)"
+          >
+            {{ jar.name }}
+          </div>
+        </div>
+
+        <IcTipjar slot="reference" class="h-20" @click="jarsVisible = true" />
+      </el-popover>
     </div>
   </div>
 </template>
 
 <script>
+import IcTipjar from '@/assets/svg/tipjar_mini.svg?inline'
+
 export default {
   name: 'ChatRoom',
+
+  components: { IcTipjar },
 
   props: {
     event: {
@@ -55,7 +74,18 @@ export default {
     },
   },
 
+  data() {
+    return {
+      jarsVisible: false,
+    }
+  },
+
   methods: {
+    selectJar(id) {
+      this.$emit('click:jar', id)
+      this.jarsVisible = false
+    },
+
     addMessage(message) {
       if (!message) return
 

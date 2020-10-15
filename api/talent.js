@@ -16,4 +16,8 @@ export default $axios => ({
   get(id) {
     return $axios.$get(`${resource}/${id}`)
   },
+
+  tip(data) {
+    return $axios.$post('api/tips/', data)
+  },
 })

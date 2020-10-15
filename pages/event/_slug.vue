@@ -23,8 +23,8 @@
       </div>
     </div>
     <div class="col-span-3 flex flex-col">
-      <TipJars class="md:h-96" :jars="event.tip_jars" />
-      <ChatRoom class="flex-1" :event="event" :style="chatStyle" />
+      <TipJars class="md:h-96" :event="event" @click:jar="openDonationModal" />
+      <ChatRoom class="flex-1" :event="event" :style="chatStyle" @click:jar="openDonationModal"/>
     </div>
   </div>
 </template>
@@ -81,6 +81,12 @@ export default {
       width: '100%',
       height: this.videoHeight,
     })
+  },
+
+  methods: {
+    openDonationModal(jar) {
+      this.$modal.show('streaming-donate-modal', { event: this.event.name, jar })
+    },
   },
 }
 </script>

@@ -1,11 +1,17 @@
 <template>
   <div>
-    <div
-      class="bg-avenue-blue-light rounded-lg inline-block px-4 py-2 md:px-4 md:py-4 mt-1 md:mt-4"
-    >
-      <div class="font-bold">{{ message.user.name }}</div>
+    <div class="bg-avenue-blue-light rounded-lg inline-block px-4 py-2 md:px-4 md:py-4 mt-1 md:mt-4">
+      <div>
+        <span class="font-bold">{{ message.user.name }}</span>
+        <span v-if="isTip" class="text-sm text-avenue-grey">donated</span>
+      </div>
       <div class="text-avenue-grey flex">
-        <component :is="comp.type" v-for="(comp, index) in messageComponents" :key="index">
+        <component
+          :is="comp.type"
+          v-for="(comp, index) in messageComponents"
+          :key="index"
+          :class="{ 'text-theavenue-green-neon font-library text-2xl': isTip }"
+        >
           {{ comp.message }}
         </component>
       </div>
@@ -32,6 +38,10 @@ export default {
   },
 
   computed: {
+    isTip() {
+      return this.message.type === 'tip'
+    },
+
     messageComponents() {
       const icons = {
         heart: 'IcHeart',

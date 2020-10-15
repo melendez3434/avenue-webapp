@@ -5,16 +5,17 @@
       <div
         v-for="(jar, index) in jars"
         :key="jar.id"
-        class="w-1/2 p-4 bg-theavenue-background-extra-light flex md:flex-col items-center justify-center rounded-lg"
+        class="w-1/2 p-4 bg-theavenue-background-extra-light flex md:flex-col items-center justify-center rounded-lg cursor-pointer"
+        @click="$emit('click:jar', jar.id)"
       >
         <IcTipjarA v-if="index === 0" class="w-16 md:w-32" />
         <IcTipjarB v-else class="w-16 md:w-32" />
         <div class="flex flex-col items-center px-3 md:px-0">
           <div class="uppercase text-theavenue-green-neon font-library text-lg md:text-2xl my-3">
-            $0.00
+            $ {{ jar.total_amount.toFixed(2) }}
           </div>
           <div class="text-xs md:text-sm">Tip Jar #{{ index + 1 }}</div>
-          <div>{{ jar.text }}</div>
+          <div>{{ jar.name }}</div>
         </div>
       </div>
     </div>
@@ -31,10 +32,35 @@ export default {
   components: { IcTipjarA, IcTipjarB },
 
   props: {
-    jars: {
-      type: Array,
+    event: {
+      type: Object,
       required: true,
     },
+  },
+
+  async fetch() {
+    const { data } = await this.$api.events.getTipJars(this.event.id)
+    this.jars = data
+  },
+
+  data() {
+    return {
+      jars: [],
+    }
+  },
+
+  async mounted() {
+    this.$echo.channel(`event.${this.event.id}`).listen('ChatMessageCreated', ({ chatMessage }) => {
+      const jar = this.jars.find(j => j.id === chatMessage.tip_jar_id)
+
+      if (!jar) return
+
+      this.$set(jar, 'total_amount', jar.total_amount + chatMessage.amount)
+    })
+  },
+
+  beforeDestroy() {
+    this.$echo.channel(`event.${this.event}`).stopListening('ChatMessageCreated')
   },
 }
 </script>
