@@ -11,7 +11,7 @@
         <IcTipjarA v-if="index === 0" />
         <IcTipjarB v-else />
         <div class="uppercase text-theavenue-green-neon font-library text-2xl my-3">
-          $ {{ (jar.total_amount / 100).toFixed(2) }}
+          $ {{ jar.total_amount }}
         </div>
         <div class="text-sm">Tip Jar #{{ index + 1 }}</div>
         <div>{{ jar.name }}</div>
