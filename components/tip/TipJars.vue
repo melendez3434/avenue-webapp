@@ -11,7 +11,7 @@
         <IcTipjarA v-if="index === 0" />
         <IcTipjarB v-else />
         <div class="uppercase text-theavenue-green-neon font-library text-2xl my-3">
-          $ {{ jar.total_amount }}
+          $ {{ jar.total_amount.toFixed(2) }}
         </div>
         <div class="text-sm">Tip Jar #{{ index + 1 }}</div>
         <div>{{ jar.name }}</div>
@@ -45,6 +45,20 @@ export default {
     return {
       jars: [],
     }
+  },
+
+  async mounted() {
+    this.$echo.channel(`event.${this.event.id}`).listen('ChatMessageCreated', ({ chatMessage }) => {
+      const jar = this.jars.find(j => j.id === chatMessage.tip_jar_id)
+
+      if (!jar) return
+
+      this.$set(jar, 'total_amount', jar.total_amount + chatMessage.amount)
+    })
+  },
+
+  beforeDestroy() {
+    this.$echo.channel(`event.${this.event}`).stopListening('ChatMessageCreated')
   },
 }
 </script>
