@@ -4,7 +4,9 @@
       <div
         class="w-full bg-theavenue-white text-theavenue-black flex items-center justify-center font-league-gothic text-2xl md:text-6xl py-2 px-4 uppercase"
       >
-        <p class="whitespace-no-wrap">{{ event.talent.name }}</p>
+        <p class="whitespace-no-wrap truncate max-w-xs lg:max-w-lg xl:max-w-none">
+          {{ event.talent.name }}
+        </p>
         <p class="ml-2 lg:ml-6 whitespace-no-wrap">{{ dateTitle }}</p>
         <p class="ml-2 lg:ml-6 whitespace-no-wrap">{{ hourTitle }}</p>
         <p v-if="isLive" class="text-theavenue-red-neon ml-2 lg:ml-6">live</p>
@@ -18,7 +20,7 @@
       <div
         class="container mx-auto flex items-end justify-between h-full text-theavenue-white z-10 mb-12"
       >
-        <div class="hidden md:flex items-center">
+        <div class="ta-hidden md:flex items-center">
           <img
             :src="event.talent.photo"
             :alt="`${event.talent.name} photo`"

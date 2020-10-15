@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute w-full flex justify-end pr-2">
+  <div>
     <IcMenu @click="open = true" />
     <div v-if="open" class="bg-theavenue-background-light absolute left-0 w-full pb-5">
       <div class="flex items-center justify-between" @click="open = false">

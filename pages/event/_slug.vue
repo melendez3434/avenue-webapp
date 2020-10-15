@@ -9,7 +9,7 @@
             v-for="socialNetwork in event.social_media_users"
             :key="socialNetwork.id"
             :social-network="socialNetwork.social_media_slug"
-            class="w-6 h-6 hidden md:inline-block"
+            class="w-6 h-6 ta-hidden md:inline-block"
           />
           <a
             :href="event.talent.merchandise_url"
