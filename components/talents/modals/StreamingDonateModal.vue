@@ -4,7 +4,7 @@
       <p class="text-sm leading-5">Make donation to</p>
       <p class="text-2xl leading-tight font-medium">{{ event }}</p>
     </div>
-    <form class="mt-3 px-6 pb-10 pt-5" @submit="createDonation">
+    <form class="mt-3 px-6 pb-10 pt-5" @submit.prevent="createDonation">
       <div class="mt-3">
         <R64Input v-model="donation.name" label="Name on Card" />
       </div>
@@ -59,13 +59,16 @@
         />
       </div>
 
+      <div v-if="error" class="mb-6 text-theavenue-red-neon text-center">{{ error }}</div>
+
       <div class="mt-8">
-        <R64Button full type="submit">Confirm</R64Button>
+        <R64Button :disabled="$v.donation.$invalid && !error" full type="submit">Confirm</R64Button>
       </div>
     </form>
   </div>
 </template>
 <script>
+import { required } from 'vuelidate/lib/validators'
 import StripeInput from '@/components/commons/ui/StripeInput'
 
 export default {
@@ -90,6 +93,7 @@ export default {
         name: '',
         card: '',
         amount: '',
+        stripeValidated: false,
       },
       activeAmount: null,
       customAmount: '0000.00',
@@ -99,8 +103,8 @@ export default {
         { value: 1000, label: '$10.00' },
         { value: 2000, label: '$20.00' },
       ],
-      stripeValidated: false,
       card: null,
+      error: null,
     }
   },
 
@@ -119,12 +123,10 @@ export default {
 
   methods: {
     onStripeChange(event) {
-      this.stripeValidated = event.complete
+      this.donation.stripeValidated = event.complete
     },
 
-    async createDonation(e) {
-      e.preventDefault()
-
+    async createDonation() {
       try {
         if (!this.isStripeCustomer) {
           const data = await this.$refs.stripe.createToken()
@@ -141,8 +143,7 @@ export default {
 
         this.$modal.hide('streaming-donate-modal')
       } catch (e) {
-        // Show error
-        console.error('HA PETAO TO')
+        this.error = e.response.data.error
       }
     },
 
@@ -155,6 +156,18 @@ export default {
     setQuickAmount(amount) {
       this.setAmount(amount)
       this.customAmount = '0000.00'
+    },
+  },
+
+  validations: {
+    donation: {
+      amount: { required },
+      stripeValidated: {
+        mustBeTrue(value) {
+          if (this.card) return true
+          return !!value
+        },
+      },
     },
   },
 }

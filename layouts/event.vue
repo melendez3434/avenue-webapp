@@ -66,10 +66,11 @@ export default {
   },
 
   methods: {
-    beforeOpenUserAccess({ params }) {
-      this.modals.userAcess.active = params.active || 'login'
-      this.modals.userAcess.title = params.title || 'Welcome to The Avenue'
-      this.modals.userAcess.subtitle = params.subtitle || ''
+    beforeOpenUserAccess(data) {
+      const params = data.params || {}
+      this.modals.userAccess.active = params.active || 'login'
+      this.modals.userAccess.title = params.title || 'Welcome to The Avenue'
+      this.modals.userAccess.subtitle = params.subtitle || ''
     },
 
     beforeOpenStreamingDonate({ params }) {
