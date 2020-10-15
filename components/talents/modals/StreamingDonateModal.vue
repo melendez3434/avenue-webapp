@@ -52,8 +52,8 @@
           placeholder="$ 0000.00"
           base-class="leading-snug text-5xl text-center outline-none mt-1 px-3 py-2 block w-full bg-theavenue-background-dark rounded-md focus:shadow-outline-white focus:border-white"
           :class="{
-            'text-theavenue-green-neon': customAmount !== '0000.00',
-            ' text-avenue-white': customAmount === '0000.00',
+            'text-theavenue-green-neon': isCustomAmountSet,
+            ' text-avenue-white': !isCustomAmountSet,
           }"
           @input="setAmount($event)"
         />
@@ -96,7 +96,7 @@ export default {
         stripeValidated: false,
       },
       activeAmount: null,
-      customAmount: '0000.00',
+      customAmount: '',
       quickAmounts: [
         { value: 200, label: '$2.00' },
         { value: 500, label: '$5.00' },
@@ -111,6 +111,10 @@ export default {
   computed: {
     isStripeCustomer() {
       return this.$auth.user.has_stripe_customer_id
+    },
+
+    isCustomAmountSet() {
+      return this.customAmount.length
     },
   },
 
@@ -149,14 +153,14 @@ export default {
     },
 
     setAmount(amount) {
-      if (amount === '0000.00') return
+      if (amount === '') return
       this.donation.amount = amount
       this.activeAmount = amount
     },
 
     setQuickAmount(amount) {
       this.setAmount(amount)
-      this.customAmount = '0000.00'
+      this.customAmount = ''
     },
   },
 
