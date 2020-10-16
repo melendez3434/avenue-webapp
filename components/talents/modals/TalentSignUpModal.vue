@@ -138,15 +138,6 @@ export default {
       },
     }
 
-    if (this.form.social_media_links.length) {
-      validations.form.social_media_links = {
-        $each: {
-          social_media_slug: { required },
-          url: { required, url },
-        },
-      }
-    }
-
     return validations
   },
 }
