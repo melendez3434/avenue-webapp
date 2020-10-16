@@ -36,7 +36,7 @@
         Sign Up
       </button>
       <button
-        v-if="$auth.loggedIn"
+        v-if="$auth.loggedIn && !$auth.user.is_talent"
         class="bg-avenue-white-light text-avenue-black-light rounded-lg py-1 px-2 uppercase"
         @click="$modal.show('talent-signup-modal')"
       >

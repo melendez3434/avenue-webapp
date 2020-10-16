@@ -7,7 +7,7 @@
       <p class="text-sm leading-5">Welcome</p>
       <p class="text-2xl leading-tight font-medium">{{ $auth.user.name }}</p>
     </div>
-    <form class="mt-3 px-6 pb-10 pt-5" @submit="createTalent">
+    <form class="mt-3 px-6 pb-10 pt-5" @submit.prevent="createTalent">
       <div class="mb-6">
         <R64Input
           v-model="form.name"
@@ -15,10 +15,6 @@
           label="Artist or Group Name"
           error-message="Name is required"
         />
-      </div>
-
-      <div class="mb-6">
-        <R64Select v-model="form.category_id" :options="categoriesFormatted" label="Category" />
       </div>
 
       <div class="mb-6">
@@ -30,6 +26,10 @@
       </div>
 
       <div class="mb-6">
+        <R64Select v-model="form.category_id" :options="categoriesFormatted" label="Category" />
+      </div>
+
+      <div class="mb-6">
         <R64Input
           v-model="form.website"
           label="Website"
@@ -37,6 +37,10 @@
           placeholder="Paste URL"
           error-message="Must be a well formed url"
         />
+      </div>
+
+      <div class="mb-6">
+        <R64Input v-model="form.biography" label="Bio" />
       </div>
 
       <div class="mb-6">
@@ -82,6 +86,7 @@ export default {
         website: '',
         social_media_links: [{ social_media_slug: 'facebook', url: '' }],
         artist_type: '',
+        biography: '',
         sign_user_agreement: false,
       },
       socialNetworkList: [
@@ -111,15 +116,15 @@ export default {
   },
 
   methods: {
-    async createTalent(e) {
-      e.preventDefault()
-
+    async createTalent() {
       try {
-        const { data: talent } = await this.$api.talent.register(this.form)
+        const social_media_links = this.form.social_media_links.filter(link => !!link.url)
+        const payload = { ...this.form, social_media_links }
+        const { data: talent } = await this.$api.talent.register(payload)
         const { data: url } = await this.$api.talent.stripeAuthorize(talent.id)
         window.location.href = url
       } catch (e) {
-        this.error = e.response.data.error
+        this.error = e.response.data.error || e.response.data.message
       }
     },
   },
