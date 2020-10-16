@@ -50,7 +50,7 @@ export default {
   },
 
   async mounted() {
-    this.$echo.channel(`event.${this.event.id}`).listen('ChatMessageCreated', ({ chatMessage }) => {
+    this.$echo.channel(`event.${this.event.id}`).listen('TipCreated', ({ chatMessage }) => {
       const jar = this.jars.find(j => j.id === chatMessage.tip_jar_id)
 
       if (!jar) return
