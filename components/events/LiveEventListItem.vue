@@ -31,10 +31,15 @@
             <p class="font-sans text-lg">{{ event.talent.artist_type }}</p>
           </div>
         </div>
-        <div class="flex">
+        <div class="flex items-center">
           <div class="font-sans flex flex-col text-right">
             <p class="text-base md:text-lg font-bold leading-6">{{ event.name }}</p>
             <p class="text-xs md:text-base leading-6 whitespace-no-wrap">{{ dateFormatted }}</p>
+            <div class="flex justify-end">
+              <p class="text-xs bg-theavenue-gray px-1 py-0.5 rounded">
+                {{ event.rating.name }} rating
+              </p>
+            </div>
           </div>
           <div v-if="isLive" class="ml-6">
             <nuxt-link
