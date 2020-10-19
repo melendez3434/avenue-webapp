@@ -1,24 +1,20 @@
 <template>
   <div>
-    <nuxt-link
-      :to="{ name: 'index' }"
-      class="uppercase text-avenue-white-light font-library text-2xl text-light-white"
-    >
-      Music
-    </nuxt-link>
-    <nuxt-link
-      :to="{ name: 'index' }"
-      class="uppercase text-avenue-white-light font-library text-2xl text-light-white"
-    >
-      Food
-    </nuxt-link>
-    <nuxt-link
-      :to="{ name: 'index' }"
-      class="uppercase text-avenue-white-light font-library text-2xl text-light-white"
-    >
-      Stand-Up
-    </nuxt-link>
     <client-only>
+      <el-dropdown trigger="click" placement="top-start">
+        <span
+          class="uppercase text-avenue-white-light font-library text-2xl text-light-white mt-1 focus:outline-none"
+        >
+          {{ activeItem }}
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item v-for="category in categoriesFormatted" :key="category.name">
+            <nuxt-link :to="{ name: 'index', query: { category: category.id } }">
+              {{ category.name }}
+            </nuxt-link>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
       <template v-if="$auth.loggedIn">
         <button
           v-if="!$auth.user.talent_id"
@@ -62,8 +58,53 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'MainMenu',
+
+  data() {
+    return {
+      activeItem: 'All Genres',
+    }
+  },
+
+  computed: {
+    ...mapState({
+      categories: state => state.global.categories,
+    }),
+
+    isAllGenres() {
+      return this.activeItem === 'All Genres'
+    },
+
+    categoriesFormatted() {
+      const categories = this.categories.filter(c =>
+        !this.isAllGenres ? c.name !== this.activeItem : true
+      )
+
+      if (!this.isAllGenres) {
+        categories.unshift({ name: 'All Genres', id: null })
+      }
+
+      return categories
+    },
+  },
+
+  watch: {
+    '$route.query.category': {
+      immediate: true,
+      handler(category) {
+        if (category) {
+          const currentCategory = this.categories.find(c => c.id === Number(category))
+          this.activeItem = currentCategory ? currentCategory.name : 'All Genres'
+          return
+        }
+
+        this.activeItem = 'All Genres'
+      },
+    },
+  },
 
   methods: {
     async logout() {
@@ -74,6 +115,35 @@ export default {
       const { data: url } = await this.$api.talent.stripeAuthorize(this.$auth.user.talent_id)
       window.location.href = url
     },
+
+    setCategory(category) {
+      this.$router.push({ name: 'index', params: { query: category.id } })
+    },
   },
 }
 </script>
+<style>
+.el-popper.el-dropdown-menu {
+  @apply bg-theavenue-background-light;
+  @apply border-none;
+}
+
+.el-popper.el-dropdown-menu .el-dropdown-menu__item {
+  @apply uppercase;
+  @apply font-library;
+  @apply text-3xl;
+  @apply text-theavenue-gray;
+  @apply mb-5;
+}
+
+.popper__arrow {
+  display: hidden;
+  visibility: hidden;
+}
+
+.el-popper.el-dropdown-menu .el-dropdown-menu__item:focus,
+.el-popper.el-dropdown-menu .el-dropdown-menu__item:not(.is-disabled):hover {
+  @apply bg-transparent;
+  @apply text-theavenue-white;
+}
+</style>

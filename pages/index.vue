@@ -36,6 +36,14 @@ export default {
     return { events, meta }
   },
 
+  watch: {
+    async '$route.query.category'(category) {
+      const { data: events, meta } = await this.$api.events.list({ page: 0, category })
+      this.events = events
+      this.meta = meta
+    },
+  },
+
   methods: {
     async fetchPage($state) {
       const page = this.meta.current_page + 1
