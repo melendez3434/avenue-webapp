@@ -26,7 +26,7 @@
       {{ error }}
     </p>
 
-    <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid" full>
+    <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid" full :loading="busy">
       Login
     </R64Button>
   </form>
@@ -44,6 +44,7 @@ export default {
         password: '',
       },
       error: null,
+      busy: false,
     }
   },
 
@@ -51,6 +52,7 @@ export default {
     async login(e) {
       e.preventDefault()
       try {
+        this.busy = true
         await this.$auth.loginWith('sanctum', {
           data: {
             identifier: this.form.email,
@@ -58,9 +60,11 @@ export default {
           },
         })
         this.error = null
+        this.busy = false
         this.$modal.hide('user-access-modal')
       } catch (e) {
         this.error = e.response.data.error
+        this.busy = false
       }
     },
   },

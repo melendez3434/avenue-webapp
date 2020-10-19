@@ -56,7 +56,13 @@
       </p>
     </div>
 
-    <R64Button type="submit" class="mt-8 uppercase" :disabled="$v.form.$invalid" full>
+    <R64Button
+      type="submit"
+      class="mt-8 uppercase"
+      :disabled="$v.form.$invalid"
+      full
+      :loading="busy"
+    >
       Sign up
     </R64Button>
   </form>
@@ -77,6 +83,7 @@ export default {
         date_of_birth: '',
       },
       error: null,
+      busy: false,
     }
   },
 
@@ -84,6 +91,7 @@ export default {
     async register(e) {
       e.preventDefault()
       try {
+        this.busy = true
         await this.$api.signup.register(this.form)
         await this.$auth.loginWith('sanctum', {
           data: {
@@ -91,10 +99,12 @@ export default {
             password: this.form.password,
           },
         })
+        this.busy = false
         this.$modal.hide('user-access-modal')
         this.$modal.show('streaming-profile-modal')
       } catch (e) {
         this.error = e.response.data.error
+        this.busy = false
       }
     },
   },

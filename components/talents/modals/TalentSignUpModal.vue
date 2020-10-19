@@ -58,7 +58,13 @@
 
       <div v-if="error" class="mb-6 text-theavenue-red-neon text-center">{{ error }}</div>
 
-      <R64Button type="submit" class="mt-8" :disabled="$v.form.$invalid && !error" full>
+      <R64Button
+        type="submit"
+        class="mt-8"
+        :disabled="$v.form.$invalid && !error"
+        full
+        :loading="busy"
+      >
         Confirm
       </R64Button>
     </form>
@@ -118,13 +124,16 @@ export default {
   methods: {
     async createTalent() {
       try {
+        this.busy = true
         const social_media_links = this.form.social_media_links.filter(link => !!link.url)
         const payload = { ...this.form, social_media_links }
         const { data: talent } = await this.$api.talent.register(payload)
         const { data: url } = await this.$api.talent.stripeAuthorize(talent.id)
+        this.busy = false
         window.location.href = url
       } catch (e) {
         this.error = e.response.data.error || e.response.data.message
+        this.busy = false
       }
     },
   },

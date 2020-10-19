@@ -62,7 +62,9 @@
       <div v-if="error" class="mb-6 text-theavenue-red-neon text-center">{{ error }}</div>
 
       <div class="mt-8">
-        <R64Button :disabled="$v.donation.$invalid && !error" full type="submit">Confirm</R64Button>
+        <R64Button :disabled="$v.donation.$invalid && !error" full type="submit" :loading="busy">
+          Confirm
+        </R64Button>
       </div>
     </form>
   </div>
@@ -105,6 +107,7 @@ export default {
       ],
       card: null,
       error: null,
+      busy: false,
     }
   },
 
@@ -133,6 +136,7 @@ export default {
 
     async createDonation() {
       try {
+        this.busy = true
         if (!this.isStripeCustomer) {
           const data = await this.$refs.stripe.createToken({ name: this.donation.name })
           await this.$api.global.stripe(data.token.id)
@@ -146,9 +150,11 @@ export default {
 
         // Update tip jar
 
+        this.busy = false
         this.$modal.hide('streaming-donate-modal')
       } catch (e) {
         this.error = e.response.data.error
+        this.busy = false
       }
     },
 
