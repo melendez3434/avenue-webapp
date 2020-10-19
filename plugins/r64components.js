@@ -5,7 +5,7 @@ Vue.use(R64Components, {
   R64Button: {
     baseClass: 'block rounded inline-flex items-center justify-center',
     primaryClass: 'bg-theavenue-white text-theavenue-black',
-    secondaryClass: 'bg-theavenue-black text-white',
+    secondaryClass: 'bg-theavenue-gray text-white',
   },
   R64Input: {
     wrapperClass: 'mb-1',

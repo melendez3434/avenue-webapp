@@ -1,6 +1,4 @@
 export default {
-  mode: 'universal',
-
   components: true,
 
   publicRuntimeConfig: {

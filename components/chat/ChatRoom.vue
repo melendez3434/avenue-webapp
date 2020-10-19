@@ -40,7 +40,7 @@
           <img ref="fire" src="~assets/emojis/fire.png" @click="$refs.input.addEmoji($refs.fire)" />
         </div>
       </div>
-      <el-popover v-model="jarsVisible" placement="top" trigger="manual">
+      <el-popover v-if="$auth.loggedIn" v-model="jarsVisible" placement="top" trigger="manual">
         <div>
           <div>Make donation to:</div>
           <div

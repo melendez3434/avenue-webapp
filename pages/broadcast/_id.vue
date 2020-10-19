@@ -1,32 +1,44 @@
 <template>
-  <div class="p-20">
-    <div v-if="error">There was an error loading the media devides</div>
-    <div v-else>
-      <div v-if="playing" class="cursor-pointer mb-8" @click="stopStreaming">Stop Streaming</div>
-      <div v-else class="cursor-pointer mb-8" @click="startStreaming">Start Streaming</div>
+  <VideoLayout :event="event" :talent="talent">
+    <div slot="streaming" class=" bg-avenue-black p-8">
+      <R64Button v-if="playing" full secondary @click="stopStreaming">Stop Stream</R64Button>
+      <R64Button v-else full @click="startStreaming">Start Stream</R64Button>
     </div>
-    <video ref="video" width="100%" muted />
-    <canvas v-show="false" ref="canvas" />
-  </div>
+    <div class="h-full relative bg-theavenue-black">
+      <div v-if="error">There was an error loading the media devices</div>
+      <IcLive v-if="playing" class="w-32 absolute" />
+      <video ref="video" class="h-full w-full" muted />
+      <canvas v-show="false" ref="canvas" />
+    </div>
+  </VideoLayout>
 </template>
 
 <script>
 import socket from '~/plugins/socket.io.js'
+import VideoLayout from '@/components/commons/ui/VideoLayout'
+import IcLive from '@/assets/svg/live_w_text.svg?inline'
 
 export default {
   name: 'BroadcastChannel',
 
+  components: { VideoLayout, IcLive },
+
   async asyncData({ $api, params, error }) {
     try {
-      const { data } = await $api.talent.get(params.id)
+      const { data: talent } = await $api.talent.get(params.id)
+      const { data: events } = await $api.events.list({ live: 1, talent: params.id })
 
-      if (!data.dacast) return error('Invalid broadcast settings')
+      let event = null
 
-      const auth_stream_url = `rtmp://${data.dacast.login}:${
-        data.dacast.password
-      }@${data.dacast.stream_url.replace('rtmp://', '')}/${data.dacast.stream_name}`
+      if (events.length) event = events[0]
 
-      return { dacast: { ...data.dacast, auth_stream_url } }
+      if (!talent.dacast) return error('Invalid broadcast settings')
+
+      const auth_stream_url = `rtmp://${talent.dacast.login}:${
+        talent.dacast.password
+      }@${talent.dacast.stream_url.replace('rtmp://', '')}/${talent.dacast.stream_name}`
+
+      return { event, talent, dacast: { ...talent.dacast, auth_stream_url } }
     } catch (e) {
       error('Invalid broadcast settings')
     }

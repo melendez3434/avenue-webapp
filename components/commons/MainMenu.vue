@@ -24,7 +24,7 @@
           Sign up as a Talent
         </button>
         <button
-          v-if="$auth.user.talent_id && !has_confirmed_talent"
+          v-if="$auth.user.talent_id && !$auth.user.has_confirmed_talent"
           class="bg-avenue-white-light text-avenue-black-light rounded-lg py-1 px-2 uppercase"
           @click="completeStripe"
         >
