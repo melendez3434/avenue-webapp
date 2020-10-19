@@ -24,27 +24,24 @@
           <img
             :src="event.talent.photo"
             :alt="`${event.talent.name} photo`"
-            class="rounded-full w-16 h-16"
+            class="rounded-full w-14 h-14"
           />
           <div class="ml-5">
-            <p class="font-sans text-2xl font-bold leading-6">{{ event.talent.name }}</p>
+            <p class="font-sans text-xl font-bold leading-6">{{ event.talent.name }}</p>
             <p class="font-sans text-lg">{{ event.talent.artist_type }}</p>
           </div>
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center mb-2">
           <div class="font-sans flex flex-col text-right">
-            <p class="text-base md:text-lg font-bold leading-6">{{ event.name }}</p>
+            <p class="text-base md:text-lg font-bold leading-6">
+              {{ event.name }} ({{ event.rating.name }} Rating)
+            </p>
             <p class="text-xs md:text-base leading-6 whitespace-no-wrap">{{ dateFormatted }}</p>
-            <div class="flex justify-end">
-              <p class="text-xs bg-theavenue-gray px-1 py-0.5 rounded">
-                {{ event.rating.name }} rating
-              </p>
-            </div>
           </div>
           <div v-if="isLive" class="ml-6">
             <nuxt-link
               :to="{ name: 'event-slug', params: { slug: event.id } }"
-              class="font-library border-2 py-2 px-3 uppercase text-theavenue-red-neon text-light-red text-lg md:text-3xl rounded-md border-theavenue-red-neon"
+              class="font-library border-2 py-2 px-3 uppercase text-theavenue-red-neon text-light-red text-lg md:text-2xl rounded-md border-theavenue-red-neon"
               style="box-shadow: 1px 1px 7px #FF2F2F;"
             >
               WATCH NOW
