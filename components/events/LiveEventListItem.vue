@@ -33,9 +33,9 @@
             </p>
           </div>
         </div>
-        <div class="flex items-center mb-2">
+        <div class="flex items-center mb-0 md:mb-2 mx-auto md:mx-0">
           <div class="font-sans flex flex-col text-right">
-            <p class="text-base md:text-lg font-bold leading-6">
+            <p class="text-md md:text-lg font-bold leading-6">
               {{ event.name }} ({{ event.rating.name }} Rating)
             </p>
             <p class="text-xs md:text-base leading-6 whitespace-no-wrap">{{ dateFormatted }}</p>
@@ -43,7 +43,7 @@
           <div v-if="isLive" class="ml-6">
             <nuxt-link
               :to="{ name: 'event-slug', params: { slug: event.id } }"
-              class="font-library border-2 py-2 px-3 uppercase text-theavenue-red-neon text-light-red text-lg md:text-2xl rounded-md border-theavenue-red-neon"
+              class="font-library border-2 py-2 px-3 uppercase text-theavenue-red-neon text-light-red text-md md:text-2xl rounded-md border-theavenue-red-neon"
               style="box-shadow: 1px 1px 7px #FF2F2F;"
             >
               WATCH NOW
