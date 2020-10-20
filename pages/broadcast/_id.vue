@@ -6,22 +6,46 @@
     </div>
     <div class="h-full relative bg-theavenue-black">
       <div v-if="error">There was an error loading the media devices</div>
-      <IcLive v-if="playing" class="w-32 absolute" />
-      <video ref="video" class="h-full w-full" muted />
+      <div class="relative h-full">
+        <IcLive v-if="playing" class="w-32 absolute" />
+        <video ref="video" class="h-full w-full" muted />
+        <IcSettings
+          class="absolute bottom-4 right-4 cursor-pointer"
+          @click="$modal.show('device-settings-modal')"
+        />
+      </div>
+
       <canvas v-show="false" ref="canvas" />
     </div>
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="device-settings-modal"
+      scrollable
+      height="auto"
+    >
+      <DeviceSettingsModal
+        :video-sources="videoInputs"
+        :audio-sources="audioInputs"
+        :selected-audio="audioInput.value"
+        :selected-video="videoInput.value"
+        @confirm="updateVideoStream"
+      />
+    </modal>
   </VideoLayout>
 </template>
 
 <script>
 import socket from '~/plugins/socket.io.js'
 import VideoLayout from '@/components/commons/ui/VideoLayout'
+import DeviceSettingsModal from '@/components/talents/modals/DeviceSettingsModal'
 import IcLive from '@/assets/svg/live_w_text.svg?inline'
+import IcSettings from '@/assets/svg/settings.svg?inline'
 
 export default {
   name: 'BroadcastChannel',
 
-  components: { VideoLayout, IcLive },
+  components: { VideoLayout, DeviceSettingsModal, IcLive, IcSettings },
 
   async asyncData({ $api, params, error }) {
     try {
@@ -53,23 +77,25 @@ export default {
       cameraStream: null,
       mediaRecorder: null,
       updateCanvasLoop: null,
+      videoInputs: [],
+      audioInputs: [],
+      videoInput: {},
+      audioInput: {},
     }
   },
 
   async mounted() {
     try {
-      this.cameraStream = await navigator.mediaDevices.getUserMedia({
-        audio: true,
-        video: true,
-      })
+      await this.getMediaDevices()
 
       this.video = this.$refs.video
-      this.video.srcObject = this.cameraStream
       this.video.onloadedmetadata = () => {
         this.video.play()
         this.$refs.canvas.width = this.video.videoWidth
         this.$refs.canvas.height = this.video.videoHeight
-        this.updateCanvas()
+        if (!this.updateCanvasLoop) {
+          this.updateCanvas()
+        }
       }
       this.context = this.$refs.canvas.getContext('2d')
 
@@ -78,6 +104,8 @@ export default {
         mimeType: 'video/webm',
         videoBitsPerSecond: 3000000,
       })
+
+      this.$modal.show('device-settings-modal')
       this.mediaRecorder.ondataavailable = async e => {
         socket.emit('stream-video-chunk', { chunk: e.data, stream_name: this.dacast.stream_name })
       }
@@ -97,11 +125,7 @@ export default {
       this.stopStreaming()
     }
 
-    this.cameraStream.getTracks().forEach(track => {
-      if (track.readyState == 'live') {
-        track.stop()
-      }
-    })
+    this.stopCameraStream()
     socket.emit('terminate-ffmpeg-process', this.dacast.stream_name)
 
     this.updateCanvasLoop = null
@@ -128,6 +152,41 @@ export default {
       this.context.drawImage(this.video, 0, 0, this.video.videoWidth, this.video.videoHeight)
 
       this.updateCanvasLoop = requestAnimationFrame(this.updateCanvas)
+    },
+
+    async updateVideoStream({ audio, video }) {
+      this.stopCameraStream()
+      this.audioInput = this.audioInputs.find(a => a.value === audio)
+      this.videoInput = this.videoInputs.find(v => v.value === video)
+      this.cameraStream = await navigator.mediaDevices.getUserMedia({
+        audio: { deviceId: { exact: audio } },
+        video: { deviceId: { exact: video } },
+      })
+      this.video.srcObject = this.cameraStream
+    },
+
+    stopCameraStream() {
+      if (!this.cameraStream) return
+      this.cameraStream.getTracks().forEach(track => {
+        track.stop()
+      })
+    },
+
+    async getMediaDevices() {
+      const devices = await navigator.mediaDevices.enumerateDevices()
+      for (const device of devices) {
+        if (device.kind === 'audioinput') {
+          this.audioInputs.push({
+            value: device.deviceId,
+            label: device.label || `Microphone ${this.audioInputs.length + 1}`,
+          })
+        } else if (device.kind === 'videoinput') {
+          this.videoInputs.push({
+            value: device.deviceId,
+            label: device.label || `Camera ${this.videoInputs.length + 1}`,
+          })
+        }
+      }
     },
   },
 }
