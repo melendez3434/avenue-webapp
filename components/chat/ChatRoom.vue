@@ -5,22 +5,6 @@
       <div
         class=" bg-theavenue-background-extra-light h-20 flex items-center justify-center px-8 py-2"
       >
-        <!-- <div v-if="!$auth.user">
-          <span>Please,</span>
-          <button
-            class="text-avenue-grey uppercase font-bold border-b border-avenue-grey pb-1"
-            @click="
-              $modal.show('user-access-modal', {
-                active: 'login',
-                title: event.talent.name,
-                subtitle: 'Log in or sign up to donate to',
-              })
-            "
-          >
-            log in
-          </button>
-          <span>if you want to join the chat 🤠</span>
-        </div> -->
         <div class="w-full flex rounded-lg bg-avenue-blue-dark items-center">
           <ChatRoomInput
             ref="input"
