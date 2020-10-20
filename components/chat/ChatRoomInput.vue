@@ -5,6 +5,7 @@
     placeholder="write a comment..."
     contenteditable
     @keydown.enter="submit"
+    @click="$emit('click')"
   />
 </template>
 
