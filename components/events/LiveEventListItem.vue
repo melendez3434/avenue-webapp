@@ -55,7 +55,7 @@
   </el-collapse-item>
 </template>
 <script>
-import { format, isWithinInterval } from 'date-fns'
+import spacetime from 'spacetime'
 
 export default {
   name: 'LiveEventListItem',
@@ -68,23 +68,32 @@ export default {
   },
 
   computed: {
+    userTimezone() {
+      return Intl.DateTimeFormat().resolvedOptions().timeZone
+    },
+
+    startTimeZoneDate() {
+      return spacetime(this.event.starts_at, 'UTC').goto(this.userTimezone)
+    },
+
+    endTimeZoneDate() {
+      return spacetime(this.event.ends_at, 'UTC').goto(this.userTimezone)
+    },
+
     dateFormatted() {
-      return format(new Date(this.event.starts_at), 'EEEE, LLLL d / h:mm aa')
+      return this.startTimeZoneDate.format('{day}, {month} {date-pad} / {hour}:{minute-pad} {ampm}')
     },
 
     dateTitle() {
-      return format(new Date(this.event.starts_at), 'MMM dd')
+      return this.startTimeZoneDate.format('{month-short} {day-pad}')
     },
 
     hourTitle() {
-      return format(new Date(this.event.starts_at), 'h:mm aa')
+      return this.startTimeZoneDate.format('{hour}:{minute-pad} {ampm}')
     },
 
     isLive() {
-      return isWithinInterval(new Date(), {
-        start: new Date(this.event.starts_at),
-        end: new Date(this.event.ends_at),
-      })
+      return spacetime().isBetween(this.startTimeZoneDate, this.endTimeZoneDate)
     },
   },
 }
