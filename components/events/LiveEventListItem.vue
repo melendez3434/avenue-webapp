@@ -28,7 +28,9 @@
           />
           <div class="ml-5">
             <p class="font-sans text-xl font-bold leading-6">{{ event.talent.name }}</p>
-            <p class="font-sans text-lg">{{ event.talent.artist_type }}</p>
+            <p class="font-sans text-lg">
+              {{ event.category.name }} / {{ event.talent.artist_type }}
+            </p>
           </div>
         </div>
         <div class="flex items-center mb-2">
