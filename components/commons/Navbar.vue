@@ -10,7 +10,9 @@
       </nuxt-link>
     </div>
     <nav class="ta-hidden lg:flex items-center text-sm">
-      <MainMenu class="space-x-5" />
+      <client-only>
+        <MainMenu class="space-x-5" />
+      </client-only>
     </nav>
     <MobileMenu class="flex lg:ta-hidden w-full justify-end" />
   </div>
