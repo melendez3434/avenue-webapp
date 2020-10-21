@@ -214,8 +214,8 @@ export default {
 
       // If list is empty ask browser for permission and retrieve devices again
       const stream = await navigator.mediaDevices.getUserMedia({
-        audio: !this.videoDevices.length,
-        video: !this.audioDevices.length,
+        audio: !this.audioDevices.length,
+        video: !this.videoDevices.length,
       })
       stream.getTracks().forEach(track => {
         track.stop() // Force stop
