@@ -26,7 +26,7 @@
         :show-zoomer="false"
         :enable-resize="false"
         :boundary="{ width: 270, height: 270 }"
-        :viewport="{ width: 250, height: 250, type }"
+        :viewport="{ width: 250, height: 150, type }"
         @update="updateImage"
       />
     </div>
