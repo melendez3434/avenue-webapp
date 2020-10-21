@@ -26,7 +26,7 @@
         :show-zoomer="false"
         :enable-resize="false"
         :boundary="{ width: 270, height: 270 }"
-        :viewport="{ width: 250, height: 250, type: 'circle' }"
+        :viewport="{ width: 250, height: 250, type }"
         @update="updateImage"
       />
     </div>
@@ -41,6 +41,10 @@ export default {
     cropped: {
       type: String,
       default: '',
+    },
+    type: {
+      type: String,
+      default: 'square',
     },
   },
 

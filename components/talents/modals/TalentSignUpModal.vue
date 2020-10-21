@@ -50,7 +50,12 @@
       <div class="mb-6">
         <p>Photo</p>
         <client-only>
-          <ImageUpload :cropped.sync="form.photo" :class="{ 'opacity-25': busy }" class="w-full" />
+          <ImageUpload
+            :cropped.sync="form.photo"
+            :class="{ 'opacity-25': busy }"
+            class="w-full"
+            type="circle"
+          />
         </client-only>
       </div>
       <div class="mb-6">
