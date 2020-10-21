@@ -146,10 +146,9 @@ export default {
     async createTalent() {
       try {
         this.busy = true
-        const photos = this.uploadPhotos()
-        console.log('photos', photos)
+        const photos = await this.uploadPhotos()
         const social_media_links = this.form.social_media_links.filter(link => !!link.url)
-        const payload = { ...this.form, social_media_links }
+        const payload = { ...this.form, social_media_links, ...photos }
         const { data: talent } = await this.$api.talent.register(payload)
         const { data: url } = await this.$api.talent.stripeAuthorize(talent.id)
         this.busy = false
