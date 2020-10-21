@@ -55,9 +55,12 @@ export default {
   },
 
   data() {
+    const audioSource = this.audioSources[0] || {}
+    const videoSource = this.videoSources[0] || {}
     return {
-      audio: this.selectedAudio || this.audioSources[0].value,
-      video: this.selectedVideo || this.videoSources[0].value,
+      audio: this.selectedAudio || audioSource.value,
+      video: this.selectedVideo || videoSource.value,
+      streamPreview: null,
     }
   },
 
@@ -66,6 +69,12 @@ export default {
       this.$refs.preview.play()
     }
     await this.updatePreview()
+  },
+
+  beforeDestroy() {
+    this.streamPreview.getTracks().forEach(track => {
+      track.stop()
+    })
   },
 
   methods: {
@@ -79,11 +88,11 @@ export default {
     },
 
     async updatePreview() {
-      const stream = await navigator.mediaDevices.getUserMedia({
+      this.streamPreview = await navigator.mediaDevices.getUserMedia({
         audio: { deviceId: { exact: this.audio } },
         video: { deviceId: { exact: this.video } },
       })
-      this.$refs.preview.srcObject = stream
+      this.$refs.preview.srcObject = this.streamPreview
     },
   },
 }
