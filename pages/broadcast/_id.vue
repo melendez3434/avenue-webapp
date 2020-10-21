@@ -25,8 +25,8 @@
       height="auto"
     >
       <DeviceSettingsModal
-        :video-sources="videoInputs"
-        :audio-sources="audioInputs"
+        :video-sources="videoDevices"
+        :audio-sources="audioDevices"
         :selected-audio="audioInput.value"
         :selected-video="videoInput.value"
         @confirm="updateVideoStream"
@@ -77,11 +77,46 @@ export default {
       cameraStream: null,
       mediaRecorder: null,
       updateCanvasLoop: null,
-      videoInputs: [],
-      audioInputs: [],
+      devices: [],
       videoInput: {},
       audioInput: {},
     }
+  },
+
+  computed: {
+    audioDevices() {
+      const devices = []
+      for (const device of this.devices) {
+        if (!device.label) continue
+
+        if (device.kind === 'audioinput') {
+          devices.push({
+            value: device.deviceId,
+            label: device.label,
+          })
+        }
+      }
+      return devices
+    },
+
+    videoDevices() {
+      const devices = []
+      for (const device of this.devices) {
+        if (!device.label) continue
+
+        if (device.kind === 'videoinput') {
+          devices.push({
+            value: device.deviceId,
+            label: device.label,
+          })
+        }
+      }
+      return devices
+    },
+
+    hasDevices() {
+      return !!this.videoDevices.length && !!this.audioDevices.length
+    },
   },
 
   async mounted() {
@@ -105,7 +140,6 @@ export default {
         videoBitsPerSecond: 3000000,
       })
 
-      this.$modal.show('device-settings-modal')
       this.mediaRecorder.ondataavailable = async e => {
         socket.emit('stream-video-chunk', { chunk: e.data, stream_name: this.dacast.stream_name })
       }
@@ -156,8 +190,8 @@ export default {
 
     async updateVideoStream({ audio, video }) {
       this.stopCameraStream()
-      this.audioInput = this.audioInputs.find(a => a.value === audio)
-      this.videoInput = this.videoInputs.find(v => v.value === video)
+      this.audioInput = this.audioDevices.find(a => a.value === audio) || {}
+      this.videoInput = this.videoDevices.find(v => v.value === video) || {}
       this.cameraStream = await navigator.mediaDevices.getUserMedia({
         audio: { deviceId: { exact: audio } },
         video: { deviceId: { exact: video } },
@@ -173,20 +207,27 @@ export default {
     },
 
     async getMediaDevices() {
-      const devices = await navigator.mediaDevices.enumerateDevices()
-      for (const device of devices) {
-        if (device.kind === 'audioinput') {
-          this.audioInputs.push({
-            value: device.deviceId,
-            label: device.label || `Microphone ${this.audioInputs.length + 1}`,
-          })
-        } else if (device.kind === 'videoinput') {
-          this.videoInputs.push({
-            value: device.deviceId,
-            label: device.label || `Camera ${this.videoInputs.length + 1}`,
-          })
-        }
+      this.devices = await navigator.mediaDevices.enumerateDevices()
+      if (this.hasDevices) {
+        return this.$modal.show('device-settings-modal')
       }
+
+      // If list is empty ask browser for permission and retrieve devices again
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: !this.videoDevices.length,
+        video: !this.audioDevices.length,
+      })
+      stream.getTracks().forEach(track => {
+        track.stop() // Force stop
+      })
+
+      this.devices = await navigator.mediaDevices.enumerateDevices()
+      if (this.hasDevices) {
+        return this.$modal.show('device-settings-modal')
+      }
+
+      // At this point the user has denied the access to some device
+      this.error = true
     },
   },
 }
