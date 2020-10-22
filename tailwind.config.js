@@ -73,7 +73,7 @@ module.exports = {
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
     enabled: process.env.NODE_ENV === 'production',
-    whitelistPatterns: [/page-/, /layout-/],
+    whitelistPatterns: [/page-/, /layout-/, /croppie-/, /cr-/],
     content: [
       path.join(__dirname, 'components/**/*.vue'),
       path.join(__dirname, 'layouts/**/*.vue'),
