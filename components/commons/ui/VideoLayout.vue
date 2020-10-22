@@ -82,7 +82,9 @@ export default {
 
   methods: {
     openDonationModal(jar) {
-      if (!this.$auth.loggedIn) return
+      if (!this.$auth.loggedIn) {
+        return this.$modal.show('user-access-modal', { active: 'login' })
+      }
 
       this.$modal.show('streaming-donate-modal', { event: this.event.name, jar })
     },

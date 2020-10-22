@@ -65,25 +65,18 @@ export default {
   },
 
   async mounted() {
-    setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * this.jars.length)
-      const jar = this.jars[randomIndex]
-      if (jar) {
-        this.activeJar = jar.id
-        setTimeout(() => {
-          this.activeJar = null
-        }, 4000)
-      }
-    }, this.maxTimeout)
+    this.initializeDonationsInterval()
 
     this.$echo.channel(`event.${this.event.id}`).listen('TipCreated', ({ chatMessage }) => {
       const jar = this.jars.find(j => j.id === chatMessage.tip_jar_id)
-
       if (!jar) return
 
       this.activeJar = jar.id
       this.$set(jar, 'total_amount', jar.total_amount + chatMessage.amount)
+
       clearInterval(this.interval)
+      this.initializeDonationsInterval()
+
       setTimeout(() => {
         this.activeJar = null
       }, 4000)
@@ -93,6 +86,21 @@ export default {
   beforeDestroy() {
     this.$echo.channel(`event.${this.event}`).stopListening('ChatMessageCreated')
     clearInterval(this.interval)
+  },
+
+  methods: {
+    initializeDonationsInterval() {
+      this.interval = setInterval(() => {
+        const randomIndex = Math.floor(Math.random() * this.jars.length)
+        const jar = this.jars[randomIndex]
+        if (jar) {
+          this.activeJar = jar.id
+          setTimeout(() => {
+            this.activeJar = null
+          }, 4000)
+        }
+      }, this.maxTimeout)
+    },
   },
 }
 </script>
