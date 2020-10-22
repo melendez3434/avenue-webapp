@@ -18,6 +18,7 @@
     "@nuxtjs/axios": "^5.10.3",
     "@nuxtjs/laravel-echo": "^1.1.0",
     "@tailwindcss/ui": "^0.6.2",
+    "croppie": "^2.6.5",
     "element-ui": "^2.13.2",
     "nuxt": "^2.14.3",
     "pusher-js": "^7.0.0",
@@ -25,7 +26,6 @@
     "spacetime": "^6.6.4",
     "v-calendar": "^1.0.8",
     "vue-chat-scroll": "^1.4.0",
-    "vue-croppie": "^2.0.2",
     "vue-infinite-loading": "^2.4.5",
     "vue-js-modal": "^2.0.0-rc.6",
     "vuelidate": "^0.7.5"

@@ -48,7 +48,6 @@ export default {
     '~/plugins/vuelidate',
     '~/plugins/auth-sanctum',
     '~/plugins/chat-scroll.client.js',
-    '~/plugins/vue-croppie.client.js',
     '~/plugins/vcalendar.client.js',
     '~/plugins/infinite-loading.client.js',
     '~/plugins/elementui.js',
