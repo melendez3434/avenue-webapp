@@ -50,9 +50,13 @@
     <div class="w-full flex items-center justify-center mt-8">
       <p class="text-theavenue-off-white text-xxs text-center w-1/2">
         By clicking Sign Up, you are indicating that you have read and acknowledge the
-        <a href="#" class="text-theavenue-white font-medium">Terms and Service</a>
+        <nuxt-link :to="{ name: 'tos' }" class="text-theavenue-white font-medium">
+          Terms and Service
+        </nuxt-link>
         and
-        <a href="#" class="text-theavenue-white font-medium">Privacy Notice</a>
+        <nuxt-link :to="{ name: 'privacy' }" class="text-theavenue-white font-medium">
+          Privacy Notice
+        </nuxt-link>
       </p>
     </div>
 
