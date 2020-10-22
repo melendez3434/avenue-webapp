@@ -48,6 +48,25 @@
       </div>
 
       <div class="mb-6">
+        <p>Photo</p>
+        <client-only>
+          <ImageUpload :cropped.sync="form.photo" :class="{ 'opacity-25': busy }" class="w-full" />
+        </client-only>
+      </div>
+      <div class="mb-6">
+        <p>Cover photo</p>
+        <client-only>
+          <ImageUpload
+            :cropped.sync="form.cover_photo"
+            :class="{ 'opacity-25': busy }"
+            :viewport="{ width: 380, height: 92, type: 'square' }"
+            :result-size="{ width: 1440, height: 350 }"
+            class="w-full"
+          />
+        </client-only>
+      </div>
+
+      <div class="mb-6">
         <R64Checkbox
           :value="form.sign_user_agreement"
           label="Terms and Conditions"
@@ -75,6 +94,7 @@ import { mapState } from 'vuex'
 import { required, url } from 'vuelidate/lib/validators'
 import MultipleInput from '@/components/commons/ui/MultipleInput'
 import IcClose from '@/assets/svg/close_2.svg?inline'
+import ImageUpload from '@/components/commons/ui/ImageUpload'
 
 export default {
   name: 'TalentSignUpModal',
@@ -82,6 +102,7 @@ export default {
   components: {
     MultipleInput,
     IcClose,
+    ImageUpload,
   },
 
   data() {
@@ -93,6 +114,8 @@ export default {
         social_media_links: [{ social_media_slug: 'facebook', url: '' }],
         artist_type: '',
         biography: '',
+        photo: '',
+        cover_photo: '',
         sign_user_agreement: false,
       },
       socialNetworkList: [
@@ -125,8 +148,9 @@ export default {
     async createTalent() {
       try {
         this.busy = true
+        const photos = await this.uploadPhotos()
         const social_media_links = this.form.social_media_links.filter(link => !!link.url)
-        const payload = { ...this.form, social_media_links }
+        const payload = { ...this.form, social_media_links, ...photos }
         const { data: talent } = await this.$api.talent.register(payload)
         const { data: url } = await this.$api.talent.stripeAuthorize(talent.id)
         this.busy = false
@@ -135,6 +159,12 @@ export default {
         this.error = e.response.data.error || e.response.data.message
         this.busy = false
       }
+    },
+
+    async uploadPhotos() {
+      const photo = await this.$api.global.uploadImage(this.form.photo)
+      const cover_photo = await this.$api.global.uploadImage(this.form.cover_photo)
+      return { photo, cover_photo }
     },
   },
 

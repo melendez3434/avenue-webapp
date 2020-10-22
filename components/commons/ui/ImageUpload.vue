@@ -7,10 +7,12 @@
           type="file"
           class="file-upload-field absolute inset-0 z-50 m-0 p-0 block cursor-pointer w-full opacity-0"
           @change="changeImage"
+          @click="e => (e.target.value = null)"
         />
       </div>
 
       <div
+        v-if="cropped"
         class="text-remate-black border-b border-remate-black text-sm pb-1 font-bold cursor-pointer"
         @click="remove"
       >
@@ -19,21 +21,14 @@
     </div>
 
     <div class="my-6">
-      <vue-croppie
-        v-if="cropped"
-        ref="croppieRef"
-        :enable-orientation="true"
-        :show-zoomer="false"
-        :enable-resize="false"
-        :boundary="{ width: 270, height: 270 }"
-        :viewport="{ width: 250, height: 250, type: 'circle' }"
-        @update="updateImage"
-      />
+      <div v-show="cropped" ref="croppie" />
     </div>
   </div>
 </template>
 
 <script>
+import Croppie from 'croppie'
+
 export default {
   name: 'ImageUpload',
 
@@ -42,17 +37,43 @@ export default {
       type: String,
       default: '',
     },
+    viewport: {
+      type: Object,
+      default: () => ({ width: 250, height: 250, type: 'circle' }),
+    },
+    resultSize: {
+      type: [Object, String],
+      default: 'viewport',
+    },
+  },
+
+  data() {
+    return {
+      croppie: null,
+    }
+  },
+
+  computed: {
+    boundary() {
+      return {
+        width: this.viewport.width + 20,
+        height: this.viewport.height + 20,
+      }
+    },
+  },
+
+  beforeDestroy() {
+    this.$refs.croppie.removeEventListener('update', this.updateImage)
+    this.croppie.destroy()
   },
 
   mounted() {
-    if (this.cropped && this.$refs.croppieRef) {
-      this.$refs.croppieRef
-        .bind({
-          url: this.cropped,
-        })
-        .catch(() => {
-          this.$service.error('There is an error loading the image. Please try again')
-        })
+    this.initCroppie()
+
+    if (this.cropped) {
+      this.croppie.bind({
+        url: this.cropped,
+      })
     }
   },
 
@@ -65,7 +86,7 @@ export default {
       reader.onload = async e => {
         await this.$emit('update:cropped', e.target.result)
 
-        this.$refs.croppieRef.bind({
+        this.croppie.bind({
           url: e.target.result,
         })
       }
@@ -74,14 +95,29 @@ export default {
     },
 
     updateImage() {
-      const options = { format: 'jpeg', circle: true }
-      this.$refs.croppieRef.result(options, output => {
+      const options = {
+        format: 'jpeg',
+        size: this.resultSize,
+        circle: this.viewport.type === 'circle',
+      }
+      this.croppie.result(options).then(output => {
         this.$emit('update:cropped', output)
       })
     },
 
+    initCroppie() {
+      this.$refs.croppie.addEventListener('update', this.updateImage)
+      this.croppie = new Croppie(this.$refs.croppie, {
+        enableOrientation: true,
+        showZoomer: false,
+        boundary: this.boundary,
+        viewport: this.viewport,
+      })
+    },
+
     remove() {
-      this.$refs.croppieRef.refresh()
+      this.croppie.destroy()
+      this.initCroppie()
       this.$emit('update:cropped', '')
     },
   },
