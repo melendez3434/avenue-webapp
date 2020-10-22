@@ -66,13 +66,18 @@
         </client-only>
       </div>
 
-      <div class="mb-6">
+      <div class="mb-6 flex">
         <R64Checkbox
           :value="form.sign_user_agreement"
-          label="Terms and Conditions"
+          label=""
+          wrapper-class="mr-3 mt-0.5"
+          label-class="hidden"
           :v="$v.form.sign_user_agreement"
           @change="form.sign_user_agreement = $event"
         />
+        <nuxt-link :to="{ name: 'tos' }" class="mb-1" target="_blank">
+          Terms and Conditions
+        </nuxt-link>
       </div>
 
       <div v-if="error" class="mb-6 text-theavenue-red-neon text-center">{{ error }}</div>
