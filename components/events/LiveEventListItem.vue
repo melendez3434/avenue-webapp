@@ -20,19 +20,12 @@
       <div
         class="container mx-auto flex items-end justify-between h-full text-theavenue-white z-10 mb-12"
       >
-        <div class="ta-hidden md:flex items-center">
-          <img
-            :src="event.talent.photo"
-            :alt="`${event.talent.name} photo`"
-            class="rounded-full w-14 h-14"
-          />
-          <div class="ml-5">
-            <p class="font-sans text-xl font-bold leading-6">{{ event.talent.name }}</p>
-            <p class="font-sans text-lg">
-              {{ event.category.name }} / {{ event.talent.artist_type }}
-            </p>
-          </div>
-        </div>
+        <TalentCard
+          :talent="event.talent"
+          class="ta-hidden md:flex"
+          :category="event.category.name"
+          link
+        />
         <div class="flex items-center mb-0 md:mb-2 mx-auto md:mx-0">
           <div class="font-sans flex flex-col text-right">
             <p class="text-md md:text-lg font-bold leading-6">

@@ -5,48 +5,17 @@
         <slot />
       </div>
       <div class="pb-4 pt-8 bg-theavenue-background-dark px-4 flex justify-between items-center">
-        <ArtistAvatar :artist="artist" size="sm" />
-        <template v-if="event">
-          <div class="flex space-x-4 items-center">
-            <SocialNetworkIcon
-              v-for="socialNetwork in event.social_media_users"
-              :key="socialNetwork.id"
-              :social-network="socialNetwork.social_media_slug"
-              class="w-6 h-6 ta-hidden md:inline-block"
-            />
-            <a
-              v-if="event.talent.website"
-              :href="event.talent.website"
-              class="font-library text-lg hover:text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
-              style="box-shadow: 0px 0px 10px #FFFFFF;"
-              target="_blank"
-            >
-              <IcExternalLink class="w-8 h-8" />
-              website
-            </a>
-            <el-popover v-model="urlCopied" placement="top" trigger="manual">
-              <div>Event url copied to your clipboard!</div>
-              <button
-                slot="reference"
-                v-clipboard="eventUrl"
-                class="font-library text-lg hover:text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
-                style="box-shadow: 0px 0px 10px #FFFFFF;"
-                target="_blank"
-                @success="showPopover"
-              >
-                <IcShare class="w-8 h-8" />
-                share
-              </button>
-            </el-popover>
-            <button
-              class="font-library text-lg hover:text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
-              style="box-shadow: 0px 0px 10px #FFFFFF;"
-              @click="$modal.show('report-modal')"
-            >
-              Report
-            </button>
-          </div>
-        </template>
+        <TalentCard :talent="event.talent" link />
+        <div v-if="event" class="flex">
+          <TalentSocialMedia :talent="event.talent" />
+          <button
+            class="ml-4 font-library text-lg hover:text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
+            style="box-shadow: 0px 0px 10px #FFFFFF;"
+            @click="$modal.show('report-modal')"
+          >
+            Report
+          </button>
+        </div>
       </div>
     </div>
     <div class="col-span-3 flex flex-col">
@@ -72,25 +41,14 @@
 </template>
 
 <script>
-import { clipboard } from 'vue-clipboards'
 import ReportModal from '@/components/talents/modals/ReportModal'
-import ArtistAvatar from '@/components/artists/ArtistAvatar'
-import SocialNetworkIcon from '@/components/commons/ui/SocialNetworkIcon.js'
-import IcExternalLink from '@/assets/svg/external_link.svg?inline'
-import IcShare from '@/assets/svg/anchor_arrow.svg?inline'
 
 export default {
   name: 'VideoLayout',
 
   components: {
     ReportModal,
-    ArtistAvatar,
-    SocialNetworkIcon,
-    IcExternalLink,
-    IcShare,
   },
-
-  directives: { clipboard },
 
   props: {
     event: {
@@ -102,13 +60,6 @@ export default {
       type: Object,
       default: null,
     },
-  },
-
-  data() {
-    return {
-      eventUrl: process.client ? window.location.href : '',
-      urlCopied: false,
-    }
   },
 
   computed: {
@@ -133,14 +84,6 @@ export default {
       }
 
       this.$modal.show('streaming-donate-modal', { event: this.event.name, jar })
-    },
-
-    showPopover() {
-      this.urlCopied = true
-
-      setTimeout(() => {
-        this.urlCopied = false
-      }, 2000)
     },
   },
 }
