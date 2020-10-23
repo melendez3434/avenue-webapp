@@ -20,8 +20,12 @@
       </div>
     </div>
 
-    <div class="my-6">
-      <div v-show="cropped" ref="croppie" />
+    <div v-show="cropped" class="my-6 relative">
+      <div ref="croppie" />
+      <IcRotate
+        class="h-8 w-8 cursor-pointer text-theavenue-white absolute bottom-0 right-2 z-10"
+        @click="croppie.rotate(-90)"
+      />
     </div>
   </div>
 </template>
@@ -29,9 +33,12 @@
 <script>
 import Croppie from 'croppie'
 import 'croppie/croppie.css'
+import IcRotate from '@/assets/svg/rotate.svg?inline'
 
 export default {
   name: 'ImageUpload',
+
+  components: { IcRotate },
 
   props: {
     cropped: {
