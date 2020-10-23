@@ -106,7 +106,7 @@ export default {
 
   data() {
     return {
-      eventUrl: window.location.href,
+      eventUrl: process.client ? window.location.href : '',
       urlCopied: false,
     }
   },

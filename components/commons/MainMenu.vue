@@ -17,7 +17,7 @@
       </el-dropdown>
       <el-dropdown v-if="$auth.loggedIn" trigger="click" placement="top-start">
         <span
-          class="uppercase text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none"
+          class="uppercase text-theavenue-turquoise-neon font-library text-2xl hover:text-light-turquoise mt-1 focus:outline-none"
         >
           {{ $auth.user.name }}
         </span>
@@ -29,7 +29,7 @@
           </el-dropdown-item>
           <el-dropdown-item>
             <button v-if="!$auth.user.talent_id" @click="$modal.show('talent-signup-modal')">
-              Sign up as a Talent
+              Start Streaming
             </button>
           </el-dropdown-item>
           <el-dropdown-item>
@@ -37,7 +37,7 @@
               v-if="$auth.user.talent_id && !$auth.user.has_confirmed_talent"
               @click="completeStripe"
             >
-              Complete Sign up
+              Complete Profile
             </button>
           </el-dropdown-item>
           <el-dropdown-item>
