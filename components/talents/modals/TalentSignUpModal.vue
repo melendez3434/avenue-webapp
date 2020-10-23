@@ -167,8 +167,10 @@ export default {
     },
 
     async uploadPhotos() {
-      const photo = await this.$api.global.uploadImage(this.form.photo)
-      const cover_photo = await this.$api.global.uploadImage(this.form.cover_photo)
+      const photo = this.form.photo ? await this.$api.global.uploadImage(this.form.photo) : null
+      const cover_photo = this.form.cover_photo
+        ? await this.$api.global.uploadImage(this.form.cover_photo)
+        : null
       return { photo, cover_photo }
     },
   },
