@@ -15,11 +15,13 @@
               class="w-6 h-6 ta-hidden md:inline-block"
             />
             <a
-              :href="event.talent.merchandise_url"
+              v-if="event.talent.website"
+              :href="event.talent.website"
               class="font-library text-lg text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
               style="box-shadow: 0px 0px 10px #FFFFFF;"
+              target="_blank"
             >
-              <IcAnchorArrow />
+              <IcExternalLink class="w-8 h-8" />
               website
             </a>
           </div>
@@ -42,7 +44,7 @@
 <script>
 import ArtistAvatar from '@/components/artists/ArtistAvatar'
 import SocialNetworkIcon from '@/components/commons/ui/SocialNetworkIcon.js'
-import IcAnchorArrow from '@/assets/svg/anchor_arrow.svg?inline'
+import IcExternalLink from '@/assets/svg/external_link.svg?inline'
 
 export default {
   name: 'VideoLayout',
@@ -50,7 +52,7 @@ export default {
   components: {
     ArtistAvatar,
     SocialNetworkIcon,
-    IcAnchorArrow,
+    IcExternalLink,
   },
 
   props: {
