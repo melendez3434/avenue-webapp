@@ -20,4 +20,12 @@ export default $axios => ({
   tip(data) {
     return $axios.$post('api/tips/', data)
   },
+
+  report(id, data) {
+    return $axios.$post(`${resource}/${id}/misbehaving-reports`, data)
+  },
+
+  reportReasons() {
+    return $axios.$get('api/misbehaving-reasons')
+  },
 })

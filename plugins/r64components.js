@@ -7,6 +7,9 @@ Vue.use(R64Components, {
     primaryClass: 'bg-theavenue-white text-theavenue-black',
     secondaryClass: 'bg-theavenue-gray text-white',
   },
+  R64Radio: {
+    labelClass: 'ml-2 text-theavenue-white',
+  },
   R64Input: {
     wrapperClass: 'mb-1',
     labelClass: 'block leading-tight text-white',
