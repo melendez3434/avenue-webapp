@@ -17,15 +17,29 @@
             <a
               v-if="event.talent.website"
               :href="event.talent.website"
-              class="font-library text-lg text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
+              class="font-library text-lg hover:text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
               style="box-shadow: 0px 0px 10px #FFFFFF;"
               target="_blank"
             >
               <IcExternalLink class="w-8 h-8" />
               website
             </a>
+            <el-popover v-model="urlCopied" placement="top" trigger="manual">
+              <div>Event url copied to your clipboard!</div>
+              <button
+                slot="reference"
+                v-clipboard="eventUrl"
+                class="font-library text-lg hover:text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
+                style="box-shadow: 0px 0px 10px #FFFFFF;"
+                target="_blank"
+                @success="showPopover"
+              >
+                <IcShare class="w-8 h-8" />
+                share
+              </button>
+            </el-popover>
             <button
-              class="font-library text-lg text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
+              class="font-library text-lg hover:text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
               style="box-shadow: 0px 0px 10px #FFFFFF;"
               @click="$modal.show('report-modal')"
             >
@@ -58,10 +72,12 @@
 </template>
 
 <script>
+import { clipboard } from 'vue-clipboards'
 import ReportModal from '@/components/talents/modals/ReportModal'
 import ArtistAvatar from '@/components/artists/ArtistAvatar'
 import SocialNetworkIcon from '@/components/commons/ui/SocialNetworkIcon.js'
 import IcExternalLink from '@/assets/svg/external_link.svg?inline'
+import IcShare from '@/assets/svg/anchor_arrow.svg?inline'
 
 export default {
   name: 'VideoLayout',
@@ -71,7 +87,10 @@ export default {
     ArtistAvatar,
     SocialNetworkIcon,
     IcExternalLink,
+    IcShare,
   },
+
+  directives: { clipboard },
 
   props: {
     event: {
@@ -83,6 +102,13 @@ export default {
       type: Object,
       default: null,
     },
+  },
+
+  data() {
+    return {
+      eventUrl: window.location.href,
+      urlCopied: false,
+    }
   },
 
   computed: {
@@ -107,6 +133,14 @@ export default {
       }
 
       this.$modal.show('streaming-donate-modal', { event: this.event.name, jar })
+    },
+
+    showPopover() {
+      this.urlCopied = true
+
+      setTimeout(() => {
+        this.urlCopied = false
+      }, 2000)
     },
   },
 }
