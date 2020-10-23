@@ -22,7 +22,7 @@
           {{ $auth.user.name }}
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>
+          <el-dropdown-item v-if="$auth.user && $auth.user.has_confirmed_talent">
             <button class=" text-theavenue-off-white py-1 px-2 uppercase" @click="goToDashboard">
               Dashboard
             </button>
