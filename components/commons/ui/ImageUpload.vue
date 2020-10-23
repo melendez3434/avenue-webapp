@@ -23,7 +23,7 @@
     <div v-show="cropped" class="my-6 relative">
       <div ref="croppie" />
       <IcRotate
-        class="h-8 w-8 cursor-pointer text-theavenue-white absolute bottom-0 right-2 z-10 shadow-2xl"
+        class="h-8 w-8 cursor-pointer text-theavenue-white absolute bottom-0 right-2 z-10"
         @click="croppie.rotate(-90)"
       />
     </div>
