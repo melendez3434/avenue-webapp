@@ -3,7 +3,7 @@
     <client-only>
       <el-dropdown trigger="click" placement="top-start">
         <span
-          class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none"
+          class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
         >
           {{ activeItem }}
         </span>
@@ -17,7 +17,7 @@
       </el-dropdown>
       <el-dropdown v-if="$auth.loggedIn" trigger="click" placement="top-start">
         <span
-          class="uppercase text-theavenue-turquoise-neon font-library text-2xl hover:text-light-turquoise mt-1 focus:outline-none"
+          class="uppercase text-theavenue-turquoise-neon font-library text-2xl hover:text-light-turquoise mt-1 focus:outline-none cursor-pointer"
         >
           {{ $auth.user.name }}
         </span>
