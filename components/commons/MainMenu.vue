@@ -3,7 +3,7 @@
     <client-only>
       <el-dropdown trigger="click" placement="top-start">
         <span
-          class="uppercase text-avenue-white-light font-library text-2xl text-light-white mt-1 focus:outline-none"
+          class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none"
         >
           {{ activeItem }}
         </span>
@@ -17,36 +17,31 @@
       </el-dropdown>
       <el-dropdown v-if="$auth.loggedIn" trigger="click" placement="top-start">
         <span
-          class="uppercase text-theavenue-yellow-neon font-library text-2xl text-light-white mt-1 focus:outline-none"
+          class="uppercase text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none"
         >
           {{ $auth.user.name }}
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item v-if="$auth.user.has_confirmed_talent">
-            <button class=" text-theavenue-off-white py-1 px-2 uppercase" @click="goToDashboard">
+            <button @click="goToDashboard">
               Dashboard
             </button>
           </el-dropdown-item>
           <el-dropdown-item>
-            <button
-              v-if="!$auth.user.talent_id"
-              class=" text-theavenue-off-white py-1 px-2 uppercase"
-              @click="$modal.show('talent-signup-modal')"
-            >
+            <button v-if="!$auth.user.talent_id" @click="$modal.show('talent-signup-modal')">
               Sign up as a Talent
             </button>
           </el-dropdown-item>
           <el-dropdown-item>
             <button
               v-if="$auth.user.talent_id && !$auth.user.has_confirmed_talent"
-              class=" text-theavenue-off-white py-1 px-2 uppercase"
               @click="completeStripe"
             >
               Complete Sign up
             </button>
           </el-dropdown-item>
           <el-dropdown-item>
-            <button class=" text-theavenue-off-white py-1 px-2 uppercase" @click="logout">
+            <button @click="logout">
               Log out
             </button>
           </el-dropdown-item>

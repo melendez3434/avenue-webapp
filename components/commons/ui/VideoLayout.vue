@@ -15,13 +15,22 @@
               class="w-6 h-6 ta-hidden md:inline-block"
             />
             <a
-              :href="event.talent.merchandise_url"
+              v-if="event.talent.website"
+              :href="event.talent.website"
               class="font-library text-lg text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
               style="box-shadow: 0px 0px 10px #FFFFFF;"
+              target="_blank"
             >
-              <IcAnchorArrow />
+              <IcExternalLink class="w-8 h-8" />
               website
             </a>
+            <button
+              class="font-library text-lg text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
+              style="box-shadow: 0px 0px 10px #FFFFFF;"
+              @click="$modal.show('report-modal')"
+            >
+              Report
+            </button>
           </div>
         </template>
       </div>
@@ -36,21 +45,32 @@
         The event isn't live. When its time will appear the tip jars and the jars. Refresh
       </div>
     </div>
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="report-modal"
+      scrollable
+      height="auto"
+    >
+      <ReportModal v-if="!talent" :talent="event.talent" />
+    </modal>
   </div>
 </template>
 
 <script>
+import ReportModal from '@/components/talents/modals/ReportModal'
 import ArtistAvatar from '@/components/artists/ArtistAvatar'
 import SocialNetworkIcon from '@/components/commons/ui/SocialNetworkIcon.js'
-import IcAnchorArrow from '@/assets/svg/anchor_arrow.svg?inline'
+import IcExternalLink from '@/assets/svg/external_link.svg?inline'
 
 export default {
   name: 'VideoLayout',
 
   components: {
+    ReportModal,
     ArtistAvatar,
     SocialNetworkIcon,
-    IcAnchorArrow,
+    IcExternalLink,
   },
 
   props: {
