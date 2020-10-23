@@ -10,6 +10,15 @@
     />
 
     <R64Input
+      v-model="form.email"
+      class="mt-8"
+      label="Email Address"
+      name="email"
+      :v="$v.form.email"
+      error-message="A valid email address is required"
+    />
+
+    <R64Input
       v-model="form.password"
       type="password"
       label="Password"
@@ -33,15 +42,6 @@
       <label class="block leading-tight text-white">Date of birth</label>
       <v-date-picker v-model="form.date_of_birth" color="red" type="date" />
     </div>
-
-    <R64Input
-      v-model="form.email"
-      class="mt-8"
-      label="Email Address"
-      name="email"
-      :v="$v.form.email"
-      error-message="A valid email address is required"
-    />
 
     <p v-if="error" class="bg-avenue-red text-white rounded py-1 px-3 mt-3 text-center">
       {{ error }}
