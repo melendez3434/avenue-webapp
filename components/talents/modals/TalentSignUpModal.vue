@@ -59,8 +59,8 @@
           <ImageUpload
             :cropped.sync="form.cover_photo"
             :class="{ 'opacity-25': busy }"
-            :viewport="{ width: 380, height: 92, type: 'square' }"
-            :result-size="{ width: 1440, height: 350 }"
+            :viewport="{ width: 380, height: 119, type: 'square' }"
+            :result-size="{ width: 1440, height: 450 }"
             class="w-full"
           />
         </client-only>
