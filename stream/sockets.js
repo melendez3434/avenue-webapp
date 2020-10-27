@@ -2,7 +2,6 @@ import http from 'http'
 import socketIO from 'socket.io'
 
 const spawn = require('child_process').spawn
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path
 
 var processes = {}
 
@@ -25,18 +24,66 @@ export default function() {
 
     // Add socket.io events
     io.on('connection', socket => {
-      socket.on('create-ffmpeg-process', function({ auth_stream_url, stream_name }) {
-        const command = `${ffmpegPath} -loglevel error -re -i pipe:0 -c:v libx264 -b:v 1600k -preset ultrafast -b:a 128k -x264opts keyint=50 -g 25 -pix_fmt yuv420p -f flv "${auth_stream_url}"`
-        processes[stream_name] = spawn(command, { shell: true })
-        process.on('uncaughtException', error => {
-          console.error(error)
-        })
+      socket.on('create-ffmpeg-process', function(stream_name) {
+        const endpoint = `${process.env.RTMP_SERVER}/${stream_name}`
+        processes[stream_name] = spawn('ffmpeg', [
+          '-i',
+          '-',
+
+          // video codec config: low latency, adaptive bitrate
+          '-c:v',
+          'libx264',
+          '-preset',
+          'veryfast',
+          '-tune',
+          'zerolatency',
+
+          // audio codec config: sampling frequency (11025, 22050, 44100), bitrate 64 kbits
+          '-c:a',
+          'aac',
+          '-ar',
+          '44100',
+          '-b:a',
+          '64k',
+
+          //force to overwrite
+          '-y',
+
+          // used for audio sync
+          '-use_wallclock_as_timestamps',
+          '1',
+          '-async',
+          '1',
+
+          //'-filter_complex', 'aresample=44100', // resample audio to 44100Hz, needed if input is not 44100
+          //'-strict', 'experimental',
+          '-bufsize',
+          '1000',
+          '-f',
+          'flv',
+
+          endpoint,
+        ])
+        console.warn(`ffmpeg process for ${stream_name} started`)
 
         processes[stream_name].stderr.on('data', error => {
-          console.error(String(error))
-          if (processes[stream_name]) {
-            terminateProcess(stream_name)
+          if (process.env.FFMPEG_DEBUG === 'true') {
+            console.log(error.toString())
           }
+        })
+
+        // Notify client if ffmpeg dies.
+        processes[stream_name].on('close', (code, signal) => {
+          console.warn(`ffmpeg process for ${stream_name} ended`, { code, signal })
+          processes[stream_name] = null
+          socket.emit(`${stream_name}-error`, { code, signal })
+        })
+
+        // Handle STDIN pipe errors by logging to the console.
+        // These errors most commonly occur when FFmpeg closes and there is still
+        // data to write.f If left unhandled, the server will crash.
+        processes[stream_name].stdin.on('error', e => {
+          console.error(e)
         })
       })
 
@@ -52,18 +99,11 @@ export default function() {
         terminateProcess(stream_name)
       })
 
-      socket.on('disconnect', function() {
-        //
-      })
-
       function terminateProcess(processName) {
         const ffmpegProcess = processes[processName]
 
         if (!ffmpegProcess) return
-
         processes[processName].kill('SIGINT')
-        processes[processName] = null
-        socket.emit(`${processName}-error`)
       }
     })
   })

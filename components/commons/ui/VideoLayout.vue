@@ -5,7 +5,7 @@
         <slot />
       </div>
       <div class="pb-4 pt-8 bg-theavenue-background-dark px-4 flex justify-between items-center">
-        <TalentCard :talent="event.talent" link />
+        <TalentCard v-if="event"  :talent="event.talent" link />
         <div v-if="event" class="flex items-center">
           <TalentSocialMedia :talent="event.talent" />
           <el-popover

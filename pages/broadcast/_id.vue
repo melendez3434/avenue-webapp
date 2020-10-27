@@ -56,13 +56,9 @@ export default {
 
       if (events.length) event = events[0]
 
-      if (!talent.dacast) return error('Invalid broadcast settings')
+      if (!talent.stream_key) return error('Invalid broadcast settings')
 
-      const auth_stream_url = `rtmp://${talent.dacast.login}:${
-        talent.dacast.password
-      }@${talent.dacast.stream_url.replace('rtmp://', '')}/${talent.dacast.stream_name}`
-
-      return { event, talent, dacast: { ...talent.dacast, auth_stream_url } }
+      return { event, talent }
     } catch (e) {
       error('Invalid broadcast settings')
     }
@@ -141,10 +137,10 @@ export default {
       })
 
       this.mediaRecorder.ondataavailable = async e => {
-        socket.emit('stream-video-chunk', { chunk: e.data, stream_name: this.dacast.stream_name })
+        socket.emit('stream-video-chunk', { chunk: e.data, stream_name: this.talent.stream_key })
       }
 
-      socket.on(`${this.dacast.stream_name}-error`, () => {
+      socket.on(`${this.talent.stream_key}-error`, () => {
         this.stopStreaming()
       })
     } catch (error) {
@@ -160,7 +156,6 @@ export default {
     }
 
     this.stopCameraStream()
-    socket.emit('terminate-ffmpeg-process', this.dacast.stream_name)
 
     this.updateCanvasLoop = null
     socket.disconnect()
@@ -168,12 +163,13 @@ export default {
 
   methods: {
     startStreaming() {
-      socket.emit('create-ffmpeg-process', this.dacast)
-      this.mediaRecorder.start(2000)
+      socket.emit('create-ffmpeg-process', this.talent.stream_key)
+      this.mediaRecorder.start(1000)
       this.playing = true
     },
 
     stopStreaming() {
+      socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
       this.playing = false
       this.mediaRecorder.stop()
     },
