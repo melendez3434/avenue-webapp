@@ -40,10 +40,10 @@ export default {
     this.videoHeight =
       (this.dimensions.height / this.dimensions.width) * this.$refs.streaming.offsetWidth
 
-    dacast(this.event.talent.embed_code, 'streaming', {
-      width: '100%',
-      height: this.videoHeight,
-    })
+    // dacast(this.event.talent.embed_code, 'streaming', {
+    //   width: '100%',
+    //   height: this.videoHeight,
+    // })
   },
 }
 </script>
