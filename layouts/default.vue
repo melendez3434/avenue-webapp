@@ -29,6 +29,16 @@
     <modal name="streaming-profile-modal" adaptive height="auto" width="350px">
       <StreamingProfileModal />
     </modal>
+
+    <modal
+      name="warning-modal"
+      adaptive
+      height="auto"
+      width="350px"
+      @before-open="beforeOpenWarning"
+    >
+      <WarningModal :text="warningText" />
+    </modal>
   </div>
 </template>
 
@@ -37,6 +47,7 @@ import Navbar from '@/components/commons/Navbar'
 import UserAccessModal from '@/components/users/modals/UserAccessModal'
 import TalentSignUpModal from '@/components/talents/modals/TalentSignUpModal'
 import StreamingProfileModal from '@/components/talents/modals/StreamingProfileModal'
+import WarningModal from '@/components/talents/modals/WarningModal'
 import Footer from '@/components/commons/Footer'
 
 export default {
@@ -47,6 +58,7 @@ export default {
     UserAccessModal,
     TalentSignUpModal,
     StreamingProfileModal,
+    WarningModal,
     Footer,
   },
 
@@ -57,6 +69,8 @@ export default {
         title: 'Welcome to The Avenue',
         subtitle: '',
       },
+
+      warningText: '',
     }
   },
 
@@ -65,6 +79,11 @@ export default {
       const params = data.params || {}
       const active = params.active || 'login'
       this.modal.active = active
+    },
+
+    beforeOpenWarning(data) {
+      const params = data.params || {}
+      this.warningText = params.text
     },
   },
 }
