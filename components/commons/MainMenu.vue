@@ -1,12 +1,21 @@
 <template>
   <div>
     <client-only>
+      <nuxt-link
+        :to="{ name: 'about-us' }"
+        class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+      >
+        About us
+      </nuxt-link>
       <el-dropdown trigger="click" placement="top-start">
-        <span
-          class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-        >
-          {{ activeItem }}
-        </span>
+        <div class="flex items-center">
+          <span
+            class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+          >
+            {{ activeItem }}
+          </span>
+          <IcArrowDown class="w-10 h-10" />
+        </div>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item v-for="category in categoriesFormatted" :key="category.name">
             <nuxt-link :to="{ name: 'index', query: { category: category.id } }">
@@ -69,9 +78,14 @@
 
 <script>
 import { mapState } from 'vuex'
+import IcArrowDown from '@/assets/svg/arrow_down.svg?inline'
 
 export default {
   name: 'MainMenu',
+
+  components: {
+    IcArrowDown,
+  },
 
   data() {
     return {
