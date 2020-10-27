@@ -66,6 +66,10 @@ export default function() {
         ])
         console.warn(`ffmpeg process for ${stream_name} started`)
 
+        process.on('uncaughtException', error => {
+          console.error(error)
+        })
+
         processes[stream_name].stderr.on('data', error => {
           if (process.env.FFMPEG_DEBUG === 'true') {
             console.log(error.toString())
