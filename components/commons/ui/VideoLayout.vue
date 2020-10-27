@@ -5,16 +5,25 @@
         <slot />
       </div>
       <div class="pb-4 pt-8 bg-theavenue-background-dark px-4 flex justify-between items-center">
-        <TalentCard v-if="event" :talent="event.talent" link />
-        <div v-if="event" class="flex">
+        <TalentCard v-if="event"  :talent="event.talent" link />
+        <div v-if="event" class="flex items-center">
           <TalentSocialMedia :talent="event.talent" />
-          <button
-            class="ml-4 font-library text-lg hover:text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
-            style="box-shadow: 0px 0px 10px #FFFFFF;"
-            @click="$modal.show('report-modal')"
+          <el-popover
+            v-model="popover"
+            placement="top-end"
+            trigger="click"
+            width="200"
+            popper-class="bg-theavenue-gray"
+            @show="popover = true"
+            @hide="popover = false"
           >
-            Report
-          </button>
+            <button class="bg-theavenue-gray text-theavenue-white" @click="reportStreamer">
+              Report {{ event.talent.name }}
+            </button>
+            <button slot="reference" class="ml-5 mt-2">
+              <IcThreeDots class="w-8 h-8" />
+            </button>
+          </el-popover>
         </div>
       </div>
     </div>
@@ -42,12 +51,14 @@
 
 <script>
 import ReportModal from '@/components/talents/modals/ReportModal'
+import IcThreeDots from '@/assets/svg/three_dots.svg?inline'
 
 export default {
   name: 'VideoLayout',
 
   components: {
     ReportModal,
+    IcThreeDots,
   },
 
   props: {
@@ -60,6 +71,12 @@ export default {
       type: Object,
       default: null,
     },
+  },
+
+  data() {
+    return {
+      popover: false,
+    }
   },
 
   computed: {
@@ -85,6 +102,24 @@ export default {
 
       this.$modal.show('streaming-donate-modal', { event: this.event.name, jar })
     },
+
+    reportStreamer() {
+      this.popover = false
+      if (!this.$auth.loggedIn) {
+        return this.$modal.show('user-access-modal', {
+          active: 'login',
+          title: this.event.talent.name,
+          subtitle: 'Log in or sign up to report',
+        })
+      }
+      this.$modal.show('report-modal')
+    },
   },
 }
 </script>
+<style>
+.el-popper.el-popover.bg-theavenue-gray {
+  @apply bg-theavenue-gray;
+  @apply border-none;
+}
+</style>
