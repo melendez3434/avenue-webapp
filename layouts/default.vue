@@ -3,6 +3,8 @@
     <Navbar />
     <nuxt />
 
+    <Footer />
+
     <modal
       width="100%"
       classes="max-w-md inset-x-0 m-auto"
@@ -35,6 +37,7 @@ import Navbar from '@/components/commons/Navbar'
 import UserAccessModal from '@/components/users/modals/UserAccessModal'
 import TalentSignUpModal from '@/components/talents/modals/TalentSignUpModal'
 import StreamingProfileModal from '@/components/talents/modals/StreamingProfileModal'
+import Footer from '@/components/commons/Footer'
 
 export default {
   name: 'DefaultLayout',
@@ -44,6 +47,7 @@ export default {
     UserAccessModal,
     TalentSignUpModal,
     StreamingProfileModal,
+    Footer,
   },
 
   data() {

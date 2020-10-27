@@ -2,6 +2,7 @@
   <div class="min-h-screen bg-avenue-black text-white w-full">
     <Navbar />
     <nuxt />
+    <Footer />
     <modal name="user-access-modal" adaptive height="auto" @before-open="beforeOpenUserAccess">
       <UserAccessModal
         :active-tab="modals.userAccess.active"
@@ -37,6 +38,7 @@ import UserAccessModal from '@/components/users/modals/UserAccessModal'
 import TalentSignUpModal from '@/components/talents/modals/TalentSignUpModal'
 import StreamingProfileModal from '@/components/talents/modals/StreamingProfileModal'
 import StreamingDonateModal from '@/components/talents/modals/StreamingDonateModal'
+import Footer from '@/components/commons/Footer'
 
 export default {
   name: 'EventDetail',
@@ -47,6 +49,7 @@ export default {
     TalentSignUpModal,
     StreamingProfileModal,
     StreamingDonateModal,
+    Footer,
   },
 
   data() {

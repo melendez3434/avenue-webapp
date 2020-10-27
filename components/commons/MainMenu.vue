@@ -1,12 +1,6 @@
 <template>
   <div>
     <client-only>
-      <nuxt-link
-        :to="{ name: 'about-us' }"
-        class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-      >
-        About us
-      </nuxt-link>
       <el-dropdown trigger="click" placement="top-start">
         <div class="flex items-center">
           <span
