@@ -134,6 +134,10 @@ export default {
       this.mediaStream = this.$refs.canvas.captureStream(30)
 
       socket.on(`${this.talent.stream_key}-error`, () => {
+        if (!this.playing) return
+        this.$modal.show('warning-modal', {
+          text: 'Streaming server has stopped. Please try again.',
+        })
         this.stopStreaming()
       })
     } catch (error) {
