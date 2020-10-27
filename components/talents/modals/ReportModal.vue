@@ -4,7 +4,8 @@
       <IcClose class="cursor-pointer" @click="close" />
     </div>
     <div class="px-6 pb-5 pt-10 bg-theavenue-background">
-      <p class="text-2xl leading-tight font-medium">Report Video</p>
+      <p class="text-sm leading-5">Report</p>
+      <p class="text-2xl leading-tight font-medium">{{ talent.name }}</p>
     </div>
     <form class="mt-3 px-6 pb-10 pt-5" @submit.prevent="report">
       <div v-for="reason in reasons" :key="reason.value" class="mb-6">
@@ -17,7 +18,11 @@
         />
       </div>
       <div class="mb-6">
-        <R64Input v-model="form.message" full label="Reason" />
+        <R64Textarea
+          v-model="form.message"
+          full
+          label="Can you describe or provide more detail about this issue?"
+        />
       </div>
 
       <R64Button
