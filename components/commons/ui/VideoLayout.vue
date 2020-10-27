@@ -105,6 +105,13 @@ export default {
 
     reportStreamer() {
       this.popover = false
+      if (!this.$auth.loggedIn) {
+        return this.$modal.show('user-access-modal', {
+          active: 'login',
+          title: this.event.talent.name,
+          subtitle: 'Log in or sign up to report',
+        })
+      }
       this.$modal.show('report-modal')
     },
   },
