@@ -71,6 +71,7 @@ export default {
       video: null,
       context: null,
       cameraStream: null,
+      mediaStream: null,
       mediaRecorder: null,
       updateCanvasLoop: null,
       devices: [],
@@ -122,23 +123,15 @@ export default {
       this.video = this.$refs.video
       this.video.onloadedmetadata = () => {
         this.video.play()
-        this.$refs.canvas.width = this.video.videoWidth
-        this.$refs.canvas.height = this.video.videoHeight
+        this.$refs.canvas.width = this.video.clientWidth
+        this.$refs.canvas.height = this.video.clientHeight
         if (!this.updateCanvasLoop) {
           this.updateCanvas()
         }
       }
       this.context = this.$refs.canvas.getContext('2d')
 
-      const mediaStream = this.$refs.canvas.captureStream(30)
-      this.mediaRecorder = new MediaRecorder(mediaStream, {
-        mimeType: 'video/webm',
-        videoBitsPerSecond: 3000000,
-      })
-
-      this.mediaRecorder.ondataavailable = async e => {
-        socket.emit('stream-video-chunk', { chunk: e.data, stream_name: this.talent.stream_key })
-      }
+      this.mediaStream = this.$refs.canvas.captureStream(30)
 
       socket.on(`${this.talent.stream_key}-error`, () => {
         this.stopStreaming()
@@ -179,7 +172,7 @@ export default {
         return
       }
 
-      this.context.drawImage(this.video, 0, 0, this.video.videoWidth, this.video.videoHeight)
+      this.context.drawImage(this.video, 0, 0, this.video.clientWidth, this.video.clientHeight)
 
       this.updateCanvasLoop = requestAnimationFrame(this.updateCanvas)
     },
@@ -192,6 +185,29 @@ export default {
         audio: { deviceId: { exact: audio } },
         video: { deviceId: { exact: video } },
       })
+
+      const audioStream = new MediaStream()
+      const audioTracks = this.cameraStream.getAudioTracks()
+      audioTracks.forEach(function(track) {
+        audioStream.addTrack(track)
+      })
+
+      const outputStream = new MediaStream()
+      ;[audioStream, this.mediaStream].forEach(function(s) {
+        s.getTracks().forEach(function(t) {
+          outputStream.addTrack(t)
+        })
+      })
+
+      this.mediaRecorder = new MediaRecorder(outputStream, {
+        mimeType: 'video/webm',
+        videoBitsPerSecond: 3000000,
+      })
+
+      this.mediaRecorder.ondataavailable = async e => {
+        socket.emit('stream-video-chunk', { chunk: e.data, stream_name: this.talent.stream_key })
+      }
+
       this.video.srcObject = this.cameraStream
     },
 
