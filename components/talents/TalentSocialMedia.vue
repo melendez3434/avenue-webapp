@@ -13,7 +13,7 @@
       style="box-shadow: 0px 0px 10px #FFFFFF;"
       target="_blank"
     >
-      <IcExternalLink class="w-8 h-8" />
+      <IcExternalLink class="w-6 h-6" />
       website
     </a>
     <el-popover v-model="urlCopied" placement="top" trigger="manual">
@@ -26,7 +26,7 @@
         target="_blank"
         @success="showPopover"
       >
-        <IcShare class="w-8 h-8" />
+        <IcShare class="w-6 h-6" />
         share
       </button>
     </el-popover>
