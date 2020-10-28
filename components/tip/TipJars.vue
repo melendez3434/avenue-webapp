@@ -2,46 +2,29 @@
   <div class="bg-avenue-blue-light border-b-2 border-theavenue-background-extra-light">
     <div class="font-sans font-bold text-2xl text-center pt-4">Tip Jars</div>
     <div class="p-5 md:p-8 flex space-x-4">
-      <div
-        v-for="(jar, index) in jars"
+      <Jar
+        v-for="jar in jars"
         :id="jar.id"
         :key="jar.id"
-        class="w-1/2 p-4 bg-theavenue-background-extra-light flex md:flex-col items-center justify-center rounded-lg cursor-pointer"
-        @click="$emit('click:jar', jar.id)"
-      >
-        <IcTipjarA
-          v-if="index === 0"
-          class="w-16 md:w-32"
-          :class="{ 'shake-chunk shake-constant': activeJar === jar.id }"
-        />
-        <IcTipjarB
-          v-else
-          class="w-16 md:w-32"
-          :class="{ 'shake-chunk shake-constant': activeJar === jar.id }"
-        />
-        <div class="flex flex-col items-center px-3 md:px-0">
-          <div
-            v-if="event.show_jar_totals"
-            class="uppercase text-theavenue-green-neon font-library text-lg md:text-2xl my-3"
-          >
-            $ {{ jar.total_amount.toFixed(2) }}
-          </div>
-          <div>{{ jar.name }}</div>
-        </div>
-      </div>
+        :jar="jar"
+        :active-jar="activeJar"
+        :jar-with-more-tips="jarWithMoreTips"
+        :jars-total="jarsTotal"
+        :show-totals="event.show_jar_totals"
+        @click="$emit('click:jar', $event)"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import IcTipjarA from '@/assets/svg/tipjar_0.svg?inline'
-import IcTipjarB from '@/assets/svg/tipjar_1.svg?inline'
+import Jar from '@/components/tip/Jar'
 import '@/assets/css/shake.css'
 
 export default {
   name: 'TipJars',
 
-  components: { IcTipjarA, IcTipjarB },
+  components: { Jar },
 
   props: {
     event: {
@@ -62,6 +45,25 @@ export default {
       interval: null,
       maxTimeout: 5 * 60 * 1000,
     }
+  },
+
+  computed: {
+    jarsTotal() {
+      return this.jars.reduce((total, jar) => jar.total_amount + total, 0)
+    },
+
+    jarWithMoreTips() {
+      const jarsAmount = this.jars.map(j => j.total_amount)
+      const allJarsAreEqual = jarsAmount.every(j => j === jarsAmount[0])
+
+      if (allJarsAreEqual) {
+        return 0
+      }
+
+      const jars = [...this.jars]
+      const ordered = jars.sort((a, b) => b.total_amount - a.total_amount)
+      return ordered[0].id
+    },
   },
 
   async mounted() {
