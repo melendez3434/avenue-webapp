@@ -2,7 +2,9 @@
   <VideoLayout :event="event" :talent="talent">
     <div slot="streaming" class=" bg-avenue-black p-8">
       <R64Button v-if="playing" full secondary @click="stopStreaming">Stop Stream</R64Button>
-      <R64Button v-else full @click="startStreaming">Start Stream</R64Button>
+      <R64Button v-else full @click="startStreaming">
+        Tip jars and chat will we activated automatically at the event start
+      </R64Button>
     </div>
     <div class="h-full relative bg-theavenue-black">
       <div v-if="error">There was an error loading the media devices</div>
