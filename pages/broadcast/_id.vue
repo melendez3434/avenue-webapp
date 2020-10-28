@@ -47,8 +47,6 @@ export default {
 
   components: { VideoLayout, DeviceSettingsModal, IcLive, IcSettings },
 
-  auth: false,
-
   async asyncData({ $api, params, error }) {
     try {
       const { data: talent } = await $api.talent.get(params.id)
