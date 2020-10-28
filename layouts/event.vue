@@ -2,7 +2,6 @@
   <div class="min-h-screen bg-avenue-black text-white w-full">
     <Navbar />
     <nuxt />
-    <Footer />
     <modal name="user-access-modal" adaptive height="auto" @before-open="beforeOpenUserAccess">
       <UserAccessModal
         :active-tab="modals.userAccess.active"
