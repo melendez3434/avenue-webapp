@@ -1,6 +1,11 @@
 <template>
   <VideoLayout :event="event">
-    <div id="streaming" ref="streaming" class="relative bg-theavenue-black h-full w-full" />
+    <video
+      id="streaming"
+      ref="streaming"
+      controls
+      class="relative bg-theavenue-black h-full w-full outline-none"
+    />
   </VideoLayout>
 </template>
 <script>
@@ -37,13 +42,16 @@ export default {
   },
 
   mounted() {
-    this.videoHeight =
-      (this.dimensions.height / this.dimensions.width) * this.$refs.streaming.offsetWidth
+    const url = `https://stream.mux.com/${this.event.playback_id}.m3u8`
+    const video = this.$refs.streaming
 
-    dacast(this.event.talent.embed_code, 'streaming', {
-      width: '100%',
-      height: this.videoHeight,
-    })
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = url
+    } else if (Hls.isSupported()) {
+      const hls = new Hls()
+      hls.loadSource(url)
+      hls.attachMedia(video)
+    }
   },
 }
 </script>
