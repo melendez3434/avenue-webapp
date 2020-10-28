@@ -24,7 +24,7 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [
-      { src: 'https://player.dacast.com/js/player.js' },
+      { src: 'https://cdn.jsdelivr.net/npm/hls.js@latest' },
       { src: 'https://js.stripe.com/v3/' },
     ],
   },
