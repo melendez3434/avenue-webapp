@@ -1,10 +1,11 @@
 <template>
-  <div class="flex justify-center">
-    <transition name="component-fade" mode="in-out">
-      <Lights1 v-if="currentLight === 1" class="h-full w-full" />
-      <Lights2 v-if="currentLight === 2" class="h-full w-full" />
-      <Lights3 v-if="currentLight === 3" class="h-full w-full" />
-      <Lights4 v-if="currentLight === 4" class="h-full w-full" />
+  <div class="flex justify-center relative w-full h-20 md:h-40 lg:h-64">
+    <transition name="page" mode="in-out">
+      <component
+        :is="lightComponent"
+        :key="lightComponent"
+        class="absolute left-0 top-0 h-full w-full"
+      />
     </transition>
   </div>
 </template>
@@ -25,11 +26,17 @@ export default {
 
   data() {
     return {
-      currentLight: 0,
+      currentLight: 1,
       currentLoop: 0,
       loops: 1,
       lastLight: 3,
     }
+  },
+
+  computed: {
+    lightComponent() {
+      return `Lights${this.currentLight}`
+    },
   },
 
   mounted() {
@@ -38,7 +45,7 @@ export default {
 
   methods: {
     startRotation() {
-      this.timer = setInterval(this.nextLight, 1000)
+      this.timer = setInterval(this.nextLight, 500)
     },
 
     stopRotation() {
@@ -60,14 +67,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.component-fade-enter-active,
-.component-fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-.component-fade-enter,
-.component-fade-leave-to {
-  opacity: 0;
-}
-</style>
