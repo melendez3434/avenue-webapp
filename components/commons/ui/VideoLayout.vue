@@ -33,9 +33,10 @@
         <TipJars class="md:h-96" :event="event" @click:jar="openDonationModal" />
         <ChatRoom class="flex-1" :event="event" :style="chatStyle" @click:jar="openDonationModal" />
       </template>
-      <div v-else class="p-4 text-center">
-        The event isn't live. When its time will appear the tip jars and the jars. Refresh
-      </div>
+      <template v-else>
+        <TipJarsPlaceholder class="md:h-96" />
+        <ChatRoomPlaceholder class="flex-1" />
+      </template>
     </div>
     <modal
       width="100%"
