@@ -3,7 +3,7 @@
     <div slot="streaming" class=" bg-avenue-black p-8">
       <R64Button v-if="playing" full secondary @click="stopStreaming">Stop Stream</R64Button>
       <R64Button v-else full @click="startStreaming">
-        Tip jars and chat will we activated automatically at the event start
+        Start Stream
       </R64Button>
     </div>
     <div class="h-full relative bg-theavenue-black">
