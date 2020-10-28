@@ -21,12 +21,11 @@
         />
         <div class="flex flex-col items-center px-3 md:px-0">
           <div
-            v-if="event.show_jar_totals"
-            class="uppercase text-theavenue-green-neon font-library text-lg md:text-2xl my-3"
+            v-if="event.show_jar_totals === false"
+            class="uppercase text-theavenue-green-neon font-library text-lg md:text-3xl my-3"
           >
-            $ {{ jar.total_amount.toFixed(2) }}
+            {{ (jar.total_amount / jarsTotal) * 100 || 0 }}%
           </div>
-          <div>{{ jar.name }}</div>
         </div>
       </div>
     </div>
@@ -62,6 +61,12 @@ export default {
       interval: null,
       maxTimeout: 5 * 60 * 1000,
     }
+  },
+
+  computed: {
+    jarsTotal() {
+      return this.jars.reduce((total, jar) => jar.total_amount + total, 0)
+    },
   },
 
   async mounted() {
