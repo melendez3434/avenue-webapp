@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="bg-avenue-blue-light rounded-lg inline-block px-4 py-2 md:px-4 md:py-4 mt-1 md:mt-4">
+    <div
+      class="bg-theavenue-background-extra-light rounded-lg inline-block px-4 py-2 md:px-6 md:py-4 mt-1 md:mt-4"
+    >
       <div>
         <span class="font-bold">{{ message.user.name }}</span>
         <span v-if="isTip" class="text-sm text-avenue-grey">donated</span>
