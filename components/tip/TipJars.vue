@@ -3,18 +3,18 @@
     <div class="font-sans font-bold text-2xl text-center pt-4">Tip Jars</div>
     <div class="p-5 md:p-8 flex space-x-4">
       <div
-        v-for="(jar, index) in jars"
+        v-for="jar in jars"
         :id="jar.id"
         :key="jar.id"
         class="w-1/2 p-4 bg-theavenue-background-extra-light flex md:flex-col items-center justify-center rounded-lg cursor-pointer"
         @click="$emit('click:jar', jar.id)"
       >
-        <IcTipjarA
-          v-if="index === 0"
+        <IcTipjarB
+          v-if="jarWithMoreTips === jar.id"
           class="w-16 md:w-32"
           :class="{ 'shake-chunk shake-constant': activeJar === jar.id }"
         />
-        <IcTipjarB
+        <IcTipjarA
           v-else
           class="w-16 md:w-32"
           :class="{ 'shake-chunk shake-constant': activeJar === jar.id }"
@@ -66,6 +66,19 @@ export default {
   computed: {
     jarsTotal() {
       return this.jars.reduce((total, jar) => jar.total_amount + total, 0)
+    },
+
+    jarWithMoreTips() {
+      const jarsAmount = this.jars.map(j => j.total_amount)
+      const allJarsAreEqual = jarsAmount.every(j => j === jarsAmount[0])
+
+      if (allJarsAreEqual) {
+        return true
+      }
+
+      const jars = [...this.jars]
+      const ordered = jars.sort((a, b) => b.total_amount - a.total_amount)
+      return ordered[0].id
     },
   },
 
