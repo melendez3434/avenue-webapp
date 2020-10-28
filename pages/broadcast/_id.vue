@@ -162,6 +162,8 @@ export default {
 
     this.updateCanvasLoop = null
     socket.disconnect()
+
+    this.$echo.channel(`event.${this.talent.id}`).stopListening('TalentIsLiveNow')
   },
 
   methods: {
