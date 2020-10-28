@@ -119,6 +119,11 @@ export default {
     isCustomAmountSet() {
       return this.customAmount.length
     },
+
+    donationFormatted() {
+      const amountCleaned = this.donation.amount.replace(',', '')
+      return amountCleaned * 100
+    },
   },
 
   async created() {
@@ -146,9 +151,7 @@ export default {
           await this.$api.global.updateStripe(data.token.id)
         }
 
-        await this.$api.talent.tip({ tip_jar_id: this.jar, amount: this.donation.amount })
-
-        // Update tip jar
+        await this.$api.talent.tip({ tip_jar_id: this.jar, amount: this.donationFormatted })
 
         this.busy = false
         this.$modal.hide('streaming-donate-modal')
