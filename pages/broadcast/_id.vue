@@ -142,6 +142,10 @@ export default {
         })
         this.stopStreaming()
       })
+
+      this.$echo.channel(`event.${this.talent.id}`).listen('TalentIsLiveNow', ({ event }) => {
+        this.event = event
+      })
     } catch (error) {
       this.error = true
     }
