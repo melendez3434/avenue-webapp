@@ -21,7 +21,8 @@ export default {
         user: {
           name: '',
         },
-        message: 'Your event is not yet live. Click “Start Stream” to begin!',
+        message:
+          'Your event is not live yet. Tip jars and chat will be activated automatically at the event start time',
       },
     }
   },
