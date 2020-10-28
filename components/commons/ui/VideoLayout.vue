@@ -1,11 +1,11 @@
 <template>
-  <div class="w-full grid grid-cols-1 md:grid-cols-9 pl-4 bg-theavenue-background-extra-light ">
+  <div class="w-full grid grid-cols-1 md:grid-cols-9 md:pl-4 bg-theavenue-background-extra-light ">
     <div class="col-span-6 flex flex-col justify-between">
       <div :style="videoStyle">
         <slot />
       </div>
       <div class="pb-4 pt-8 bg-theavenue-background-dark px-4 flex justify-between items-center">
-        <TalentCard v-if="event"  :talent="event.talent" link />
+        <TalentCard v-if="event" :talent="event.talent" link class="hidden md:flex" />
         <div v-if="event" class="flex items-center">
           <TalentSocialMedia :talent="event.talent" />
           <el-popover
