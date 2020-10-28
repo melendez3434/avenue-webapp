@@ -2,45 +2,29 @@
   <div class="bg-avenue-blue-light border-b-2 border-theavenue-background-extra-light">
     <div class="font-sans font-bold text-2xl text-center pt-4">Tip Jars</div>
     <div class="p-5 md:p-8 flex space-x-4">
-      <div
+      <Jar
         v-for="jar in jars"
         :id="jar.id"
         :key="jar.id"
-        class="w-1/2 p-4 bg-theavenue-background-extra-light flex md:flex-col items-center justify-center rounded-lg cursor-pointer"
-        @click="$emit('click:jar', jar.id)"
-      >
-        <IcTipjarB
-          v-if="jarWithMoreTips === jar.id"
-          class="w-16 md:w-32"
-          :class="{ 'shake-chunk shake-constant': activeJar === jar.id }"
-        />
-        <IcTipjarA
-          v-else
-          class="w-16 md:w-32"
-          :class="{ 'shake-chunk shake-constant': activeJar === jar.id }"
-        />
-        <div class="flex flex-col items-center px-3 md:px-0">
-          <div
-            v-if="event.show_jar_totals === false"
-            class="uppercase text-theavenue-green-neon font-library text-lg md:text-3xl my-3"
-          >
-            {{ (jar.total_amount / jarsTotal) * 100 || 0 }}%
-          </div>
-        </div>
-      </div>
+        :jar="jar"
+        :active-jar="activeJar"
+        :jar-with-more-tips="jarWithMoreTips"
+        :jars-total="jarsTotal"
+        :show-totals="event.show_jar_totals"
+        @click="$emit('click:jar', $event)"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import IcTipjarA from '@/assets/svg/tipjar_0.svg?inline'
-import IcTipjarB from '@/assets/svg/tipjar_1.svg?inline'
+import Jar from '@/components/tip/Jar'
 import '@/assets/css/shake.css'
 
 export default {
   name: 'TipJars',
 
-  components: { IcTipjarA, IcTipjarB },
+  components: { Jar },
 
   props: {
     event: {
@@ -73,7 +57,7 @@ export default {
       const allJarsAreEqual = jarsAmount.every(j => j === jarsAmount[0])
 
       if (allJarsAreEqual) {
-        return true
+        return 0
       }
 
       const jars = [...this.jars]
