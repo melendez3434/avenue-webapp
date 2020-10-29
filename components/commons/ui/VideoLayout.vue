@@ -2,7 +2,7 @@
   <div class="w-full grid grid-cols-1 md:grid-cols-9 md:pl-4 bg-theavenue-background-extra-light ">
     <div class="col-span-6 flex flex-col justify-between">
       <div :style="videoStyle">
-        <slot v-if="['idle', 'disconnected'].includes(streaming.status)" name="placeholder" />
+        <slot v-if="inactiveStreaming" name="placeholder" />
         <slot v-else />
       </div>
       <div class="pb-4 pt-8 bg-theavenue-background-dark px-4 flex justify-between items-center">
@@ -97,6 +97,20 @@ export default {
     artist() {
       return this.talent || this.event.talent
     },
+
+    inactiveStreaming() {
+      return ['idle', 'disconnected'].includes(this.streaming.status)
+    },
+  },
+
+  mounted() {
+    this.listenMuxEvents()
+  },
+
+  beforeDestroy() {
+    this.$echo.channel(`mux.${this.event.id}`).stopListening('active')
+    this.$echo.channel(`mux.${this.event.id}`).stopListening('idle')
+    this.$echo.channel(`mux.${this.event.id}`).stopListening('disconnected')
   },
 
   methods: {
@@ -118,6 +132,20 @@ export default {
         })
       }
       this.$modal.show('report-modal')
+    },
+
+    listenMuxEvents() {
+      this.$echo
+        .channel(`mux.${this.event.id}`)
+        .listen('active', ({ status }) => {
+          this.streaming.status = status
+        })
+        .listen('idle', ({ status }) => {
+          this.streaming.status = status
+        })
+        .listen('disconnected', ({ status }) => {
+          this.streaming.status = status
+        })
     },
   },
 }
