@@ -108,9 +108,11 @@ export default {
   },
 
   beforeDestroy() {
-    this.$echo.channel(`mux.${this.event.id}`).stopListening('active')
-    this.$echo.channel(`mux.${this.event.id}`).stopListening('idle')
-    this.$echo.channel(`mux.${this.event.id}`).stopListening('disconnected')
+    this.$echo
+      .channel(`live.${this.event.id}`)
+      .stopListening('StreamingIsLive')
+      .stopListening('StreamingIsIdle')
+      .stopListening('StreamingIsDisconnected')
   },
 
   methods: {
@@ -136,14 +138,14 @@ export default {
 
     listenMuxEvents() {
       this.$echo
-        .channel(`mux.${this.event.id}`)
-        .listen('active', ({ status }) => {
+        .channel(`live.${this.event.id}`)
+        .listen('StreamingIsLive', ({ status }) => {
           this.streaming.status = status
         })
-        .listen('idle', ({ status }) => {
+        .listen('StreamingIsIdle', ({ status }) => {
           this.streaming.status = status
         })
-        .listen('disconnected', ({ status }) => {
+        .listen('StreamingIsDisconnected', ({ status }) => {
           this.streaming.status = status
         })
     },
