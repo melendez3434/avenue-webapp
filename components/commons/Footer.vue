@@ -1,6 +1,8 @@
 <template>
   <div class="w-full bg-theavenue-background py-6">
-    <footer class="container mx-auto flex justify-around md:justify-end md:space-x-8">
+    <footer
+      class="container mx-auto flex justify-around md:justify-end md:space-x-8 text-xs md:text-base"
+    >
       <nuxt-link
         :to="{ name: 'about-us' }"
         class="text-center uppercase text-avenue-white-light font-library hover:text-light-white mt-1 focus:outline-none cursor-pointer"

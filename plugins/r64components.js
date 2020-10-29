@@ -37,5 +37,7 @@ Vue.use(R64Components, {
   },
   R64Checkbox: {
     labelClass: 'ml-2 text-white',
+    baseClass:
+      'appearance-none outline-none select-none w-4 h-4 bg-white border border-gray-400 rounded transition duration-150 ease-in-out focus:shadow-outline focus:border-blue-400',
   },
 })

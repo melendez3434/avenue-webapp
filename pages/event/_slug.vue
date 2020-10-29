@@ -17,8 +17,6 @@ export default {
 
   auth: false,
 
-  layout: 'event',
-
   components: { VideoLayout, EventVideo },
 
   async asyncData({ $api, redirect, params }) {
