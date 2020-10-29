@@ -79,7 +79,7 @@ export default {
     return {
       popover: false,
       streaming: {
-        status: this.talent ? 'active' : 'idle',
+        status: this.talent ? 'active' : this.event.talent.streaming_status,
       },
     }
   },
