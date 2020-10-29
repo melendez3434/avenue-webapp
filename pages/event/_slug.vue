@@ -6,6 +6,11 @@
       controls
       class="relative bg-theavenue-black h-full w-full outline-none"
     />
+    <template #placeholder>
+      <div class="w-full h-full flex items-center justify-center">
+        El video no ha empezao julian
+      </div>
+    </template>
   </VideoLayout>
 </template>
 <script>
@@ -44,8 +49,9 @@ export default {
   mounted() {
     const url = `https://stream.mux.com/${this.event.talent.playback_id}.m3u8`
     const video = this.$refs.streaming
+    console.log('video', video)
 
-    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    if (video && video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = url
     } else if (Hls.isSupported()) {
       const hls = new Hls()

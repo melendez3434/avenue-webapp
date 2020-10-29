@@ -2,7 +2,8 @@
   <div class="w-full grid grid-cols-1 md:grid-cols-9 md:pl-4 bg-theavenue-background-extra-light ">
     <div class="col-span-6 flex flex-col justify-between">
       <div :style="videoStyle">
-        <slot />
+        <slot v-if="['idle', 'disconnected'].includes(streaming.status)" name="placeholder" />
+        <slot v-else />
       </div>
       <div class="pb-4 pt-8 bg-theavenue-background-dark px-4 flex justify-between items-center">
         <TalentCard v-if="event" :talent="event.talent" link class="hidden md:flex" />
@@ -77,6 +78,9 @@ export default {
   data() {
     return {
       popover: false,
+      streaming: {
+        status: 'idle', // idle, active, disconnected
+      },
     }
   },
 
