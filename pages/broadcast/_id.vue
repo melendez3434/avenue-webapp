@@ -174,23 +174,14 @@ export default {
         video: { deviceId: { exact: video } },
       })
 
-      const audioStream = new MediaStream()
-      const audioTracks = this.cameraStream.getAudioTracks()
-      audioTracks.forEach(function(track) {
-        audioStream.addTrack(track)
-      })
-
-      const videoStream = new MediaStream()
-      const videoTracks = this.cameraStream.getVideoTracks()
-      videoTracks.forEach(function(track) {
-        videoStream.addTrack(track)
-      })
-
       const outputStream = new MediaStream()
-      ;[audioStream, videoStream].forEach(function(s) {
-        s.getTracks().forEach(function(t) {
-          outputStream.addTrack(t)
-        })
+
+      this.cameraStream.getAudioTracks().forEach(function(track) {
+        outputStream.addTrack(track)
+      })
+
+      this.cameraStream.getVideoTracks().forEach(function(track) {
+        outputStream.addTrack(track)
       })
 
       this.mediaRecorder = new MediaRecorder(outputStream, {
