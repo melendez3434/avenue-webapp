@@ -108,6 +108,8 @@ export default {
   },
 
   beforeDestroy() {
+    if (this.talent) return
+
     this.$echo
       .channel(`live.${this.event.id}`)
       .stopListening('StreamingIsLive')
@@ -137,19 +139,25 @@ export default {
     },
 
     listenMuxEvents() {
+      if (this.talent) return
+
       this.$echo
-        .channel(`live.${this.event.id}`)
-        .listen('StreamingIsLive', payload => {
-          console.log('StreamingIsLive', payload)
-          this.streaming.status = payload
+        .channel(`live.${this.event.talent.id}`)
+        .listen('StreamingIsLive', ({ event }) => {
+          if (!event) return
+          if (event.id !== this.event.id) return
+
+          this.streaming.status = 'active'
         })
-        .listen('StreamingIsIdle', payload => {
-          console.log('StreamingIsIdle', payload)
-          this.streaming.status = payload
+        .listen('StreamingIsIdle', ({ event }) => {
+          if (!event) return
+          if (event.id !== this.event.id) return
+          this.streaming.status = 'idle'
         })
-        .listen('StreamingIsDisconnected', payload => {
-          console.log('StreamingIsDisconnected', payload)
-          this.streaming.status = payload
+        .listen('StreamingIsDisconnected', ({ event }) => {
+          if (!event) return
+          if (event.id !== this.event.id) return
+          this.streaming.status = 'disconnected'
         })
     },
   },

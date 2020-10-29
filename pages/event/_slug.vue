@@ -1,20 +1,16 @@
 <template>
   <VideoLayout :event="event">
-    <video
-      id="streaming"
-      ref="streaming"
-      controls
-      class="relative bg-theavenue-black h-full w-full outline-none"
-    />
+    <EventVideo :playback-id="event.talent.playback_id" />
     <template #placeholder>
       <div class="w-full h-full flex items-center justify-center">
-        El video no ha empezao julian
+        Streaming is not live yet or it is idle. When its live you'll watch it here.
       </div>
     </template>
   </VideoLayout>
 </template>
 <script>
 import VideoLayout from '@/components/commons/ui/VideoLayout'
+import EventVideo from '@/components/events/EventVideo'
 
 export default {
   name: 'EventPage',
@@ -23,7 +19,7 @@ export default {
 
   layout: 'event',
 
-  components: { VideoLayout },
+  components: { VideoLayout, EventVideo },
 
   async asyncData({ $api, redirect, params }) {
     if (!params.slug) redirect('/')
@@ -43,20 +39,6 @@ export default {
         width: 1920,
         height: 1080,
       },
-    }
-  },
-
-  mounted() {
-    const url = `https://stream.mux.com/${this.event.talent.playback_id}.m3u8`
-    const video = this.$refs.streaming
-    console.log('video', video)
-
-    if (video && video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = url
-    } else if (Hls.isSupported()) {
-      const hls = new Hls()
-      hls.loadSource(url)
-      hls.attachMedia(video)
     }
   },
 }

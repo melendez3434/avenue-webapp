@@ -47,8 +47,6 @@ import IcSettings from '@/assets/svg/settings.svg?inline'
 export default {
   name: 'BroadcastChannel',
 
-  auth: false,
-
   components: { VideoLayout, DeviceSettingsModal, IcLive, IcSettings },
 
   async asyncData({ $api, params, error }) {
