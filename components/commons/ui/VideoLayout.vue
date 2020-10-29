@@ -2,7 +2,8 @@
   <div class="w-full grid grid-cols-1 md:grid-cols-9 md:pl-4 bg-theavenue-background-extra-light ">
     <div class="col-span-6 flex flex-col justify-between">
       <div :style="videoStyle">
-        <slot />
+        <slot v-if="inactiveStreaming" name="placeholder" />
+        <slot v-else />
       </div>
       <div class="pb-4 pt-8 bg-theavenue-background-dark px-4 flex justify-between items-center">
         <TalentCard v-if="event" :talent="event.talent" link class="hidden md:flex" />
@@ -77,6 +78,9 @@ export default {
   data() {
     return {
       popover: false,
+      streaming: {
+        status: this.talent ? 'active' : 'idle',
+      },
     }
   },
 
@@ -93,6 +97,24 @@ export default {
     artist() {
       return this.talent || this.event.talent
     },
+
+    inactiveStreaming() {
+      return ['idle', 'disconnected'].includes(this.streaming.status)
+    },
+  },
+
+  mounted() {
+    this.listenMuxEvents()
+  },
+
+  beforeDestroy() {
+    if (this.talent) return
+
+    this.$echo
+      .channel(`live.${this.event.id}`)
+      .stopListening('StreamingIsLive')
+      .stopListening('StreamingIsIdle')
+      .stopListening('StreamingIsDisconnected')
   },
 
   methods: {
@@ -114,6 +136,29 @@ export default {
         })
       }
       this.$modal.show('report-modal')
+    },
+
+    listenMuxEvents() {
+      if (this.talent) return
+
+      this.$echo
+        .channel(`live.${this.event.talent.id}`)
+        .listen('StreamingIsLive', ({ event }) => {
+          if (!event) return
+          if (event.id !== this.event.id) return
+
+          this.streaming.status = 'active'
+        })
+        .listen('StreamingIsIdle', ({ event }) => {
+          if (!event) return
+          if (event.id !== this.event.id) return
+          this.streaming.status = 'idle'
+        })
+        .listen('StreamingIsDisconnected', ({ event }) => {
+          if (!event) return
+          if (event.id !== this.event.id) return
+          this.streaming.status = 'disconnected'
+        })
     },
   },
 }
