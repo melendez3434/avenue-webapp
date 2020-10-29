@@ -16,8 +16,6 @@
           @click="$modal.show('device-settings-modal')"
         />
       </div>
-
-      <canvas v-show="false" ref="canvas" />
     </div>
     <modal
       width="100%"
@@ -71,11 +69,8 @@ export default {
       error: false,
       playing: false,
       video: null,
-      context: null,
       cameraStream: null,
-      mediaStream: null,
       mediaRecorder: null,
-      updateCanvasLoop: null,
       devices: [],
       videoInput: {},
       audioInput: {},
@@ -125,15 +120,7 @@ export default {
       this.video = this.$refs.video
       this.video.onloadedmetadata = () => {
         this.video.play()
-        this.$refs.canvas.width = this.video.clientWidth
-        this.$refs.canvas.height = this.video.clientHeight
-        if (!this.updateCanvasLoop) {
-          this.updateCanvas()
-        }
       }
-      this.context = this.$refs.canvas.getContext('2d')
-
-      this.mediaStream = this.$refs.canvas.captureStream(30)
 
       socket.on(`${this.talent.stream_key}-error`, () => {
         if (!this.playing) return
@@ -160,7 +147,6 @@ export default {
 
     this.stopCameraStream()
 
-    this.updateCanvasLoop = null
     socket.disconnect()
 
     this.$echo.channel(`event.${this.talent.id}`).stopListening('TalentIsLiveNow')
@@ -179,16 +165,6 @@ export default {
       this.mediaRecorder.stop()
     },
 
-    updateCanvas() {
-      if (this.video.ended || this.video.paused) {
-        return
-      }
-
-      this.context.drawImage(this.video, 0, 0, this.video.clientWidth, this.video.clientHeight)
-
-      this.updateCanvasLoop = requestAnimationFrame(this.updateCanvas)
-    },
-
     async updateVideoStream({ audio, video }) {
       this.stopCameraStream()
       this.audioInput = this.audioDevices.find(a => a.value === audio) || {}
@@ -204,8 +180,14 @@ export default {
         audioStream.addTrack(track)
       })
 
+      const videoStream = new MediaStream()
+      const videoTracks = this.cameraStream.getVideoTracks()
+      videoTracks.forEach(function(track) {
+        videoStream.addTrack(track)
+      })
+
       const outputStream = new MediaStream()
-      ;[audioStream, this.mediaStream].forEach(function(s) {
+      ;[audioStream, videoStream].forEach(function(s) {
         s.getTracks().forEach(function(t) {
           outputStream.addTrack(t)
         })
