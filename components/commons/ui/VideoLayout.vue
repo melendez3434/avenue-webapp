@@ -79,7 +79,7 @@ export default {
     return {
       popover: false,
       streaming: {
-        status: 'idle', // idle, active, disconnected
+        status: this.talent ? 'active' : 'idle',
       },
     }
   },
@@ -139,14 +139,17 @@ export default {
     listenMuxEvents() {
       this.$echo
         .channel(`live.${this.event.id}`)
-        .listen('StreamingIsLive', ({ status }) => {
-          this.streaming.status = status
+        .listen('StreamingIsLive', payload => {
+          console.log('StreamingIsLive', payload)
+          this.streaming.status = payload
         })
-        .listen('StreamingIsIdle', ({ status }) => {
-          this.streaming.status = status
+        .listen('StreamingIsIdle', payload => {
+          console.log('StreamingIsIdle', payload)
+          this.streaming.status = payload
         })
-        .listen('StreamingIsDisconnected', ({ status }) => {
-          this.streaming.status = status
+        .listen('StreamingIsDisconnected', payload => {
+          console.log('StreamingIsDisconnected', payload)
+          this.streaming.status = payload
         })
     },
   },
