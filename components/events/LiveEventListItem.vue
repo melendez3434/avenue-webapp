@@ -78,7 +78,7 @@ export default {
     },
 
     dateTitle() {
-      return this.startTimeZoneDate.format('{month-short} {day-pad}')
+      return this.startTimeZoneDate.format('{month-short} {date-pad}')
     },
 
     hourTitle() {
