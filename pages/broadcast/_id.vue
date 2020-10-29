@@ -174,17 +174,7 @@ export default {
         video: { deviceId: { exact: video } },
       })
 
-      const outputStream = new MediaStream()
-
-      this.cameraStream.getAudioTracks().forEach(function(track) {
-        outputStream.addTrack(track)
-      })
-
-      this.cameraStream.getVideoTracks().forEach(function(track) {
-        outputStream.addTrack(track)
-      })
-
-      this.mediaRecorder = new MediaRecorder(outputStream, {
+      this.mediaRecorder = new MediaRecorder(this.cameraStream, {
         mimeType: 'video/webm',
         videoBitsPerSecond: 3000000,
       })
