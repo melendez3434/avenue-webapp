@@ -1,6 +1,11 @@
 <template>
   <div class="flex items-center" :class="{ 'cursor-pointer': link }" @click="navigate">
-    <img :src="talent.photo" :alt="`${talent.name} photo`" class="rounded-full w-14 h-14" />
+    <img
+      v-if="talent.photo"
+      :src="talent.photo"
+      :alt="`${talent.name} photo`"
+      class="rounded-full w-14 h-14"
+    />
     <div class="ml-5">
       <p class="font-sans text-xl font-bold leading-6">{{ talent.name }}</p>
       <p class="font-sans text-lg">
