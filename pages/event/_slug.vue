@@ -69,13 +69,13 @@ export default {
       })
       meta.push({ hid: 'description', name: 'description', content: this.event.talent.biography })
     }
-    if (this.event.talent.photo) {
+    if (this.event.talent.cover_photo) {
       meta.push({
         hid: 'twitter:image:src',
         name: 'twitter:image:src',
-        content: this.event.talent.photo,
+        content: this.event.talent.cover_photo,
       })
-      meta.push({ hid: 'og:image', name: 'og:image', content: this.event.talent.photo })
+      meta.push({ hid: 'og:image', name: 'og:image', content: this.event.talent.cover_photo })
     }
 
     return {
