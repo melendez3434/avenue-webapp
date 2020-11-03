@@ -30,7 +30,14 @@
             />
           </div>
         </div>
-        <el-popover v-if="$auth.loggedIn" v-model="jarsVisible" placement="top" trigger="manual">
+        <el-popover
+          v-if="$auth.loggedIn"
+          v-model="jarsVisible"
+          placement="top"
+          trigger="click"
+          @show="jarsVisible = true"
+          @hide="jarsVisible = false"
+        >
           <div>
             <div>Make donation to:</div>
             <div
@@ -43,7 +50,7 @@
             </div>
           </div>
 
-          <IcTipjar slot="reference" class="h-20" @click="jarsVisible = true" />
+          <IcTipjar slot="reference" class="h-20" />
         </el-popover>
       </div>
     </client-only>
