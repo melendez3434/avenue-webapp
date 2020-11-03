@@ -9,6 +9,7 @@
   </VideoLayout>
 </template>
 <script>
+import spacetime from 'spacetime'
 import VideoLayout from '@/components/commons/ui/VideoLayout'
 import EventVideo from '@/components/events/EventVideo'
 
@@ -37,6 +38,49 @@ export default {
         width: 1920,
         height: 1080,
       },
+    }
+  },
+
+  computed: {
+    startTimeZoneDate() {
+      return spacetime(this.event.starts_at, 'UTC').goto(this.userTimezone)
+    },
+
+    dateFormatted() {
+      return this.startTimeZoneDate.format(
+        '{month-short} {date-pad}, {year} at {hour}:{minute-pad}{ampm}'
+      )
+    },
+  },
+
+  head() {
+    const title = `${this.event.talent.name}, performing live on ${this.dateFormatted} on The Avenue`
+    const meta = [
+      { hid: 'twitter:title', name: 'twitter:title', content: title },
+      { hid: 'og:title', name: 'og:title', content: title },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
+    ]
+
+    if (this.event.talent.biography) {
+      meta.push({
+        hid: 'og:description',
+        name: 'og:description',
+        content: this.event.talent.biography,
+      })
+      meta.push({ hid: 'description', name: 'description', content: this.event.talent.biography })
+    }
+    if (this.event.talent.cover_photo) {
+      meta.push({
+        hid: 'twitter:image:src',
+        name: 'twitter:image:src',
+        content: this.event.talent.cover_photo,
+      })
+      meta.push({ hid: 'og:image', name: 'og:image', content: this.event.talent.cover_photo })
+    }
+
+    return {
+      title,
+      meta,
     }
   },
 }
