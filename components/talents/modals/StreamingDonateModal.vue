@@ -55,6 +55,8 @@
             'text-theavenue-green-neon': isCustomAmountSet,
             ' text-avenue-white': !isCustomAmountSet,
           }"
+          :v="$v.donation.amount"
+          error-message="Minimum amount to donate is $1"
           @input="setAmount($event)"
         />
       </div>
@@ -70,7 +72,7 @@
   </div>
 </template>
 <script>
-import { required } from 'vuelidate/lib/validators'
+import { required, minValue } from 'vuelidate/lib/validators'
 import StripeInput from '@/components/commons/ui/StripeInput'
 
 export default {
@@ -175,7 +177,7 @@ export default {
 
   validations: {
     donation: {
-      amount: { required },
+      amount: { required, minValue: minValue(1) },
       stripeValidated: {
         mustBeTrue(value) {
           if (this.card) return true
