@@ -102,10 +102,10 @@ export default {
       activeAmount: null,
       customAmount: '',
       quickAmounts: [
-        { value: 200, label: '$2.00' },
-        { value: 500, label: '$5.00' },
-        { value: 1000, label: '$10.00' },
-        { value: 2000, label: '$20.00' },
+        { value: '200', label: '$2.00' },
+        { value: '500', label: '$5.00' },
+        { value: '1000', label: '$10.00' },
+        { value: '2000', label: '$20.00' },
       ],
       card: null,
       error: null,
@@ -123,6 +123,10 @@ export default {
     },
 
     donationFormatted() {
+      if (!this.isCustomAmountSet) {
+        return this.donation.amount
+      }
+
       const amountCleaned = this.donation.amount.replace(',', '')
       return amountCleaned * 100
     },
