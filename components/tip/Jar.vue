@@ -5,12 +5,12 @@
   >
     <IcTipJarColored
       v-if="jarWithMoreTips === jar.id"
-      class="w-16 md:w-32"
+      class="w-12 md:w-24"
       :class="{ 'shake-chunk shake-constant': activeJar === jar.id }"
     />
     <IcTipJarGreen
       v-else
-      class="w-16 md:w-32"
+      class="w-12 md:w-24"
       :class="{ 'shake-chunk shake-constant': activeJar === jar.id }"
     />
     <div class="flex flex-col items-center px-3 md:px-0">
