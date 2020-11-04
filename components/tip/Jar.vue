@@ -17,6 +17,7 @@
       <div class="uppercase text-theavenue-green-neon font-library text-lg md:text-3xl my-3">
         {{ jarAmount }}
       </div>
+      <div>{{ jar.name }}</div>
     </div>
   </div>
 </template>

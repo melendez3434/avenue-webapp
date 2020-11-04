@@ -1,7 +1,6 @@
 <template>
   <div class="bg-avenue-blue-light border-b-2 border-theavenue-background-extra-light">
-    <div class="font-sans font-bold text-2xl text-center pt-4">Tip Jars</div>
-    <div class="p-5 md:p-8 flex space-x-4">
+    <div class="p-5 flex space-x-4">
       <Jar
         v-for="jar in jars"
         :id="jar.id"
