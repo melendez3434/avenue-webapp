@@ -31,11 +31,11 @@
     <div class="col-span-3 flex flex-col">
       <slot name="streaming" />
       <template v-if="event">
-        <TipJars class="md:h-96" :event="event" @click:jar="openDonationModal" />
+        <TipJars :event="event" @click:jar="openDonationModal" />
         <ChatRoom class="flex-1" :event="event" :style="chatStyle" @click:jar="openDonationModal" />
       </template>
       <template v-else>
-        <TipJarsPlaceholder class="md:h-96" />
+        <TipJarsPlaceholder />
         <ChatRoomPlaceholder class="flex-1" />
       </template>
     </div>
