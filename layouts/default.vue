@@ -14,7 +14,7 @@
       @before-open="beforeOpenUserAccess"
       @before-close="beforeCloseUserAccess"
     >
-      <UserAccessModal :active-tab="modal.active" />
+      <UserAccessModal :active-tab="modal.active" :title="modal.title" :subtitle="modal.subtitle" />
     </modal>
 
     <modal
@@ -109,8 +109,9 @@ export default {
   methods: {
     beforeOpenUserAccess(data) {
       const params = data.params || {}
-      const active = params.active || 'login'
-      this.modal.active = active
+      this.modal.active = params.active || 'login'
+      this.modal.title = params.title || 'Welcome to the avenue'
+      this.modal.subtitle = params.subtitle || ''
     },
 
     beforeCloseUserAccess() {

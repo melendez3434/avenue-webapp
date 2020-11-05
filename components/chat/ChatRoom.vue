@@ -104,7 +104,7 @@ export default {
         return this.$modal.show('user-access-modal', {
           active: 'login',
           title: this.event.talent.name,
-          subtitle: 'Log in or sign up to donate to',
+          subtitle: 'Log in or sign up chat',
         })
       }
 
