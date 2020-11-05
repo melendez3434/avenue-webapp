@@ -21,6 +21,7 @@
     "element-ui": "^2.13.2",
     "nuxt": "^2.14.3",
     "pusher-js": "^7.0.0",
+    "redirect-ssl": "^2.0.0",
     "socket.io": "^2.3.0",
     "spacetime": "^6.6.4",
     "v-calendar": "^1.0.8",
