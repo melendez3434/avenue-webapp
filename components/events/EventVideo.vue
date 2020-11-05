@@ -56,8 +56,7 @@ export default {
   },
 
   mounted() {
-    // const url = `https://stream.mux.com/${this.playbackId}.m3u8`
-    const url = 'https://stream.mux.com/YNoCxNCLmwyb5ECtug17B1Xoqv02T02EzZS01hFX3xqO2Y.m3u8'
+    const url = `https://stream.mux.com/${this.playbackId}.m3u8`
     this.video = this.$refs.streaming
 
     if (this.video && this.video.canPlayType('application/vnd.apple.mpegurl')) {
