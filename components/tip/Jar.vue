@@ -67,7 +67,7 @@ export default {
 
     jarPercentage() {
       const percentage = (this.jar.total_amount / this.jarsTotal) * 100 || 0
-      return `${percentage.toFixed(2)}%`
+      return `${Math.round(percentage)}%`
     },
   },
 }
