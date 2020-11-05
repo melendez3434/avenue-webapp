@@ -3,6 +3,7 @@
     id="streaming"
     ref="streaming"
     controls
+    controlsList="nofullscreen"
     class="relative bg-theavenue-black h-full w-full outline-none"
   />
 </template>
