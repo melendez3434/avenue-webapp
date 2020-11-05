@@ -20,8 +20,9 @@ export default function({ $echo, $axios }) {
   $echo.connect()
 
   $axios.interceptors.request.use(config => {
-    if ($echo.socketId()) {
-      config.headers['X-Socket-Id'] = $echo.socketId()
+    const socketId = $echo.connector.pusher.connection.socket_id
+    if (socketId) {
+      config.headers['X-Socket-Id'] = socketId
     }
 
     return config

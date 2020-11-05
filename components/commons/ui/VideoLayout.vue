@@ -99,7 +99,7 @@ export default {
     },
 
     inactiveStreaming() {
-      return ['idle', 'disconnected'].includes(this.streaming.status)
+      return ['idle', 'disconnected', 'no-channel'].includes(this.streaming.status)
     },
   },
 
