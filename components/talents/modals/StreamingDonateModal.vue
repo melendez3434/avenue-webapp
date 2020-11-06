@@ -6,17 +6,21 @@
     </div>
     <form class="mt-3 px-6 pb-10 pt-5" @submit.prevent="createDonation">
       <div class="mt-3">
-        <R64Input v-model="donation.name" label="Name on Card" />
+        <R64Input v-model="donation.name" :disabled="loadingCardData" label="Name on Card" />
       </div>
       <div class="mt-3">
-        <div v-if="card">
+        <div v-if="isStripeCustomer">
           <span>Credit Card</span>
           <div class="h-38px bg-theavenue-background-dark flex items-center justify-between px-3">
-            <span>**** **** **** {{ card.last4 }}</span>
-            <span>{{ card.exp_month }} / {{ card.exp_year }}</span>
+            <span v-if="loadingCardData">Loading Card</span>
+            <template v-else>
+              <span>**** **** **** {{ card.last4 }}</span>
+              <span>{{ card.exp_month }} / {{ card.exp_year }}</span>
+            </template>
           </div>
           <div class="w-full flex justify-end mt-2">
             <button
+              v-if="!loadingCardData"
               type="button"
               class="text-xs bg-theavenue-background-light border border-theavenue-off-white text-theavenue-off-white px-2 py-0.5 rounded"
               @click="card = null"
@@ -110,6 +114,7 @@ export default {
       card: null,
       error: null,
       busy: false,
+      loadingCardData: false,
     }
   },
 
@@ -134,9 +139,11 @@ export default {
 
   async created() {
     if (this.isStripeCustomer) {
+      this.loadingCardData = true
       const { data } = await this.$api.global.stripeCard()
       this.card = data
       this.donation.name = this.card.name
+      this.loadingCardData = false
     }
   },
 
