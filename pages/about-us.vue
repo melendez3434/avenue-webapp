@@ -7,33 +7,53 @@
     </div>
     <div class="container mx-auto flex space-x-6 mt-6 lg:mt-12 pb-6 lg:pb-12">
       <div class="w-1/4 flex justify-center">
-        <h2 class="text-2xl">About</h2>
+        <h1 class="text-2xl">About</h1>
       </div>
       <div class="w-3/4">
         <article class="prose lg:prose-lg text-theavenue-white">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque urna hendrerit
-          sollicitudin fringilla. Sed rhoncus senectus vitae cursus molestie. Fermentum enim tempor,
-          ut sapien fermentum nam. Tellus velit morbi nunc enim. Ut vitae vestibulum dolor quis
-          dictumst pellentesque morbi. In vel nisl quis erat fringilla purus vestibulum ornare.
-          Convallis aenean orci lorem neque tincidunt nam congue viverra platea. Molestie at tellus
-          diam aliquam risus faucibus adipiscing sed porttitor. Orci, eget at in enim tempor nisl
-          nam erat sagittis. Facilisi cras nulla at mi tincidunt. Scelerisque feugiat iaculis
-          adipiscing ut nibh volutpat ut nisi. Ultrices a dolor mauris, mattis eget purus feugiat.
-          Sed duis semper aliquam arcu id vulputate vestibulum. Dis tempor vitae sollicitudin sed
-          maecenas facilisis convallis amet mauris. Blandit ornare dolor magna fames morbi in cursus
-          euismod. Facilisis diam aliquam congue magna parturient. Maecenas enim mattis enim eget.
-          Sed mauris fermentum mauris auctor ultrices in tempor. Non est, ipsum fermentum, dui. A
-          sodales euismod in tempus sit dolor. Nisi, faucibus nisi adipiscing nulla blandit
-          bibendum. Pellentesque ac egestas eget sodales morbi. Facilisi pellentesque amet cursus
-          ornare scelerisque neque, egestas tempor eros. Imperdiet donec non sociis egestas. Tellus
-          hac urna tempus gravida enim tellus. Egestas sagittis convallis nunc quis metus arcu,
-          commodo tellus. Viverra sed aliquam quis praesent feugiat enim odio. Egestas est, velit
-          turpis ipsum accumsan platea iaculis eget. Neque viverra nulla id praesent arcu sed ornare
-          in senectus. Porttitor ut aliquam venenatis, sit. Mi, vestibulum, felis pellentesque mi in
-          et scelerisque adipiscing. Mauris, diam aliquam consectetur morbi ac laoreet pellentesque.
-          Leo, porttitor quam venenatis adipiscing semper aliquam. Mattis quis duis risus id
-          integer. Non id massa massa nibh lacus purus nisi. Turpis convallis fringilla massa
-          pharetra augue.
+          <div>
+            <p>
+              The Avenue welcomes all performers to our virtual live streaming platform. Our goal
+              from inception has been to democratize live streaming to celebrate artists and fans.
+              We do this by removing all obstacles, enabling our artists to perform without limits
+              and fans to view these performances without restriction or cost.
+            </p>
+            <p>
+              To our fans, we ask that you show your appreciation to our performers by leaving a tip
+              to support their art and effort. Share great performances with those you care about
+              and most of all, celebrate life with us on The Avenue.
+            </p>
+            <p>
+              To our performers, our Avenue is a place that welcomes you. Enjoy the space we have
+              built for you...for you are the person in the arena who we come to celebrate.
+            </p>
+            <p>As a family business, we extend a warm welcome to you all.</p>
+          </div>
+          <div>
+            <p class="text-avenue-grey font-bold">Julia Folkart, CEO:</p>
+            <p>
+              A Baltimore native, currently living in Arlington, VA, completed a BA in Theatre
+              Design at VSU and is currently an award winning designer for Anthropology.
+            </p>
+          </div>
+          <div>
+            <p class="text-avenue-grey font-bold">Erik Folkart, VP of Marketing and Sales</p>
+            <p>
+              Baltimore Born, a graduate of University of MD College Park, 25 year veteran
+              consulting in the food and beverage industry, 10 time national award winner, Co-
+              Creator of Mason Dixon Master Chef , the largest live single elimination “Iron chef
+              Style” chef competition in the Mid- Atlantic, philanthropist, currently resides in
+              Howard County MD.
+            </p>
+          </div>
+          <div>
+            <p class="text-avenue-grey font-bold">Dan Lavner, VP of Operations</p>
+            <p>
+              Originally from Bergen County NJ and a graduate of University of MD College Park, has
+              taught high school math, worked construction and has been in software development for
+              the past 20 years. Dan is an avid music lover.
+            </p>
+          </div>
         </article>
       </div>
     </div>
