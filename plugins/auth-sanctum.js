@@ -15,6 +15,8 @@ export default function({ $axios }) {
       return $axios.request(error.config)
     }
 
+    console.log(error)
+
     throw error
   })
 }
