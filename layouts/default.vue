@@ -115,7 +115,8 @@ export default {
     },
 
     beforeCloseUserAccess() {
-      this.$router.replace({ name: this.$router.name })
+      if (this.$route.name === 'event-slug') return
+      this.$router.replace({ path: this.$route.path })
     },
 
     beforeOpenWarning(data) {
