@@ -173,7 +173,9 @@ export default {
 
       this.$echo
         .join(`event-presence.${this.event.id}`)
-        .here(users => (this.usersOnline = users))
+        .here(users => {
+          this.usersOnline = users
+        })
         .joining(user => {
           this.usersOnline.push(user)
         })
