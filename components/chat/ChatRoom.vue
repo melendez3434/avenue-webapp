@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col bg-avenue-blue-light">
-    <ChatMessages ref="messages" class="flex-1" :event="event.id" />
+    <!-- Using a key reloads the socket events when user goes from guess to auth -->
+    <ChatMessages :key="$auth.loggedIn" ref="messages" class="flex-1" :event="event.id" />
     <client-only>
       <div
         class=" bg-theavenue-background-extra-light h-20 flex items-center justify-center px-8 py-2"
