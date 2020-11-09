@@ -5,7 +5,7 @@
     >
       <div>
         <span class="font-bold">{{ message.user.name }}</span>
-        <span v-if="isTip" class="text-sm text-avenue-grey">donated</span>
+        <span v-if="isTip" class="text-sm text-avenue-grey">tipped</span>
       </div>
       <div class="text-avenue-grey flex">
         <component
@@ -14,7 +14,7 @@
           :key="index"
           :class="{ 'text-theavenue-green-neon font-library text-2xl': isTip }"
         >
-          {{ comp.message }}
+          {{ isTip ? '$$$' : comp.message }}
         </component>
       </div>
     </div>
