@@ -8,6 +8,7 @@
       <div class="pb-4 pt-8 bg-theavenue-background-dark px-4 flex justify-between items-center">
         <TalentCard v-if="event" :talent="event.talent" link class="hidden md:flex" />
         <div v-if="event" class="flex items-center">
+          <div class="mr-4">{{ usersOnline.length }} viewers</div>
           <TalentSocialMedia :talent="event.talent" />
           <el-popover
             v-model="popover"
@@ -81,6 +82,7 @@ export default {
       streaming: {
         status: this.talent ? 'active' : this.event.talent.streaming_status,
       },
+      usersOnline: [],
     }
   },
 
@@ -105,9 +107,14 @@ export default {
 
   mounted() {
     this.listenMuxEvents()
+    this.listenPresenceEvents()
   },
 
   beforeDestroy() {
+    if (this.event) {
+      this.$echo.leave(`event-presence.${this.event.id}`)
+    }
+
     if (this.talent) return
 
     this.$echo
@@ -158,6 +165,20 @@ export default {
           if (!event) return
           if (event.id !== this.event.id) return
           this.streaming.status = 'disconnected'
+        })
+    },
+
+    listenPresenceEvents() {
+      if (!this.event) return
+
+      this.$echo
+        .join(`event-presence.${this.event.id}`)
+        .here(users => (this.usersOnline = users))
+        .joining(user => {
+          this.usersOnline.push(user)
+        })
+        .leaving(user => {
+          this.usersOnline = this.usersOnline.filter(u => u.token !== user.token)
         })
     },
   },
