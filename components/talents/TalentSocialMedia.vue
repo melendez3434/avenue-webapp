@@ -1,10 +1,11 @@
 <template>
   <div class="flex space-x-4 items-center">
     <SocialNetworkIcon
-      v-for="socialNetwork in talent.social_media_users"
+      v-for="socialNetwork in talent.social_media_links"
       :key="socialNetwork.id"
       :social-network="socialNetwork.social_media_slug"
-      class="w-6 h-6 ta-hidden md:inline-block"
+      class="w-6 h-6 ta-hidden md:inline-block cursor-pointer"
+      @click.native="openLink(socialNetwork.url)"
     />
     <a
       v-if="talent.website"
@@ -71,6 +72,10 @@ export default {
       setTimeout(() => {
         this.urlCopied = false
       }, 2000)
+    },
+
+    openLink(url) {
+      window.open(url)
     },
   },
 }
