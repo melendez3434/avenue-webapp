@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mx-auto flex-1 flex flex-col items-center justify-center text-avenue-white pb-12 bg-theavenue-background-light"
+    class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
     <LogoLights class="w-full" />
     <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
@@ -64,3 +64,8 @@ export default {
   },
 }
 </script>
+<style scoped>
+.available-min-height {
+  min-height: calc(100vh - 80px - 76px);
+}
+</style>

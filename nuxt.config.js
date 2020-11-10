@@ -27,7 +27,8 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || '',
+        content:
+          'The Avenue welcomes all performers to our virtual live streaming platform. Our goal from inception has been to democratize live streaming to celebrate artists and fans.',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],

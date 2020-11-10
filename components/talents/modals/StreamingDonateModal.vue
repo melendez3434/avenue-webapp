@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="px-6 pb-5 pt-10 bg-theavenue-background">
-      <p class="text-sm leading-5">Make donation to</p>
+      <p class="text-sm leading-5">Support</p>
       <p class="text-2xl leading-tight font-medium">{{ event }}</p>
     </div>
     <form class="mt-3 px-6 pb-10 pt-5" @submit.prevent="createDonation">

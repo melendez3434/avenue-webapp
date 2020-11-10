@@ -40,7 +40,7 @@
           @hide="jarsVisible = false"
         >
           <div>
-            <div>Make donation to:</div>
+            <div>Support:</div>
             <div
               v-for="jar in event.tip_jars"
               :key="jar.id"
@@ -105,7 +105,7 @@ export default {
         return this.$modal.show('user-access-modal', {
           active: 'login',
           title: this.event.talent.name,
-          subtitle: 'Log in or sign up chat',
+          subtitle: 'Log in or sign up to chat',
         })
       }
 
