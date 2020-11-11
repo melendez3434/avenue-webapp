@@ -1,14 +1,17 @@
 <template>
   <div class="w-full grid grid-cols-1 md:grid-cols-9 md:pl-4 bg-theavenue-background-extra-light ">
     <div class="col-span-6 flex flex-col justify-between">
-      <div :style="videoStyle">
+      <div :style="videoStyle" class="relative">
+        <div v-if="event" class="absolute right-0 top-0 z-10 mt-4 mr-8 text-right">
+          <div class="font-bold text-shadow">{{ event.name }}</div>
+          <div class="text-sm text-shadow">{{ usersOnline.length }} watching now</div>
+        </div>
         <slot v-if="inactiveStreaming" name="placeholder" />
         <slot v-else />
       </div>
       <div class="pb-4 pt-8 bg-theavenue-background-dark px-4 flex justify-between items-center">
         <TalentCard v-if="event" :talent="event.talent" link class="hidden md:flex" />
         <div v-if="event" class="flex items-center">
-          <div class="mr-4">{{ usersOnline.length }} viewers</div>
           <TalentSocialMedia :talent="event.talent" />
           <el-popover
             v-model="popover"
