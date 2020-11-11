@@ -6,7 +6,9 @@
     <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
       <LiveEventListItem v-for="event in events" :key="event.id" :event="event" />
     </el-collapse>
-    <div class="h-12 w-full">
+    <EventsNoResults v-if="!events.length" />
+
+    <div v-if="meta.total > meta.per_page" class="h-12 w-full">
       <client-only>
         <infinite-loading spinner="spiral" @infinite="fetchPage">
           <div slot="no-more" class="mt-4">Thats all!</div>
