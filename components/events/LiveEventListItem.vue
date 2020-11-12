@@ -27,7 +27,8 @@
           link
         />
         <div class="flex items-center mb-0 md:mb-2 mx-auto md:mx-0">
-          <div class="font-sans flex flex-col text-right">
+          <div class="font-sans flex flex-col items-end">
+            <ShareButton class="mb-2" :url="`${baseUrl}event/${event.id}`" />
             <p class="text-md md:text-lg font-bold leading-6">
               {{ event.name }} ({{ event.rating.name }} Rating)
             </p>
@@ -49,9 +50,12 @@
 </template>
 <script>
 import spacetime from 'spacetime'
+import ShareButton from '@/components/commons/ui/ShareButton'
 
 export default {
   name: 'LiveEventListItem',
+
+  components: { ShareButton },
 
   props: {
     event: {
@@ -87,6 +91,10 @@ export default {
 
     isLive() {
       return spacetime().isBetween(this.startTimeZoneDate, this.endTimeZoneDate)
+    },
+
+    baseUrl() {
+      return process.client ? window.location.href : ''
     },
   },
 }
