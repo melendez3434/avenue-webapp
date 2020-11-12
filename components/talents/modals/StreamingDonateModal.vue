@@ -4,6 +4,11 @@
       <p class="text-sm leading-5">Support</p>
       <p class="text-2xl leading-tight font-medium">{{ event }}</p>
     </div>
+    <div class="flex p-4 items-end justify-between">
+      <div class="text-xs">We never store any card details. Safe and secure SSL encrypted.</div>
+      <IcStripe class="w-40" />
+    </div>
+
     <form class="mt-3 px-6 pb-10 pt-5" @submit.prevent="createDonation">
       <div class="mt-3">
         <R64Input v-model="donation.name" :disabled="loadingCardData" label="Name on Card" />
@@ -78,11 +83,12 @@
 <script>
 import { required, minValue } from 'vuelidate/lib/validators'
 import StripeInput from '@/components/commons/ui/StripeInput'
+import IcStripe from '@/assets/svg/stripe.svg?inline'
 
 export default {
   name: 'StreamingDonateModal',
 
-  components: { StripeInput },
+  components: { StripeInput, IcStripe },
 
   props: {
     event: {
