@@ -1,20 +1,21 @@
 <template>
   <VideoLayout :event="event" :talent="talent">
-    <div slot="streaming" class=" bg-avenue-black p-8">
+    <div slot="streaming" class="w-112">
       <R64Button v-if="playing" full secondary @click="stopStreaming">Stop Stream</R64Button>
       <R64Button v-else full @click="startStreaming">
         Start Stream
       </R64Button>
     </div>
+    <IcSettings
+      slot="settings"
+      class="cursor-pointer h-12"
+      @click="$modal.show('device-settings-modal')"
+    />
     <div class="h-full relative bg-theavenue-black">
       <div v-if="error">There was an error loading the media devices</div>
       <div class="relative h-full">
         <IcLive v-if="playing" class="w-32 absolute" />
         <video ref="video" class="h-full w-full" muted />
-        <IcSettings
-          class="absolute bottom-4 right-4 cursor-pointer"
-          @click="$modal.show('device-settings-modal')"
-        />
       </div>
     </div>
     <modal

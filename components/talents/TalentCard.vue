@@ -39,6 +39,8 @@ export default {
 
   methods: {
     navigate() {
+      this.$emit('click')
+
       if (!this.link) return
 
       this.$router.push(`/artist/${this.talent.id}`)
