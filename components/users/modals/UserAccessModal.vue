@@ -30,14 +30,16 @@
       </button>
     </div>
     <div class="mt-8 px-6 pb-10">
-      <LoginForm v-if="isLoginActive" />
+      <LoginForm v-if="isLoginActive" @active="active = $event" />
       <SignUpForm v-if="isSignUpActive" />
+      <ForgotPasswordForm v-if="isForgotPasswordActive" />
     </div>
   </div>
 </template>
 <script>
 import LoginForm from '@/components/users/LoginForm'
 import SignUpForm from '@/components/users/SignUpForm'
+import ForgotPasswordForm from '@/components/users/ForgotPasswordForm'
 import IcClose from '@/assets/svg/close_2.svg?inline'
 
 export default {
@@ -46,6 +48,7 @@ export default {
   components: {
     LoginForm,
     SignUpForm,
+    ForgotPasswordForm,
     IcClose,
   },
 
@@ -66,7 +69,7 @@ export default {
 
   data() {
     return {
-      active: 'login',
+      active: 'forgot-password',
       heading: {
         title: '',
         subtitle: '',
@@ -81,6 +84,10 @@ export default {
 
     isSignUpActive() {
       return this.active === 'signup'
+    },
+
+    isForgotPasswordActive() {
+      return this.active === 'forgot-password'
     },
   },
 

@@ -1,26 +1,31 @@
 <template>
-  <div class="flex flex-col items-center justify-center min-h-screen">
-    <R64Input
-      v-model="form.password"
-      type="password"
-      label="New Password"
-      placeholder="********"
-      :v="$v.form.password"
-      error-message="Password is required"
-    />
+  <div class="flex flex-col items-center min-h-screen bg-theavenue-background-extra-light">
+    <div class="max-w-md w-full mt-5 md:mt-20">
+      <R64Input
+        v-model="form.password"
+        type="password"
+        label="New Password"
+        placeholder="********"
+        :v="$v.form.password"
+        error-message="Password is required"
+      />
 
-    <R64Input
-      v-model="form.password_confirmation"
-      type="password"
-      label="Confirm Password"
-      placeholder="********"
-      :v="$v.form.password_confirmation"
-      error-message="Passwords must match"
-    />
+      <R64Input
+        v-model="form.password_confirmation"
+        type="password"
+        label="Confirm Password"
+        placeholder="********"
+        :v="$v.form.password_confirmation"
+        error-message="Passwords must match"
+        class="mt-5"
+      />
 
-    <R64Button :disabled="$v.form.$invalid" @click="resetPassword">
-      Reset
-    </R64Button>
+      <div v-if="error" class="mb-6 text-theavenue-red-neon text-center">{{ error }}</div>
+
+      <R64Button class="mt-5" :disabled="$v.form.$invalid" full @click="resetPassword">
+        Reset
+      </R64Button>
+    </div>
   </div>
 </template>
 
@@ -40,6 +45,7 @@ export default {
         password: '',
         password_confirmation: '',
       },
+      error: null,
     }
   },
 
@@ -54,15 +60,16 @@ export default {
       this.$api.forgotPassword
         .reset(this.form)
         .then(() => {
+          this.error = null
           this.$router.push({
-            name: 'login',
-            params: {
+            name: 'index',
+            query: {
               newPassword: true,
             },
           })
         })
         .catch(e => {
-          console.log(e)
+          this.error = e.response.data.error
         })
     },
   },
