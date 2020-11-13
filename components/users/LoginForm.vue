@@ -18,9 +18,13 @@
       error-message="Password is required"
     />
 
-    <nuxt-link class="text-avenue-white text-xs" :to="{ name: 'forgot' }">
+    <button
+      type="button"
+      class="text-avenue-white text-xs"
+      @click="$emit('active', 'forgot-password')"
+    >
       Trouble logging in?
-    </nuxt-link>
+    </button>
 
     <p v-if="error" class="bg-avenue-red text-white rounded py-1 px-3 mt-3 text-center">
       {{ error }}
@@ -63,7 +67,7 @@ export default {
         this.busy = false
         this.$modal.hide('user-access-modal')
       } catch (e) {
-        this.error = e.response.data.error
+        this.error = e.response ? e.response.data.error : null
         this.busy = false
       }
     },
