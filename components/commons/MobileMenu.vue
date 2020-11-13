@@ -23,7 +23,7 @@
         >
           {{ category.name }}
         </a>
-        <div v-if="$auth.loggedIn" class="flex flex-col items-center space-y-5">
+        <template v-if="$auth.loggedIn">
           <span
             class="uppercase text-theavenue-turquoise-neon font-library text-2xl hover:text-light-turquoise mt-1 focus:outline-none"
           >
@@ -56,7 +56,23 @@
           >
             Log out
           </button>
-        </div>
+        </template>
+        <template v-else>
+          <button
+            type="button"
+            class="py-0.5 px-3 font-library uppercase text-2xl text-theavenue-turquoise-neon text-light-turquoise border border-theavenue-turquoise-neon rounded-lg"
+            @click="login"
+          >
+            Login
+          </button>
+          <button
+            :to="{ name: 'signup' }"
+            class="py-0.5 px-3 font-library uppercase text-2xl text-theavenue-yellow-neon text-light-yellow border border-theavenue-yellow-neon rounded-lg"
+            @click="signUp"
+          >
+            Sign Up
+          </button>
+        </template>
       </div>
     </div>
   </div>
@@ -106,6 +122,16 @@ export default {
     startStreaming() {
       this.open = false
       this.$modal.show('talent-signup-modal')
+    },
+
+    login() {
+      this.open = false
+      this.$modal.show('user-access-modal', { active: 'login' })
+    },
+
+    signUp() {
+      this.open = false
+      this.$modal.show('user-access-modal', { active: 'signup' })
     },
   },
 }
