@@ -101,8 +101,6 @@ export default {
     scrollToAbout() {
       if (this.page) return
 
-      console.log(this.$refs.about)
-
       this.$refs.about.scrollIntoView({
         behavior: 'smooth',
       })
