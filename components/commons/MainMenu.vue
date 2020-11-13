@@ -137,10 +137,6 @@ export default {
       const { data: url } = await this.$api.talent.stripeAuthorize(this.$auth.user.talent_id)
       window.location.href = url
     },
-
-    setCategory(category) {
-      this.$router.push({ name: 'index', params: { query: category.id } })
-    },
   },
 }
 </script>
