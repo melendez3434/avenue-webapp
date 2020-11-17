@@ -88,8 +88,3 @@ export default {
   },
 }
 </script>
-<style scoped>
-.dimmer-gradient-small {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 0) 8%);
-}
-</style>

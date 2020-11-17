@@ -2,7 +2,9 @@
   <VideoLayout :event="event">
     <EventVideo :playback-id="event.talent.playback_id" />
     <template #placeholder>
-      <div class="w-full h-full flex items-center justify-center">
+      <div
+        class="w-full h-full flex items-start pt-20 md:pt-0 md:items-center justify-center text-center"
+      >
         Streaming is not live yet or it is idle. When its live you'll watch it here.
       </div>
     </template>
@@ -28,16 +30,6 @@ export default {
       return { event }
     } catch (e) {
       redirect('/')
-    }
-  },
-
-  data() {
-    return {
-      videoHeight: 0,
-      dimensions: {
-        width: 1920,
-        height: 1080,
-      },
     }
   },
 
@@ -85,14 +77,3 @@ export default {
   },
 }
 </script>
-<style>
-.min-h-content {
-  min-height: calc(100vh - 69px);
-}
-.dc-video-player-wrapper {
-  position: initial;
-}
-#streaming .app-container {
-  width: 100%;
-}
-</style>

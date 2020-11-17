@@ -115,7 +115,4 @@ export default {
 .el-collapse-item__wrap {
   @apply border-none;
 }
-.dimmer-gradient {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 0) 60%);
-}
 </style>

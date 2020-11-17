@@ -99,6 +99,14 @@ export default {
     },
   },
 
+  watch: {
+    '$route.query.newPassword'(newPassword) {
+      if (newPassword === true) {
+        window.location.href = '/'
+      }
+    },
+  },
+
   mounted() {
     const action = this.$route.query.action
     if (action && action === 'login') {

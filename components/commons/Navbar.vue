@@ -14,7 +14,7 @@
         <MainMenu class="space-x-5" />
       </client-only>
     </nav>
-    <MobileMenu class="flex lg:ta-hidden w-full justify-end" />
+    <MobileMenu class="flex lg:ta-hidden w-full justify-end z-20" />
   </div>
 </template>
 <script>
