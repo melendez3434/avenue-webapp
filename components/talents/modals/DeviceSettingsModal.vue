@@ -8,7 +8,7 @@
     </div>
     <div>
       <div class="p-6 text-xl leading-tight font-medium">Preview</div>
-      <video ref="preview" class="w-full px-2" muted />
+      <video ref="preview" class="w-full px-2" muted autoplay playsinline />
     </div>
     <form class="mt-3 px-6 pb-10 pt-5" @submit.prevent="updateSettings">
       <div class="mb-6">
@@ -18,7 +18,7 @@
         <R64Select v-model="audio" :options="audioSources" label="Microphone" />
       </div>
 
-      <R64Button type="submit" class="mt-8" full>
+      <R64Button type="submit" class="mt-8 mb-24 md:mb-0" full>
         Confirm
       </R64Button>
     </form>
@@ -65,9 +65,6 @@ export default {
   },
 
   async mounted() {
-    this.$refs.preview.onloadedmetadata = () => {
-      this.$refs.preview.play()
-    }
     await this.updatePreview()
   },
 
