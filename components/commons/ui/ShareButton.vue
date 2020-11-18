@@ -3,7 +3,7 @@
     <div>Url copied to your clipboard!</div>
     <button
       slot="reference"
-      v-clipboard="url"
+      v-clipboard="urlWithEnter"
       class="font-library text-lg hover:text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
       style="box-shadow: 0px 0px 10px #FFFFFF;"
       target="_blank"
@@ -37,6 +37,12 @@ export default {
     return {
       urlCopied: false,
     }
+  },
+
+  computed: {
+    urlWithEnter() {
+      return `${this.url}${String.fromCharCode(13)}`
+    },
   },
 
   methods: {
