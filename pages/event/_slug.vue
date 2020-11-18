@@ -38,6 +38,17 @@ export default {
       return spacetime(this.event.starts_at, 'UTC').goto(this.userTimezone)
     },
 
+    eventStartTimeZoneDate() {
+      return spacetime(this.event.starts_at, 'UTC')
+        .goto(this.event.timezone)
+        .format('{month-short} {date-pad}, {year} at {hour}:{minute-pad}{ampm}')
+    },
+
+    timezoneFormatted() {
+      const [, city] = this.event.timezone.split('/')
+      return city.replace('_', ' ')
+    },
+
     dateFormatted() {
       return this.startTimeZoneDate.format(
         '{month-short} {date-pad}, {year} at {hour}:{minute-pad}{ampm}'
@@ -46,7 +57,7 @@ export default {
   },
 
   head() {
-    const title = `${this.event.talent.name}, performing live on ${this.dateFormatted} on The Avenue`
+    const title = `${this.event.talent.name}, performing live on ${this.eventStartTimeZoneDate} (${this.timezoneFormatted}) on The Avenue`
     const meta = [
       { hid: 'twitter:title', name: 'twitter:title', content: title },
       { hid: 'og:title', name: 'og:title', content: title },
