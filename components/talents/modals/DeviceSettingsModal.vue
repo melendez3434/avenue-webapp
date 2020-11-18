@@ -18,7 +18,7 @@
         <R64Select v-model="audio" :options="audioSources" label="Microphone" />
       </div>
 
-      <R64Button type="submit" class="mt-8 mb-12 md:mb-0" full>
+      <R64Button type="submit" class="mt-8 mb-24 md:mb-0" full>
         Confirm
       </R64Button>
     </form>
