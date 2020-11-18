@@ -15,7 +15,7 @@
       <div v-if="error">There was an error loading the media devices</div>
       <div class="relative h-full">
         <IcLive v-if="playing" class="w-32 absolute" />
-        <video ref="video" class="h-full w-full" muted />
+        <video ref="video" class="h-full w-full" muted autoplay playsinline />
       </div>
     </div>
     <modal
@@ -119,9 +119,6 @@ export default {
       await this.getMediaDevices()
 
       this.video = this.$refs.video
-      this.video.onloadedmetadata = () => {
-        this.video.play()
-      }
 
       socket.on(`${this.talent.stream_key}-error`, () => {
         if (!this.playing) return
