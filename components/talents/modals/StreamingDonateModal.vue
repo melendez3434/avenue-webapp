@@ -163,7 +163,7 @@ export default {
           await this.$api.global.stripe(data.token.id)
           await this.$auth.fetchUser()
         } else if (!this.card) {
-          const data = await this.$refs.stripe.createToken()
+          const data = await this.$refs.stripe.createToken({ name: this.donation.name })
           await this.$api.global.updateStripe(data.token.id)
         }
 
