@@ -43,8 +43,10 @@
 
     <modal
       name="streaming-donate-modal"
-      adaptive
+      width="100%"
+      classes="max-w-xl inset-x-0 m-auto"
       height="auto"
+      scrollable
       @before-open="beforeOpenStreamingDonate"
     >
       <StreamingDonateModal :event="streamingDonate.event" :jar="streamingDonate.jar" />
