@@ -1,8 +1,7 @@
 <template>
   <div>
     <div class="px-6 pb-5 pt-10 bg-theavenue-background">
-      <p class="text-sm leading-5">Support</p>
-      <p class="text-2xl leading-tight font-medium">{{ event }}</p>
+      <p class="leading-5 text-xl font-bold">Support {{ event }}</p>
     </div>
     <div class="flex flex-col p-4 space-y-4">
       <div class="text-xs">We never store any card details. Safe and secure SSL encrypted.</div>
@@ -14,17 +13,15 @@
 
     <form class="mt-3 px-6 pb-10 pt-2" @submit.prevent="createDonation">
       <div class="mt-3">
-        <R64Input v-model="donation.name" :disabled="loadingCardData" label="Name on Card" />
+        <div v-if="loadingCardData" class="mb-10 text-gray-300">Loading Card ...</div>
+        <R64Input v-else v-model="donation.name" :disabled="loadingCardData" label="Name on Card" />
       </div>
       <div class="mt-3">
-        <div v-if="isStripeCustomer">
+        <div v-if="card">
           <span>Credit Card</span>
           <div class="h-38px bg-theavenue-background-dark flex items-center justify-between px-3">
-            <span v-if="loadingCardData">Loading Card</span>
-            <template v-else>
-              <span>**** **** **** {{ card.last4 }}</span>
-              <span>{{ card.exp_month }} / {{ card.exp_year }}</span>
-            </template>
+            <span>**** **** **** {{ card.last4 }}</span>
+            <span>{{ card.exp_month }} / {{ card.exp_year }}</span>
           </div>
           <div class="w-full flex justify-end mt-2">
             <button
@@ -37,7 +34,7 @@
             </button>
           </div>
         </div>
-        <StripeInput v-else ref="stripe" @change="onStripeChange" />
+        <StripeInput v-else-if="!loadingCardData" ref="stripe" @change="onStripeChange" />
       </div>
 
       <p class="text-theavenue-white text-md mt-5">Quick Select Amount</p>
@@ -149,11 +146,7 @@ export default {
 
   async created() {
     if (this.isStripeCustomer) {
-      this.loadingCardData = true
-      const { data } = await this.$api.global.stripeCard()
-      this.card = data
-      this.donation.name = this.card.name
-      this.loadingCardData = false
+      await this.getCardData()
     }
   },
 
@@ -175,6 +168,7 @@ export default {
         }
 
         await this.$api.talent.tip({ tip_jar_id: this.jar, amount: this.donationFormatted })
+        await this.getCardData()
 
         this.busy = false
         this.$modal.hide('streaming-donate-modal')
@@ -193,6 +187,14 @@ export default {
     setQuickAmount(amount) {
       this.setAmount(amount)
       this.customAmount = ''
+    },
+
+    async getCardData() {
+      this.loadingCardData = true
+      const { data } = await this.$api.global.stripeCard()
+      this.card = data
+      this.donation.name = this.card.name
+      this.loadingCardData = false
     },
   },
 
