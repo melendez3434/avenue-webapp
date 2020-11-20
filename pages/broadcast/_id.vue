@@ -1,7 +1,7 @@
 <template>
   <VideoLayout :event="event" :talent="talent">
     <div slot="streaming" class="w-112">
-      <R64Button v-if="playing" full secondary @click="stopStreaming">Stop Stream</R64Button>
+      <R64Button v-if="playing" full secondary @click="askToFinishEvent">Stop Stream</R64Button>
       <R64Button v-else full @click="startStreaming">
         Start Stream
       </R64Button>
@@ -32,6 +32,22 @@
         :selected-video="videoInput.value"
         @confirm="updateVideoStream"
       />
+    </modal>
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="finish-event-modal"
+      scrollable
+      height="auto"
+    >
+      <div class="text-center py-8">
+        <p class="text-xl text-avenue-white-light">Do you want to finish the event as well?</p>
+        <p class="text-xs text-avenue-white">Payments are proccessed when the event is finished</p>
+        <div class="flex items-center justify-center space-x-6 mt-5">
+          <R64Button outline @click="stopStreaming">No</R64Button>
+          <R64Button @click="stopStreamingAndFinishEvent">Yes</R64Button>
+        </div>
+      </div>
     </modal>
   </VideoLayout>
 </template>
@@ -161,9 +177,15 @@ export default {
     },
 
     stopStreaming() {
+      this.$modal.hide('finish-event-modal')
       socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
       this.playing = false
       this.mediaRecorder.stop()
+    },
+
+    stopStreamingAndFinishEvent() {
+      this.stopStreaming()
+      this.$api.events.finish(this.event.id)
     },
 
     async updateVideoStream({ audio, video }) {
@@ -216,6 +238,14 @@ export default {
 
       // At this point the user has denied the access to some device
       this.error = true
+    },
+
+    askToFinishEvent() {
+      if (!this.event) {
+        return this.stopStreaming()
+      }
+
+      this.$modal.show('finish-event-modal')
     },
   },
 }

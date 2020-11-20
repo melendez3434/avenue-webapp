@@ -20,4 +20,8 @@ export default $axios => ({
   sendMessage(slug, message) {
     return $axios.$post(`${resource}/${slug}/chat`, { message })
   },
+
+  finish(slug) {
+    return $axios.$post(`${resource}/${slug}/finish`)
+  },
 })
