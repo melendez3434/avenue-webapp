@@ -1,7 +1,7 @@
 <template>
   <VideoLayout :event="event" :talent="talent">
     <div slot="streaming" class="w-112">
-      <R64Button v-if="playing" full secondary @click="stopStreaming">Stop Stream</R64Button>
+      <R64Button v-if="playing" full secondary @click="askToFinishEvent">Stop Stream</R64Button>
       <R64Button v-else full @click="startStreaming">
         Start Stream
       </R64Button>
@@ -33,6 +33,22 @@
         @confirm="updateVideoStream"
       />
     </modal>
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="finish-event-modal"
+      scrollable
+      height="auto"
+    >
+      <div class="text-center py-8">
+        <p class="text-xl text-avenue-white-light">Do you want to finish the event?</p>
+        <p class="text-xs text-avenue-white">Payments are proccessed when the event is finished</p>
+        <div class="flex items-center justify-center space-x-6 mt-5">
+          <R64Button outline @click="stopStreaming">No</R64Button>
+          <R64Button @click="stopStreamingAndFinishEvent">Yes</R64Button>
+        </div>
+      </div>
+    </modal>
   </VideoLayout>
 </template>
 
@@ -47,6 +63,8 @@ export default {
   name: 'BroadcastChannel',
 
   components: { VideoLayout, DeviceSettingsModal, IcLive, IcSettings },
+
+  auth: false,
 
   async asyncData({ $api, params, error }) {
     try {
@@ -166,6 +184,11 @@ export default {
       this.mediaRecorder.stop()
     },
 
+    stopStreamingAndFinishEvent() {
+      this.stopStreaming()
+      // TODO: Finish event
+    },
+
     async updateVideoStream({ audio, video }) {
       this.stopCameraStream()
       this.audioInput = this.audioDevices.find(a => a.value === audio) || {}
@@ -216,6 +239,10 @@ export default {
 
       // At this point the user has denied the access to some device
       this.error = true
+    },
+
+    askToFinishEvent() {
+      this.$modal.show('finish-event-modal')
     },
   },
 }
