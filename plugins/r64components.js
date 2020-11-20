@@ -6,6 +6,8 @@ Vue.use(R64Components, {
     baseClass: 'block rounded inline-flex items-center justify-center',
     primaryClass: 'bg-theavenue-white text-theavenue-black',
     secondaryClass: 'bg-theavenue-gray text-white',
+    primaryOutlineClass:
+      'border-avenue-white text-avenue-white hover:bg-avenue-white-light hover:text-avenue-black',
   },
   R64Radio: {
     labelClass: 'ml-2 text-theavenue-white',
