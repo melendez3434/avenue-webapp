@@ -6,7 +6,7 @@
         'items-end': page,
         'items-start': !page,
       }"
-      :style="{ backgroundImage: `url(${talent.cover_photo})` }"
+      :style="{ backgroundImage: talent.cover_photo ? `url(${talent.cover_photo})` : null }"
     >
       <div class="dimmer-gradient-reverse w-full absolute top-0 left-0 h-full" />
       <div class="z-10 flex justify-between items-center w-full py-4 px-8">

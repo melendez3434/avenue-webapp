@@ -14,7 +14,9 @@
     </template>
     <div
       class="w-full bg-no-repeat h-86 bg-gray-800 bg-cover flex items-center justify-center relative"
-      :style="{ backgroundImage: `url(${event.talent.cover_photo})` }"
+      :style="{
+        backgroundImage: event.talent.cover_photo ? `url(${event.talent.cover_photo})` : null,
+      }"
     >
       <div class="dimmer-gradient w-full absolute top-0 left-0 h-full" />
       <div

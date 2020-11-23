@@ -24,4 +24,8 @@ export default $axios => ({
   finish(slug) {
     return $axios.$post(`${resource}/${slug}/finish`)
   },
+
+  topTippers(slug) {
+    return $axios.$get(`${resource}/${slug}/top-contributions`)
+  },
 })

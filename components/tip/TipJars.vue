@@ -13,6 +13,10 @@
         @click="$emit('click:jar', $event)"
       />
     </div>
+    <div class="mb-2 text-center">
+      <span class="font-bold">Top Tipper:</span>
+      <span>{{ topTipper.name }}</span>
+    </div>
   </div>
 </template>
 
@@ -33,13 +37,16 @@ export default {
   },
 
   async fetch() {
-    const { data } = await this.$api.events.getTipJars(this.event.id)
-    this.jars = data
+    const { data: jars } = await this.$api.events.getTipJars(this.event.id)
+    const { data: tippers } = await this.$api.events.topTippers(this.event.id)
+    this.jars = jars
+    this.topTipper = tippers.length ? tippers[0].user : {}
   },
 
   data() {
     return {
       jars: [],
+      topTipper: {},
       activeJar: null,
       interval: null,
       maxTimeout: 5 * 60 * 1000,
@@ -74,6 +81,7 @@ export default {
 
       this.activeJar = jar.id
       this.$set(jar, 'total_amount', jar.total_amount + chatMessage.amount)
+      this.fetchTopTipper()
 
       clearInterval(this.interval)
       this.initializeDonationsInterval()
@@ -101,6 +109,11 @@ export default {
           }, 4000)
         }
       }, this.maxTimeout)
+    },
+
+    async fetchTopTipper() {
+      const { data: tippers } = await this.$api.events.topTippers(this.event.id)
+      this.topTipper = tippers[0].user
     },
   },
 }
