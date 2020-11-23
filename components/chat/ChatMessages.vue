@@ -6,7 +6,7 @@
       scrollonremoved: true,
       smoothonremoved: false,
     }"
-    class="py-6 px-4 md:py-12 md:px-8 overflow-auto"
+    class="py-3 px-4 md:py-6 md:px-8 overflow-auto"
   >
     <div v-if="!messages.length">There are no messages yet. Be the first! 😎</div>
     <ChatMessage v-for="message in messages" :key="message.id" :message="message" />

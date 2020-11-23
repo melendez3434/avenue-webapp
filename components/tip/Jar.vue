@@ -5,16 +5,16 @@
   >
     <IcTipJarColored
       v-if="jarWithMoreTips === jar.id"
-      class="w-12 md:w-24"
+      class="w-10 md:w-20"
       :class="{ 'shake-chunk shake-constant': activeJar === jar.id }"
     />
     <IcTipJarGreen
       v-else
-      class="w-12 md:w-24"
+      class="w-10 md:w-20"
       :class="{ 'shake-chunk shake-constant': activeJar === jar.id }"
     />
     <div class="flex flex-col items-center px-3 md:px-0">
-      <div class="uppercase text-theavenue-green-neon font-library text-lg md:text-3xl my-3">
+      <div class="uppercase text-theavenue-green-neon font-library text-lg md:text-3xl my-1">
         {{ jarAmount }}
       </div>
       <div>{{ jar.name }}</div>
