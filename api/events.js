@@ -28,4 +28,8 @@ export default $axios => ({
   topTippers(slug) {
     return $axios.$get(`${resource}/${slug}/top-contributions`)
   },
+
+  extendTime(slug) {
+    return $axios.$post(`${resource}/${slug}/extend`, { minutes: 5 })
+  },
 })
