@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       play: true,
-      muted: false,
+      muted: !this.$nuxt.context.from,
       video: null,
     }
   },
