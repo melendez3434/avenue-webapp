@@ -49,6 +49,24 @@
         </div>
       </div>
     </modal>
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="extend-event-modal"
+      scrollable
+      height="auto"
+    >
+      <div class="text-center py-8">
+        <p class="text-xl text-avenue-white-light">
+          Event time is almost over. Do you want to extend it for 5 minutes?
+        </p>
+        <p class="text-xs text-avenue-white">Payments are proccessed when the event is finished</p>
+        <div class="flex items-center justify-center space-x-6 mt-5">
+          <R64Button outline @click="stopStreamingAndFinishEvent">Finish Event</R64Button>
+          <R64Button @click="extendTime">Extend Time</R64Button>
+        </div>
+      </div>
+    </modal>
   </VideoLayout>
 </template>
 
@@ -147,8 +165,13 @@ export default {
         this.stopStreaming()
       })
 
-      this.$echo.channel(`event.${this.talent.id}`).listen('TalentIsLiveNow', ({ event }) => {
+      if (this.event) {
+        return this.listenForEventToFinish()
+      }
+
+      this.$echo.channel(`live.${this.talent.id}`).listen('TalentIsLiveNow', ({ event }) => {
         this.event = event
+        this.listenForEventToFinish()
       })
     } catch (error) {
       this.error = true
@@ -166,7 +189,11 @@ export default {
 
     socket.disconnect()
 
-    this.$echo.channel(`event.${this.talent.id}`).stopListening('TalentIsLiveNow')
+    this.$echo.channel(`live.${this.talent.id}`).stopListening('TalentIsLiveNow')
+
+    if (this.event) {
+      this.$echo.channel(`event.${this.event.id}`).stopListening('EventIsEndedNow')
+    }
   },
 
   methods: {
@@ -186,6 +213,7 @@ export default {
     stopStreamingAndFinishEvent() {
       this.stopStreaming()
       this.$api.events.finish(this.event.id)
+      this.$modal.hide('extend-event-modal')
     },
 
     async updateVideoStream({ audio, video }) {
@@ -246,6 +274,17 @@ export default {
       }
 
       this.$modal.show('finish-event-modal')
+    },
+
+    extendTime() {
+      this.$api.events.extendTime(this.event.id)
+      this.$modal.hide('extend-event-modal')
+    },
+
+    listenForEventToFinish() {
+      this.$echo.channel(`event.${this.event.id}`).listen('EventIsEndedNow', () => {
+        this.$modal.show('extend-event-modal')
+      })
     },
   },
 }
