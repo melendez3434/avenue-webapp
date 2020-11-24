@@ -66,6 +66,8 @@ export default {
       hls.loadSource(url)
       hls.attachMedia(this.video)
     }
+
+    this.video.muted = this.muted
     this.video.play()
     this.video.controls = false
   },
