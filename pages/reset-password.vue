@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center min-h-screen bg-theavenue-background-extra-light">
-    <div class="max-w-md w-full mt-5 md:mt-20">
+    <div v-if="loaded" class="max-w-md w-full mt-5 md:mt-20">
       <R64Input
         v-model="form.password"
         type="password"
@@ -26,6 +26,7 @@
         Reset
       </R64Button>
     </div>
+    <div v-else class="mt-12">Wait a second...</div>
   </div>
 </template>
 
@@ -46,13 +47,28 @@ export default {
         password_confirmation: '',
       },
       error: null,
+      loaded: false,
     }
   },
 
-  created() {
+  async mounted() {
+    if (this.$auth.loggedIn) {
+      return this.$router.push('/')
+    }
+
     const { email, token } = this.$route.query
     this.form.email = email
     this.form.token = token
+
+    try {
+      await this.$api.forgotPassword.isValidToken({
+        email,
+        token,
+      })
+    } catch (e) {
+      this.$nuxt.error(e.response.data.error)
+    }
+    this.loaded = true
   },
 
   methods: {
@@ -72,23 +88,6 @@ export default {
           this.error = e.response.data.error
         })
     },
-  },
-
-  async middleware({ store, redirect, route, app }) {
-    if (store.state.auth.loggedIn) {
-      return redirect('/')
-    }
-
-    const { email, token } = route.query
-
-    await app.$api.forgotPassword
-      .isValidToken({
-        email,
-        token,
-      })
-      .catch(e => {
-        return redirect('/')
-      })
   },
 
   validations: {
