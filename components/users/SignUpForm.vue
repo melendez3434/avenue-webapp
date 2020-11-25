@@ -8,6 +8,14 @@
       error-message="Your name is required"
       help="This is the name people will know you by when you post comments or make donations."
     />
+    <R64Input
+      v-model="form.cellphone"
+      label="Phone"
+      name="phone"
+      :v="$v.form.cellphone"
+      error-message="Your phone is required"
+      help="This is the phone the avenue will send you SMS reminders."
+    />
 
     <R64Input
       v-model="form.email"
@@ -81,6 +89,7 @@ export default {
     return {
       form: {
         email: '',
+        cellphone: '',
         password: '',
         confirmPassword: '',
         name: '',
@@ -119,6 +128,7 @@ export default {
       password: { required },
       confirmPassword: { required, sameAsPassword: sameAs('password') },
       email: { email, required },
+      cellphone: { required },
     },
   },
 }
