@@ -1,9 +1,9 @@
 <template>
   <div
-    class="w-full grid grid-cols-1 md:grid-cols-9 md:pl-4 bg-theavenue-background-extra-light available-height"
+    class="w-full flex flex-col md:grid md:grid-cols-9 md:pl-4 bg-theavenue-background-extra-light available-height"
   >
     <div class="col-span-6 flex flex-col justify-between overflow-y-auto">
-      <div :style="videoStyle" class="relative">
+      <div class="relative h-auto md:video-height">
         <div v-if="event" class="absolute right-0 top-0 z-10 mt-4 mr-8 text-right">
           <div class="font-bold text-shadow">{{ event.name }}</div>
           <div class="text-sm text-shadow">{{ usersOnline.length }} watching now</div>
@@ -17,10 +17,14 @@
       </div>
       <TalentProfile v-else-if="event" :talent="event.talent" />
     </div>
-    <div class="col-span-3 flex flex-col">
+    <div class="md:col-span-3 flex flex-col">
       <template v-if="event">
         <TipJars :event="event" @click:jar="openDonationModal" />
-        <ChatRoom class="flex-1" :event="event" :style="chatStyle" @click:jar="openDonationModal" />
+        <ChatRoom
+          class="flex-1 h-52 md:chat-height"
+          :event="event"
+          @click:jar="openDonationModal"
+        />
       </template>
       <template v-else>
         <TipJarsPlaceholder />
@@ -71,15 +75,6 @@ export default {
   },
 
   computed: {
-    videoStyle() {
-      return { height: 'calc(100vh - 83px - 5rem)' }
-    },
-
-    chatStyle() {
-      const streamButtonHeight = this.talent ? 104 : 0
-      return { height: `calc(100vh - 384px - 78px - ${streamButtonHeight}px)` }
-    },
-
     artist() {
       return this.talent || this.event.talent
     },

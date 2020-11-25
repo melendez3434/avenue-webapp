@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex py-5 lg:px-8 bg-theavenue-background-light relative">
+  <div class="w-full flex h-20 py-5 lg:px-8 bg-theavenue-background-light relative">
     <div class="flex-1 flex items-center uppercase">
       <nuxt-link
         tag="h1"

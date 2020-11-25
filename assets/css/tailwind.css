@@ -31,6 +31,14 @@
     .ta-hidden {
       display: none;
     }
+    .video-height {
+      /* screen - navbar - event bar */
+      height: calc(100vh - 5rem - 5rem)
+    }
+    .chat-height {
+      /* screen - navbar - tip jars */
+      height: calc(100vh - 20rem - 5rem)
+    }
   }
 }
 
