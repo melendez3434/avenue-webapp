@@ -1,23 +1,25 @@
 <template>
   <div
-    class="w-1/2 p-4 bg-theavenue-background-extra-light flex md:flex-col items-center justify-center rounded-lg cursor-pointer"
+    class="w-full landscape:w-full md:w-1/2 p-2 md:p-4 landscape:p-2 bg-theavenue-background-extra-light flex md:flex-col landscape:flex-row items-center justify-center rounded-lg cursor-pointer"
     @click="$emit('click', jar.id)"
   >
     <IcTipJarColored
       v-if="jarWithMoreTips === jar.id"
-      class="w-10 md:w-20"
+      class="w-6 md:w-20 landscape:w-6"
       :class="{ 'shake-chunk shake-constant': activeJar === jar.id }"
     />
     <IcTipJarGreen
       v-else
-      class="w-10 md:w-20"
+      class="w-6 md:w-20 landscape:w-6"
       :class="{ 'shake-chunk shake-constant': activeJar === jar.id }"
     />
-    <div class="flex flex-col items-center px-3 md:px-0">
-      <div class="uppercase text-theavenue-green-neon font-library text-lg md:text-3xl my-1">
+    <div class="flex md:flex-col items-center px-3 md:px-0">
+      <div
+        class="uppercase text-theavenue-green-neon font-library text-lg md:text-3xl landscape:text-sm my-1 landscape:ml-2"
+      >
         {{ jarAmount }}
       </div>
-      <div>{{ jar.name }}</div>
+      <div class="hidden md:block landscape:hidden">{{ jar.name }}</div>
     </div>
   </div>
 </template>

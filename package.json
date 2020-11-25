@@ -19,6 +19,7 @@
     "@tailwindcss/ui": "^0.6.2",
     "croppie": "^2.6.5",
     "element-ui": "^2.13.2",
+    "hls.js": "^0.14.16",
     "nuxt": "^2.14.3",
     "pusher-js": "^7.0.0",
     "redirect-ssl": "^2.0.0",

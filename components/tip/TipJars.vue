@@ -1,6 +1,8 @@
 <template>
-  <div class="bg-avenue-blue-light border-b-2 border-theavenue-background-extra-light">
-    <div class="p-5 flex space-x-4">
+  <div
+    class="h-20 md:h-80 landscape:h-20 bg-avenue-blue-light border-b-2 border-theavenue-background-extra-light"
+  >
+    <div class="p-5 landscape:p-2 flex space-x-1 md:space-x-4">
       <Jar
         v-for="jar in jars"
         :id="jar.id"
@@ -13,7 +15,7 @@
         @click="$emit('click:jar', $event)"
       />
     </div>
-    <div class="mb-2 text-center">
+    <div class="hidden md:block mb-2 text-center landscape:hidden">
       <span class="font-bold">Top Tipper:</span>
       <span>{{ topTipper.name }}</span>
     </div>

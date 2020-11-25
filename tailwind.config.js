@@ -10,6 +10,10 @@ const path = require('path')
 module.exports = {
   theme: {
     extend: {
+      screens: {
+        portrait: { raw: '(orientation: portrait)' },
+        landscape: { raw: '(orientation: landscape)' },
+      },
       colors: {
         avenue: {
           black: '#0E0E0E',
