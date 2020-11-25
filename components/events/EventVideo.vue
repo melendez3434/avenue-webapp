@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import Hls from 'hls.js'
 import IcPlay from '@/assets/svg/play.svg?inline'
 import IcPause from '@/assets/svg/pause.svg?inline'
 import IcVolume from '@/assets/svg/volume_up.svg?inline'
@@ -49,7 +50,7 @@ export default {
 
   data() {
     return {
-      play: true,
+      play: false,
       muted: !this.$nuxt.context.from,
       video: null,
     }
@@ -65,10 +66,10 @@ export default {
       const hls = new Hls()
       hls.loadSource(url)
       hls.attachMedia(this.video)
+      this.video.muted = this.muted
+      this.playVideo()
     }
 
-    this.video.muted = this.muted
-    this.video.play()
     this.video.controls = false
   },
 

@@ -13,7 +13,7 @@
             @submit="addMessage"
             @click="canSendMessages"
           />
-          <div class="pr-2 flex">
+          <div class="pr-2 flex landscape:hidden">
             <img
               ref="heart"
               src="~assets/emojis/heart.png"
