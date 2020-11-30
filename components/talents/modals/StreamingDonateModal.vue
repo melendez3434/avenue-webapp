@@ -1,7 +1,10 @@
 <template>
   <div>
-    <div class="px-6 pb-5 pt-10 bg-theavenue-background">
+    <div class="px-6 pb-5 pt-10 bg-theavenue-background flex items-center justify-between">
       <p class="leading-5 text-xl font-bold">Support {{ event }}</p>
+      <button type="button" @click="$modal.hide('streaming-donate-modal')">
+        <IcClose />
+      </button>
     </div>
     <div class="flex flex-col p-4 space-y-4">
       <div class="text-xs">We never store any card details. Safe and secure SSL encrypted.</div>
@@ -38,12 +41,14 @@
       </div>
 
       <p class="text-theavenue-white text-md mt-5">Quick Select Amount</p>
-      <div class="grid grid-cols-4 grid-rows-1 space-x-3 mt-3">
+      <div
+        class="grid lg:grid-cols-4 lg:grid-rows-1 grid-cols-2 grid-rows-2 lg:space-x-3 mt-3 gap-8"
+      >
         <button
           v-for="(amount, key) in quickAmounts"
           :key="key"
           type="button"
-          class="font-library bg-theavenue-black px-5 py-2 rounded text-2xl text-theavenue-gray"
+          class="font-library bg-theavenue-black px-5 py-2 rounded text-2xl text-theavenue-gray w-full lg:w-auto"
           :class="{ 'text-theavenue-green-neon': activeAmount === amount.value }"
           @click="setQuickAmount(amount.value)"
         >
@@ -76,6 +81,13 @@
         <R64Button :disabled="$v.donation.$invalid && !error" full type="submit" :loading="busy">
           Confirm
         </R64Button>
+        <button
+          class="text-sm mt-5 underline text-theavenue-white w-full bg-transparent"
+          type="button"
+          @click="$modal.hide('streaming-donate-modal')"
+        >
+          Cancel
+        </button>
       </div>
     </form>
   </div>
@@ -85,11 +97,12 @@ import { required, minValue } from 'vuelidate/lib/validators'
 import StripeInput from '@/components/commons/ui/StripeInput'
 import IcStripe from '@/assets/svg/stripe.svg?inline'
 import IcSecured from '@/assets/svg/secured.svg?inline'
+import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
   name: 'StreamingDonateModal',
 
-  components: { StripeInput, IcStripe, IcSecured },
+  components: { StripeInput, IcStripe, IcSecured, IcClose },
 
   props: {
     event: {
