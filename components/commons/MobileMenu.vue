@@ -6,7 +6,7 @@
         <nuxt-link
           tag="h1"
           :to="{ name: 'index' }"
-          class="pl-2 md:ml-0 text-avenue-white-light font-library uppercase text-2xl text-light-white cursor-pointer"
+          class="pl-2 md:ml-0 text-avenue-white-light font-library uppercase text-lg md:text-2xl landscape:text-lg text-light-white cursor-pointer"
         >
           The avenue
         </nuxt-link>
