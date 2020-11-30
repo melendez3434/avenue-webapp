@@ -1,10 +1,12 @@
 <template>
-  <div class="w-full flex h-20 py-5 lg:px-8 bg-theavenue-background-light relative">
+  <div
+    class="w-full flex landscape:h-auto md:h-20 md:py-5 py-2 lg:px-8 bg-theavenue-background-light relative"
+  >
     <div class="flex-1 flex items-center uppercase">
       <nuxt-link
         tag="h1"
         :to="{ name: 'index' }"
-        class="whitespace-no-wrap pl-2 md:ml-0 text-avenue-white-light font-library uppercase text-2xl text-light-white cursor-pointer"
+        class="whitespace-no-wrap pl-2 md:ml-0 text-avenue-white-light font-library uppercase text-lg md:text-2xl landscape:text-lg text-light-white cursor-pointer"
       >
         The avenue
       </nuxt-link>

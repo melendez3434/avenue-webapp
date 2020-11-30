@@ -11,8 +11,8 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        portrait: { raw: '(orientation: portrait)' },
-        landscape: { raw: '(orientation: landscape)' },
+        portrait: { raw: '(orientation: portrait) and (hover: none) and (pointer: coarse)' },
+        landscape: { raw: '(orientation: landscape) and (hover: none) and (pointer: coarse)' },
       },
       colors: {
         avenue: {
