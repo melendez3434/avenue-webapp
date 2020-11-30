@@ -80,7 +80,8 @@ export default {
     },
 
     inactiveStreaming() {
-      return ['idle', 'disconnected', 'no-channel'].includes(this.streaming.status)
+      return false
+      // return ['idle', 'disconnected', 'no-channel'].includes(this.streaming.status)
     },
   },
 
@@ -155,7 +156,7 @@ export default {
 </script>
 <style scoped>
 .available-height {
-  height: calc(100vh - 83px);
+  height: calc(100vh - 3rem);
 }
 .el-popper.el-popover.bg-theavenue-gray {
   @apply bg-theavenue-gray;
