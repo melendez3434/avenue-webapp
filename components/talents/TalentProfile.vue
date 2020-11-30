@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="w-full bg-no-repeat h-112 bg-gray-800 bg-cover flex relative"
+      class="w-full bg-no-repeat hidden h-112 bg-gray-800 bg-cover md:flex relative"
       :class="{
         'items-end': page,
         'items-start': !page,
@@ -36,7 +36,10 @@
       </div>
     </div>
 
-    <div class="container mx-auto flex space-x-6 pt-6 lg:pt-12 pb-8" :style="profileStyle">
+    <div
+      class="container mx-auto hidden md:flex space-x-6 pt-6 lg:pt-12 pb-8"
+      :style="profileStyle"
+    >
       <div class="w-1/4 flex justify-center">
         <h2 ref="about" class="text-2xl">About</h2>
       </div>

@@ -3,7 +3,7 @@
     class="w-full flex flex-col md:grid md:grid-cols-9 md:pl-4 bg-theavenue-background-extra-light available-height"
   >
     <div class="col-span-6 flex flex-col justify-between overflow-y-auto">
-      <div class="relative h-auto md:video-height">
+      <div class="relative h-full md:video-height">
         <div v-if="event" class="absolute right-0 top-0 z-10 mt-4 mr-8 text-right">
           <div class="font-bold text-shadow">{{ event.name }}</div>
           <div class="text-sm text-shadow">{{ usersOnline.length }} watching now</div>
@@ -17,7 +17,7 @@
       </div>
       <TalentProfile v-else-if="event" :talent="event.talent" />
     </div>
-    <div class="md:col-span-3 flex flex-col">
+    <div class="md:col-span-3 flex flex-col h-full">
       <template v-if="event">
         <TipJars :event="event" @click:jar="openDonationModal" />
         <ChatRoom
