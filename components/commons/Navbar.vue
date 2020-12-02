@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex landscape:h-auto md:h-20 md:py-5 py-2 lg:px-8 bg-theavenue-background-light relative"
+    class="w-full flex landscape:h-12 md:h-20 md:py-5 py-2 lg:px-8 bg-theavenue-background-light relative"
   >
     <div class="flex-1 flex items-center uppercase">
       <nuxt-link

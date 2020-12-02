@@ -1,20 +1,20 @@
 <template>
-  <div>
-    <div class="bg-theavenue-background-extra-light rounded-lg inline-block px-4 py-2 mt-1 md:mt-2">
-      <div>
-        <span class="font-bold">{{ message.user.name }}</span>
-        <span v-if="isTip" class="text-sm text-avenue-grey">tipped</span>
-      </div>
-      <div class="text-avenue-grey flex">
-        <component
-          :is="comp.type"
-          v-for="(comp, index) in messageComponents"
-          :key="index"
-          :class="{ 'text-theavenue-green-neon font-library text-2xl': isTip }"
-        >
-          {{ isTip ? '$$$' : comp.message }}
-        </component>
-      </div>
+  <div
+    class="md:bg-theavenue-background-extra-light rounded-lg px-4 py-2 mt-1 md:mt-2 flex flex-row md:flex-col items-center md:items-start text-sm md:text-base"
+  >
+    <div>
+      <span class="font-bold">{{ message.user.name }}</span>
+      <span v-if="isTip" class="text-sm text-avenue-grey ml-3 md:ml-0">tipped</span>
+    </div>
+    <div class="text-avenue-grey flex ml-3 md:ml-0">
+      <component
+        :is="comp.type"
+        v-for="(comp, index) in messageComponents"
+        :key="index"
+        :class="{ 'text-theavenue-green-neon font-library text-2xl': isTip }"
+      >
+        {{ isTip ? '$$$' : comp.message }}
+      </component>
     </div>
   </div>
 </template>
