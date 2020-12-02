@@ -8,7 +8,7 @@
       class="relative bg-theavenue-black h-full w-full outline-none"
       playsinline
     />
-    <div class="dimmer-gradient-small w-full absolute top-0 left-0 h-full" />
+    <div class="hidden md:block dimmer-gradient-small w-full absolute top-0 left-0 h-full" />
     <IcPause
       v-if="play"
       class="hidden md:block cursor-pointer w-10 h-10 absolute left-0 bottom-0 ml-6 mb-4"
@@ -58,8 +58,7 @@ export default {
   },
 
   mounted() {
-    // const url = `https://stream.mux.com/${this.playbackId}.m3u8`
-    const url = 'https://stream.mux.com/7M69u5Vf02m3eAvJzjU9TVZ00YRanzpSKW8L02yMGYRvmk.m3u8'
+    const url = `https://stream.mux.com/${this.playbackId}.m3u8`
     this.video = this.$refs.streaming
 
     if (this.video && this.video.canPlayType('application/vnd.apple.mpegurl')) {
@@ -68,11 +67,10 @@ export default {
       const hls = new Hls()
       hls.loadSource(url)
       hls.attachMedia(this.video)
-      this.video.muted = this.muted
-      this.playVideo()
+      this.video.controls = false
     }
-
-    this.video.controls = false
+    this.video.muted = this.muted
+    this.playVideo()
   },
 
   methods: {
