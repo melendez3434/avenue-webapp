@@ -4,7 +4,7 @@
     <ChatMessages :key="$auth.loggedIn" ref="messages" class="flex-1" :event="event.id" />
     <client-only>
       <div
-        class=" bg-theavenue-background-extra-light h-20 flex items-center justify-center px-8 py-2"
+        class=" bg-theavenue-background-extra-light h-20 items-center justify-center px-8 py-2 hidden md:flex"
       >
         <div class="w-full flex rounded-lg bg-avenue-blue-dark items-center">
           <ChatRoomInput
@@ -53,6 +53,12 @@
 
           <IcTipjar slot="reference" class="h-20" />
         </el-popover>
+      </div>
+      <div class="block md:hidden">
+        <p class="text-xs text-theavenue-white px-2 py-3 text-center bg-theavenue-background-dark">
+          If you want to have a better experience that includes chating, please open The Avenue in a
+          desktop
+        </p>
       </div>
     </client-only>
   </div>

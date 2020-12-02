@@ -6,20 +6,21 @@
       controls
       controlsList="nofullscreen"
       class="relative bg-theavenue-black h-full w-full outline-none"
+      playsinline
     />
-    <div class="dimmer-gradient-small w-full absolute top-0 left-0 h-full" />
+    <div class="hidden md:block dimmer-gradient-small w-full absolute top-0 left-0 h-full" />
     <IcPause
       v-if="play"
-      class="cursor-pointer w-10 h-10 absolute left-0 bottom-0 ml-6 mb-4"
+      class="hidden md:block cursor-pointer w-10 h-10 absolute left-0 bottom-0 ml-6 mb-4"
       @click="pauseVideo"
     />
     <IcPlay
       v-else
-      class="cursor-pointer w-16 h-16 absolute left-0 bottom-0 ml-6 mb-4"
+      class="hidden md:block cursor-pointer w-16 h-16 absolute left-0 bottom-0 ml-6 mb-4"
       @click="playVideo"
     />
     <IcVolume
-      class="cursor-pointer w-10 h-10 absolute right-0 bottom-0 mr-6 mb-4"
+      class="hidden md:block cursor-pointer w-10 h-10 absolute right-0 bottom-0 mr-6 mb-4"
       :class="{ 'opacity-50': muted }"
       @click="toggleMute"
     />
@@ -66,11 +67,10 @@ export default {
       const hls = new Hls()
       hls.loadSource(url)
       hls.attachMedia(this.video)
-      this.video.muted = this.muted
-      this.playVideo()
+      this.video.controls = false
     }
-
-    this.video.controls = false
+    this.video.muted = this.muted
+    this.playVideo()
   },
 
   methods: {
