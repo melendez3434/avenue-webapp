@@ -86,18 +86,16 @@ export default {
   },
 
   watch: {
-    event: {
-      immediate: true,
-      handler() {
-        if (this.event && !this.listeningPresenceEvents) {
-          this.listenPresenceEvents()
-        }
-      },
+    event() {
+      if (this.listeningPresenceEvents) return
+
+      this.listenPresenceEvents()
     },
   },
 
   mounted() {
     this.listenMuxEvents()
+    this.listenPresenceEvents()
   },
 
   beforeDestroy() {
@@ -147,6 +145,8 @@ export default {
     },
 
     listenPresenceEvents() {
+      if (!this.event) return
+
       this.$echo
         .join(`event-presence.${this.event.id}`)
         .here(users => {
