@@ -71,6 +71,7 @@ export default {
         status: this.talent ? 'active' : this.event.talent.streaming_status,
       },
       usersOnline: [],
+      listeningPresenceEvents: false,
     }
   },
 
@@ -80,14 +81,23 @@ export default {
     },
 
     inactiveStreaming() {
-      return false
-      // return ['idle', 'disconnected', 'no-channel'].includes(this.streaming.status)
+      return ['idle', 'disconnected', 'no-channel'].includes(this.streaming.status)
+    },
+  },
+
+  watch: {
+    event: {
+      immediate: true,
+      handler() {
+        if (this.event && !this.listeningPresenceEvents) {
+          this.listenPresenceEvents()
+        }
+      },
     },
   },
 
   mounted() {
     this.listenMuxEvents()
-    this.listenPresenceEvents()
   },
 
   beforeDestroy() {
@@ -137,8 +147,6 @@ export default {
     },
 
     listenPresenceEvents() {
-      if (!this.event) return
-
       this.$echo
         .join(`event-presence.${this.event.id}`)
         .here(users => {
@@ -150,6 +158,8 @@ export default {
         .leaving(user => {
           this.usersOnline = this.usersOnline.filter(u => u.token !== user.token)
         })
+
+      this.listeningPresenceEvents = true
     },
   },
 }
