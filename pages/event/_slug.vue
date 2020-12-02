@@ -34,10 +34,6 @@ export default {
   },
 
   computed: {
-    startTimeZoneDate() {
-      return spacetime(this.event.starts_at, 'UTC').goto(this.userTimezone)
-    },
-
     eventStartTimeZoneDate() {
       return spacetime(this.event.starts_at, 'UTC')
         .goto(this.event.timezone)
@@ -47,12 +43,6 @@ export default {
     timezoneFormatted() {
       const [, city] = this.event.timezone.split('/')
       return city.replace('_', ' ')
-    },
-
-    dateFormatted() {
-      return this.startTimeZoneDate.format(
-        '{month-short} {date-pad}, {year} at {hour}:{minute-pad}{ampm}'
-      )
     },
   },
 
