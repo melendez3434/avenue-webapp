@@ -1,12 +1,8 @@
 <template>
   <el-popover placement="top" trigger="click">
-    <div v-if="event" class="shadow-solid rounded">
-      <AddToCalendar :event="event" />
-    </div>
-
     <div
       v-clipboard="urlWithEnter"
-      class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
+      class="flex items-center cursor-pointer space-x-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
       @success="showPopover"
     >
       <IcCopy />
@@ -28,6 +24,9 @@
         <IcSms />
         <span>Send SMS</span>
       </a>
+      <div v-if="event" class="shadow-solid rounded mt-2">
+        <AddToCalendar :event="event" />
+      </div>
     </template>
     <button
       slot="reference"

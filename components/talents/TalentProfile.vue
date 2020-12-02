@@ -17,7 +17,7 @@
           @click="scrollToAbout"
         />
         <div class="flex space-x-4">
-          <TalentSocialMedia :talent="talent" />
+          <TalentSocialMedia :talent="talent" :event="event" />
           <el-popover
             v-model="popover"
             placement="top-end"
@@ -69,6 +69,11 @@ export default {
     page: {
       type: Boolean,
       default: false,
+    },
+
+    event: {
+      type: Object,
+      default: null,
     },
   },
 

@@ -17,7 +17,7 @@
       <IcExternalLink class="w-6 h-6" />
       website
     </a>
-    <ShareButton />
+    <ShareButton :event="event" />
   </div>
 </template>
 
@@ -39,6 +39,11 @@ export default {
     talent: {
       type: Object,
       required: true,
+    },
+
+    event: {
+      type: Object,
+      default: null,
     },
   },
 

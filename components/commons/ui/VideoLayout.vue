@@ -15,7 +15,12 @@
         <div class="flex-1 flex justify-center"><slot name="streaming" /></div>
         <slot name="settings" />
       </div>
-      <TalentProfile v-else-if="event" class="hidden md:block" :talent="event.talent" />
+      <TalentProfile
+        v-else-if="event"
+        class="hidden md:block"
+        :talent="event.talent"
+        :event="event"
+      />
     </div>
     <div class="md:col-span-3 flex flex-col flex-1">
       <template v-if="event">
