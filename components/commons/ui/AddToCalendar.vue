@@ -5,7 +5,7 @@
     <span class="end">{{ end }}</span>
     <span class="timezone">{{ event.timezone }}</span>
     <span class="title">{{ title }}</span>
-    <span class="description">{{ event.talent.biography }}</span>
+    <span class="description">{{ `https://www.theavenue.live/event/${event.id}` }}</span>
     <span class="location">The Avenue</span>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
     },
 
     title() {
-      return `${this.event.talent.name}, performing live on The Avenue`
+      return `Watch ${this.event.talent.name} stream live on The Avenue`
     },
   },
 }

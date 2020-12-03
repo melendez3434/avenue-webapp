@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import spacetime from 'spacetime'
 import { clipboard } from 'vue-clipboards'
 import IcCopy from '@/assets/svg/copy.svg?inline'
 import IcMail from '@/assets/svg/mail.svg?inline'
@@ -78,11 +79,49 @@ export default {
     },
 
     emailUrl() {
-      return `mailto:?subject=${this.event.talent.name}, performing live on The Avenue&amp;body=Check out this site http://www.theavenue.live.`
+      const subject = encodeURI(`${this.event.name} on The Avenue. ${this.formattedEventDate}`)
+      const body = encodeURI(
+        `${this.event.talent.name} will be live streaming ${this.formattedEventDate} on The Avenue.\n\n${this.eventUrl}\n\n${this.event.talent.biography}\n\nGenre: ${this.event.category.name}\n\nThank you.\nThe Avenue`
+      )
+      return `mailto:?subject=${subject}&body=${body}`
     },
 
     smsUrl() {
-      return `sms:?body=${this.event.talent.name}, performing live on The Avenue&amp;body=Check out this site http://www.theavenue.live.`
+      const body = encodeURI(
+        `Watch ${this.event.talent.name} stream live, ${this.formattedEventDate}, on The Avenue.\n\n ${this.formattedEventDate} on The Avenue.\n\n${this.eventUrl}`
+      )
+      return `sms:?&body=${body}`
+    },
+
+    formattedEventDate() {
+      return `${this.eventDate} at ${this.eventStartTime} - ${this.eventEndTime} (${this.timezoneFormatted})`
+    },
+
+    eventDate() {
+      return spacetime(this.event.starts_at, 'UTC')
+        .goto(this.event.timezone)
+        .format('{month-short} {date-pad}, {year}')
+    },
+
+    eventStartTime() {
+      return spacetime(this.event.starts_at, 'UTC')
+        .goto(this.event.timezone)
+        .format('{hour}:{minute-pad}{ampm}')
+    },
+
+    eventEndTime() {
+      return spacetime(this.event.ends_at, 'UTC')
+        .goto(this.event.timezone)
+        .format('{hour}:{minute-pad}{ampm}')
+    },
+
+    eventUrl() {
+      return `https://www.theavenue.live/event/${this.event.id}`
+    },
+
+    timezoneFormatted() {
+      const [, city] = this.event.timezone.split('/')
+      return city.replace('_', ' ')
     },
   },
 
