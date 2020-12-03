@@ -88,7 +88,7 @@ export default {
 
     smsUrl() {
       const body = encodeURI(
-        `Watch ${this.event.talent.name} stream live, ${this.formattedEventDate}, on The Avenue.\n\n ${this.formattedEventDate} on The Avenue.\n\n${this.eventUrl}`
+        `Watch ${this.event.talent.name} stream live, ${this.formattedEventDate}, on The Avenue.\n\n${this.eventUrl}`
       )
       return `sms:?&body=${body}`
     },
