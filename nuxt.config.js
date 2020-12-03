@@ -32,7 +32,10 @@ export default {
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    script: [{ src: 'https://js.stripe.com/v3/' }],
+    script: [
+      { src: 'https://js.stripe.com/v3/' },
+      { src: 'https://addevent.com/libs/atc/1.6.1/atc.min.js', async: true, defer: true },
+    ],
   },
 
   /*
