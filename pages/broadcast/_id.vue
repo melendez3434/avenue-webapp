@@ -58,7 +58,7 @@
     >
       <div class="text-center py-8">
         <p class="text-xl text-avenue-white-light">
-          Event time is almost over. Do you want to extend it for 5 minutes?
+          Event time is almost over. Do you want to extend it for {{ extendMinutes }} minutes?
         </p>
         <p class="text-xs text-avenue-white">Payments are proccessed when the event is finished</p>
         <div class="flex items-center justify-center space-x-6 mt-5">
@@ -101,6 +101,7 @@ export default {
 
   data() {
     return {
+      extendMinutes: 10,
       error: false,
       playing: false,
       video: null,
@@ -277,7 +278,7 @@ export default {
     },
 
     extendTime() {
-      this.$api.events.extendTime(this.event.id)
+      this.$api.events.extendTime(this.event.id, this.extendMinutes)
       this.$modal.hide('extend-event-modal')
     },
 
