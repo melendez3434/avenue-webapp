@@ -332,13 +332,9 @@ export default {
 
 <style scoped>
 #container .prose ol > li::before {
-  content: 'counter(list-counter) ' . '';
+  content: '';
   position: absolute;
   left: 0;
   color: black;
-}
-
-#container .prose ol > li::marker {
-  content: '';
 }
 </style>
