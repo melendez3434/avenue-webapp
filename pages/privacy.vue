@@ -26,7 +26,7 @@
               that identifies, relates to, describes, references, or is reasonably capable of being
               associated with a particular consumer or device.
             </p>
-            <ol class="list-inside list-lower-alpha" type="a" start="a">
+            <ol class="list-outside list-lower-alpha" type="a" start="a">
               <li class="font-bold">Personal Information We Collect</li>
               <p>The Personal Information We Collect from You includes:</p>
               <p>Information you provide or upload directly to us or through our Website;</p>
@@ -335,6 +335,10 @@ export default {
   content: 'counter(list-counter) ' . '';
   position: absolute;
   left: 0;
-  color: red;
+  color: black;
+}
+
+#container .prose ol > li::marker {
+  content: '';
 }
 </style>
