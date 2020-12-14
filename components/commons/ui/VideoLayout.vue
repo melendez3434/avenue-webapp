@@ -171,7 +171,7 @@ export default {
 </script>
 <style scoped>
 .available-height {
-  height: calc(100vh - 3rem);
+  height: calc(100vh - 5rem);
 }
 .el-popper.el-popover.bg-theavenue-gray {
   @apply bg-theavenue-gray;
