@@ -1,5 +1,5 @@
 <template>
-  <form @submit="register">
+  <form class="pb-16 md:pb-0" @submit="register">
     <R64Input
       v-model="form.name"
       label="Name"
