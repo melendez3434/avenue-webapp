@@ -10,7 +10,7 @@
     />
     <R64Input
       v-model="form.cellphone"
-      label="Phone"
+      label="Cell Phone"
       name="phone"
       :v="$v.form.cellphone"
       error-message="Your phone is required"

@@ -3,296 +3,600 @@
     <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
       <div class="prose">
         <h1>Terms and Conditions</h1>
-        <p>Last updated: August 25, 2020</p>
+        <p>Last updated: December 14, 2020</p>
         <p>Please read these terms and conditions carefully before using Our Service.</p>
-        <h1>Interpretation and Definitions</h1>
-        <h2>Interpretation</h2>
+        <h2>I. Introduction: Your Agreement to these Terms of Service.</h2>
         <p>
-          The words of which the initial letter is capitalized have meanings defined under the
-          following conditions. The following definitions shall have the same meaning regardless of
-          whether they appear in singular or in plural.
-        </p>
-        <h2>Definitions</h2>
-        <p>For the purposes of these Terms and Conditions:</p>
-        <ul>
-          <li>
-            <p>
-              <strong>Affiliate</strong>
-              means an entity that controls, is controlled by or is under common control with a
-              party, where &quot;control&quot; means ownership of 50% or more of the shares, equity
-              interest or other securities entitled to vote for election of directors or other
-              managing authority.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Account</strong>
-              means a unique account created for You to access our Service or parts of our Service.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Country</strong>
-              refers to: Maryland, United States
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Company</strong>
-              (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or
-              &quot;Our&quot; in this Agreement) refers to Scororama LLC, 3040 CARLEE RUN CT
-              ELLICOTT CITY, MD 21042.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Device</strong>
-              means any device that can access the Service such as a computer, a cellphone or a
-              digital tablet.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Service</strong>
-              refers to the Website.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Terms and Conditions</strong>
-              (also referred as &quot;Terms&quot;) mean these Terms and Conditions that form the
-              entire agreement between You and the Company regarding the use of the Service.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Third-party Social Media Service</strong>
-              means any services or content (including data, information, products or services)
-              provided by a third-party that may be displayed, included or made available by the
-              Service.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Website</strong>
-              refers to theavenue.live, accessible from
-              <a href="https://theavenue.live" rel="external nofollow noopener" target="_blank">
-                https://theavenue.live
-              </a>
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>You</strong>
-              means the individual accessing or using the Service, or the company, or other legal
-              entity on behalf of which such individual is accessing or using the Service, as
-              applicable.
-            </p>
-          </li>
-        </ul>
-        <h1>Acknowledgment</h1>
-        <p>
-          These are the Terms and Conditions governing the use of this Service and the agreement
-          that operates between You and the Company. These Terms and Conditions set out the rights
-          and obligations of all users regarding the use of the Service.
+          Welcome to "The Avenue.live", a social network, streaming platform and digital performance
+          platform consisting of Web sites, services, software applications, and other applications
+          and features ("Services") of Scororama, LLC, a Maryland limited liability company ("We",
+          "Us" or "Our").
         </p>
         <p>
-          Your access to and use of the Service is conditioned on Your acceptance of and compliance
-          with these Terms and Conditions. These Terms and Conditions apply to all visitors, users
-          and others who access or use the Service.
+          The following terms of service (the
+          <strong>“Terms of Service”</strong>
+          ) for the Service is a legal contract between you, an individual user of at least 13 years
+          of age or a single entity (
+          <strong>“you”, "user", "User"</strong>
+          or, collectively,
+          <strong>“Users”</strong>
+          ), and Us regarding your use of the Service.
         </p>
         <p>
-          By accessing or using the Service You agree to be bound by these Terms and Conditions. If
-          You disagree with any part of these Terms and Conditions then You may not access the
+          By using and/or visiting the Service, The Avenue.live, you signify your agreement to (1)
+          the Terms of Service which include (2) Our privacy notice
+          <a href="https://www.theavenue.live/privacy_policy" target="_blank">
+            https://www.theavenue.live/privacy_policy
+          </a>
+          incorporated here by reference (the
+          <strong>“Privacy Policy”</strong>
+          ), and (3) Our talent agreement (the “
+          <strong>Talent Agreement</strong>
+          ”)
+          <a href="https://www.theavenue.live/talent" target="_blank">
+            (https://www.theavenue.live/talent
+          </a>
+          agreement) and (4) Our
+          <strong>“Scout Agreement”</strong>
+          ) (
+          <a href="https://www.TheAvenue.live/scout" target="_blank">
+            https://www.TheAvenue.live/scout
+          </a>
+          agreement)
+        </p>
+        <p>
+          We reserve the right at our discretion, to change, modify, add, or remove portions of the
+          Terms of Service at any time by posting amended terms to the Terms of Service. We will
+          attempt to notify you when material changes are made to the Terms of Service. Please check
+          the Terms of Service periodically for changes. Your continued use of the Service after the
+          posting of changes constitutes your binding acceptance of such changes.
+        </p>
+        <h2>II. Eligibility.</h2>
+        <p>
+          The Service is not available to persons under the age of 13 or to any users previously
+          suspended or removed from the Service by Us. BY USING THE SERVICE, YOU REPRESENT THAT YOU
+          ARE AT LEAST 13 YEARS OF AGE AND HAVE NOT BEEN PREVIOUSLY SUSPENDED OR REMOVED FROM THE
+          SERVICE.
+        </p>
+        <h2>III. Ownership of Materials; Limited License.</h2>
+        <p>
+          The data and materials on the Service, except the Talent Submissions (defined below),
+          including, without limitation, the text, graphics, interactive features, logos, photos,
+          music, videos, software, and all other audible and visual materials, as well as the
+          selection, organization, coordination, compilation and overall look and feel of Service
+          (collectively the “Materials” are the intellectual property of Us, our licensors and our
+          suppliers. The Materials are protected by copyright, trade dress, patent, trademark and
+          other laws, international conventions and proprietary rights and all ownership rights to
+          the Materials remain with Us, our licensors or our suppliers, as the case may be. All
+          trademarks, service marks, and trade names are proprietary to Us or our affiliates and/or
+          third party licensors. Except as expressly authorized by Us, you agree not to sell,
+          license, distribute, copy, modify, publicly perform or display, transmit, publish, edit,
+          adapt, create derivative works from, or otherwise make use of the Materials. If, with
+          authorization, you download or print a copy of the Materials for personal use, you must
+          retain all copyright, trademark, or other proprietary notices. We reserve all rights not
+          expressly granted in and to the Service and the Materials.
+        </p>
+        <h2>IV. Digital Millennium Copyright Act.</h2>
+        <p>
+          Our policy is to respond to notices of alleged infringement that comply with the Digital
+          Millennium Copyright Act (the
+          <strong>"DMCA"</strong>
+          ). We will promptly terminate without notice any User’s access to the Service if that User
+          is determined by Us to be a repeat infringer.
+        </p>
+        <p>
+          If you are a copyright owner or an authorized agent thereof (the “Copyright Owner”) and
+          believe that any content on the TheAvenue.live Service infringes your copyrights, you may
+          submit a notification pursuant to Title 17, United States Code, Section 512(c)(3), the
+          DMCA. This notification of claimed infringement must be a written communication provided
+          to the designated agent of Us that includes the following information:
+        </p>
+        <ol type="a">
+          <li>
+            A physical or electronic signature of a person authorized to act on behalf of the
+            Copyright Owner of an exclusive right that is allegedly infringed.
+          </li>
+          <li>
+            Identification of the copyrighted work claimed to have been infringed, or, if multiple
+            copyrighted works are covered by a single notification, a representative list of such
+            works.
+          </li>
+          <li>
+            Identification of the material that is claimed to be infringing or to be the subject of
+            infringing activity and that is to be removed or access to which is to be disabled, and
+            information reasonably sufficient to permit TheAvenue.Live to locate the material.
+          </li>
+        </ol>
+        <p>
+          TheAvenue.live’s registered designated copyright agent to receive notifications of claimed
+          infringement is: Julia Folkart, 3040 Carlee Run Court, Ellicott City, MD 21042. Please
+          email info@TheAvenue.live.
+        </p>
+        <h2>V. Our Service License Grant.</h2>
+        <p>
+          We enable “The Avenue.live” (a) certain users referred to herein as
+          <strong>"Talent"</strong>
+          to distribute and display streaming live videos (
+          <strong>"Performances"</strong>
+          ) and to distribute, post and display textual and photographic comments (
+          <strong>"Talent Comments"</strong>
+          ) and personally identifiable information commonly known as “name and likeness” (
+          <strong>"Talent Name and Likeness"</strong>
+          ) and (b) certain users referred to herein as
+          <strong>"Viewers"</strong>
+          to view The Avenue.live Performances and create textual and photographic comments (
+          <strong>"Viewer Comments"</strong>
+          ), and to transmit voluntary remuneration (
+          <strong>"Tips"</strong>
+          ) which are shared between Talent and Us. For the avoidance of doubt, Talent and Viewers
+          do not refer to different types of users, rather, the terms refer to the activity engaged
+          in by users. Performances, Talent Comments, Talent Names and Likeness, Viewer Comments
+          together with all other text, files, images, photos, videos, sounds, musical works, works
+          of authorship, applications, or any other materials submitted, displayed, published,
+          posted or transmitted through or on the Services by Talent and Viewers are collectively
+          referred to as
+          <strong>"User Submissions"</strong>
+          .
+        </p>
+        <p>
+          If you sign up for user account, subject to your compliance with the terms and conditions
+          set out in the Terms of Service, TheAvenue.live hereby grants to you a personal, limited,
+          non-exclusive, non-transferable, freely revocable license to use the Service for the
+          distributing of User Submissions.
+        </p>
+        <p>
+          User Submissions are streamed, stored and distributed at your own risk. Notwithstanding
+          any obligations hereunder of Us to protect User Submissions, We cannot guarantee that
+          there will be no unauthorized copying or distribution of User Submissions nor will We be
+          liable for any copying or usage of the User Submissions not authorized by Us.
+        </p>
+        <h2>VI. Talent and Viewer Content License Grant; Representations and Warranties.</h2>
+        <p>
+          You shall be solely responsible for your own User Submissions and the consequences of
+          posting or publishing them. In connection with User Submissions, you affirm, represent,
+          and/or warrant that: (A) you are the creator and owner of and/or have the necessary
+          licenses, rights, consents, releases and permissions to use and to authorize Us and all
+          Users to use your User Submissions as necessary to exercise the licenses granted by you in
+          this section and in the manner contemplated by Us, the Terms of Service and the Talent
+          Agreement; (B) your User Submissions do not and will not: (1) infringe, violate, or
+          misappropriate any third-party right, including any copyright, trademark, patient, trade
+          secret, moral right, privacy right, right of publicity, or any other intellectual property
+          or proprietary right or (2) slander, defame, or libel any other person; (3) contain any
+          viruses, adware, spyware, worms, or other malicious code. You warrant and represent that
+          your User Submission does not require a license by Broadcast Music, Inc., The American
+          Society of Composers, Authors and Publishers or SESAC, Inc. (the “PROS”).
+          <strong>
+            We do not pay royalties associated with the public performances of musical compositions
+            licensed by the Pros.
+          </strong>
+        </p>
+        <p>
+          You retain all of your ownership rights in your User Submissions. However, you hereby,
+          through, distributing or disseminating User Submissions through the Services, grant to Us
+          and Our successor a perpetual worldwide, non-exclusive, freely transferable, assignable,
+          fully paid-up, royalty-free, license to host, transfer, display, perform, reproduce,
+          create derivative works, distribute, compress or convert for streaming, and otherwise
+          exploit your User Submissions, in any media formats and through any media channels, in
+          order to publish or promote such User Submissions in connection with services offered or
+          to be offered by Us. Such license will apply to any form, media, or technology now known
+          or hereafter developed. The foregoing license includes, but is not limited to, the right
+          to reproduce, distribute, display, perform, make derivative works from or otherwise
+          exploit your User Submissions in proximity with or in connection with any third party
+          content.
+        </p>
+        <p>
+          We may rely on advertisers to help fund the Service. You agree that We may display
+          advertisements and promotions of all kinds in and with the Service. You understand that We
+          may have agreements with Web sites including revenue sharing from advertising or
+          transactions, and new user bounties. You understand that you are not entitled to any
+          benefits received by Us related to such advertisements or promotions. You further
+          understand that you may not sell, upload, or display advertisements, promotions, or
+          solicitations of business in and with the Service.
+        </p>
+        <p>
+          We will always have the right to use and display your name and likeness for advertising,
+          publicizing, and exploiting The Avenue.live Service.
+        </p>
+        <p>
+          By distributing or disseminating User Submissions through the Service, you hereby grant to
+          each user of the Service that is authorized to access your User Submissions a perpetual,
+          personal, non-commercial, non-transferable, non-exclusive license to access and view your
+          User Submissions.
+        </p>
+        <h2>VII. Your Use of User Submissions on through the TheAvenue.live Services.</h2>
+        <p>
+          You understand that when using the Service, you will be exposed to User Submissions from a
+          variety of sources, and that We are not responsible for the accuracy, usefulness, safety,
+          or intellectual property rights (except as otherwise explicitly stated) of or relating to
+          such User Submissions or other content. You further understand and acknowledge that you
+          may be exposed to User Submissions that are inaccurate, offensive, indecent, or
+          objectionable, and you agree to waive, and hereby do waive, any legal or equitable rights
+          or remedies you have or may have against Us with respect thereto. We do not endorse any
+          User Submissions or any opinion, recommendation, or advice expressed therein, and We
+          expressly disclaim any and all liability in connection with the User Submissions. YOU
+          AGREE TO WAIVE AND HEREBY DO WAIVE, ANY LEGAL OR EQUITABLE RIGHTS OR REMEDIES YOU HAVE OR
+          MAY HAVE AGAINST THEAVENUE.LIVE WITH RESPECT THERETO AND AGREE TO INDEMNIFY AND HOLD US,
+          OUR OWNERS/OPERATORS, AFFILIATES, SUPPLIERS, AND/OR LICENSORS HARMLESS TO THE FULLEST
+          EXTENT ALLOWED BY LAW REGARDING ALL MATTERS RELATED TO USER SUBMISSIONS AND YOUR USE OF
+          THE SERVICE.
+        </p>
+        <p>
+          User Submissions are made available to you for your information and personal use solely as
+          intended through the normal functionality of the Service. User Submissions are made
+          available “as is”, and may not be used, copied, reproduced, distributed, transmitted,
+          broadcast, displayed, sold, licensed, downloaded, or otherwise exploited in any manner not
+          intended by the normal functionality of the Service or otherwise as prohibited under the
+          Terms of Service. You may access User Submissions for your information and personal use
+          solely as intended through the provided functionality of the Service.
+        </p>
+        <p>
+          You agree not to circumvent, disable or otherwise interfere with security-related features
+          of the Service or features that prevent or restrict use or copying of any User Submissions
+          or enforce limitations on use of the Services or the User Submissions therein.
+        </p>
+        <h2>VIII. "Tips".</h2>
+        <p>
+          The Service provides Viewers the opportunity to voluntarily compensate Talent by
+          contributing “Tips.” Viewers pay “tips” through an independent third party merchant
+          processor (“Processor”). After deducting its processing fees, Processor remits directly to
+          Talent the share of “Tips” specified in the Talent Agreement. The remaining shares of
+          “Tips” is remitted to Us by Processor.
+        </p>
+        <h2>IX. Contests.</h2>
+        <p>
+          The Service provides Talent the opportunity to participate in contests exhibiting their
+          special skills. Viewers may participate by contributing “Tips” for their favorite
+          contestant. We will publish the rules of particular contests on our Website, including the
+          manner in which "Tips" will be apportioned.
+        </p>
+        <h2>X. Prohibited Conduct.</h2>
+        <p>
+          BY USING THE SERVICE YOU AGREE NOT TO:
+        </p>
+        <p>
+          Use the Service for any purposes other than to disseminate or receive original or
+          appropriately licensed content and/or to access the Service as such services are offered
+          by Us.
+        </p>
+        <p>
+          Rent, lease, loan, sell, resell, sublicense, distribute or otherwise transfer the licenses
+          granted herein or any Materials.
+        </p>
+        <p>
+          Post, upload, or distribute any defamatory, libelous, or inaccurate User Submissions or
+          other content.
+        </p>
+        <p>
+          Assume a misleading or false identity in connection with your User Submissions.
+        </p>
+        <p>
+          Post, upload, or distribute any User Submissions or other content that is unlawful or that
+          a reasonable person could deem to be objectionable, offensive, indecent, pornographic,
+          invasive of another’s privacy, harassing, threatening, embarrassing, distressing, hateful,
+          racially or ethnically offensive, or otherwise inappropriate.
+        </p>
+        <p>
+          Post, upload, or distribute any programs that contain viruses, worms and/or Trojan horses
+          or any other computer code, files or programs designed to interrupt, destroy or limit the
+          functionality of any computer software or hardware or telecommunications.
+        </p>
+        <p>
+          Impersonate any person or entity, falsely claim an affiliation with any person or entity,
+          or access the Service accounts of others without permission, forge another persons’
+          digital signature, misrepresent the source, identity, or content of information
+          transmitted via the Service, or perform any other similar fraudulent activity.
+        </p>
+        <p>
+          Make unsolicited offers, advertisements, proposals, or send junk mail or spam to other
+          users of the Service. This includes, but is not limited to, unsolicited advertising,
+          promotional materials, or other solicitation material, bulk mailing of commercial
+          advertising, chain mail, informational announcements, charity requests, and petitions for
+          signatures.
+        </p>
+        <p>
+          Use of the Service for any illegal purpose, or in violation of any local, state, national,
+          or international law, including, without limitation, laws governing intellectual property
+          and other proprietary rights, and data protection and privacy.
+        </p>
+        <p>
+          Defame, harass, abuse, threaten or defraud Users of the Service, or collect, or attempt to
+          collect, personal information about Users or third parties without their consent.
+        </p>
+        <p>
+          Remove, circumvent, disable, damage or otherwise interfere with security-related features
+          of the Service or User Submissions, features that prevent or restrict use or copying of
+          any content accessible through the Service, or features that enforce limitations on the
+          use of the Service or User Submissions.
+        </p>
+        <p>
+          Reverse engineer, decompile, disassemble or otherwise attempt to discover the source code
+          of the Service of any part thereof, except and only to the extent that such activity is
+          expressly permitted by applicable law notwithstanding this limitation.
+        </p>
+        <p>
+          Modify, adapt, translate or create derivative works based upon the Service or any part
+          thereof, except and only to the extent that such activity is expressly permitted by
+          applicable law notwithstanding this limitation.
+        </p>
+        <p>
+          Intentionally interfere with or damage operation of the Service or any User’s enjoyment of
+          them, by any means, including uploading or otherwise disseminating viruses, adware,
+          spyware, worms, or other malicious code.
+        </p>
+        <p>
+          Relay email from a third party’s mail servers without the permission of that third party.
+        </p>
+        <p>
+          Use any robot, spider, scraper, or other automated means to access the Service for any
+          purpose or bypass any measures Service may use to prevent or restrict access to the
           Service.
         </p>
         <p>
-          You represent that you are over the age of 18. The Company does not permit those under 18
-          to use the Service.
+          Manipulate identifiers in order to disguise the origin of any User Submissions transmitted
+          through the Service; or interfere with or disrupt the Service or servers or networks
+          connected to the Service, or disobey any requirements, procedures, policies or regulations
+          of networks connected to the Service.
         </p>
         <p>
-          Your access to and use of the Service is also conditioned on Your acceptance of and
-          compliance with the Privacy Policy of the Company. Our Privacy Policy describes Our
-          policies and procedures on the collection, use and disclosure of Your personal information
-          when You use the Application or the Website and tells You about Your privacy rights and
-          how the law protects You. Please read Our Privacy Policy carefully before using Our
-          Service.
+          Disrupt the normal flow of dialogue, cause a screen to scroll faster than other users are
+          able to type, or otherwise act in a way which affects the ability of other people to
+          engage in real time activities via the Services.
         </p>
-        <h1>User Accounts</h1>
+        <h2>XI. Account.</h2>
         <p>
-          When You create an account with Us, You must provide Us information that is accurate,
-          complete, and current at all times. Failure to do so constitutes a breach of the Terms,
-          which may result in immediate termination of Your account on Our Service.
+          When you use the Service to upload and/or download content or any products, services, or
+          information from Us or participate in a Contest, you may be asked to provide a password.
+          You are solely responsible for maintaining the confidentiality of your account and
+          password and for restricting access to your computer, and you agree to accept
+          responsibility for all activities that occur under your account or password. You agree
+          that the information you provide to Us on registration and at all other times will be
+          true, accurate, current, and complete. You also agree that you will ensure that this
+          information is kept accurate and up-to-date at all times. If you have reason to believe
+          that your account is no longer secure, then you agree to immediately notify Us. You may be
+          liable for the losses incurred by Us or others due to any unauthorized use of your Service
+          account.
         </p>
+        <h2>XII. Third-Party Sites, Products and Services; Links.</h2>
         <p>
-          You are responsible for safeguarding the password that You use to access the Service and
-          for any activities or actions under Your password, whether Your password is with Our
-          Service or a Third-Party Social Media Service.
+          The Service may include links or references to other Web sites or services to Users,
+          including Third Party Merchant Processor (
+          <strong>"Third Party Sites"</strong>
+          ). We do not have operational control of any such Third Party Sites. We do not endorse the
+          information, materials, products, or services contained on or accessible through Third
+          Party Sites. In addition, your correspondence or business dealings with, or participation
+          in promotions of, advertisers found on or through the Service are solely between you and
+          such advertiser. Access and use of Third Party Sites, including the information,
+          materials, products, and services on or available through Third Party Sites is solely at
+          your own risk.
         </p>
+        <h2>XIII. Termination: Terms of Service Violations.</h2>
         <p>
-          You agree not to disclose Your password to any third party. You must notify Us immediately
-          upon becoming aware of any breach of security or unauthorized use of Your account.
-        </p>
-        <p>
-          You may not use as a username the name of another person or entity or that is not lawfully
-          available for use, a name or trademark that is subject to any rights of another person or
-          entity other than You without appropriate authorization, or a name that is otherwise
-          offensive, vulgar or obscene.
-        </p>
-        <h1>Intellectual Property</h1>
-        <p>
-          The Service and its original content (excluding Content provided by You or other users),
-          features and functionality are and will remain the exclusive property of the Company and
-          its licensors.
-        </p>
-        <p>
-          The Service is protected by copyright, trademark, and other laws of both the Country and
-          foreign countries.
-        </p>
-        <p>
-          Our trademarks and trade dress may not be used in connection with any product or service
-          without the prior written consent of the Company.
-        </p>
-        <h1>Links to Other Websites</h1>
-        <p>
-          Our Service may contain links to third-party web sites or services that are not owned or
-          controlled by the Company.
+          You agree that We, in our sole discretion, for any or no reason, and without penalty, may
+          terminate any account (or any part thereof) you may have with Us or your use of the
+          Service and remove and discard all or any part of your account, user profile, and any User
+          Submissions, at any time. We may also in its sole discretion and at any time discontinue
+          providing access to the Service, or any part thereof, with or without notice. You agree
+          that any termination of your access to the Service, or any account you may have or portion
+          thereof may be effected without prior notice, and you agree that We will not be liable to
+          you or any third party for any such termination. Any suspected fraudulent, abusive or
+          illegal activity may be referred to appropriate law enforcement authorities. These
+          remedies are in addition to any other remedies We may have at law or in equity.
         </p>
         <p>
-          The Company has no control over, and assumes no responsibility for, the content, privacy
-          policies, or practices of any third party web sites or services. You further acknowledge
-          and agree that the Company shall not be responsible or liable, directly or indirectly, for
-          any damage or loss caused or alleged to be caused by or in connection with the use of or
-          reliance on any such content, goods or services available on or through any such web sites
-          or services.
+          Your only remedy with respect to any dissatisfaction with the Service, any term of the
+          Terms of Service, any policy or practice of Us in operating the Service, or any content or
+          information transmitted through the Service, is to terminate the Terms of Service and your
+          account. You may terminate the Terms of Service at any time by discontinuing use of any
+          and all parts of the Service.
+        </p>
+        <h2>XIV. Indemnification.</h2>
+        <p>
+          You agree to indemnity, save and hold Us, our affiliate companies, contractors, employees,
+          agents and its third-party suppliers, licensors, and partners harmless from any claims,
+          losses, damages, liabilities, including legal fees and expenses, arising out of your use
+          or misuse of the Service, any violation by you of the Terms of Service, or any breach of
+          the representations, warranties, and covenants made by you herein. We reserve the right,
+          at your expense, to assume the exclusive defense and control of any matter for which you
+          are required to indemnify Us, and you agree to cooperate with Our defense of these claims.
+          We will use reasonable efforts to notify you of any such claim, action, or proceeding upon
+          becoming aware of it.
+        </p>
+        <h2>XV. Disclaimers; No Warranties.</h2>
+        <p class="underline">
+          No warranties.
         </p>
         <p>
-          We strongly advise You to read the terms and conditions and privacy policies of any
-          third-party web sites or services that You visit.
+          TO THE FULLEST EXTENT PERMISSIBLE PURSUANT TO APPLICABLE LAW, WE AND OUR AFFILIATES,
+          PARTNERS, AND SUPPLIERS DISCLAIM ALL WARRANTIES, STATUTORY, EXPRESS OR IMPLIED, INCLUDING,
+          BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+          PURPOSE, AND NON-INFRINGEMENT OF PROPRIETARY RIGHTS. NO ADVICE OR INFORMATION, WHETHER
+          ORAL OR WRITTEN, OBTAINED BY YOU FROM US OR THROUGH THE SERVICE WILL CREATE ANY WARRANTY
+          NOT EXPRESSLY STATED HEREIN. YOU EXPRESSLY ACKNOWLEDGE THAT AS USED IN THIS SECTION XIV,
+          THE TERM THEAVENUE.LIVE INCLUDES OUR OFFICERS, DIRECTORS, EMPLOYEES, CONTRACTORS, MEMBERS,
+          AGENTS, LICENSORS AND SUBCONTRACTORS.
         </p>
-        <h1>Termination</h1>
+        <p class="underline">“As is” and “As available” and “With All Faults”.</p>
         <p>
-          We may terminate or suspend Your Account immediately, without prior notice or liability,
-          for any reason whatsoever, including without limitation if You breach these Terms and
-          Conditions.
+          YOU EXPRESSLY AGREE THAT THE USE OF THE SERVICE IS AT YOUR SOLE RISK. THE SERVICE AND ANY
+          DATA, INFORMATION, THIRD-PARTY SOFTWARE, CONTENT (INCLUDING USER SUBMISSIONS), THIRD PARTY
+          SITES, SERVICES, OR APPLICATIONS MADE AVAILABLE IN CONJUNCTION WITH OR THROUGH THE SERVICE
+          ARE PROVIDED ON AN “AS IS” AND “AS AVAILABLE”, “WITH ALL FAULTS” BASIS AND WITHOUT
+          WARRANTIES OR REPRESENTATIONS OF ANY KIND EITHER EXPRESS OR IMPLIED.
         </p>
+        <p class="underline">Service Operation and User Submissions.</p>
         <p>
-          Upon termination, Your right to use the Service will cease immediately. If You wish to
-          terminate Your Account, You may simply discontinue using the Service.
+          WE, OUR SUPPLIERS, LICENSORS, AFFILIATES, AND PARTNERS DO NOT WARRANT THAT THE DATA,
+          CONTENT, FUNCTIONS, OR ANY OTHER INFORMATION OFFERED ON OR THROUGH THE SERVICE OR ANY
+          THIRD PARTY SITES WILL BE UNINTERRUPTED, OR FREE OF ERRORS, VIRUSES OR OTHER HARMFUL
+          COMPONENTS AND DO NOT WARRANT THAT ANY OF THE FOREGOING WILL BE CORRECTED.
         </p>
-        <h1>Limitation of Liability</h1>
+        <p class="underline">Accuracy.</p>
         <p>
-          Notwithstanding any damages that You might incur, the entire liability of the Company and
-          any of its suppliers under any provision of this Terms and Your exclusive remedy for all
-          of the foregoing shall be limited to the amount actually paid by You through the Service
-          or 100 USD if You haven't purchased anything through the Service.
+          WE, OUR SUPPLIERS, LICENSORS, AFFILIATES, AND PARTNERS DO NOT WARRANT OR MAKE ANY
+          REPRESENTATIONS REGARDING THE USE OR THE RESULTS OF THE USE OF THE SERVICES OR ANY THIRD
+          PARTY SITES IN TERMS OF CORRECTNESS, ACCURACY, RELIABILITY, OR OTHERWISE.
         </p>
+        <p class="underline">Harm to Your Computer.</p>
         <p>
-          To the maximum extent permitted by applicable law, in no event shall the Company or its
-          suppliers be liable for any special, incidental, indirect, or consequential damages
-          whatsoever (including, but not limited to, damages for loss of profits, loss of data or
-          other information, for business interruption, for personal injury, loss of privacy arising
-          out of or in any way related to the use of or inability to use the Service, third-party
-          software and/or third-party hardware used with the Service, or otherwise in connection
-          with any provision of this Terms), even if the Company or any supplier has been advised of
-          the possibility of such damages and even if the remedy fails of its essential purpose.
+          YOU UNDERSTAND AND AGREE THAT YOU USE, ACCESS, DOWNLOAD, OR OTHERWISE OBTAIN INFORMATION,
+          MATERIALS, OR DATA THROUGH THE SERVICE OR ANY THIRD PARTY SITES AT YOUR OWN DISCRETION AND
+          RISK AND THAT YOU WILL BE SOLELY RESPONSIBLE FOR ANY DAMAGE TO YOUR PROPERTY (INCLUDING
+          YOUR COMPUTER SYSTEM) OR LOSS OF DATA THAT RESULTS FROM THE DOWNLOAD OR USE OF SUCH
+          MATERIAL OR DATA.
         </p>
+        <p class="underline">Uploaded Content.</p>
         <p>
-          Some states do not allow the exclusion of implied warranties or limitation of liability
-          for incidental or consequential damages, which means that some of the above limitations
-          may not apply. In these states, each party's liability will be limited to the greatest
-          extent permitted by law.
+          THE SECURITY MEASURES TO PROTECT USER SUBMISSIONS USED BY US HEREIN ARE WITH NO ASSURANCES
+          THAT SUCH SECURITY MEASURES WILL WITHSTAND ATTEMPS TO EVADE SECURITY MECHANISMS OR THAT
+          THERE WILL BE NO CRACKS, DISABLEMENTS OR OTHER CIRCUMVENTION OF SUCH SECURITY MEASURES.
         </p>
-        <h1>&quot;AS IS&quot; and &quot;AS AVAILABLE&quot; Disclaimer</h1>
+        <p class="underline">Internet Interruption and Web Site Contamination.</p>
         <p>
-          The Service is provided to You &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; and with all
-          faults and defects without warranty of any kind. To the maximum extent permitted under
-          applicable law, the Company, on its own behalf and on behalf of its Affiliates and its and
-          their respective licensors and service providers, expressly disclaims all warranties,
-          whether express, implied, statutory or otherwise, with respect to the Service, including
-          all implied warranties of merchantability, fitness for a particular purpose, title and
-          non-infringement, and warranties that may arise out of course of dealing, course of
-          performance, usage or trade practice. Without limitation to the foregoing, the Company
-          provides no warranty or undertaking, and makes no representation of any kind that the
-          Service will meet Your requirements, achieve any intended results, be compatible or work
-          with any other software, applications, systems or services, operate without interruption,
-          meet any performance or reliability standards or be error free or that any errors or
-          defects can or will be corrected.
+          WE ARE NOT RESPONSIBLE TO USER FOR ANY INTERRUPTION OF ACCESS TO OUR WEB SITE FOR ANY
+          REASON, OR FOR CONTAMINATION, VIRUS, OR INFECTION THAT CAUSES DAMAGES TO USER’S CONTENT
+          UPLOADED ONTO THE AVENUE.LIVE WEB SITE. WE ARE NOT RESPONSIBLE FOR ANY LOSS OR REVENUE OR
+          GOODWILL TO USER DUE TO ANY INTERRUPTION OR CONTAMINATION OR DUE TO ANY OTHER REASON,
+          INCLUDING BUT NOT LIMITED TO ANY DAMAGE TO USER’S REPUTATION THAT MAY RESULT.
         </p>
+        <h2>XVI. Limitation of Liability and Damages.</h2>
+        <p class="underline">Limitation of Liability.</p>
         <p>
-          Without limiting the foregoing, neither the Company nor any of the company's provider
-          makes any representation or warranty of any kind, express or implied: (i) as to the
-          operation or availability of the Service, or the information, content, and materials or
-          products included thereon; (ii) that the Service will be uninterrupted or error-free;
-          (iii) as to the accuracy, reliability, or currency of any information or content provided
-          through the Service; or (iv) that the Service, its servers, the content, or e-mails sent
-          from or on behalf of the Company are free of viruses, scripts, trojan horses, worms,
-          malware, timebombs or other harmful components.
+          UNDER NO CIRCUMSTANCES, INCLUDING, BUT NOT LIMITED TO, NEGLIGENCE, WILL US OR ITS
+          AFFILIATES, CONTRACTORS, EMPLOYEES, AGENTS, OR THIRD-PARTY PARTNERS, LICENSORS, OR
+          SUPPLIERS BE LIABLE FOR ANY SPECIAL, INDIRECT, INCIDENTAL, CONSEQUENTIAL, PUNITIVE,
+          RELIANCE, OR EXEMPLARY DAMAGES (INCLUDING WITHOUT LIMITATION DAMAGES ARISING FROM ANY
+          UNSUCCESSFUL COURT ACTION OR LEGAL DISPUTE, LOST BUSINESS, LOST REVENUES OR LOSS OF
+          ANTICIPATED PROFITS OR ANY OTHER PECUNIARY OR NON-PECUNIARY LOSS OR DAMAGE OF ANY NATURE
+          WHATSOEVER) ARISING OUT OF OR RELATING TO THESE TERMS OR THAT RESULT FROM YOUR USE OR YOUR
+          INABILITY TO USE THE MATERIALS (INCLUDING USER SUBMISSIONS) ON THE SERVICES OR ANY THIRD
+          PARTY SITES, OR ANY OTHER INTERACTIONS WITH US EVEN IF WE OR OUR AUTHORIZED REPRESENTATIVE
+          HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
         </p>
+        <p class="underline">Limitation of Damages.</p>
         <p>
-          Some jurisdictions do not allow the exclusion of certain types of warranties or
-          limitations on applicable statutory rights of a consumer, so some or all of the above
-          exclusions and limitations may not apply to You. But in such a case the exclusions and
-          limitations set forth in this section shall be applied to the greatest extent enforceable
-          under applicable law.
+          IN NO EVENT WILL WE OR ITS AFFILIATES, CONTRACTORS, EMPLOYEES, AGENTS, OR THIRD-PARTY
+          PARTNERS, LICENSORS, OR SUPPLIERS TOTAL LIABILITY TO YOU FOR ALL DAMAGES, LOSSES, AND
+          CAUSES OF ACTION ARISING OUT OF OR RELATING TO THESE TERMS OR YOUR USE OF THE SERVICES OR
+          YOUR INTERACTION WITH OTHER SERVICE USERS (WHETHER IN CONTRACT, TORT INCLUDING NEGLIGENCE,
+          WARRANTY, OR OTHERWISE), EXCEED THE AMOUNT PAID BY YOU, IF ANY, FOR ACCESSING THE SERVICES
+          DURING THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE DATE OF THE CLAIM OR ONE HUNDRED
+          DOLLARS, WHICHEVER IS GREATER.
         </p>
-        <h1>Governing Law</h1>
+        <p class="underline">Third Party Sites.</p>
         <p>
-          The laws of the Country, excluding its conflicts of law rules, shall govern this Terms and
-          Your use of the Service. Your use of the Application may also be subject to other local,
-          state, national, or international laws.
+          THESE LIMITATIONS OF LIABILITY ALSO APPLY WITH RESPECT TO DAMAGES INCURRED BY YOU BY
+          REASON OF ANY PRODUCTS OR SERVICES SOLD OR PROVIDED ON ANY THIRD PARTY SITES OR OTHERWISE
+          BY THIRD PARTIES OTHER THAN US AND RECEIVED THROUGH OR ADVERTISED ON THE THEAVENUE.LIVE
+          SERVICES OR RECEIVED THROUGH ANY REFERENCE SITES.
         </p>
-        <h1>Disputes Resolution</h1>
+        <p class="underline">Basis of the Bargain.</p>
         <p>
-          If You have any concern or dispute about the Service, You agree to first try to resolve
-          the dispute informally by contacting the Company.
+          YOU ACKNOWLEDGE AND AGREE THAT THEAVENUE.LIVE HAS OFFERED ITS PRODUCTS AND SERVICES, SET
+          ITS PRICES, AND ENTERED INTO THESE TERMS IN RELIANCE UPON THE WARRANTY DISCLAIMERS AND THE
+          LIMITATIONS OF LIABILITY SET FORTH HEREIN, THAT THE WARRANTY DISCLAIMERS AND THE
+          LIMITATIONS OF LIABILITY SET FORTH HEREIN REFLECT A REASONABLE AND FAIR ALLOCATION OF RISK
+          BETWEEN YOU AND US, AND THAT THE WARRANTY DISCLAIMERS AND THE LIMITATIONS OF LIABILITY SET
+          FORTH HEREIN FORM AN ESSENTIAL BASIS OF THE BARGAIN BETWEEN YOU AND US. WE WOULD NOT BE
+          ABLE TO PROVIDE THE SERVICES TO YOU ON AN ECONOMICALLY REASONABLE BASIS WITHOUT THESE
+          LIMITATIONS.
         </p>
-        <h1>For European Union (EU) Users</h1>
+        <p class="underline">Limitations by Applicable Law.</p>
         <p>
-          If You are a European Union consumer, you will benefit from any mandatory provisions of
-          the law of the country in which you are resident in.
+          CERTAIN JURISDICTIONS DO NOT ALLOW LIMITATIONS ON IMPLIED WARRANTIES OR THE EXCLUSION OR
+          LIMITATION OF CERTAIN DAMAGES. IF YOU RESIDE IN SUCH A JURISDICTION, SOME OR ALL OF THE
+          ABOVE DISCLAIMERS, EXCLUSIONS, OR LIMITATIONS MAY NOT APPLY TO YOU, AND YOU MAY HAVE
+          ADDITIONAL RIGHTS. THE LIMITATIONS OR EXCLUSIONS OF WARRANTIES, REMEDIES OR LIABILITY
+          CONTAINED IN THE TERMS OF SERVICE APPLY TO YOU TO THE FULLEST EXTENT SUCH LIMITATIONS OR
+          EXCLUSIONS ARE PERMITTED UNDER THE LAWS OF THE JURISDICTION WHERE YOU ARE LOCATED.
         </p>
-        <h1>United States Legal Compliance</h1>
+        <h2>XVII. United States Export Controls.</h2>
         <p>
-          You represent and warrant that (i) You are not located in a country that is subject to the
-          United States government embargo, or that has been designated by the United States
-          government as a &quot;terrorist supporting&quot; country, and (ii) You are not listed on
-          any United States government list of prohibited or restricted parties.
+          You agree to comply with all export laws and restrictions and regulations of the United
+          States Department of Commerce or other United States or other sovereign agency or
+          authority, and not to export, or allow the export or re-export of any software, technical
+          data or any direct product thereof in violation of any such restrictions, laws or
+          regulations, or unless and until all required licenses and authorizations are obtained
+          with respect to the countries specified in the applicable United States Export
+          Administration Regulations (or any successor supplement or regulations). The transfer of
+          certain technical data and commodities may require a license from an agency of the United
+          States government and/or written assurances by you that you will not export such software,
+          technical data or commodities to certain foreign countries without prior approval of such
+          agency. Your rights under the Terms of Service are contingent on your compliance with this
+          provision.
         </p>
-        <h1>Severability and Waiver</h1>
-        <h2>Severability</h2>
+        <h2>XVIII. Miscellaneous.</h2>
+        <p class="underline">Notice.</p>
         <p>
-          If any provision of these Terms is held to be unenforceable or invalid, such provision
-          will be changed and interpreted to accomplish the objectives of such provision to the
-          greatest extent possible under applicable law and the remaining provisions will continue
-          in full force and effect.
+          We may provide you with notices by email, regular mail or postings on the Service. Notice
+          will be deemed given twenty-four hours after email is sent, unless WE are notified that
+          the email address is invalid. Alternatively, we may give you legal notice by mail to a
+          postal address, if provided by you through the Service. In such case, notice will be
+          deemed given three days after the date of mailing. Notice posted on the Service is deemed
+          given 24 hours following the initial posting. Notwithstanding the foregoing, your
+          continued use of the Service after the posting of any changes to the Terms of Service
+          constitutes your binding acceptance of such changes.
         </p>
-        <h2>Waiver</h2>
+        <p class="underline">Prevention of Unauthorized Use.</p>
         <p>
-          Except as provided herein, the failure to exercise a right or to require performance of an
-          obligation under this Terms shall not effect a party's ability to exercise such right or
-          require such performance at any time thereafter nor shall be the waiver of a breach
-          constitute a waiver of any subsequent breach.
+          We reserve the right to exercise whatever lawful means it deems necessary to prevent
+          unauthorized use of the Service, including, but not limited to, technological barriers, IP
+          mapping, and directly contacting your Internet Service Provider (ISP) regarding such
+          unauthorized use.
         </p>
-        <h1>Translation Interpretation</h1>
+        <p class="underline">Waiver.</p>
         <p>
-          These Terms and Conditions may have been translated if We have made them available to You
-          on our Service. You agree that the original English text shall prevail in the case of a
-          dispute.
+          Our failure to exercise or enforce any right or provision of these Terms will not
+          constitute a waiver of such right or provision. Any waiver of any provision of these Terms
+          will be effective only if in writing and signed by Us.
         </p>
-        <h1>Changes to These Terms and Conditions</h1>
+        <p class="underline">Governing Law.</p>
         <p>
-          We reserve the right, at Our sole discretion, to modify or replace these Terms at any
-          time. If a revision is material We will make reasonable efforts to provide at least 30
-          days' notice prior to any new terms taking effect. What constitutes a material change will
-          be determined at Our sole discretion.
+          These Terms of Service will be governed by and construed in accordance with the laws of
+          the State of Maryland, without giving effect to any principles of conflicts of law.
         </p>
+        <p class="underline">Jurisdiction.</p>
         <p>
-          By continuing to access or use Our Service after those revisions become effective, You
-          agree to be bound by the revised terms. If You do not agree to the new terms, in whole or
-          in part, please stop using the website and the Service.
+          You agree that any action at law or in equity arising out of or relating to these Terms of
+          Service or Us will be filed only in the state or federal courts in and for the State or
+          Federal District of Maryland, and you hereby consent and submit to the personal and
+          exclusive jurisdiction of such courts for the purposes of litigating any such action.
         </p>
-        <h1>Contact Us</h1>
+        <p class="underline">Severability.</p>
+        <p>
+          If any provision of the Terms of Service is held to be unlawful, void, or for any reason
+          unenforceable, then that provision will be limited or eliminated from the Terms of Service
+          to the minimum extent necessary and will not affect the validity and enforceability of any
+          remaining provisions.
+        </p>
+        <p class="underline">Assignment.</p>
+        <p>
+          The Terms of Service, and any rights and licenses granted hereunder, may not be
+          transferred or assigned by you, but may be assigned by TheAvenue.Live without restriction.
+          Any assignment attempted to be made in violation of the Terms of Service shall be void.
+        </p>
+        <p class="underline">Survival.</p>
+        <p>
+          Upon termination of the Terms of Service, any provisions, which, by its nature or express
+          terms should survive, will survive such termination or expiration.
+        </p>
+        <p class="underline">Headings.</p>
+        <p>
+          The heading references herein are for convenience purposes only, do not constitute a part
+          of the Terms of Service, and will not be deemed to limit or affect any of the provisions
+          hereof.
+        </p>
+        <p class="underline">Claims.</p>
+        <p>
+          YOU AND THEAVENUE.LIVE AGREE THAT ANY CAUSE OF ACTION ARISING OUT OF OR RELATED TO OUR
+          SERVICE MUST COMMENCE WITHIN ONE (1) YEAR AFTER THE CAUSE OF ACTION ACCRUES. OTHERWISE,
+          SUCH CAUSE OF ACTION IS PERMANENTLY BARRED.
+        </p>
+        <p class="und">Disclosures.</p>
+        <p>
+          The services are offered by Scororama, LLC, 3040 Carlee Run Court, Ellicott City, MD
+          21042. Please email info@TheAvenue.live.
+        </p>
+        <h2>Contact Us</h2>
         <p>If you have any questions about these Terms and Conditions, You can contact us:</p>
         <ul>
           <li>
