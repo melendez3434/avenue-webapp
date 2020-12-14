@@ -1,6 +1,9 @@
 <template>
   <div class="pt-24 bg-white text-black">
-    <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+    <div
+      id="container"
+      class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center"
+    >
       <div class="prose">
         <h1>Privacy Policy</h1>
         <p>Last updated: December 1, 2020</p>
@@ -326,3 +329,12 @@ export default {
   auth: false,
 }
 </script>
+
+<style scoped>
+#container .prose ol > li::before {
+  content: 'counter(list-counter) ' . '';
+  position: absolute;
+  left: 0;
+  color: red;
+}
+</style>
