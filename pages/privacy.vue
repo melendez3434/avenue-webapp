@@ -17,7 +17,7 @@
           You or Your.” By using our Website or Services, You expressly accept this Privacy Policy,
           the terms of which are incorporated herein as part of our Terms of Service.
         </p>
-        <ol class="list-decimal list-outside">
+        <ol class="list-decimal">
           <li>
             <span class="font-bold">Personal Information</span>
             <p>
@@ -26,7 +26,7 @@
               that identifies, relates to, describes, references, or is reasonably capable of being
               associated with a particular consumer or device.
             </p>
-            <ol class="list-outside list-lower-alpha" type="a" start="a">
+            <ol class="list-inside list-lower-alpha" type="a" start="a">
               <li class="font-bold">Personal Information We Collect</li>
               <p>The Personal Information We Collect from You includes:</p>
               <p>Information you provide or upload directly to us or through our Website;</p>
@@ -333,8 +333,5 @@ export default {
 <style scoped>
 #container .prose ol > li::before {
   content: '';
-  position: absolute;
-  left: 0;
-  color: black;
 }
 </style>
