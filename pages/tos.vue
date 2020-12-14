@@ -58,7 +58,7 @@
           ARE AT LEAST 13 YEARS OF AGE AND HAVE NOT BEEN PREVIOUSLY SUSPENDED OR REMOVED FROM THE
           SERVICE.
         </p>
-        <h2>III. Ownership of Materials; Limited License.</h2>
+        <h2>III. Ownership of Materials. Limited License.</h2>
         <p>
           The data and materials on the Service, except the Talent Submissions (defined below),
           including, without limitation, the text, graphics, interactive features, logos, photos,
@@ -150,7 +150,7 @@
           there will be no unauthorized copying or distribution of User Submissions nor will We be
           liable for any copying or usage of the User Submissions not authorized by Us.
         </p>
-        <h2>VI. Talent and Viewer Content License Grant; Representations and Warranties.</h2>
+        <h2>VI. Talent and Viewer Content License Grant. Representations and Warranties.</h2>
         <p>
           You shall be solely responsible for your own User Submissions and the consequences of
           posting or publishing them. In connection with User Submissions, you affirm, represent,
@@ -234,7 +234,7 @@
           of the Service or features that prevent or restrict use or copying of any User Submissions
           or enforce limitations on use of the Services or the User Submissions therein.
         </p>
-        <h2>VIII. "Tips".</h2>
+        <h2>VIII. "Tips."</h2>
         <p>
           The Service provides Viewers the opportunity to voluntarily compensate Talent by
           contributing “Tips.” Viewers pay “tips” through an independent third party merchant
@@ -356,7 +356,7 @@
           liable for the losses incurred by Us or others due to any unauthorized use of your Service
           account.
         </p>
-        <h2>XII. Third-Party Sites, Products and Services; Links.</h2>
+        <h2>XII. Third-Party Sites, Products and Services, Links.</h2>
         <p>
           The Service may include links or references to other Web sites or services to Users,
           including Third Party Merchant Processor (
@@ -401,7 +401,7 @@
           We will use reasonable efforts to notify you of any such claim, action, or proceeding upon
           becoming aware of it.
         </p>
-        <h2>XV. Disclaimers; No Warranties.</h2>
+        <h2>XV. Disclaimers. No Warranties.</h2>
         <p class="underline">
           No warranties.
         </p>
@@ -594,7 +594,14 @@
         <p class="und">Disclosures.</p>
         <p>
           The services are offered by Scororama, LLC, 3040 Carlee Run Court, Ellicott City, MD
-          21042. Please email info@TheAvenue.live.
+          21042. Please email
+          <a
+            href="/cdn-cgi/l/email-protection"
+            class="__cf_email__"
+            data-cfemail="bfd6d1d9d0ffcbd7dadec9dad1cada91d3d6c9da"
+          >
+            info@theavenue.live
+          </a>
         </p>
         <h2>Contact Us</h2>
         <p>If you have any questions about these Terms and Conditions, You can contact us:</p>
