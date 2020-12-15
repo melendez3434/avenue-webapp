@@ -55,9 +55,29 @@
       {{ error }}
     </p>
 
+    <div class="my-6 flex">
+      <R64Checkbox
+        :value="form.scout_agreement"
+        label="I'm a talent scout"
+        wrapper-class="mr-3 mt-0.5"
+        label-class="hidden"
+        :v="$v.form.scout_agreement"
+        @change="form.scout_agreement = $event"
+      />
+      <label for="">I'm a Talent Scout</label>
+    </div>
+
     <div class="w-full flex items-center justify-center mt-8">
       <p class="text-theavenue-off-white text-xxs text-center w-1/2">
         By clicking Sign Up, you are indicating that you have read and acknowledge the
+        <nuxt-link
+          v-if="form.scout_agreement.checked"
+          :to="{ name: 'scout-agreement' }"
+          class="text-theavenue-white font-medium"
+          target="_blank"
+        >
+          Scout Agreement
+        </nuxt-link>
         <nuxt-link :to="{ name: 'tos' }" class="text-theavenue-white font-medium">
           Terms and Service
         </nuxt-link>
@@ -94,6 +114,7 @@ export default {
         confirmPassword: '',
         name: '',
         date_of_birth: '',
+        talent_scout: false,
       },
       error: null,
       busy: false,
