@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import spacetime from 'spacetime'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
 import LogoLights from '@/components/commons/LogoLights'
 
@@ -46,6 +47,29 @@ export default {
     },
   },
 
+  mounted() {
+    console.log('mounted')
+    this.$echo
+      .channel('theavenue')
+      .listen('EventUpdated', ({ event, type }) => {
+        this.handleSocketEvent(event, type)
+      })
+      .listen('EventFinished', ({ event }) => {
+        this.handleSocketEvent(event, 'deleted')
+      })
+      .listen('EventIsEndedNow', ({ event }) => {
+        this.handleSocketEvent(event, 'deleted')
+      })
+  },
+
+  beforeDestroy() {
+    this.$echo
+      .channel('theavenue')
+      .stopListening('EventUpdated')
+      .stopListening('EventFinished')
+      .stopListening('EventIsEndedNow')
+  },
+
   methods: {
     async fetchPage($state) {
       const page = this.meta.current_page + 1
@@ -62,6 +86,27 @@ export default {
       } catch (e) {
         this.$router.push({ name: 'index' })
       }
+    },
+
+    handleSocketEvent(event, type) {
+      const map = {
+        created: () => {
+          const eventStart = spacetime(event.starts_at)
+          const indexFrom = this.events.findIndex(e => eventStart.isBefore(spacetime(e.starts_at)))
+          this.events.splice(indexFrom, 0, event)
+        },
+        updated: () => {
+          // if the event starts_at is changed we'll need to do something similar as in created.
+          const index = this.events.findIndex(e => event.id === e.id)
+          this.events[index] = event
+        },
+        deleted: () => {
+          const index = this.events.findIndex(e => event.id === e.id)
+          this.events.splice(index, 1)
+        },
+      }
+
+      return map[type]()
     },
   },
 }
