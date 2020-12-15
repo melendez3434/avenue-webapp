@@ -92,12 +92,14 @@ export default function() {
         })
       })
 
-      socket.on('stream-video-chunk', function({ stream_name, chunk }) {
+      socket.on('stream-video-chunk', function({ stream_name, chunk, chunkId }) {
         const ffmpegProcess = processes[stream_name]
 
         if (!ffmpegProcess) return
 
         ffmpegProcess.stdin.write(chunk)
+        // Notify back to the client that chunk has been processed
+        socket.emit(`${stream_name}-processed-chunk`, chunkId)
       })
 
       socket.on('terminate-ffmpeg-process', function(stream_name) {
@@ -108,7 +110,12 @@ export default function() {
         const ffmpegProcess = processes[processName]
 
         if (!ffmpegProcess) return
-        processes[processName].kill('SIGINT')
+
+        // Await the last chunk to finish
+        setTimeout(() => {
+          processes[processName].kill('SIGINT')
+          console.warn(`ffmpeg process for ${processName} ended`)
+        }, 1500)
       }
     })
   })

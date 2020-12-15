@@ -2,8 +2,8 @@
   <VideoLayout :event="event" :talent="talent">
     <div slot="streaming" class="w-112">
       <R64Button v-if="playing" full secondary @click="askToFinishEvent">Stop Stream</R64Button>
-      <R64Button v-else full @click="startStreaming">
-        Start Stream
+      <R64Button v-else full :disabled="stoppingStream" @click="startStreaming">
+        {{ stoppingStream ? 'Please wait ...' : 'Start Stream' }}
       </R64Button>
     </div>
     <IcSettings
@@ -110,6 +110,8 @@ export default {
       devices: [],
       videoInput: {},
       audioInput: {},
+      pendingChunks: [],
+      stoppingStream: false,
     }
   },
 
@@ -166,6 +168,13 @@ export default {
         this.stopStreaming()
       })
 
+      socket.on(`${this.talent.stream_key}-processed-chunk`, chunkId => {
+        const index = this.pendingChunks.indexOf(chunkId)
+        if (index > -1) {
+          this.pendingChunks.splice(index, 1)
+        }
+      })
+
       if (this.event) {
         return this.listenForEventToFinish()
       }
@@ -206,9 +215,18 @@ export default {
 
     stopStreaming() {
       this.$modal.hide('finish-event-modal')
-      socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
       this.playing = false
       this.mediaRecorder.stop()
+      this.stoppingStream = true
+      requestAnimationFrame(this.killFfmpegProcess)
+    },
+
+    killFfmpegProcess() {
+      if (this.pendingChunks.length) {
+        return requestAnimationFrame(this.killFfmpegProcess)
+      }
+      socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
+      this.stoppingStream = false
     },
 
     stopStreamingAndFinishEvent() {
@@ -232,7 +250,20 @@ export default {
       })
 
       this.mediaRecorder.ondataavailable = async e => {
-        socket.emit('stream-video-chunk', { chunk: e.data, stream_name: this.talent.stream_key })
+        // Generates unique id
+        const chunkId =
+          Date.now().toString(36) +
+          Math.random()
+            .toString(36)
+            .substring(2)
+
+        this.pendingChunks.push(chunkId)
+
+        socket.emit('stream-video-chunk', {
+          chunk: e.data,
+          stream_name: this.talent.stream_key,
+          chunkId,
+        })
       }
 
       this.video.srcObject = this.cameraStream
