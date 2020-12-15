@@ -9,7 +9,6 @@ export default function() {
   this.nuxt.hook('render:before', () => {
     const server = http.createServer(this.nuxt.renderer.app)
     const io = socketIO(server)
-    console.log('process', process.env.HTTPS_LOCALHOST)
     if (!process.env.HTTPS_LOCALHOST) {
       // overwrite nuxt.server.listen()
       this.nuxt.server.listen = (port, host) =>
