@@ -192,6 +192,8 @@ export default {
     if (!this.cameraStream) return
 
     if (this.playing) {
+      // Force pending chunks to none
+      this.pendingChunks = []
       this.stopStreaming()
     }
 
