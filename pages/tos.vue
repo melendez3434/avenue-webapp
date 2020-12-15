@@ -258,6 +258,7 @@
           appropriately licensed content and/or to access the Service as such services are offered
           by Us.
         </p>
+        <p><strong>You may not:</strong></p>
         <p>
           Rent, lease, loan, sell, resell, sublicense, distribute or otherwise transfer the licenses
           granted herein or any Materials.
@@ -341,6 +342,20 @@
           Disrupt the normal flow of dialogue, cause a screen to scroll faster than other users are
           able to type, or otherwise act in a way which affects the ability of other people to
           engage in real time activities via the Services.
+        </p>
+        <p>
+          Use the Service for any material which is obscene, offensive, pornographic, hateful or
+          inflammatory, or is racist or discriminatory, including discrimination on the basis of
+          someone’s race, religion, age, gender, disability or sexuality.
+        </p>
+        <p>
+          Use the Service for trolling or bullying people, or for any material that is intended to
+          harass, harm, hurt, scare, distress, embarrass of upset people.
+        </p>
+        <p>
+          Use the Service for any material that, in the sole Judgment of The Avenue.live, is
+          objectionable or which restricts or inhibits any other person from using the Service, or
+          which may expose The Avenue.live to any harm or liability of any kind.
         </p>
         <h2>XI. Account.</h2>
         <p>
