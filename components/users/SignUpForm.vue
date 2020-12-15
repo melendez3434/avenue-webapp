@@ -57,12 +57,12 @@
 
     <div class="my-6 flex">
       <R64Checkbox
-        :value="form.scout_agreement"
+        :value="form.talent_scout"
         label="I'm a talent scout"
         wrapper-class="mr-3 mt-0.5"
         label-class="hidden"
-        :v="$v.form.scout_agreement"
-        @change="form.scout_agreement = $event"
+        :v="$v.form.talent_scout"
+        @change="form.talent_scout = $event"
       />
       <label for="">I'm a Talent Scout</label>
     </div>
@@ -71,7 +71,7 @@
       <p class="text-theavenue-off-white text-xxs text-center w-1/2">
         By clicking Sign Up, you are indicating that you have read and acknowledge the
         <nuxt-link
-          v-if="form.scout_agreement.checked"
+          v-if="form.talent_scout"
           :to="{ name: 'scout-agreement' }"
           class="text-theavenue-white font-medium"
           target="_blank"
