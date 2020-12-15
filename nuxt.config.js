@@ -1,6 +1,8 @@
 import redirectSSL from 'redirect-ssl'
+import path from 'path'
+import fs from 'fs'
 
-export default {
+const config = {
   serverMiddleware: [
     redirectSSL.create({
       enabled: process.env.NODE_ENV === 'production',
@@ -196,3 +198,15 @@ export default {
     plugins: ['~/plugins/echo.js'],
   },
 }
+
+if (process.env.HTTPS_LOCALHOST) {
+  config.server = {
+    host: process.env.HOST,
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, '.certificates/localhost.key')),
+      cert: fs.readFileSync(path.resolve(__dirname, '.certificates/localhost.crt')),
+    },
+  }
+}
+
+export default config
