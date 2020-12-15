@@ -1,6 +1,6 @@
 <template>
   <div class="pt-24 bg-white text-black">
-    <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+    <div class="container px-3 mx-auto pb-10 flex flex-wrap flex-col md:flex-row items-center">
       <div class="prose">
         <h1>Talent Agreement</h1>
         <p class="font-bold">
@@ -197,7 +197,7 @@
           We make no warranty, representation or guaranty that Services and/or Performances or
           Submissions will be uninterrupted or error free or that any defects can be corrected.
         </p>
-        <p class="mb-6">
+        <p>
           The Services are offered by Scororama LLC, 3040 Carlee Run Court, Ellicott City, Maryland
           20142.
         </p>
