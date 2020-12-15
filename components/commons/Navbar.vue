@@ -11,12 +11,12 @@
         The avenue
       </nuxt-link>
     </div>
-    <nav class="ta-hidden lg:flex items-center text-sm">
+    <nav class="hidden lg:flex items-center text-sm">
       <client-only>
         <MainMenu class="space-x-5" />
       </client-only>
     </nav>
-    <MobileMenu class="flex lg:ta-hidden w-full justify-end z-20" />
+    <MobileMenu class="flex lg:hidden w-full justify-end z-20" />
   </div>
 </template>
 <script>

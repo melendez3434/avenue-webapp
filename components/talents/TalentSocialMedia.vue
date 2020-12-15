@@ -4,7 +4,7 @@
       v-for="socialNetwork in talent.social_media_links"
       :key="socialNetwork.id"
       :social-network="socialNetwork.social_media_slug"
-      class="w-6 h-6 ta-hidden md:inline-block cursor-pointer"
+      class="w-6 h-6 hidden md:inline-block cursor-pointer"
       @click.native="openLink(socialNetwork.url)"
     />
     <a
