@@ -48,14 +48,13 @@ export default {
   },
 
   mounted() {
-    console.log('mounted')
     this.$echo
       .channel('theavenue')
       .listen('EventUpdated', ({ event, type }) => {
         this.handleSocketEvent(event, type)
       })
       .listen('EventFinished', ({ event }) => {
-        this.handleSocketEvent(event, 'deleted')
+        this.handleSocketEvent(event, 'updated')
       })
       .listen('EventIsEndedNow', ({ event }) => {
         this.handleSocketEvent(event, 'deleted')
@@ -96,9 +95,21 @@ export default {
           this.events.splice(indexFrom, 0, event)
         },
         updated: () => {
-          // if the event starts_at is changed we'll need to do something similar as in created.
           const index = this.events.findIndex(e => event.id === e.id)
-          this.events[index] = event
+          const differentStartDate = this.events[index].starts_at !== event.starts_at
+
+          if (!differentStartDate) {
+            this.events[index] = event
+            return
+          }
+
+          const eventStart = spacetime(event.starts_at)
+          const indexFrom = this.events.findIndex(e => eventStart.isBefore(spacetime(e.starts_at)))
+          // Add the event to the new position
+          this.events.splice(indexFrom, 0, event)
+          // Remove from the old one
+          this.events.splice(index, 1)
+          return
         },
         deleted: () => {
           const index = this.events.findIndex(e => event.id === e.id)
