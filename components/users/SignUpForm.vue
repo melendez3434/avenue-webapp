@@ -66,7 +66,7 @@
     </div>
 
     <div class="w-full flex items-center justify-center mt-8">
-      <p class="text-theavenue-off-white text-xs text-center w-1/2">
+      <p class="text-theavenue-off-white text-xs text-center w-2/3">
         By clicking Sign Up, you are indicating that you have read and acknowledge the
         <nuxt-link
           v-if="form.talent_scout"
