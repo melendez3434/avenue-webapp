@@ -14,6 +14,7 @@ const config = {
   publicRuntimeConfig: {
     baseURL: '${BASE_URL}',
     stripeKey: process.env.STRIPE_KEY,
+    videoBuffer: process.env.VIDEO_PLAYER_BUFFER,
   },
 
   privateRuntimeConfig: {},

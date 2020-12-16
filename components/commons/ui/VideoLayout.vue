@@ -140,7 +140,9 @@ export default {
         .listen('StreamingIsIdle', ({ event }) => {
           if (!event) return
           if (event.id !== this.event.id) return
-          this.streaming.status = 'idle'
+          setTimeout(() => {
+            this.streaming.status = 'idle'
+          }, this.$config.videoBuffer * 1000)
         })
         .listen('StreamingIsDisconnected', ({ event }) => {
           if (!event) return

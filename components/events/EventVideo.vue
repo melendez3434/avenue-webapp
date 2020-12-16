@@ -72,7 +72,7 @@ export default {
     this.video.muted = this.muted
 
     this.video.onloadeddata = () => {
-      this.video.currentTime = this.video.duration
+      this.video.currentTime = this.video.duration - this.$config.videoBuffer
       this.playVideo()
     }
   },
