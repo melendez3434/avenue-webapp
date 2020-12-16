@@ -98,7 +98,7 @@ export default {
           const index = this.events.findIndex(e => event.id === e.id)
           const differentStartDate = this.events[index].starts_at !== event.starts_at
 
-          if (!index) return
+          if (index < 0) return
 
           if (!differentStartDate) {
             this.events[index] = event
