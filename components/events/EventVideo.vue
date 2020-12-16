@@ -70,7 +70,11 @@ export default {
       this.video.controls = false
     }
     this.video.muted = this.muted
-    this.playVideo()
+
+    this.video.onloadeddata = () => {
+      this.video.currentTime = this.video.duration
+      this.playVideo()
+    }
   },
 
   methods: {
