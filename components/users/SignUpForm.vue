@@ -10,7 +10,7 @@
     />
     <R64Input
       v-model="form.cellphone"
-      label="Phone"
+      label="Cell Phone"
       name="phone"
       :v="$v.form.cellphone"
       error-message="Your phone is required"
@@ -55,14 +55,36 @@
       {{ error }}
     </p>
 
+    <div class="my-6 flex">
+      <R64Checkbox
+        :value="form.talent_scout"
+        label="I'm a talent scout"
+        wrapper-class="mr-3 mt-0.5"
+        :v="$v.form.talent_scout"
+        @change="form.talent_scout = $event"
+      />
+    </div>
+
     <div class="w-full flex items-center justify-center mt-8">
-      <p class="text-theavenue-off-white text-xxs text-center w-1/2">
+      <p class="text-theavenue-off-white text-xs text-center w-2/3">
         By clicking Sign Up, you are indicating that you have read and acknowledge the
-        <nuxt-link :to="{ name: 'tos' }" class="text-theavenue-white font-medium">
+        <nuxt-link
+          v-if="form.talent_scout"
+          :to="{ name: 'scout-agreement' }"
+          class="text-theavenue-white font-medium"
+          target="_blank"
+        >
+          Scout Agreement
+        </nuxt-link>
+        <nuxt-link :to="{ name: 'tos' }" class="text-theavenue-white font-medium" target="_blank">
           Terms and Service
         </nuxt-link>
         and
-        <nuxt-link :to="{ name: 'privacy' }" class="text-theavenue-white font-medium">
+        <nuxt-link
+          :to="{ name: 'privacy' }"
+          class="text-theavenue-white font-medium"
+          target="_blank"
+        >
           Privacy Notice
         </nuxt-link>
       </p>
@@ -94,6 +116,7 @@ export default {
         confirmPassword: '',
         name: '',
         date_of_birth: '',
+        talent_scout: false,
       },
       error: null,
       busy: false,
