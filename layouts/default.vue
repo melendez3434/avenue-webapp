@@ -107,13 +107,15 @@ export default {
         window.location.href = '/'
       }
     },
+    '$route.query.action'(active) {
+      this.$modal.show('user-access-modal', { active })
+    },
   },
 
   mounted() {
-    const action = this.$route.query.action
-    if (action && action === 'login') {
-      this.$modal.show('user-access-modal', { active: 'login' })
-    }
+    const active = this.$route.query.action
+    if (!active) return
+    this.$modal.show('user-access-modal', { active })
   },
 
   methods: {

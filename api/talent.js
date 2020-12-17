@@ -28,4 +28,8 @@ export default $axios => ({
   reportReasons() {
     return $axios.$get('api/misbehaving-reasons')
   },
+
+  getScoutByToken(token) {
+    return $axios.$get(`api/scouts/token/${token}`)
+  },
 })
