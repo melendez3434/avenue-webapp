@@ -9,16 +9,17 @@ export default function() {
   this.nuxt.hook('render:before', () => {
     const server = http.createServer(this.nuxt.renderer.app)
     const io = socketIO(server)
-
-    // overwrite nuxt.server.listen()
-    this.nuxt.server.listen = (port, host) =>
-      new Promise(resolve =>
-        server.listen(
-          port || process.env.PORT || 3000,
-          host || process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost',
-          resolve
+    if (!process.env.HTTPS_LOCALHOST) {
+      // overwrite nuxt.server.listen()
+      this.nuxt.server.listen = (port, host) =>
+        new Promise(resolve =>
+          server.listen(
+            port || process.env.PORT || 3000,
+            host || process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost',
+            resolve
+          )
         )
-      )
+    }
     // close this server on 'close' event
     this.nuxt.hook('close', () => new Promise(server.close))
 
@@ -91,12 +92,14 @@ export default function() {
         })
       })
 
-      socket.on('stream-video-chunk', function({ stream_name, chunk }) {
+      socket.on('stream-video-chunk', function({ stream_name, chunk, chunkId }) {
         const ffmpegProcess = processes[stream_name]
 
         if (!ffmpegProcess) return
 
         ffmpegProcess.stdin.write(chunk)
+        // Notify back to the client that chunk has been processed
+        socket.emit(`${stream_name}-processed-chunk`, chunkId)
       })
 
       socket.on('terminate-ffmpeg-process', function(stream_name) {
@@ -107,7 +110,12 @@ export default function() {
         const ffmpegProcess = processes[processName]
 
         if (!ffmpegProcess) return
-        processes[processName].kill('SIGINT')
+
+        // Await the last chunk to finish
+        setTimeout(() => {
+          processes[processName].kill('SIGINT')
+          console.warn(`ffmpeg process for ${processName} ended`)
+        }, 1500)
       }
     })
   })

@@ -140,7 +140,9 @@ export default {
         .listen('StreamingIsIdle', ({ event }) => {
           if (!event) return
           if (event.id !== this.event.id) return
-          this.streaming.status = 'idle'
+          setTimeout(() => {
+            this.streaming.status = 'idle'
+          }, this.$config.videoBuffer * 1000)
         })
         .listen('StreamingIsDisconnected', ({ event }) => {
           if (!event) return
@@ -171,7 +173,7 @@ export default {
 </script>
 <style scoped>
 .available-height {
-  height: calc(100vh - 3rem);
+  height: calc(100vh - 5rem);
 }
 .el-popper.el-popover.bg-theavenue-gray {
   @apply bg-theavenue-gray;

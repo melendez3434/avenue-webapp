@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import spacetime from 'spacetime'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
 import LogoLights from '@/components/commons/LogoLights'
 
@@ -46,6 +47,28 @@ export default {
     },
   },
 
+  mounted() {
+    this.$echo
+      .channel('theavenue')
+      .listen('EventUpdated', ({ event, type }) => {
+        this.handleSocketEvent(event, type)
+      })
+      .listen('EventFinished', ({ event }) => {
+        this.handleSocketEvent(event, 'updated')
+      })
+      .listen('EventIsEndedNow', ({ event }) => {
+        this.handleSocketEvent(event, 'deleted')
+      })
+  },
+
+  beforeDestroy() {
+    this.$echo
+      .channel('theavenue')
+      .stopListening('EventUpdated')
+      .stopListening('EventFinished')
+      .stopListening('EventIsEndedNow')
+  },
+
   methods: {
     async fetchPage($state) {
       const page = this.meta.current_page + 1
@@ -62,6 +85,41 @@ export default {
       } catch (e) {
         this.$router.push({ name: 'index' })
       }
+    },
+
+    handleSocketEvent(event, type) {
+      const map = {
+        created: () => {
+          const eventStart = spacetime(event.starts_at)
+          const indexFrom = this.events.findIndex(e => eventStart.isBefore(spacetime(e.starts_at)))
+          this.events.splice(indexFrom, 0, event)
+        },
+        updated: () => {
+          const index = this.events.findIndex(e => event.id === e.id)
+          const differentStartDate = this.events[index].starts_at !== event.starts_at
+
+          if (index < 0) return
+
+          if (!differentStartDate) {
+            this.events[index] = event
+            return
+          }
+
+          const eventStart = spacetime(event.starts_at)
+          const indexFrom = this.events.findIndex(e => eventStart.isBefore(spacetime(e.starts_at)))
+          // Add the event to the new position
+          this.events.splice(indexFrom, 0, event)
+          // Remove from the old one
+          this.events.splice(index, 1)
+          return
+        },
+        deleted: () => {
+          const index = this.events.findIndex(e => event.id === e.id)
+          this.events.splice(index, 1)
+        },
+      }
+
+      return map[type]()
     },
   },
 }

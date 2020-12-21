@@ -32,8 +32,9 @@
           <div>
             <p class="text-avenue-grey font-bold">Julia Folkart, CEO:</p>
             <p>
-              A Baltimore native, currently living in Arlington, VA, completed a BA in Theatre
-              Design at VSU and is currently an award winning designer for Anthropology.
+              Julia Folkart is a designer and artisan based in Fairfax, VA. She received a BFA in
+              Scenic Design from Virginia Commonwealth University and has been working as a Display
+              Coordinator with Anthropologie and as a freelance artist in the DC area.
             </p>
           </div>
           <div>

@@ -24,7 +24,7 @@
       >
         <TalentCard
           :talent="event.talent"
-          class="ta-hidden md:flex"
+          class="hidden md:flex"
           :category="event.category.name"
           link
         />

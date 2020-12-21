@@ -1,610 +1,322 @@
 <template>
   <div class="pt-24 bg-white text-black">
-    <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+    <div
+      id="container"
+      class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center"
+    >
       <div class="prose">
         <h1>Privacy Policy</h1>
-        <p>Last updated: August 26, 2020</p>
+        <p>Last updated: December 1, 2020</p>
         <p>
-          This Privacy Policy describes Our policies and procedures on the collection, use and
-          disclosure of Your information when You use the Service and tells You about Your privacy
-          rights and how the law protects You.
+          This Privacy Policy applies to the website, online services and mobile applications, if
+          any, owned and operated by Scororama, LLC, a Maryland Limited Liability Company (the
+          “Company”). The Company provides through its website, TheAvenue.Live, online services
+          including livestreaming of events and performances. The Company is referred to as “We,
+          “Us” or Our.” The said website and related online services are collectively referred to as
+          our “Website” or “Services.” Users of our Website or Services are referred to as “User,
+          You or Your.” By using our Website or Services, You expressly accept this Privacy Policy,
+          the terms of which are incorporated herein as part of our Terms of Service.
         </p>
-        <p>
-          We use Your Personal data to provide and improve the Service. By using the Service, You
-          agree to the collection and use of information in accordance with this Privacy Policy.
-        </p>
-        <h1>Interpretation and Definitions</h1>
-        <h2>Interpretation</h2>
-        <p>
-          The words of which the initial letter is capitalized have meanings defined under the
-          following conditions. The following definitions shall have the same meaning regardless of
-          whether they appear in singular or in plural.
-        </p>
-        <h2>Definitions</h2>
-        <p>For the purposes of this Privacy Policy:</p>
-        <ul>
+        <ol class="list-decimal">
           <li>
+            <span class="font-bold">Personal Information</span>
             <p>
-              <strong>Account</strong>
-              means a unique account created for You to access our Service or parts of our Service.
+              For purposes of this Privacy Policy, unless a different definition is noted in a
+              particular instance, “Personal Information” means any information, content or data
+              that identifies, relates to, describes, references, or is reasonably capable of being
+              associated with a particular consumer or device.
+            </p>
+            <ol class="list-inside list-lower-alpha" type="a" start="a">
+              <li class="font-bold">Personal Information We Collect</li>
+              <p>The Personal Information We Collect from You includes:</p>
+              <p>Information you provide or upload directly to us or through our Website;</p>
+              <p>
+                Information you provide when registering or using our Website or Services including
+                your full name, email address, date of birth and account log-in credentials;
+              </p>
+              <p>Information you provide when completing your profile, if any, on our Website;</p>
+              <p>Information you submit through social media platforms or online forums;</p>
+              <p>
+                Information you provide for the purpose of subscribing or responding to our email
+                notifications, if any, and/or other communications;
+              </p>
+              <p>
+                Information relating to any transactions that you enter into through our Website;
+              </p>
+              <p>
+                Information and certain metadata that is connected to content you submit to our
+                Website for distribution or broadcasting on the internet;
+              </p>
+              <p>
+                Information you share through surveys or your participation in contests and events;
+              </p>
+              <p>
+                Information contained in or relating to any communications you send directly to us
+                or through our Website;
+              </p>
+              <p>
+                Information automatically collected when you use our Website or Services on a
+                particular device, such as your IP address, browser type, domain name, access times
+                and referring website address; and
+              </p>
+              <p>
+                Any other Personal Information that you choose to send us or that we automatically
+                receive.
+              </p>
+              <li class="font-bold">Use of Personal Information</li>
+              <p>We use your Personal Information to:</p>
+              <p>Communicate with you in relation to our Website and Services;</p>
+              <p>
+                Communicate with you in relation to events, contests and performances on our
+                Website;
+              </p>
+              <p>
+                Display, distribute and share any content or images including live performances you
+                upload or broadcast for viewing on our Website;
+              </p>
+              <p>
+                Announce you as a contestant or winner of a contest or promotion, and to send you
+                any applicable prizes;
+              </p>
+              <p>
+                Send promotional and marketing communications relating to our Website or Services;
+              </p>
+              <p>Respond to inquiries concerning our Website or Services;</p>
+              <p>Send, receive and respond to emails;</p>
+              <p>Monitor and analyze the use of our Website or Services;</p>
+              <p>
+                Provide third parties with statistical information about our users (no individual
+                Personal Information will be disclosed);
+              </p>
+              <p>Ensure that you are old enough to use our Website and Services; and</p>
+              <p>
+                Monitor compliance with the Terms of Service governing the use of our Website and
+                Services.
+              </p>
+              <li class="font-bold">Retention and Sharing of Personal Information</li>
+              <p>We retain and share your Personal Information:</p>
+              <p>For internal administration purposes;</p>
+              <p>
+                For our service providers to perform services on our behalf, such as website
+                hosting, data analysis, information technology and related infrastructure services;
+              </p>
+              <p>To the extent that we are required to do so by law;</p>
+              <p>With our employees, Company’s members and professional advisors;</p>
+              <p>To investigate possible wrongdoing in connection with our Website or Services;</p>
+              <p>
+                To respond to requests from courts, law enforcement agencies, regulatory agencies,
+                and other public and governmental authorities;
+              </p>
+              <p>In connection with any ongoing or prospective legal proceedings; and</p>
+              <p>
+                If we are involved in a sale or transfer of some or all of our assets, in which
+                Personal Information we hold is among the assets transferred.
+              </p>
+            </ol>
+          </li>
+          <li>
+            <span class="font-bold">Third party websites</span>
+            <p>
+              When you provide Personal Information to us on a third-party website or social media
+              platform, the Personal Information you provide may be separately collected by the
+              third-party website or social media platform. Our Website or Services may contain
+              links to other websites or services that are not owned or controlled by us, including
+              links to social media platforms, or may redirect you off our Website or away from our
+              Services to other websites for information or other services. This Privacy Policy only
+              applies to information collected by us through our Website. We are not responsible for
+              the privacy and security practices of those other websites or social media platforms
+              or the information they may collect. You should refer to such third parties’ privacy
+              policies on their sites to determine their respective privacy practices.
             </p>
           </li>
           <li>
+            <span class="font-bold">Financial Information</span>
             <p>
-              <strong>Business</strong>
-              , for the purpose of the CCPA (California Consumer Privacy Act), refers to the Company
-              as the legal entity that collects Consumers' personal information and determines the
-              purposes and means of the processing of Consumers' personal information, or on behalf
-              of which such information is collected and that alone, or jointly with others,
-              determines the purposes and means of the processing of consumers' personal
-              information, that does business in the State of California.
+              To make a purchase or to tip on our Website, you will need to provide a valid payment
+              method (e.g., credit card or debit card number, or bank account information). We do
+              not directly collect or store payment information. Your payment information will be
+              collected and processed by our authorized payment vendor, Stripe. We will share
+              Personal Information with Stripe only to the extent necessary for the purposes of
+              processing payments you make through our Website.
             </p>
           </li>
           <li>
+            <span class="font-bold">Security</span>
             <p>
-              <strong>Company</strong>
-              (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or
-              &quot;Our&quot; in this Agreement) refers to Scororama LLC, 3040 CARLEE RUN CT
-              ELLICOTT CITY, MD 21042.
+              We use commercially reasonable procedures and various technical, administrative and
+              physical safeguards to help protect the confidentiality of your Personal Information. 
+              However, you should assume that no data transmitted over the Internet or stored or
+              maintained by us or our third-party service providers can be 100% secure. Therefore,
+              although we believe the measures implemented by us reduce the likelihood of security
+              problems to a level appropriate to the type of data involved, we do not promise or
+              guarantee, and you should not expect, that your Personal Information or private
+              communications will always remain private or secure. We do not guarantee that your
+              Personal Information will not be misused by third parties. We are not responsible for
+              the circumvention of any privacy settings or security features. If you believe that
+              your Personal Information has been accessed or acquired by an unauthorized person,
+              please contact us immediately.
             </p>
           </li>
           <li>
+            <span class="font-bold">Cookies</span>
             <p>
-              <strong>Consumer</strong>
-              , for the purpose of the CCPA (California Consumer Privacy Act), means a natural
-              person who is a California resident. A resident, as defined in the law, includes (1)
-              every individual who is in the USA for other than a temporary or transitory purpose,
-              and (2) every individual who is domiciled in the USA who is outside the USA for a
-              temporary or transitory purpose.
+              Our Website uses cookies. Cookies and similar technologies are small files that a
+              website or its service provider transfers to a computer’s hard drive through a Web
+              browser (if the user allows) that enables the website’s or service provider’s systems
+              to recognize the user’s browser and capture and remember certain information. In
+              general, we use cookies and other similar technologies to optimize the functionality
+              of our Website. Cookies record information about the use of our Website including
+              browser and device data such as IP address, device type, operating system and internet
+              browser type, and usage data such as time spent on our Website, pages visited, links
+              clicked and the pages that led or referred you to our Website. Most browsers allow you
+              to refuse to accept, block or disable cookies. If you refuse to accept, block or
+              disable cookies, you may not be able to use all the features on our Website.
             </p>
           </li>
           <li>
+            <span class="font-bold">Children’s Online Privacy Information</span>
             <p>
-              <strong>Cookies</strong>
-              are small files that are placed on Your computer, mobile device or any other device by
-              a website, containing the details of Your browsing history on that website among its
-              many uses.
+              The Website and Services are not intended for use by children under the age of 13. In
+              addition, we do not knowingly collect information from children under the age of 13,
+              although certain third party sites that we link to may do so. These third-party sites
+              have their own terms of use and privacy policies and we encourage parents and legal
+              guardians to monitor their children’s Internet usage and to help enforce our Privacy
+              Policy by instructing their children to never provide information on our Websites
+              without their permission.
+            </p>
+            <p>
+              Involvement of parents: In accordance with the provisions of the Children’s Online
+              Privacy Act, in the event that we do begin collecting any Personal Information or data
+              from children under the age of 13, we will notify parents first, and will seek
+              parental or guardian consent to collect, use and/or disclose certain Personal
+              Information from children under the age of 13. A parent may review and have deleted
+              their child’s Personal Information, and may refuse to permit further collection or use
+              of their child’s information by contacting us as noted at the end of this Privacy
+              Policy. Parents may consent to our collection and use of their child’s Personal
+              Information without consenting to the disclosure of that information to others.
+            </p>
+            <p>
+              If you have reason to believe that a child under the age of 13 has provided Personal
+              Information, please contact us immediately and give us sufficient detail to enable us
+              to delete that information from our databases.
             </p>
           </li>
           <li>
+            <span class="font-bold">California Residents.</span>
             <p>
-              <strong>Country</strong>
-              refers to: Maryland, United States
+              This section provides additional details about the Personal Information we collect
+              about the rights of California consumers under the California Consumer Privacy Act
+              (CCPA).
+            </p>
+            <p class="font-bold">Your CCPA Rights and Choices</p>
+            <p>
+              As a California consumer and subject to certain limitations under the CCPA, you have
+              choices regarding our use and disclosure of your Personal Information:
+            </p>
+            <p class="font-bold">Exercising the right to know</p>
+            <p>
+              You may request, up to twice in a 12-month period, the following information about the
+              Personal Information we have collected about you during the past 12 months:
+            </p>
+            <ul>
+              <li>
+                the categories and specific pieces of Personal Information we have collected about
+                you;
+              </li>
+              <li>the categories of sources from which we collected the Personal Information;</li>
+              <li>
+                the business or commercial purpose for which we collected the Personal Information;
+              </li>
+              <li>
+                the categories of third parties with whom we shared the Personal Information; and
+                the categories of Personal Information about you that we disclosed for a business
+                purpose, and the categories of third parties to whom we disclosed that information
+                for a business purpose.
+              </li>
+              <li class="font-bold">Exercising the right to delete</li>
+              <li>
+                You may request that we delete the Personal Information we have collected from you,
+                subject to certain limitations under applicable law.
+              </li>
+              <li class="font-bold">Exercising the right to opt-out from a sale</li>
+              <li>
+                You may request to opt out of any “sale” of your Personal Information that may take
+                place. Please note we do not use, share, rent or sell the Personal Information of
+                our Users.
+              </li>
+              <li class="font-bold">Non-discrimination</li>
+              <li>
+                The CCPA provides that you may not be discriminated against for exercising these
+                rights.
+              </li>
+            </ul>
+            <p>
+              To submit a request to exercise any of the rights described above, you may contact
+              TheAvenue.Live at
+              <a href="/cdn-cgi/l/email-protection" class="__cf_email__">info@theavenue.live</a>
+              .We may need to verify your identity before responding to your request, such as
+              verifying that the email address from which you send the request matches your email
+              address that we have on file. Authentication based on a government-issued and valid
+              identification document may be required.
             </p>
           </li>
           <li>
+            <span class="font-bold">International Users and Data Transfers</span>
             <p>
-              <strong>Device</strong>
-              means any device that can access the Service such as a computer, a cellphone or a
-              digital tablet.
+              We provide Services globally through the internet. Our computer systems, servers and
+              databases are located in the United States. If you are located outside of the United
+              States and choose to use our Website or Services, your Personal Information and data
+              will be transferred to our systems, servers and databases in the United States. The
+              data and privacy laws in the United States may not be as protective as those in your
+              country. If you are located outside of the United States, please refer to the laws of
+              your respective jurisdiction.
             </p>
           </li>
           <li>
+            <span class="font-bold">Your Rights and Choices</span>
+            <p>You have rights and choices. For example, you may:</p>
+            <ul>
+              <li>Opt out of receiving electronic communications from us;</li>
+              <li>Review, correct or update your account Personal Information;</li>
+              <li>
+                Request confirmation of whether we possess Personal Information relating to you;
+              </li>
+              <li>Request a copy of the Personal Information we possess;</li>
+              <li>Request that we delete your Personal Information; and</li>
+              <li>Withdraw a previous consent concerning the use of your Personal Information.</li>
+            </ul>
             <p>
-              <strong>Do Not Track</strong>
-              (DNT) is a concept that has been promoted by US regulatory authorities, in particular
-              the U.S. Federal Trade Commission (FTC), for the Internet industry to develop and
-              implement a mechanism for allowing internet users to control the tracking of their
-              online activities across websites.
+              We will comply with your request to the extent required by applicable law. We will not
+              be able to respond to a request if we no longer hold your Personal Information. For
+              your protection, we may need to verify your identity before responding to your
+              request, such as verifying that the email address from which you send the request
+              matches your email address that we have on file.
             </p>
           </li>
           <li>
+            <span class="font-bold">Amendments</span>
             <p>
-              <strong>Personal Data</strong>
-              is any information that relates to an identified or identifiable individual.
-            </p>
-            <p>
-              For the purposes of the CCPA, Personal Data means any information that identifies,
-              relates to, describes or is capable of being associated with, or could reasonably be
-              linked, directly or indirectly, with You.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Sale</strong>
-              , for the purpose of the CCPA (California Consumer Privacy Act), means selling,
-              renting, releasing, disclosing, disseminating, making available, transferring, or
-              otherwise communicating orally, in writing, or by electronic or other means, a
-              Consumer's Personal information to another business or a third party for monetary or
-              other valuable consideration.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Service</strong>
-              refers to the Website.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Service Provider</strong>
-              means any natural or legal person who processes the data on behalf of the Company. It
-              refers to third-party companies or individuals employed by the Company to facilitate
-              the Service, to provide the Service on behalf of the Company, to perform services
-              related to the Service or to assist the Company in analyzing how the Service is used.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Third-party Social Media Service</strong>
-              refers to any website or any social network website through which a User can log in or
-              create an account to use the Service.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Usage Data</strong>
-              refers to data collected automatically, either generated by the use of the Service or
-              from the Service infrastructure itself (for example, the duration of a page visit).
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Website</strong>
-              refers to theavenue.live, accessible from
-              <a href="https://theavenue.live" rel="external nofollow noopener" target="_blank">
-                https://theavenue.live
-              </a>
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>You</strong>
-              means the individual accessing or using the Service, or the company, or other legal
-              entity on behalf of which such individual is accessing or using the Service, as
-              applicable.
-            </p>
-          </li>
-        </ul>
-        <h1>Collecting and Using Your Personal Data</h1>
-        <h2>Types of Data Collected</h2>
-        <h3>Personal Data</h3>
-        <p>
-          While using Our Service, We may ask You to provide Us with certain personally identifiable
-          information that can be used to contact or identify You. Personally identifiable
-          information may include, but is not limited to:
-        </p>
-        <ul>
-          <li>
-            <p>Email address</p>
-          </li>
-          <li>
-            <p>First name and last name</p>
-          </li>
-          <li>
-            <p>Usage Data</p>
-          </li>
-        </ul>
-        <h3>Usage Data</h3>
-        <p>Usage Data is collected automatically when using the Service.</p>
-        <p>
-          Usage Data may include information such as Your Device's Internet Protocol address (e.g.
-          IP address), browser type, browser version, the pages of our Service that You visit, the
-          time and date of Your visit, the time spent on those pages, unique device identifiers and
-          other diagnostic data.
-        </p>
-        <p>
-          When You access the Service by or through a mobile device, We may collect certain
-          information automatically, including, but not limited to, the type of mobile device You
-          use, Your mobile device unique ID, the IP address of Your mobile device, Your mobile
-          operating system, the type of mobile Internet browser You use, unique device identifiers
-          and other diagnostic data.
-        </p>
-        <p>
-          We may also collect information that Your browser sends whenever You visit our Service or
-          when You access the Service by or through a mobile device.
-        </p>
-        <h3>Information from Third-Party Social Media Services</h3>
-        <p>
-          The Company allows You to create an account and log in to use the Service through the
-          following Third-party Social Media Services:
-        </p>
-        <ul>
-          <li>Google</li>
-          <li>Facebook</li>
-          <li>Twitter</li>
-        </ul>
-        <p>
-          If You decide to register through or otherwise grant us access to a Third-Party Social
-          Media Service, We may collect Personal data that is already associated with Your
-          Third-Party Social Media Service's account, such as Your name, Your email address, Your
-          activities or Your contact list associated with that account.
-        </p>
-        <p>
-          You may also have the option of sharing additional information with the Company through
-          Your Third-Party Social Media Service's account. If You choose to provide such information
-          and Personal Data, during registration or otherwise, You are giving the Company permission
-          to use, share, and store it in a manner consistent with this Privacy Policy.
-        </p>
-        <h3>Tracking Technologies and Cookies</h3>
-        <p>
-          We use Cookies and similar tracking technologies to track the activity on Our Service and
-          store certain information. Tracking technologies used are beacons, tags, and scripts to
-          collect and track information and to improve and analyze Our Service.
-        </p>
-        <p>
-          You can instruct Your browser to refuse all Cookies or to indicate when a Cookie is being
-          sent. However, if You do not accept Cookies, You may not be able to use some parts of our
-          Service.
-        </p>
-        <p>
-          Cookies can be &quot;Persistent&quot; or &quot;Session&quot; Cookies. Persistent Cookies
-          remain on your personal computer or mobile device when You go offline, while Session
-          Cookies are deleted as soon as You close your web browser. Learn more about cookies:
-          <a href="https://www.termsfeed.com/blog/cookies/" target="_blank">All About Cookies</a>
-          .
-        </p>
-        <p>We use both session and persistent Cookies for the purposes set out below:</p>
-        <ul>
-          <li>
-            <p><strong>Necessary / Essential Cookies</strong></p>
-            <p>Type: Session Cookies</p>
-            <p>Administered by: Us</p>
-            <p>
-              Purpose: These Cookies are essential to provide You with services available through
-              the Website and to enable You to use some of its features. They help to authenticate
-              users and prevent fraudulent use of user accounts. Without these Cookies, the services
-              that You have asked for cannot be provided, and We only use these Cookies to provide
-              You with those services.
-            </p>
-          </li>
-          <li>
-            <p><strong>Cookies Policy / Notice Acceptance Cookies</strong></p>
-            <p>Type: Persistent Cookies</p>
-            <p>Administered by: Us</p>
-            <p>
-              Purpose: These Cookies identify if users have accepted the use of cookies on the
+              We may update this Privacy Policy from time to time by publishing a new version on our
               Website.
             </p>
           </li>
           <li>
-            <p><strong>Functionality Cookies</strong></p>
-            <p>Type: Persistent Cookies</p>
-            <p>Administered by: Us</p>
+            <span class="font-bold">Contact Us</span>
             <p>
-              Purpose: These Cookies allow us to remember choices You make when You use the Website,
-              such as remembering your login details or language preference. The purpose of these
-              Cookies is to provide You with a more personal experience and to avoid You having to
-              re-enter your preferences every time You use the Website.
+              Questions, comments and requests regarding this Privacy Policy should be addressed to:
             </p>
+            <p class="font-bold">
+              Email:
+              <a href="/cdn-cgi/l/email-protection" class="__cf_email__">info@theavenue.live</a>
+            </p>
+            <p class="font-bold">Mailing Address:</p>
+            <div>
+              <p>TheAvenue.Live</p>
+              <p>3040 Carlee Run Court</p>
+              <p>Ellicott City, Maryland 21042</p>
+            </div>
           </li>
-        </ul>
-        <p>
-          For more information about the cookies we use and your choices regarding cookies, please
-          visit our Cookies Policy or the Cookies section of our Privacy Policy.
-        </p>
-        <h2>Use of Your Personal Data</h2>
-        <p>The Company may use Personal Data for the following purposes:</p>
-        <ul>
-          <li>
-            <strong>To provide and maintain our Service</strong>
-            , including to monitor the usage of our Service.
-          </li>
-          <li>
-            <strong>To manage Your Account:</strong>
-            to manage Your registration as a user of the Service. The Personal Data You provide can
-            give You access to different functionalities of the Service that are available to You as
-            a registered user.
-          </li>
-          <li>
-            <strong>For the performance of a contract:</strong>
-            the development, compliance and undertaking of the purchase contract for the products,
-            items or services You have purchased or of any other contract with Us through the
-            Service.
-          </li>
-          <li>
-            <strong>To contact You:</strong>
-            To contact You by email, telephone calls, SMS, or other equivalent forms of electronic
-            communication, such as a mobile application's push notifications regarding updates or
-            informative communications related to the functionalities, products or contracted
-            services, including the security updates, when necessary or reasonable for their
-            implementation.
-          </li>
-          <li>
-            <strong>To provide You</strong>
-            with news, special offers and general information about other goods, services and events
-            which we offer that are similar to those that you have already purchased or enquired
-            about unless You have opted not to receive such information.
-          </li>
-          <li>
-            <strong>To manage Your requests:</strong>
-            To attend and manage Your requests to Us.
-          </li>
-        </ul>
-        <p>We may share your personal information in the following situations:</p>
-        <ul>
-          <li>
-            <strong>With Service Providers:</strong>
-            We may share Your personal information with Service Providers to monitor and analyze the
-            use of our Service, to contact You.
-          </li>
-          <li>
-            <strong>For Business transfers:</strong>
-            We may share or transfer Your personal information in connection with, or during
-            negotiations of, any merger, sale of Company assets, financing, or acquisition of all or
-            a portion of our business to another company.
-          </li>
-          <li>
-            <strong>With Affiliates:</strong>
-            We may share Your information with Our affiliates, in which case we will require those
-            affiliates to honor this Privacy Policy. Affiliates include Our parent company and any
-            other subsidiaries, joint venture partners or other companies that We control or that
-            are under common control with Us.
-          </li>
-          <li>
-            <strong>With Business partners:</strong>
-            We may share Your information with Our business partners to offer You certain products,
-            services or promotions.
-          </li>
-          <li>
-            <strong>With other users:</strong>
-            when You share personal information or otherwise interact in the public areas with other
-            users, such information may be viewed by all users and may be publicly distributed
-            outside. If You interact with other users or register through a Third-Party Social Media
-            Service, Your contacts on the Third-Party Social Media Service may see Your name,
-            profile, pictures and description of Your activity. Similarly, other users will be able
-            to view descriptions of Your activity, communicate with You and view Your profile.
-          </li>
-        </ul>
-        <h2>Retention of Your Personal Data</h2>
-        <p>
-          The Company will retain Your Personal Data only for as long as is necessary for the
-          purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the
-          extent necessary to comply with our legal obligations (for example, if we are required to
-          retain your data to comply with applicable laws), resolve disputes, and enforce our legal
-          agreements and policies.
-        </p>
-        <p>
-          The Company will also retain Usage Data for internal analysis purposes. Usage Data is
-          generally retained for a shorter period of time, except when this data is used to
-          strengthen the security or to improve the functionality of Our Service, or We are legally
-          obligated to retain this data for longer time periods.
-        </p>
-        <h2>Transfer of Your Personal Data</h2>
-        <p>
-          Your information, including Personal Data, is processed at the Company's operating offices
-          and in any other places where the parties involved in the processing are located. It means
-          that this information may be transferred to — and maintained on — computers located
-          outside of Your state, province, country or other governmental jurisdiction where the data
-          protection laws may differ than those from Your jurisdiction.
-        </p>
-        <p>
-          Your consent to this Privacy Policy followed by Your submission of such information
-          represents Your agreement to that transfer.
-        </p>
-        <p>
-          The Company will take all steps reasonably necessary to ensure that Your data is treated
-          securely and in accordance with this Privacy Policy and no transfer of Your Personal Data
-          will take place to an organization or a country unless there are adequate controls in
-          place including the security of Your data and other personal information.
-        </p>
-        <h2>Disclosure of Your Personal Data</h2>
-        <h3>Business Transactions</h3>
-        <p>
-          If the Company is involved in a merger, acquisition or asset sale, Your Personal Data may
-          be transferred. We will provide notice before Your Personal Data is transferred and
-          becomes subject to a different Privacy Policy.
-        </p>
-        <h3>Law enforcement</h3>
-        <p>
-          Under certain circumstances, the Company may be required to disclose Your Personal Data if
-          required to do so by law or in response to valid requests by public authorities (e.g. a
-          court or a government agency).
-        </p>
-        <h3>Other legal requirements</h3>
-        <p>
-          The Company may disclose Your Personal Data in the good faith belief that such action is
-          necessary to:
-        </p>
-        <ul>
-          <li>Comply with a legal obligation</li>
-          <li>Protect and defend the rights or property of the Company</li>
-          <li>Prevent or investigate possible wrongdoing in connection with the Service</li>
-          <li>Protect the personal safety of Users of the Service or the public</li>
-          <li>Protect against legal liability</li>
-        </ul>
-        <h2>Security of Your Personal Data</h2>
-        <p>
-          The security of Your Personal Data is important to Us, but remember that no method of
-          transmission over the Internet, or method of electronic storage is 100% secure. While We
-          strive to use commercially acceptable means to protect Your Personal Data, We cannot
-          guarantee its absolute security.
-        </p>
-        <h1>CCPA Privacy</h1>
-        <h2>Your Rights under the CCPA</h2>
-        <p>
-          Under this Privacy Policy, and by law if You are a resident of California, You have the
-          following rights:
-        </p>
-        <ul>
-          <li>
-            <strong>The right to notice.</strong>
-            You must be properly notified which categories of Personal Data are being collected and
-            the purposes for which the Personal Data is being used.
-          </li>
-          <li>
-            <strong>The right to access / the right to request.</strong>
-            The CCPA permits You to request and obtain from the Company information regarding the
-            disclosure of Your Personal Data that has been collected in the past 12 months by the
-            Company or its subsidiaries to a third-party for the third party's direct marketing
-            purposes.
-          </li>
-          <li>
-            <strong>The right to say no to the sale of Personal Data.</strong>
-            You also have the right to ask the Company not to sell Your Personal Data to third
-            parties. You can submit such a request by visiting our &quot;Do Not Sell My Personal
-            Information&quot; section or web page.
-          </li>
-          <li>
-            <strong>The right to know about Your Personal Data.</strong>
-            You have the right to request and obtain from the Company information regarding the
-            disclosure of the following:
-            <ul>
-              <li>The categories of Personal Data collected</li>
-              <li>The sources from which the Personal Data was collected</li>
-              <li>
-                The business or commercial purpose for collecting or selling the Personal Data
-              </li>
-              <li>Categories of third parties with whom We share Personal Data</li>
-              <li>The specific pieces of Personal Data we collected about You</li>
-            </ul>
-          </li>
-          <li>
-            <strong>The right to delete Personal Data.</strong>
-            You also have the right to request the deletion of Your Personal Data that have been
-            collected in the past 12 months.
-          </li>
-          <li>
-            <strong>The right not to be discriminated against.</strong>
-            You have the right not to be discriminated against for exercising any of Your Consumer's
-            rights, including by:
-            <ul>
-              <li>Denying goods or services to You</li>
-              <li>
-                Charging different prices or rates for goods or services, including the use of
-                discounts or other benefits or imposing penalties
-              </li>
-              <li>Providing a different level or quality of goods or services to You</li>
-              <li>
-                Suggesting that You will receive a different price or rate for goods or services or
-                a different level or quality of goods or services.
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <h2>Exercising Your CCPA Data Protection Rights</h2>
-        <p>
-          In order to exercise any of Your rights under the CCPA, and if you are a California
-          resident, You can email or call us or visit our &quot;Do Not Sell My Personal
-          Information&quot; section or web page.
-        </p>
-        <p>
-          The Company will disclose and deliver the required information free of charge within 45
-          days of receiving Your verifiable request. The time period to provide the required
-          information may be extended once by an additional 45 days when reasonable necessary and
-          with prior notice.
-        </p>
-        <h2>Do Not Sell My Personal Information</h2>
-        <p>
-          We do not sell personal information. However, the Service Providers we partner with (for
-          example, our advertising partners) may use technology on the Service that
-          &quot;sells&quot; personal information as defined by the CCPA law.
-        </p>
-        <p>
-          If you wish to opt out of the use of your personal information for interest-based
-          advertising purposes and these potential sales as defined under CCPA law, you may do so by
-          following the instructions below.
-        </p>
-        <p>
-          Please note that any opt out is specific to the browser You use. You may need to opt out
-          on every browser that you use.
-        </p>
-        <h3>Website</h3>
-        <p>
-          You can opt out of receiving ads that are personalized as served by our Service Providers
-          by following our instructions presented on the Service:
-        </p>
-        <ul>
-          <li>From Our &quot;Cookie Consent&quot; notice banner</li>
-          <li>Or from Our &quot;CCPA Opt-out&quot; notice banner</li>
-          <li>Or from Our &quot;Do Not Sell My Personal Information&quot; notice banner</li>
-          <li>Or from Our &quot;Do Not Sell My Personal Information&quot; link</li>
-        </ul>
-        <p>
-          The opt out will place a cookie on Your computer that is unique to the browser You use to
-          opt out. If you change browsers or delete the cookies saved by your browser, you will need
-          to opt out again.
-        </p>
-        <h3>Mobile Devices</h3>
-        <p>
-          Your mobile device may give you the ability to opt out of the use of information about the
-          apps you use in order to serve you ads that are targeted to your interests:
-        </p>
-        <ul>
-          <li>
-            &quot;Opt out of Interest-Based Ads&quot; or &quot;Opt out of Ads Personalization&quot;
-            on Android devices
-          </li>
-          <li>&quot;Limit Ad Tracking&quot; on iOS devices</li>
-        </ul>
-        <p>
-          You can also stop the collection of location information from Your mobile device by
-          changing the preferences on your mobile device.
-        </p>
-        <h1>
-          &quot;Do Not Track&quot; Policy as Required by California Online Privacy Protection Act
-          (CalOPPA)
-        </h1>
-        <p>Our Service does not respond to Do Not Track signals.</p>
-        <p>
-          However, some third party websites do keep track of Your browsing activities. If You are
-          visiting such websites, You can set Your preferences in Your web browser to inform
-          websites that You do not want to be tracked. You can enable or disable DNT by visiting the
-          preferences or settings page of Your web browser.
-        </p>
-        <h1>Your California Privacy Rights (California's Shine the Light law)</h1>
-        <p>
-          Under California Civil Code Section 1798 (California's Shine the Light law), California
-          residents with an established business relationship with us can request information once a
-          year about sharing their Personal Data with third parties for the third parties' direct
-          marketing purposes.
-        </p>
-        <p>
-          If you'd like to request more information under the California Shine the Light law, and if
-          you are a California resident, You can contact Us using the contact information provided
-          below.
-        </p>
-        <h1>
-          California Privacy Rights for Minor Users (California Business and Professions Code
-          Section 22581)
-        </h1>
-        <p>
-          California Business and Professions Code section 22581 allow California residents under
-          the age of 18 who are registered users of online sites, services or applications to
-          request and obtain removal of content or information they have publicly posted.
-        </p>
-        <p>
-          To request removal of such data, and if you are a California resident, You can contact Us
-          using the contact information provided below, and include the email address associated
-          with Your account.
-        </p>
-        <p>
-          Be aware that Your request does not guarantee complete or comprehensive removal of content
-          or information posted online and that the law may not permit or require removal in certain
-          circumstances.
-        </p>
-        <h1>Links to Other Websites</h1>
-        <p>
-          Our Service may contain links to other websites that are not operated by Us. If You click
-          on a third party link, You will be directed to that third party's site. We strongly advise
-          You to review the Privacy Policy of every site You visit.
-        </p>
-        <p>
-          We have no control over and assume no responsibility for the content, privacy policies or
-          practices of any third party sites or services.
-        </p>
-        <h1>Changes to this Privacy Policy</h1>
-        <p>
-          We may update our Privacy Policy from time to time. We will notify You of any changes by
-          posting the new Privacy Policy on this page.
-        </p>
-        <p>
-          We will let You know via email and/or a prominent notice on Our Service, prior to the
-          change becoming effective and update the &quot;Last updated&quot; date at the top of this
-          Privacy Policy.
-        </p>
-        <p>
-          You are advised to review this Privacy Policy periodically for any changes. Changes to
-          this Privacy Policy are effective when they are posted on this page.
-        </p>
-        <h1>Contact Us</h1>
-        <p>If you have any questions about this Privacy Policy, You can contact us:</p>
-        <ul>
-          <li>
-            By email:
-            <a href="/cdn-cgi/l/email-protection" class="__cf_email__">info@theavenue.live</a>
-          </li>
-        </ul>
+        </ol>
       </div>
     </div>
   </div>
@@ -617,3 +329,9 @@ export default {
   auth: false,
 }
 </script>
+
+<style scoped>
+#container .prose ol > li::before {
+  content: '';
+}
+</style>

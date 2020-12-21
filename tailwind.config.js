@@ -66,6 +66,10 @@ module.exports = {
       boxShadow: {
         'outline-white': '0 0 0 3px rgba(255, 255, 255, 0.85)',
       },
+
+      listStyleType: {
+        'lower-alpha': 'lower-alpha',
+      },
     },
   },
   variants: {},

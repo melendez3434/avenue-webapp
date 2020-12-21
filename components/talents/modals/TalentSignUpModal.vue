@@ -80,6 +80,20 @@
         </nuxt-link>
       </div>
 
+      <div class="mb-6 flex">
+        <R64Checkbox
+          :value="form.talent_agreement"
+          label=""
+          wrapper-class="mr-3 mt-0.5"
+          label-class="hidden"
+          :v="$v.form.talent_agreement"
+          @change="form.talent_agreement = $event"
+        />
+        <nuxt-link :to="{ name: 'talent-agreement' }" class="mb-1" target="_blank">
+          Talent Agreement
+        </nuxt-link>
+      </div>
+
       <div v-if="error" class="mb-6 text-theavenue-red-neon text-center">{{ error }}</div>
 
       <R64Button
@@ -122,6 +136,7 @@ export default {
         photo: '',
         cover_photo: '',
         sign_user_agreement: false,
+        talent_agreement: false,
       },
       socialNetworkList: [
         { label: 'Facebook', value: 'facebook' },
@@ -182,6 +197,11 @@ export default {
         category_id: { required },
         website: { url },
         sign_user_agreement: {
+          mustBeTrue(value) {
+            return !!value
+          },
+        },
+        talent_agreement: {
           mustBeTrue(value) {
             return !!value
           },
