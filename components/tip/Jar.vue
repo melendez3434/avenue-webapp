@@ -19,7 +19,7 @@
       >
         {{ jarAmount }}
       </div>
-      <div class="hidden md:block landscape:hidden">{{ jar.name }}</div>
+      <div class="hidden md:block landscape:hidden text-left">{{ jar.name }}</div>
     </div>
   </div>
 </template>
