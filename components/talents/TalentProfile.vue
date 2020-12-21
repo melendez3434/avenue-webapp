@@ -48,7 +48,7 @@
           {{ talent.biography }}
         </div>
       </article>
-      <article class="space-y-4">
+      <article>
         <div class="mb-8">
           <h2 class="text-2xl">Upcoming Shows</h2>
         </div>
@@ -60,6 +60,20 @@
             {{ talent.name }} - Let me drive my Lambo into your heart
           </h3>
           <h3 class="font-league-gothic text-2xl uppercase">Jan 01</h3>
+        </div>
+      </article>
+      <article>
+        <div class="mb-8">
+          <h2 class="text-2xl">Past Shows</h2>
+        </div>
+        <p class="mb-8">Revive {{ talent.name }} past shows with just one click</p>
+        <div class="space-y-6">
+          <div v-for="index in 10" class="flex justify-between border-b border-gray-900">
+            <h3 class="font-league-gothic text-2xl uppercase">
+              {{ talent.name }} - Let me drive my Lambo into your heart
+            </h3>
+            <h3 class="font-league-gothic text-2xl uppercase">Jan 01</h3>
+          </div>
         </div>
       </article>
     </div>
