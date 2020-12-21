@@ -37,17 +37,31 @@
     </div>
 
     <div
-      class="container mx-auto hidden md:flex space-x-6 pt-6 lg:pt-12 pb-8"
+      class="container mx-auto hidden md:flex md:flex-col pt-6 lg:pt-12 pb-8 space-y-14"
       :style="profileStyle"
     >
-      <div class="w-1/4 flex justify-center">
-        <h2 ref="about" class="text-2xl">About</h2>
-      </div>
-      <div class="w-3/4">
-        <article class="prose lg:prose-lg text-theavenue-white">
+      <article>
+        <div class="mb-4">
+          <h2 ref="about" class="text-2xl">About</h2>
+        </div>
+        <div class="prose lg:prose-lg ml-0 text-theavenue-white">
           {{ talent.biography }}
-        </article>
-      </div>
+        </div>
+      </article>
+      <article class="space-y-4">
+        <div class="mb-8">
+          <h2 class="text-2xl">Upcoming Shows</h2>
+        </div>
+        <div
+          class="text-theavenue-white w-max rounded-lg p-8 md:flex justify-between"
+          style="box-shadow: 0px 0px 10px #FFFFFF;"
+        >
+          <h3 class="font-league-gothic text-2xl uppercase">
+            {{ talent.name }} - Let me drive my Lambo into your heart
+          </h3>
+          <h3 class="font-league-gothic text-2xl uppercase">Jan 01</h3>
+        </div>
+      </article>
     </div>
   </div>
 </template>
