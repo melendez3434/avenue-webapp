@@ -37,12 +37,12 @@
     </div>
 
     <div
-      class="container mx-auto hidden md:flex md:flex-col pt-6 lg:pt-12 pb-8 space-y-14"
+      class="container mx-auto hidden md:flex md:flex-col py-12 space-y-14 max-w-screen-lg"
       :style="profileStyle"
     >
       <article>
         <div class="mb-4">
-          <h2 ref="about" class="text-2xl">About</h2>
+          <h2 ref="about" class="text-3xl">About</h2>
         </div>
         <div class="prose lg:prose-lg ml-0 text-theavenue-white">
           {{ talent.biography }}
@@ -50,7 +50,7 @@
       </article>
       <article>
         <div class="mb-8">
-          <h2 class="text-2xl">Upcoming Shows</h2>
+          <h2 class="text-3xl">Upcoming Shows</h2>
         </div>
         <div
           class="text-theavenue-white w-max rounded-lg p-8 md:flex justify-between"
@@ -64,15 +64,20 @@
       </article>
       <article>
         <div class="mb-8">
-          <h2 class="text-2xl">Past Shows</h2>
+          <h2 class="text-3xl">Past Shows</h2>
         </div>
         <p class="mb-8">Revive {{ talent.name }} past shows with just one click</p>
         <div class="space-y-6">
-          <div v-for="index in 10" class="flex justify-between border-b border-gray-900">
+          <div
+            v-for="index in 10"
+            :key="index"
+            class="flex justify-between border-b border-gray-900"
+          >
+            <h3 class="font-league-gothic text-2xl uppercase">01:43 hs</h3>
             <h3 class="font-league-gothic text-2xl uppercase">
               {{ talent.name }} - Let me drive my Lambo into your heart
             </h3>
-            <h3 class="font-league-gothic text-2xl uppercase">Jan 01</h3>
+            <h3 class="font-league-gothic text-2xl uppercase">Jan 01/2020</h3>
           </div>
         </div>
       </article>
