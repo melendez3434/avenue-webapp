@@ -70,7 +70,7 @@
           <p class="mb-8">Revive {{ talent.name }} past shows with just one click</p>
           <TalentPastEvents :events="events" />
         </div>
-        <p v-else>{{ talent.name }} haven't streamed yet.</p>
+        <p v-else>This artist doesn't have past streams.</p>
       </article>
     </div>
   </div>
