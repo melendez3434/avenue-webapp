@@ -1,7 +1,9 @@
 <template>
   <VideoLayout :event="event" :talent="talent">
     <div slot="streaming" class="w-112">
-      <R64Button v-if="playing" full secondary @click="askToFinishEvent">Stop Stream</R64Button>
+      <R64Button v-if="playing" full secondary :disabled="startingStream" @click="askToFinishEvent">
+        {{ startingStream ? 'Buffering Video ...' : 'Stop Stream' }}
+      </R64Button>
       <R64Button v-else full :disabled="stoppingStream" @click="startStreaming">
         {{ stoppingStream ? 'Please wait ...' : 'Start Stream' }}
       </R64Button>
@@ -78,6 +80,8 @@ import IcLive from '@/assets/svg/live_w_text.svg?inline'
 import IcSettings from '@/assets/svg/settings.svg?inline'
 
 export default {
+  auth: false,
+
   name: 'BroadcastChannel',
 
   components: { VideoLayout, DeviceSettingsModal, IcLive, IcSettings },
@@ -112,6 +116,7 @@ export default {
       audioInput: {},
       pendingChunks: [],
       stoppingStream: false,
+      startingStream: false,
     }
   },
 
@@ -175,6 +180,15 @@ export default {
         }
       })
 
+      this.$echo
+        .channel(`live.${this.talent.id}`)
+        .listen('StreamingIsLive', () => {
+          this.startingStream = false
+        })
+        .listen('StreamingIsIdle', () => {
+          this.stoppingStream = false
+        })
+
       if (this.event) {
         return this.listenForEventToFinish()
       }
@@ -212,6 +226,7 @@ export default {
     startStreaming() {
       socket.emit('create-ffmpeg-process', this.talent.stream_key)
       this.mediaRecorder.start(1000)
+      this.startingStream = true
       this.playing = true
     },
 
@@ -228,7 +243,6 @@ export default {
         return requestAnimationFrame(this.killFfmpegProcess)
       }
       socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
-      this.stoppingStream = false
     },
 
     stopStreamingAndFinishEvent() {
