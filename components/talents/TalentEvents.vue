@@ -15,11 +15,20 @@
       <div
         v-for="event in futureEvents"
         :key="event.id"
-        class="text-theavenue-white w-max rounded-lg p-8 md:flex justify-between"
+        class="text-theavenue-white w-max rounded-lg p-8"
         style="box-shadow: 0px 0px 10px #FFFFFF;"
       >
-        <h3 class="font-league-gothic text-2xl uppercase">{{ talent.name }} - {{ event.name }}</h3>
-        <h3 class="font-league-gothic text-2xl uppercase">Jan 01</h3>
+        <nuxt-link
+          class="md:flex justify-between"
+          :to="{ name: 'event-slug', params: { slug: event.id } }"
+        >
+          <h3 class="font-league-gothic text-2xl uppercase tracking-wide">
+            {{ talent.name }} - {{ event.name }}
+          </h3>
+          <h3 class="font-league-gothic text-2xl uppercase tracking-wide">
+            {{ dateTimeFormatted(event) }}
+          </h3>
+        </nuxt-link>
       </div>
       <div v-if="!futureEvents">
         <p>This artist doesn't have any future event planned for now.</p>
@@ -34,14 +43,21 @@
             v-for="event in pastEvents"
             :key="event.id"
             :playback-id="event.talent.playback_id"
-            class="flex justify-between border-b border-gray-800"
+            class="border-b border-gray-800"
           >
-            <nuxt-link :to="{ name: 'event-slug', params: { slug: event.id } }">
-              <h3 class="font-league-gothic text-2xl uppercase">{{ event.duration }}</h3>
-              <h3 class="font-league-gothic text-2xl uppercase">
+            <nuxt-link
+              class="md:flex justify-between"
+              :to="{ name: 'event-slug', params: { slug: event.id } }"
+            >
+              <h3 class="font-league-gothic text-2xl uppercase tracking-wide">
+                {{ event.duration }}
+              </h3>
+              <h3 class="font-league-gothic text-2xl uppercase tracking-wide">
                 {{ talent.name }} - {{ event.name }}
               </h3>
-              <h3 class="font-league-gothic text-2xl uppercase">{{ dateFormatted }}</h3>
+              <h3 class="font-league-gothic text-2xl uppercase tracking-wide">
+                {{ dateFormatted(event) }}
+              </h3>
             </nuxt-link>
           </div>
         </div>
@@ -72,20 +88,26 @@ export default {
   },
 
   computed: {
-    startTimeZoneDate() {
-      return spacetime(this.event.starts_at, 'UTC').goto(this.userTimezone)
-    },
-
-    dateFormatted() {
-      return this.startTimeZoneDate.format('{day}, {month} {date-pad} / {hour}:{minute-pad} {ampm}')
-    },
-
     pastEvents() {
       return this.events.filter(event => event.is_finished)
     },
 
     futureEvents() {
       return this.events.filter(event => !event.is_finished)
+    },
+  },
+
+  methods: {
+    startTimeZoneDate(event) {
+      return spacetime(event.starts_at, 'UTC').goto(this.userTimezone)
+    },
+
+    dateTimeFormatted(event) {
+      return this.startTimeZoneDate(event).format('{month} {date-pad} / {hour}:{minute-pad} {ampm}')
+    },
+
+    dateFormatted(event) {
+      return this.startTimeZoneDate(event).format('{month} {date-pad}')
     },
   },
 }
