@@ -16,7 +16,7 @@
     <div class="h-full relative bg-theavenue-black">
       <div v-if="error">There was an error loading the media devices</div>
       <div class="relative h-full">
-        <IcLive v-if="playing" class="w-32 absolute" />
+        <IcLive v-if="playing && !startingStream" class="w-32 absolute" />
         <video ref="video" class="h-full w-full" muted />
       </div>
     </div>
@@ -80,8 +80,6 @@ import IcLive from '@/assets/svg/live_w_text.svg?inline'
 import IcSettings from '@/assets/svg/settings.svg?inline'
 
 export default {
-  auth: false,
-
   name: 'BroadcastChannel',
 
   components: { VideoLayout, DeviceSettingsModal, IcLive, IcSettings },
