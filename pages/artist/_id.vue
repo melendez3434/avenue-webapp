@@ -1,5 +1,8 @@
 <template>
-  <TalentProfile :talent="talent" :events="events" page />
+  <article>
+    <TalentProfile :talent="talent" page />
+    <TalentEvents :talent="talent" :events="events" />
+  </article>
 </template>
 
 <script>

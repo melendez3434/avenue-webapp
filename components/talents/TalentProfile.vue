@@ -36,7 +36,14 @@
       </div>
     </div>
 
-    <TalentEvents :events="events" :talent="talent" />
+    <div class="container mx-auto hidden md:flex md:flex-col py-8 max-w-screen-lg">
+      <div class="mb-4">
+        <h2 ref="about" class="text-3xl">About</h2>
+      </div>
+      <div class="prose lg:prose-lg ml-0 text-theavenue-white">
+        {{ talent.biography }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -61,11 +68,6 @@ export default {
 
     event: {
       type: Object,
-      default: null,
-    },
-
-    events: {
-      type: Array,
       default: null,
     },
   },
