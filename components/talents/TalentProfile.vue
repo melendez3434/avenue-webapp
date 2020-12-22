@@ -66,8 +66,10 @@
         <div class="mb-8">
           <h2 class="text-3xl">Past Shows</h2>
         </div>
-        <p class="mb-8">Revive {{ talent.name }} past shows with just one click</p>
-        <TalentPastEvents v-if="events" :events="events" />
+        <div v-if="events">
+          <p class="mb-8">Revive {{ talent.name }} past shows with just one click</p>
+          <TalentPastEvents :events="events" />
+        </div>
         <p v-else>{{ talent.name }} haven't streamed yet.</p>
       </article>
     </div>
@@ -94,6 +96,11 @@ export default {
     },
 
     event: {
+      type: Object,
+      default: null,
+    },
+
+    events: {
       type: Object,
       default: null,
     },
