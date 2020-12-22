@@ -67,7 +67,7 @@
           <h2 class="text-3xl">Past Shows</h2>
         </div>
         <p class="mb-8">Revive {{ talent.name }} past shows with just one click</p>
-        <TalentPastEvents />
+        <TalentPastEvents :events="events" />
       </article>
     </div>
   </div>
