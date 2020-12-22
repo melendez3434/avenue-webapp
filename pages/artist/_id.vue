@@ -11,10 +11,10 @@ export default {
   async asyncData({ $api, params, error }) {
     try {
       const { data: talent } = await $api.talent.get(params.id)
-
-      return { talent }
+      const { data: events } = await $api.events.list(params.id)
+      return { talent, events }
     } catch {
-      error("We couldn't find this artist")
+      error("We couldn't find this artist or events")
     }
   },
 

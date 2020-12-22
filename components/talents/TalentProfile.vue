@@ -67,19 +67,7 @@
           <h2 class="text-3xl">Past Shows</h2>
         </div>
         <p class="mb-8">Revive {{ talent.name }} past shows with just one click</p>
-        <div class="space-y-6">
-          <div
-            v-for="index in 10"
-            :key="index"
-            class="flex justify-between border-b border-gray-900"
-          >
-            <h3 class="font-league-gothic text-2xl uppercase">01:43 hs</h3>
-            <h3 class="font-league-gothic text-2xl uppercase">
-              {{ talent.name }} - Let me drive my Lambo into your heart
-            </h3>
-            <h3 class="font-league-gothic text-2xl uppercase">Jan 01/2020</h3>
-          </div>
-        </div>
+        <TalentPastEvents />
       </article>
     </div>
   </div>
@@ -87,11 +75,12 @@
 
 <script>
 import IcThreeDots from '@/assets/svg/three_dots.svg?inline'
+import TalentPastEvents from './TalentPastEvents.vue'
 
 export default {
   name: 'TalentProfile',
 
-  components: { IcThreeDots },
+  components: { IcThreeDots, TalentPastEvents },
 
   props: {
     talent: {
@@ -141,7 +130,6 @@ export default {
 
     scrollToAbout() {
       if (this.page) return
-
       this.$refs.about.scrollIntoView({
         behavior: 'smooth',
       })
