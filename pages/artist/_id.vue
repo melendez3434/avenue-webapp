@@ -1,5 +1,5 @@
 <template>
-  <TalentProfile :talent="talent" page />
+  <TalentProfile :talent="talent" :events="events" page />
 </template>
 
 <script>
@@ -12,8 +12,10 @@ export default {
     try {
       const { data: talent } = await $api.talent.get(params.id)
       const { data: events } = await $api.events.list(params.id)
+      console.log(events)
       return { talent, events }
     } catch {
+      console.log('error')
       error("We couldn't find this artist or events")
     }
   },
