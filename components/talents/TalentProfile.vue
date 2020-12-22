@@ -67,7 +67,8 @@
           <h2 class="text-3xl">Past Shows</h2>
         </div>
         <p class="mb-8">Revive {{ talent.name }} past shows with just one click</p>
-        <TalentPastEvents :events="events" />
+        <TalentPastEvents v-if="events" :events="events" />
+        <p v-else>{{ talent.name }} haven't streamed yet.</p>
       </article>
     </div>
   </div>
@@ -75,12 +76,11 @@
 
 <script>
 import IcThreeDots from '@/assets/svg/three_dots.svg?inline'
-import TalentPastEvents from './TalentPastEvents.vue'
 
 export default {
   name: 'TalentProfile',
 
-  components: { IcThreeDots, TalentPastEvents },
+  components: { IcThreeDots },
 
   props: {
     talent: {
