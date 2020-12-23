@@ -25,7 +25,8 @@ export default function() {
 
     // Add socket.io events
     io.on('connection', socket => {
-      socket.on('create-ffmpeg-process', function(stream_name) {
+      socket.on('create-ffmpeg-process', function(stream_name, sentry) {
+        console.log(sentry)
         const endpoint = `${process.env.RTMP_SERVER}/${stream_name}`
         processes[stream_name] = spawn('ffmpeg', [
           '-i',

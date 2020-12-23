@@ -222,7 +222,7 @@ export default {
 
   methods: {
     startStreaming() {
-      socket.emit('create-ffmpeg-process', this.talent.stream_key)
+      socket.emit('create-ffmpeg-process', this.talent.stream_key, this.$sentry)
       this.mediaRecorder.start(1000)
       this.startingStream = true
       this.playing = true
