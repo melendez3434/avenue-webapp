@@ -1,7 +1,7 @@
 <template>
   <article>
     <TalentProfile :talent="talent" page />
-    <TalentEvents :talent="talent" :events="events" />
+    <TalentEvents :talent="talent" :events="events" @update:page="updatePage" />
   </article>
 </template>
 

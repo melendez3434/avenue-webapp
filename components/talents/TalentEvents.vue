@@ -22,12 +22,29 @@
         <div v-if="pastEvents.length">
           <p class="mb-8">Revive {{ talent.name }} past shows with just one click</p>
           <div
-            v-for="event in pastEvents"
+            v-for="event in visiblePastEvents"
             :key="event.id"
             :playback-id="event.talent.playback_id"
             class="border-b border-gray-800"
           >
             <TalentEventListItem :event="event" :talent="talent" is-future="false" />
+          </div>
+          <div v-if="renderPaginationButtons" class="flex justify-center mt-6">
+            <button
+              v-if="showPreviousLink"
+              aria-label="previous page in past shows"
+              @click="updatePage(currentPage - 1)"
+            >
+              ◀︎
+            </button>
+            <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+            <button
+              v-if="showNextLink"
+              aria-label="next page in past shows"
+              @click="updatePage(currentPage + 1)"
+            >
+              ►
+            </button>
           </div>
         </div>
         <div v-else>
@@ -54,6 +71,14 @@ export default {
     },
   },
 
+  data() {
+    return {
+      currentPage: 0,
+      pageSize: 10,
+      visiblePastEvents: [],
+    }
+  },
+
   computed: {
     pastEvents() {
       return this.events.filter(event => event.is_finished)
@@ -61,6 +86,44 @@ export default {
 
     futureEvents() {
       return this.events.filter(event => !event.is_finished)
+    },
+
+    renderPaginationButtons() {
+      return this.totalPages > 0
+    },
+
+    totalPages() {
+      return Math.ceil(this.pastEvents.length / this.pageSize)
+    },
+
+    showPreviousLink() {
+      return this.currentPage === 0 ? false : true
+    },
+
+    showNextLink() {
+      return this.currentPage === this.totalPages - 1 ? false : true
+    },
+  },
+
+  beforeMount() {
+    this.updateVisiblePastEvents()
+  },
+
+  methods: {
+    updateVisiblePastEvents() {
+      this.visiblePastEvents = this.pastEvents.slice(
+        this.currentPage * this.pageSize,
+        this.currentPage * this.pageSize + this.pageSize
+      )
+      if (this.visiblePastEvents.length === 0 && this.currentPage > 0) {
+        this.updatePage(this.currentPage - 1)
+      }
+    },
+
+    updatePage(pageNumber) {
+      this.$emit('page:update', pageNumber)
+      this.currentPage = pageNumber
+      this.updateVisiblePastEvents()
     },
   },
 }
