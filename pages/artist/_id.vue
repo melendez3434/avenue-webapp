@@ -14,11 +14,9 @@ export default {
   async asyncData({ $api, params, error }) {
     try {
       const { data: talent } = await $api.talent.get(params.id)
-      const { data: events } = await $api.events.list(params.id)
-      console.log(events)
+      const { data: events } = await $api.events.list({ talent: params.id })
       return { talent, events }
     } catch {
-      console.log('error')
       error("We couldn't find this artist or events")
     }
   },

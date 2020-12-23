@@ -1,14 +1,14 @@
 <template>
-  <nuxt-link :to="{ name: 'event-slug', params: { slug: event.id } }">
-    <div v-if="isFuture" class="md:flex justify-between">
-      <h3 class="font-league-gothic text-2xl uppercase tracking-wider">
-        {{ talent.name }} - {{ event.name }}
-      </h3>
-      <h3 class="font-league-gothic text-2xl uppercase tracking-wide">
-        {{ dateTimeFormatted }}
-      </h3>
-    </div>
-    <div v-else class="md:flex justify-between">
+  <div v-if="isFuture" class="md:flex justify-between">
+    <h3 class="font-league-gothic text-2xl uppercase tracking-wider">
+      {{ talent.name }} - {{ event.name }}
+    </h3>
+    <h3 class="font-league-gothic text-2xl uppercase tracking-wide">
+      {{ dateTimeFormatted }}
+    </h3>
+  </div>
+  <div v-else class="md:flex justify-between">
+    <nuxt-link :to="{ name: 'event-slug', params: { slug: event.id } }">
       <h3 class="font-league-gothic text-2xl uppercase tracking-wide">{{ eventDuration }} hs</h3>
       <h3 class="font-league-gothic text-2xl uppercase tracking-wide">
         {{ talent.name }} - {{ event.name }}
@@ -16,8 +16,8 @@
       <h3 class="font-league-gothic text-2xl uppercase tracking-wide">
         {{ dateFormatted }}
       </h3>
-    </div>
-  </nuxt-link>
+    </nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -58,8 +58,7 @@ export default {
 
     eventDuration() {
       if (String(this.event.duration.length === 2)) {
-        const zeros = '00:'
-        return zeros.concat(this.event.duration)
+        return `00:${this.event.durations}`
       }
       return this.event.duration
     },
