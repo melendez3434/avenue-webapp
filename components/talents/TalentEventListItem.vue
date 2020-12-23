@@ -58,7 +58,7 @@ export default {
 
     eventDuration() {
       if (String(this.event.duration.length === 2)) {
-        return `00:${this.event.durations}`
+        return `00:${this.event.duration}`
       }
       return this.event.duration
     },
