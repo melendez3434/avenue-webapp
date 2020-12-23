@@ -14,7 +14,7 @@ export default {
   async asyncData({ $api, params, error }) {
     try {
       const { data: talent } = await $api.talent.get(params.id)
-      const { data: events } = await $api.events.list()
+      const { data: events } = await $api.events.list({ talent: params.id, all: true })
       console.log(events)
       return { talent, events }
     } catch {

@@ -7,7 +7,7 @@
       <div
         v-for="event in futureEvents"
         :key="event.id"
-        class="text-theavenue-white w-max rounded-lg p-8"
+        class="text-theavenue-white w-max rounded-lg p-8 mb-12"
         style="box-shadow: 0px 0px 10px #FFFFFF;"
       >
         <TalentEventListItem :event="event" :talent="talent" is-future />
