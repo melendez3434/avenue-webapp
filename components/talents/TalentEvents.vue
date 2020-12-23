@@ -10,7 +10,7 @@
         class="text-theavenue-white w-max rounded-lg p-8"
         style="box-shadow: 0px 0px 10px #FFFFFF;"
       >
-        <TalentEventListItem :event="event" :talent="talent" />
+        <TalentEventListItem :event="event" :talent="talent" is-future />
       </div>
       <div v-if="!futureEvents.length">
         <p>This artist doesn't have any event planned for the future.</p>
@@ -27,7 +27,7 @@
             :playback-id="event.talent.playback_id"
             class="border-b border-gray-800"
           >
-            <TalentEventListItem :event="event" :talent="talent" is-future="false" />
+            <TalentEventListItem :event="event" :talent="talent" />
           </div>
           <div v-if="renderPaginationButtons" class="flex justify-center mt-6">
             <button
@@ -121,7 +121,7 @@ export default {
     },
 
     updatePage(pageNumber) {
-      this.$emit('page:update', pageNumber)
+      // this.$emit('page:update', pageNumber)
       this.currentPage = pageNumber
       this.updateVisiblePastEvents()
     },
