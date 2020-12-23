@@ -37,7 +37,7 @@
             >
               ◀︎
             </button>
-            <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+            <span>&nbsp;Page {{ currentPage + 1 }} of {{ totalPages }}&nbsp;</span>
             <button
               v-if="showNextLink"
               aria-label="next page in past shows"
@@ -74,7 +74,7 @@ export default {
   data() {
     return {
       currentPage: 0,
-      pageSize: 10,
+      pageSize: 2,
       visiblePastEvents: [],
     }
   },
@@ -121,7 +121,6 @@ export default {
     },
 
     updatePage(pageNumber) {
-      // this.$emit('page:update', pageNumber)
       this.currentPage = pageNumber
       this.updateVisiblePastEvents()
     },

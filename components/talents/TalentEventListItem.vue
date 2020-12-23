@@ -7,10 +7,13 @@
       {{ dateTimeFormatted }}
     </h3>
   </div>
-  <div v-else class="md:flex justify-between">
-    <nuxt-link :to="{ name: 'event-slug', params: { slug: event.id } }">
+  <div v-else>
+    <nuxt-link
+      :to="{ name: 'event-slug', params: { slug: event.id } }"
+      class="md:flex justify-between py-4"
+    >
       <h3 class="font-league-gothic text-2xl uppercase tracking-wide">{{ eventDuration }} hs</h3>
-      <h3 class="font-league-gothic text-2xl uppercase tracking-wide">
+      <h3 class="font-league-gothic text-2xl uppercase tracking-wide text-left">
         {{ talent.name }} - {{ event.name }}
       </h3>
       <h3 class="font-league-gothic text-2xl uppercase tracking-wide">
