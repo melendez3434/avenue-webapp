@@ -69,6 +69,22 @@
         </div>
       </div>
     </modal>
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="pending-streaming-modal"
+      scrollable
+      height="auto"
+    >
+      <div class="text-center py-8">
+        <p class="text-xl text-avenue-white-light">
+          The video is processing, please don't leave the page
+        </p>
+        <div class="flex items-center justify-center space-x-6 mt-5">
+          <R64Button outline @click="$modal.hide('pending-streaming-modal')">Ok</R64Button>
+        </div>
+      </div>
+    </modal>
   </VideoLayout>
 </template>
 
@@ -82,7 +98,18 @@ import IcSettings from '@/assets/svg/settings.svg?inline'
 export default {
   name: 'BroadcastChannel',
 
+  auth: false,
+
   components: { VideoLayout, DeviceSettingsModal, IcLive, IcSettings },
+
+  beforeRouteLeave(to, from, next) {
+    if (this.pendingChunks.length) {
+      this.$modal.show('pending-streaming-modal')
+      return next(false)
+    }
+
+    return next()
+  },
 
   async asyncData({ $api, params, error }) {
     try {
