@@ -12,7 +12,7 @@
       <div class="z-10 flex justify-between items-center w-full py-4 px-8">
         <TalentCard
           :talent="talent"
-          class="hidden md:flex landscape:hidden"
+          class="hidden md:flex landscape:hidden max-w-1/2"
           :class="{ 'cursor-pointer': !page }"
           @click="scrollToAbout"
         />
