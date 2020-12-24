@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div v-if="renderPaginationButtons" class="flex justify-center mt-6">
+    <div v-if="renderPaginationButtons" class="flex justify-center mt-6 text-xl">
       <button
         v-if="showPreviousLink"
         aria-label="previous page in past shows"
@@ -35,7 +35,7 @@
       >
         ◀︎
       </button>
-      <span>&nbsp;Page {{ currentPage + 1 }} of {{ totalPages }}&nbsp;</span>
+      <span>&nbsp;Page {{ currentPage }} of {{ totalPages }}&nbsp;</span>
       <button v-if="showNextLink" aria-label="next page in past shows" @click="$emit('page:next')">
         ►
       </button>
@@ -71,23 +71,23 @@ export default {
 
   computed: {
     renderPaginationButtons() {
-      return this.meta.lastPage > 1
+      return this.meta.last_page > 1
     },
 
     showPreviousLink() {
-      return this.meta.currentPage === 0 ? false : true
+      return this.meta.current_page > 1
     },
 
     showNextLink() {
-      return this.meta.currentPage === this.totalPages - 1 ? false : true
+      return this.meta.current_page < this.totalPages
     },
 
     totalPages() {
-      return this.meta.lastPage
+      return this.meta.last_page
     },
 
     currentPage() {
-      return this.meta.currentPage
+      return this.meta.current_page
     },
   },
 }
