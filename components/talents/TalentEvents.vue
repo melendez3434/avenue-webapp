@@ -12,7 +12,7 @@
       >
         <TalentEventListItem :event="event" :talent="talent" is-future />
       </div>
-      <div v-if="!futureEvents.length">
+      <div v-if="!upcomingEvents.length">
         <p>This artist doesn't have any event planned for the future.</p>
       </div>
     </div>
