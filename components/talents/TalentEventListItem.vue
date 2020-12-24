@@ -10,7 +10,7 @@
   <div v-else>
     <nuxt-link
       :to="{ name: 'event-slug', params: { slug: event.id } }"
-      class="md:flex justify-between py-4"
+      class="md:flex justify-between py-4 border-b-2 border-gray-900"
     >
       <h3 class="font-league-gothic text-2xl uppercase tracking-wide">{{ eventDuration }} hs</h3>
       <h3 class="font-league-gothic text-2xl uppercase tracking-wide text-left">
@@ -63,11 +63,15 @@ export default {
       if (this.event.duration < 60) {
         return `00:${this.event.duration}`
       }
-      let minutes = Math.floor(this.event.duration % 60)
-      if (minutes < 10) {
-        minutes = `0${minutes}`
-      }
-      return `${Math.floor(this.event.duration / 60)}:${minutes}`
+      let hours = this.timeString(Math.floor(this.event.duration / 60))
+      let minutes = this.timeString(Math.floor(this.event.duration % 60))
+      return `${hours}:${minutes}`
+    },
+  },
+
+  methods: {
+    timeString(n) {
+      if (n < 10) return `0${n}`
     },
   },
 }

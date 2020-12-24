@@ -1,6 +1,6 @@
 <template>
   <article class="container mx-auto hidden md:flex md:flex-col py-12 space-y-14 max-w-screen-lg">
-    <div class="py-8">
+    <div v-if="isFuture" class="py-8">
       <div class="mb-8">
         <h2 class="text-3xl">Upcoming Shows</h2>
       </div>
@@ -14,6 +14,16 @@
       </div>
       <div v-if="!events.length">
         <p>This artist doesn't have any event planned for the future.</p>
+      </div>
+    </div>
+
+    <div v-else>
+      <div class="mb-8">
+        <h2 class="text-3xl">Past Shows</h2>
+      </div>
+      <p class="mb-8">Revive {{ talent.name }} past shows with just one click</p>
+      <div v-for="event in events" :key="event.id">
+        <TalentEventListItem :event="event" :talent="talent" />
       </div>
     </div>
 
@@ -51,6 +61,11 @@ export default {
     meta: {
       type: Object,
       default: () => ({}),
+    },
+
+    isFuture: {
+      type: Boolean,
+      default: false,
     },
   },
 

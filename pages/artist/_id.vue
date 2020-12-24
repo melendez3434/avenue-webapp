@@ -5,6 +5,7 @@
       :talent="talent"
       :events="upcomingEvents.list"
       :meta="upcomingEvents.meta"
+      is-future
       @page:previous="fetchUpcomingEvents(upcomingEvents.meta.current_page - 1)"
       @page:next="fetchUpcomingEvents(upcomingEvents.meta.current_page + 1)"
     />
@@ -12,8 +13,8 @@
       :talent="talent"
       :events="pastEvents.list"
       :meta="pastEvents.meta"
-      @page:previous="fetchPastEvents(upcomingEvents.meta.current_page - 1)"
-      @page:next="fetchPastEvents(upcomingEvents.meta.current_page + 1)"
+      @page:previous="fetchPastEvents(pastEvents.meta.current_page - 1)"
+      @page:next="fetchPastEvents(pastEvents.meta.current_page + 1)"
     />
   </article>
 </template>
