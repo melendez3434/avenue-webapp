@@ -78,7 +78,7 @@
     >
       <div class="text-center py-8">
         <p class="text-xl text-avenue-white-light">
-          The video is processing, please don't leave the page
+          {{ leaveWarning }}
         </p>
         <div class="flex items-center justify-center space-x-6 mt-5">
           <R64Button outline @click="$modal.hide('pending-streaming-modal')">Ok</R64Button>
@@ -130,6 +130,7 @@ export default {
 
   data() {
     return {
+      leaveWarning: "The video is processing, please don't leave the page",
       extendMinutes: 10,
       error: false,
       playing: false,
@@ -182,6 +183,12 @@ export default {
   },
 
   async mounted() {
+    window.onbeforeunload = event => {
+      if (this.pendingChunks.length) {
+        event.returnValue = this.leaveWarning
+      }
+    }
+
     try {
       await this.getMediaDevices()
 
@@ -231,8 +238,6 @@ export default {
     if (!this.cameraStream) return
 
     if (this.playing) {
-      // Force pending chunks to none
-      this.pendingChunks = []
       this.stopStreaming()
     }
 
