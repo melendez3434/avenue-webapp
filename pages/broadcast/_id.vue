@@ -101,7 +101,7 @@ export default {
   components: { VideoLayout, DeviceSettingsModal, IcLive, IcSettings },
 
   beforeRouteLeave(to, from, next) {
-    if (this.pendingChunks.length) {
+    if (this.occupiedProcess) {
       this.$modal.show('pending-streaming-modal')
       return next(false)
     }
@@ -145,6 +145,10 @@ export default {
   },
 
   computed: {
+    occupiedProcess() {
+      return this.playing || this.stoppingStream
+    },
+
     audioDevices() {
       const devices = []
       for (const device of this.devices) {
@@ -182,10 +186,16 @@ export default {
 
   async mounted() {
     window.onbeforeunload = event => {
-      if (this.pendingChunks.length) {
+      if (this.occupiedProcess) {
         event.returnValue = this.leaveWarning
       }
     }
+
+    window.addEventListener('unload', () => {
+      if (this.occupiedProcess) {
+        socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
+      }
+    })
 
     try {
       await this.getMediaDevices()
