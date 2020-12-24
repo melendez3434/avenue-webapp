@@ -12,7 +12,7 @@
       <div class="z-10 flex justify-between items-center w-full py-4 px-8">
         <TalentCard
           :talent="talent"
-          class="hidden md:flex landscape:hidden"
+          class="hidden md:flex landscape:hidden max-w-1/2"
           :class="{ 'cursor-pointer': !page }"
           @click="scrollToAbout"
         />
@@ -36,17 +36,12 @@
       </div>
     </div>
 
-    <div
-      class="container mx-auto hidden md:flex space-x-6 pt-6 lg:pt-12 pb-8"
-      :style="profileStyle"
-    >
-      <div class="w-1/4 flex justify-center">
-        <h2 ref="about" class="text-2xl">About</h2>
+    <div class="container mx-auto hidden md:flex md:flex-col py-8 max-w-screen-lg">
+      <div class="mb-4">
+        <h2 ref="about" class="text-3xl">About</h2>
       </div>
-      <div class="w-3/4">
-        <article class="prose lg:prose-lg text-theavenue-white">
-          {{ talent.biography }}
-        </article>
+      <div class="prose lg:prose-lg ml-0 text-theavenue-white">
+        {{ talent.biography }}
       </div>
     </div>
   </div>
@@ -108,7 +103,6 @@ export default {
 
     scrollToAbout() {
       if (this.page) return
-
       this.$refs.about.scrollIntoView({
         behavior: 'smooth',
       })

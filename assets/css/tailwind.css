@@ -36,6 +36,9 @@
       /* screen - navbar - tip jars */
       height: calc(100vh - 20rem - 5rem)
     }
+    .available-min-height {
+      min-height: calc(100vh - 80px - 76px);
+    }
   }
 }
 

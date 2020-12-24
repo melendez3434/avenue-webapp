@@ -69,6 +69,22 @@
         </div>
       </div>
     </modal>
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="pending-streaming-modal"
+      scrollable
+      height="auto"
+    >
+      <div class="text-center py-8">
+        <p class="text-xl text-avenue-white-light">
+          {{ leaveWarning }}
+        </p>
+        <div class="flex items-center justify-center space-x-6 mt-5">
+          <R64Button outline @click="$modal.hide('pending-streaming-modal')">Ok</R64Button>
+        </div>
+      </div>
+    </modal>
   </VideoLayout>
 </template>
 
@@ -83,6 +99,15 @@ export default {
   name: 'BroadcastChannel',
 
   components: { VideoLayout, DeviceSettingsModal, IcLive, IcSettings },
+
+  beforeRouteLeave(to, from, next) {
+    if (this.occupiedProcess) {
+      this.$modal.show('pending-streaming-modal')
+      return next(false)
+    }
+
+    return next()
+  },
 
   async asyncData({ $api, params, error }) {
     try {
@@ -103,6 +128,7 @@ export default {
 
   data() {
     return {
+      leaveWarning: "The video is processing, please don't leave the page",
       extendMinutes: 10,
       error: false,
       playing: false,
@@ -119,6 +145,10 @@ export default {
   },
 
   computed: {
+    occupiedProcess() {
+      return this.playing || this.stoppingStream
+    },
+
     audioDevices() {
       const devices = []
       for (const device of this.devices) {
@@ -155,6 +185,18 @@ export default {
   },
 
   async mounted() {
+    window.onbeforeunload = event => {
+      if (this.occupiedProcess) {
+        event.returnValue = this.leaveWarning
+      }
+    }
+
+    window.addEventListener('unload', () => {
+      if (this.occupiedProcess) {
+        socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
+      }
+    })
+
     try {
       await this.getMediaDevices()
 
@@ -204,8 +246,6 @@ export default {
     if (!this.cameraStream) return
 
     if (this.playing) {
-      // Force pending chunks to none
-      this.pendingChunks = []
       this.stopStreaming()
     }
 
