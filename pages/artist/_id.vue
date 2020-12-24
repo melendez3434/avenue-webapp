@@ -1,7 +1,7 @@
 <template>
   <article>
     <TalentProfile :talent="talent" page />
-    <TalentEvents :talent="talent" :events="events" />
+    <TalentEvents :talent="talent" :events="upcomingEvents" />
   </article>
 </template>
 
@@ -14,10 +14,31 @@ export default {
   async asyncData({ $api, params, error }) {
     try {
       const { data: talent } = await $api.talent.get(params.id)
-      const { data: events } = await $api.events.list({ talent: params.id, all: true })
-      return { talent, events }
+      const { data: upcomingEvents, meta } = await $api.events.list({
+        talent: params.id,
+        upcoming: true,
+        page: 0,
+      })
+      console.log(meta, upcomingEvents)
+      return { talent, upcomingEvents }
     } catch {
       error("We couldn't find this artist or events")
+    }
+  },
+
+  async fetchPage({ $api, parms, error }) {
+    const page = this.meta.current_page + 1
+
+    try {
+      const { data: upcomingEvents, meta } = await this.$api.events.list({
+        talent: params.id,
+        upcoming: true,
+        page,
+      })
+      this.upcomingEvents = upcomingEvents
+      this.meta = meta
+    } catch {
+      error("We couldn't fetch this events")
     }
   },
 

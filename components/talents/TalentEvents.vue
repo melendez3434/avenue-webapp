@@ -5,7 +5,7 @@
         <h2 class="text-3xl">Upcoming Shows</h2>
       </div>
       <div
-        v-for="event in futureEvents"
+        v-for="event in upcomingEvents"
         :key="event.id"
         class="text-theavenue-white w-max rounded-lg p-8 mb-12"
         style="box-shadow: 0px 0px 10px #FFFFFF;"
@@ -60,7 +60,12 @@ export default {
   name: 'TalentEvents',
 
   props: {
-    events: {
+    upcomingEvents: {
+      type: Array,
+      default: null,
+    },
+
+    futureEvents: {
       type: Array,
       default: null,
     },
@@ -69,60 +74,28 @@ export default {
       type: Object,
       default: null,
     },
-  },
 
-  data() {
-    return {
-      currentPage: 0,
-      pageSize: 2,
-      visiblePastEvents: [],
-    }
+    meta: {
+      type: Object,
+      default: null,
+    },
   },
 
   computed: {
-    pastEvents() {
-      return this.events.filter(event => event.is_finished)
-    },
-
-    futureEvents() {
-      return this.events.filter(event => !event.is_finished)
-    },
-
     renderPaginationButtons() {
-      return this.totalPages > 0
-    },
-
-    totalPages() {
-      return Math.ceil(this.pastEvents.length / this.pageSize)
+      return this.meta.lastPage > 1
     },
 
     showPreviousLink() {
-      return this.currentPage === 0 ? false : true
+      return this.meta.currentPage === 0 ? false : true
     },
 
     showNextLink() {
-      return this.currentPage === this.totalPages - 1 ? false : true
-    },
-  },
-
-  beforeMount() {
-    this.updateVisiblePastEvents()
-  },
-
-  methods: {
-    updateVisiblePastEvents() {
-      this.visiblePastEvents = this.pastEvents.slice(
-        this.currentPage * this.pageSize,
-        this.currentPage * this.pageSize + this.pageSize
-      )
-      if (this.visiblePastEvents.length === 0 && this.currentPage > 0) {
-        this.updatePage(this.currentPage - 1)
-      }
+      return this.meta.currentPage === this.totalPages - 1 ? false : true
     },
 
-    updatePage(pageNumber) {
-      this.currentPage = pageNumber
-      this.updateVisiblePastEvents()
+    totalPages() {
+      return this.meta.lastPage
     },
   },
 }
