@@ -17,6 +17,7 @@
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.10.3",
     "@nuxtjs/laravel-echo": "^1.1.0",
+    "@nuxtjs/sentry": "^4.5.0",
     "@tailwindcss/ui": "^0.6.2",
     "croppie": "^2.6.5",
     "element-ui": "^2.13.2",

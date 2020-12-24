@@ -79,7 +79,7 @@ const config = {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/auth', '~/stream/sockets'],
+  modules: ['@nuxtjs/sentry', '@nuxtjs/axios', '@nuxtjs/auth', '~/stream/sockets'],
 
   /*
    ** Axios module configuration
