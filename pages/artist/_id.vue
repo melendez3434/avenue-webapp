@@ -1,8 +1,20 @@
 <template>
   <article>
     <TalentProfile :talent="talent" page />
-    <TalentEvents :talent="talent" :events="upcomingEvents" />
-    <TalentEvents :talent="talent" :events="futureEvents" />
+    <TalentEvents
+      :talent="talent"
+      :events="upcomingEvents.list"
+      :meta="upcomingEvents.meta"
+      @page:previous="fetchUpcomingEvents(upcomingEvents.meta.current_page - 1)"
+      @page:next="fetchUpcomingEvents(upcomingEvents.meta.current_page + 1)"
+    />
+    <TalentEvents
+      :talent="talent"
+      :events="pastEvents.list"
+      :meta="pastEvents.meta"
+      @page:previous="fetchPastEvents(upcomingEvents.meta.current_page - 1)"
+      @page:next="fetchPastEvents(upcomingEvents.meta.current_page + 1)"
+    />
   </article>
 </template>
 
@@ -15,31 +27,56 @@ export default {
   async asyncData({ $api, params, error }) {
     try {
       const { data: talent } = await $api.talent.get(params.id)
-      const { data: upcomingEvents, meta } = await $api.events.list({
+      const { data: upcomingEventsList, upcomingEventsMeta } = await $api.events.list({
         talent: params.id,
         upcoming: true,
         page: 0,
       })
-      console.log(meta)
-      return { talent, upcomingEvents }
+
+      const { data: pastEventsList, pastEventsMeta } = await $api.events.list({
+        talent: params.id,
+        past: true,
+        page: 0,
+      })
+
+      const pastEvents = { list: pastEventsList, meta: pastEventsMeta }
+      const upcomingEvents = { list: upcomingEventsList, meta: upcomingEventsMeta }
+
+      return { talent, pastEvents, upcomingEvents }
     } catch {
       error("We couldn't find this artist or events")
     }
   },
 
-  async fetchPage({ $api, params, error }) {
-    const page = this.meta.current_page + 1
+  async fetchUpcomingEvents(pageNumber) {
+    this.upcomingEvents.meta.current_page = pageNumber
 
     try {
       const { data: upcomingEvents, meta } = await this.$api.events.list({
-        talent: params.id,
+        talent: this.$route.params.id,
         upcoming: true,
-        page,
+        page: this.upcomingEvents.meta.current_page,
       })
-      this.upcomingEvents = upcomingEvents
-      this.meta = meta
+      this.upcomingEvents.list = upcomingEvents
+      this.upcomingEvents.meta = meta
     } catch {
-      error("We couldn't fetch this events")
+      console.log("We couldn't fetch this events")
+    }
+  },
+
+  async fetchPastEvents(pageNumber) {
+    this.pastEvents.meta.current_page = pageNumber
+
+    try {
+      const { data: pastEvents, meta } = await this.$api.events.list({
+        talent: this.$route.params.id,
+        past: true,
+        page: this.pastEvents.meta.current_page,
+      })
+      this.pastEvents.list = pastEvents
+      this.pastEvents.meta = meta
+    } catch {
+      console.log("We couldn't fetch this events")
     }
   },
 
