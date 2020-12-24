@@ -25,11 +25,7 @@
     <div class="md:col-span-3 flex flex-col flex-1">
       <template v-if="event">
         <TipJars :event="event" @click:jar="openDonationModal" />
-        <ChatRoom
-          class="flex-1 h-52 md:chat-height"
-          :event="event"
-          @click:jar="openDonationModal"
-        />
+        <ChatRoom class="h-52 md:chat-height" :event="event" @click:jar="openDonationModal" />
       </template>
       <template v-else>
         <TipJarsPlaceholder />
