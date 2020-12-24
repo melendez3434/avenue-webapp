@@ -15,7 +15,6 @@ export default {
     try {
       const { data: talent } = await $api.talent.get(params.id)
       const { data: events } = await $api.events.list({ talent: params.id, all: true })
-      console.log(events)
       return { talent, events }
     } catch {
       error("We couldn't find this artist or events")

@@ -60,10 +60,14 @@ export default {
     },
 
     eventDuration() {
-      if (String(this.event.duration.length === 2)) {
+      if (this.event.duration < 60) {
         return `00:${this.event.duration}`
       }
-      return this.event.duration
+      let minutes = Math.floor(this.event.duration % 60)
+      if (minutes < 10) {
+        minutes = `0${minutes}`
+      }
+      return `${Math.floor(this.event.duration / 60)}:${minutes}`
     },
   },
 }
