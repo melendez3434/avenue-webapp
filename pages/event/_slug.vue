@@ -1,6 +1,12 @@
 <template>
   <VideoLayout :event="event">
-    <EventVideo :playback-id="event.talent.playback_id" />
+    <EventVideo
+      :key="activePlaybackId"
+      :playback-id="activePlaybackId"
+      :offline="isFinished"
+      :assets="event.assets"
+      @selected-asset="selectedAsset = $event"
+    />
     <template #placeholder>
       <div
         class="w-full h-full flex items-start pt-20 md:pt-0 md:items-center justify-center text-center"
@@ -27,13 +33,27 @@ export default {
 
     try {
       const { data: event } = await $api.events.get(params.slug)
-      return { event }
+      const selectedAsset = event.assets.length ? event.assets[0].playback_id : ''
+
+      return { event, selectedAsset }
     } catch (e) {
       redirect('/')
     }
   },
 
   computed: {
+    isFinished() {
+      return this.event.is_finished
+    },
+
+    activePlaybackId() {
+      if (!this.isFinished) {
+        return this.event.talent.playback_id
+      }
+
+      return this.selectedAsset
+    },
+
     eventStartTimeZoneDate() {
       return spacetime(this.event.starts_at, 'UTC')
         .goto(this.event.timezone)
