@@ -2,6 +2,7 @@
   <article>
     <TalentProfile :talent="talent" page />
     <TalentEvents :talent="talent" :events="upcomingEvents" />
+    <TalentEvents :talent="talent" :events="futureEvents" />
   </article>
 </template>
 
@@ -19,14 +20,14 @@ export default {
         upcoming: true,
         page: 0,
       })
-      console.log(meta, upcomingEvents)
+      console.log(meta)
       return { talent, upcomingEvents }
     } catch {
       error("We couldn't find this artist or events")
     }
   },
 
-  async fetchPage({ $api, parms, error }) {
+  async fetchPage({ $api, params, error }) {
     const page = this.meta.current_page + 1
 
     try {

@@ -33,7 +33,7 @@
             <button
               v-if="showPreviousLink"
               aria-label="previous page in past shows"
-              @click="updatePage(currentPage - 1)"
+              @click="updatePage(meta.currentPage - 1)"
             >
               ◀︎
             </button>
@@ -41,7 +41,7 @@
             <button
               v-if="showNextLink"
               aria-label="next page in past shows"
-              @click="updatePage(currentPage + 1)"
+              @click="updatePage(meta.currentPage + 1)"
             >
               ►
             </button>
@@ -60,12 +60,7 @@ export default {
   name: 'TalentEvents',
 
   props: {
-    upcomingEvents: {
-      type: Array,
-      default: null,
-    },
-
-    futureEvents: {
+    events: {
       type: Array,
       default: null,
     },
@@ -96,6 +91,16 @@ export default {
 
     totalPages() {
       return this.meta.lastPage
+    },
+
+    currentPage() {
+      return this.meta.currentPage
+    },
+  },
+
+  methods: {
+    updatePage(currentPage) {
+      this.$emit('update:page', currentPage)
     },
   },
 }
