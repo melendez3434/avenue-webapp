@@ -22,7 +22,7 @@
         <div v-if="pastEvents.length">
           <p class="mb-8">Revive {{ talent.name }} past shows with just one click</p>
           <div
-            v-for="event in visiblePastEvents"
+            v-for="event in pastEvents"
             :key="event.id"
             :playback-id="event.talent.playback_id"
             class="border-b border-gray-800"
