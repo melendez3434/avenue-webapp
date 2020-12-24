@@ -86,6 +86,10 @@ export default {
     },
 
     inactiveStreaming() {
+      if (this.event && this.event.is_finished) {
+        return false
+      }
+
       return ['idle', 'disconnected', 'no-channel'].includes(this.streaming.status)
     },
   },
