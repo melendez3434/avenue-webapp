@@ -1,5 +1,5 @@
 <template>
-  <article class="container mx-auto hidden md:flex md:flex-col py-12 space-y-14 max-w-screen-lg">
+  <article class="container mx-auto hidden md:flex md:flex-col py-6 space-y-14 max-w-screen-lg">
     <div v-if="isFuture" class="py-8">
       <div class="mb-8">
         <h2 class="text-3xl">Upcoming Shows</h2>

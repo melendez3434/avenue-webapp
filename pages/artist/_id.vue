@@ -6,15 +6,15 @@
       :events="upcomingEvents.list"
       :meta="upcomingEvents.meta"
       is-future
-      @page:previous="fetchUpcomingEvents(upcomingEvents.meta.current_page - 1)"
-      @page:next="fetchUpcomingEvents(upcomingEvents.meta.current_page + 1)"
+      @page:previous="fetchEvents(upcomingEvents.meta.current_page - 1, upcomingEvents, true)"
+      @page:next="fetchEvents(upcomingEvents.meta.current_page + 1, upcomingEvents, true)"
     />
     <TalentEvents
       :talent="talent"
       :events="pastEvents.list"
       :meta="pastEvents.meta"
-      @page:previous="fetchPastEvents(pastEvents.meta.current_page - 1)"
-      @page:next="fetchPastEvents(pastEvents.meta.current_page + 1)"
+      @page:previous="fetchEvents(pastEvents.meta.current_page - 1, pastEvents, false)"
+      @page:next="fetchEvents(pastEvents.meta.current_page + 1, pastEvents, false)"
     />
   </article>
 </template>
@@ -49,33 +49,22 @@ export default {
     }
   },
 
-  async fetchUpcomingEvents(pageNumber) {
-    this.upcomingEvents.meta.current_page = pageNumber
+  async fetchEvents(pageNumber, events, isFuture) {
+    events.meta.current_page = pageNumber
 
     try {
-      const { data: upcomingEvents, meta } = await this.$api.events.list({
-        talent: this.$route.params.id,
-        upcoming: true,
-        page: this.upcomingEvents.meta.current_page,
-      })
-      this.upcomingEvents.list = upcomingEvents
-      this.upcomingEvents.meta = meta
-    } catch {
-      console.log("We couldn't fetch this events")
-    }
-  },
-
-  async fetchPastEvents(pageNumber) {
-    this.pastEvents.meta.current_page = pageNumber
-
-    try {
-      const { data: pastEvents, meta } = await this.$api.events.list({
+      const { data: events, meta } = await this.$api.events.list({
         talent: this.$route.params.id,
         past: true,
-        page: this.pastEvents.meta.current_page,
+        page: events.meta.current_page,
       })
-      this.pastEvents.list = pastEvents
-      this.pastEvents.meta = meta
+      if (isFuture) {
+        this.upcomingEvents.list = events
+        this.upcomingEvents.meta = meta
+      } else {
+        this.pastEvents.list = events
+        this.pastEvents.meta = meta
+      }
     } catch {
       console.log("We couldn't fetch this events")
     }
