@@ -1,6 +1,12 @@
 <template>
   <div>
     <client-only>
+      <nuxt-link
+        :to="{ name: 'artists' }"
+        class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+      >
+        Artists
+      </nuxt-link>
       <el-dropdown trigger="click" placement="top-start">
         <div class="flex items-center">
           <span
