@@ -69,6 +69,9 @@ export default function() {
 
         process.on('uncaughtException', error => {
           console.error(error)
+
+          if (!process.sentry) return
+
           process.sentry.captureException(new Error(error), {
             tags: { stream_name },
           })
@@ -84,11 +87,15 @@ export default function() {
         processes[stream_name].on('close', (code, signal) => {
           const message = `ffmpeg process for ${stream_name} ended unexpectedly`
           console.error(message, { code, signal })
+
+          processes[stream_name] = null
+          socket.emit(`${stream_name}-error`, { code, signal })
+
+          if (!process.sentry) return
+
           process.sentry.captureException(new Error(message), {
             tags: { stream_name },
           })
-          processes[stream_name] = null
-          socket.emit(`${stream_name}-error`, { code, signal })
         })
 
         // Handle STDIN pipe errors by logging to the console.
@@ -96,6 +103,9 @@ export default function() {
         // data to write.f If left unhandled, the server will crash.
         processes[stream_name].stdin.on('error', e => {
           console.error(e)
+
+          if (!process.sentry) return
+
           process.sentry.captureException(new Error(e), {
             tags: { stream_name },
           })
