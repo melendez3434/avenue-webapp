@@ -19,6 +19,7 @@
             <SearchIcon class="w-6 h-6 absolute right-6 cursor-pointer" />
           </fieldset>
           <el-dropdown-item v-for="artist in artists" :key="artist.id">
+            ask how the class .el-popper.el-dropdown-menu .el-dropdown-menu__item is applying here
             <nuxt-link
               :to="{ name: 'artist-id', params: { id: artist.id } }"
               class="font-roboto text-lg"
