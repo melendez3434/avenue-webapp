@@ -1,12 +1,33 @@
 <template>
   <div>
     <client-only>
-      <nuxt-link
-        :to="{ name: 'artists' }"
-        class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-      >
-        Artists
-      </nuxt-link>
+      <el-dropdown trigger="click" placement="top-start">
+        <div class="flex items-center">
+          <span
+            class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+          >
+            Artists
+          </span>
+          <IcArrowDown class="w-10 h-10" />
+        </div>
+        <el-dropdown-menu slot="dropdown">
+          <fieldset class="w-full flex justify-center items-center">
+            <input
+              type="text"
+              class="w-10/12 rounded bg-theavenue-background-extra-light h-9 relative text-white text-xs p-2"
+            />
+            <SearchIcon class="w-6 h-6 absolute right-6 cursor-pointer" />
+          </fieldset>
+          <el-dropdown-item v-for="artist in artists" :key="artist.id">
+            <nuxt-link
+              :to="{ name: 'artist-id', params: { id: artist.id } }"
+              class="font-roboto text-lg"
+            >
+              {{ artist.name }}
+            </nuxt-link>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
       <el-dropdown trigger="click" placement="top-start">
         <div class="flex items-center">
           <span
@@ -79,17 +100,29 @@
 <script>
 import { mapState } from 'vuex'
 import IcArrowDown from '@/assets/svg/arrow_down.svg?inline'
+import SearchIcon from '@/assets/svg/search.svg?inline'
 
 export default {
   name: 'MainMenu',
 
   components: {
     IcArrowDown,
+    SearchIcon,
   },
 
   data() {
     return {
       activeItem: 'All Genres',
+      artists: [
+        {
+          id: 1,
+          name: 'Javi and the Javis',
+        },
+        {
+          id: 2,
+          name: 'Ceci',
+        },
+      ],
     }
   },
 

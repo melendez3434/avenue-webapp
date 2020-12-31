@@ -16,6 +16,11 @@ font-weight: normal;
 src: local('~assets/fonts/LIBRARY 3 AM soft Regular'), url('~assets/fonts/Library 3 am soft.woff') format('woff');
 }
 
+@font-face {
+  font-family: 'Roboto';
+  src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')
+}
+
 button > div.loader {
   border-top: .2rem solid rgba(0,0,0,.5);
   border-right: .2rem solid rgba(0,0,0,.5);

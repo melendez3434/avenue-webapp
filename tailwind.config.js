@@ -61,6 +61,7 @@ module.exports = {
       fontFamily: {
         library: ['"LIBRARY 3 AM soft Regular"', 'sans-serif'],
         'league-gothic': ['"League Gothic"', 'serif'], // Ensure fonts with spaces have " " surrounding it.
+        roboto: ['Roboto', 'sans-serif'],
       },
 
       boxShadow: {
