@@ -1,5 +1,13 @@
 import http from 'http'
 import socketIO from 'socket.io'
+import * as Sentry from '@sentry/node'
+
+if (process.env.SENTRY_DISABLED !== 'true') {
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    tracesSampleRate: 1.0,
+  })
+}
 
 const spawn = require('child_process').spawn
 
@@ -25,6 +33,10 @@ export default function() {
 
     // Add socket.io events
     io.on('connection', socket => {
+      Sentry.captureException(new Error('Stream connected'), {
+        tags: 'testing',
+      })
+
       socket.on('create-ffmpeg-process', function(stream_name) {
         const endpoint = `${process.env.RTMP_SERVER}/${stream_name}`
         processes[stream_name] = spawn('ffmpeg', [
@@ -69,7 +81,7 @@ export default function() {
 
         process.on('uncaughtException', error => {
           console.error(error)
-          process.sentry.captureException(new Error(error), {
+          Sentry.captureException(new Error(error), {
             tags: { stream_name },
           })
         })
@@ -84,7 +96,7 @@ export default function() {
         processes[stream_name].on('close', (code, signal) => {
           const message = `ffmpeg process for ${stream_name} ended unexpectedly`
           console.error(message, { code, signal })
-          process.sentry.captureException(new Error(message), {
+          Sentry.captureException(new Error(message), {
             tags: { stream_name },
           })
           processes[stream_name] = null
@@ -96,7 +108,7 @@ export default function() {
         // data to write.f If left unhandled, the server will crash.
         processes[stream_name].stdin.on('error', e => {
           console.error(e)
-          process.sentry.captureException(new Error(e), {
+          Sentry.captureException(new Error(e), {
             tags: { stream_name },
           })
         })
