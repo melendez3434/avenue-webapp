@@ -64,12 +64,12 @@ export default function() {
           '1000k',
 
           // audio codec config: sampling frequency (11025, 22050, 44100), bitrate 64 kbits
-          '-c:a',
-          'aac',
-          '-ar',
-          '44100',
-          '-b:a',
-          '64k',
+          // '-c:a',
+          // 'aac',
+          // '-ar',
+          // '44100',
+          // '-b:a',
+          // '64k',
 
           //force to overwrite
           '-y',
@@ -82,8 +82,6 @@ export default function() {
 
           //'-filter_complex', 'aresample=44100', // resample audio to 44100Hz, needed if input is not 44100
           //'-strict', 'experimental',
-          '-bufsize',
-          '1000',
           '-f',
           'flv',
           '-flvflags',
