@@ -1,5 +1,13 @@
 import http from 'http'
 import socketIO from 'socket.io'
+import * as Sentry from '@sentry/node'
+
+if (process.env.SENTRY_DISABLED !== 'true') {
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    tracesSampleRate: 1.0,
+  })
+}
 
 const spawn = require('child_process').spawn
 
@@ -27,6 +35,14 @@ export default function() {
     io.on('connection', socket => {
       socket.on('create-ffmpeg-process', function(stream_name) {
         const endpoint = `${process.env.RTMP_SERVER}/${stream_name}`
+
+        if (processes[stream_name]) {
+          Sentry.captureException(new Error('Event tried to start twice'), {
+            tags: { stream_name },
+          })
+          return
+        }
+
         processes[stream_name] = spawn('ffmpeg', [
           '-i',
           '-',
@@ -69,10 +85,7 @@ export default function() {
 
         process.on('uncaughtException', error => {
           console.error(error)
-
-          if (!process.sentry) return
-
-          process.sentry.captureException(new Error(error), {
+          Sentry.captureException(new Error(error), {
             tags: { stream_name },
           })
         })
@@ -91,9 +104,7 @@ export default function() {
           processes[stream_name] = null
           socket.emit(`${stream_name}-error`, { code, signal })
 
-          if (!process.sentry) return
-
-          process.sentry.captureException(new Error(message), {
+          Sentry.captureException(new Error(message), {
             tags: { stream_name },
           })
         })
@@ -104,9 +115,7 @@ export default function() {
         processes[stream_name].stdin.on('error', e => {
           console.error(e)
 
-          if (!process.sentry) return
-
-          process.sentry.captureException(new Error(e), {
+          Sentry.captureException(new Error(e), {
             tags: { stream_name },
           })
         })
@@ -133,7 +142,8 @@ export default function() {
 
         // Await the last chunk to finish
         setTimeout(() => {
-          processes[processName].kill('SIGINT')
+          ffmpegProcess.kill('SIGINT')
+          processes[processName] = null
           console.warn(`ffmpeg process for ${processName} ended`)
         }, 1500)
       }
