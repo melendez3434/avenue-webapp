@@ -11,7 +11,7 @@
           <IcArrowDown class="w-10 h-10" />
         </div>
         <el-dropdown-menu slot="dropdown" class="w-80">
-          <fieldset class="w-full flex justify-center items-center">
+          <fieldset class="w-full flex justify-center items-center mb-4">
             <input
               v-model="search"
               placeholder="search artists"
@@ -21,7 +21,13 @@
             <SearchIcon class="w-6 h-6 absolute right-8 cursor-pointer" />
           </fieldset>
           <el-dropdown-item v-for="talent in filteredTalents" :key="talent.id">
-            <nuxt-link :to="{ name: 'artist-id', params: { id: talent.id } }">
+            <nuxt-link class="text-base flex items-center" :to="{ name: 'artist-id', params: { id: talent.id } }">
+               <img
+                  v-if="talent.photo"
+                  :src="talent.photo"
+                  :alt="`${talent.name} photo`"
+                  class="rounded-full w-6 h-6 mr-3"
+                />
               {{ talent.name }}
             </nuxt-link>
           </el-dropdown-item>
@@ -185,7 +191,7 @@ export default {
   },
 }
 </script>
-<style>
+<style scoped>
 .el-popper.el-dropdown-menu {
   @apply bg-theavenue-background-light;
   @apply border-none;
@@ -209,4 +215,5 @@ export default {
   @apply bg-transparent;
   @apply text-theavenue-white;
 }
+
 </style>
