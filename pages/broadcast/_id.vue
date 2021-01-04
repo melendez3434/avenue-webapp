@@ -287,6 +287,11 @@ export default {
         return requestAnimationFrame(this.killFfmpegProcess)
       }
       socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
+      // Timeout for enabling manually the stream. 20 sec should be enough for MUX
+      // to notify the event
+      setTimeout(() => {
+        this.stoppingStream = false
+      }, 20000)
     },
 
     stopStreamingAndFinishEvent() {
