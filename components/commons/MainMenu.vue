@@ -2,7 +2,7 @@
   <div>
     <client-only>
       <el-dropdown trigger="click" placement="top-start">
-        <div class="flex items-center">
+        <div class="flex items-center" @click="fetchTalents">
           <span
             class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
           >
@@ -10,21 +10,17 @@
           </span>
           <IcArrowDown class="w-10 h-10" />
         </div>
-        <el-dropdown-menu slot="dropdown">
+        <el-dropdown-menu slot="dropdown" class="w-80">
           <fieldset class="w-full flex justify-center items-center">
             <input
               type="text"
               class="w-10/12 rounded bg-theavenue-background-extra-light h-9 relative text-white text-xs p-2"
             />
-            <SearchIcon class="w-6 h-6 absolute right-6 cursor-pointer" />
+            <SearchIcon class="w-6 h-6 absolute right-8 cursor-pointer" />
           </fieldset>
-          <el-dropdown-item v-for="artist in artists" :key="artist.id">
-            <!-- ask how the class .el-popper.el-dropdown-menu .el-dropdown-menu__item is applying here -->
-            <nuxt-link
-              :to="{ name: 'artist-id', params: { id: artist.id } }"
-              class="font-roboto text-lg"
-            >
-              {{ artist.name }}
+          <el-dropdown-item v-for="talent in talents" :key="talent.id">
+            <nuxt-link :to="{ name: 'artist-id', params: { id: talent.id } }">
+              {{ talent.name }}
             </nuxt-link>
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -114,16 +110,7 @@ export default {
   data() {
     return {
       activeItem: 'All Genres',
-      artists: [
-        {
-          id: 1,
-          name: 'Javi and the Javis',
-        },
-        {
-          id: 2,
-          name: 'Ceci',
-        },
-      ],
+      talents: [],
     }
   },
 
@@ -176,6 +163,15 @@ export default {
     async completeStripe() {
       const { data: url } = await this.$api.talent.stripeAuthorize(this.$auth.user.talent_id)
       window.location.href = url
+    },
+
+    async fetchTalents() {
+      try {
+        const { data: talents } = await this.$api.talent.list({ all: true })
+        this.talents = talents
+      } catch {
+        console.log('Sorry. Something went wrong when fetching the talents')
+      }
     },
   },
 }

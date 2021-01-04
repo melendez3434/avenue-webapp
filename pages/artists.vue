@@ -13,9 +13,13 @@
 export default {
   auth: false,
 
-  async asyncData({ $api }) {
-    const { data: talents } = await $api.talent.list({ all: true })
-    return { talents }
+  async asyncData({ $api, error }) {
+    try {
+      const { data: talents } = await $api.talent.list({ all: true })
+      return { talents }
+    } catch {
+      error('Sorry. Something went wrong fetching the talents')
+    }
   },
 }
 </script>
