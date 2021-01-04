@@ -210,7 +210,8 @@ export default {
         this.$modal.show('warning-modal', {
           text: 'Streaming server has stopped. Please try again.',
         })
-        this.stopStreaming()
+        this.playing = false
+        this.mediaRecorder.stop()
       })
 
       socket.on(`${this.talent.stream_key}-processed-chunk`, chunkId => {
