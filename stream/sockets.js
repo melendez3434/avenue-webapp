@@ -55,7 +55,7 @@ export default function() {
           '-video_size',
           '640x480',
           '-vf',
-          '"scale=1280:-1,format=yuv420p"',
+          'scale=640:-1',
           // '-tune',
           // 'zerolatency',
           '-b:v',
