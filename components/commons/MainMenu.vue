@@ -13,12 +13,14 @@
         <el-dropdown-menu slot="dropdown" class="w-80">
           <fieldset class="w-full flex justify-center items-center">
             <input
+              v-model="search"
+              placeholder="search artists"
               type="text"
               class="w-10/12 rounded bg-theavenue-background-extra-light h-9 relative text-white text-xs p-2"
             />
             <SearchIcon class="w-6 h-6 absolute right-8 cursor-pointer" />
           </fieldset>
-          <el-dropdown-item v-for="talent in talents" :key="talent.id">
+          <el-dropdown-item v-for="talent in filteredTalents" :key="talent.id">
             <nuxt-link :to="{ name: 'artist-id', params: { id: talent.id } }">
               {{ talent.name }}
             </nuxt-link>
@@ -111,6 +113,7 @@ export default {
     return {
       activeItem: 'All Genres',
       talents: [],
+      search: '',
     }
   },
 
@@ -133,6 +136,12 @@ export default {
       }
 
       return categories
+    },
+
+    filteredTalents() {
+      return this.talents.filter(talent => {
+        return talent.name.toLowerCase().match(this.search)
+      })
     },
   },
 
