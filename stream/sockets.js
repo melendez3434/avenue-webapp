@@ -145,7 +145,7 @@ export default function() {
           ffmpegProcess.kill('SIGINT')
           processes[processName] = null
           console.warn(`ffmpeg process for ${processName} ended`)
-        }, 1500)
+        }, 5000)
       }
     })
   })
