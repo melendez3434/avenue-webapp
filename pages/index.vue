@@ -124,8 +124,3 @@ export default {
   },
 }
 </script>
-<style scoped>
-.available-min-height {
-  min-height: calc(100vh - 80px - 76px);
-}
-</style>

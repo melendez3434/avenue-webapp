@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article class="available-min-height">
     <TalentProfile :talent="talent" page />
     <TalentEvents
       :talent="talent"
@@ -28,13 +28,13 @@ export default {
   async asyncData({ $api, params, error }) {
     try {
       const { data: talent } = await $api.talent.get(params.id)
-      const { data: upcomingEventsList, upcomingEventsMeta } = await $api.events.list({
+      const { data: upcomingEventsList, meta: upcomingEventsMeta } = await $api.events.list({
         talent: params.id,
         upcoming: true,
         page: 0,
       })
 
-      const { data: pastEventsList, pastEventsMeta } = await $api.events.list({
+      const { data: pastEventsList, meta: pastEventsMeta } = await $api.events.list({
         talent: params.id,
         past: true,
         page: 0,
@@ -68,6 +68,7 @@ export default {
     } catch {
       console.log("We couldn't fetch this events")
     }
+
   },
 
   head() {
