@@ -33,12 +33,16 @@ export default function() {
 
     // Add socket.io events
     io.on('connection', socket => {
-      Sentry.captureException(new Error('Stream connected'), {
-        tags: 'testing',
-      })
-
       socket.on('create-ffmpeg-process', function(stream_name) {
         const endpoint = `${process.env.RTMP_SERVER}/${stream_name}`
+
+        if (processes[stream_name]) {
+          Sentry.captureException(new Error('Event tried to start twice'), {
+            tags: { stream_name },
+          })
+          return
+        }
+
         processes[stream_name] = spawn('ffmpeg', [
           '-i',
           '-',
@@ -100,7 +104,7 @@ export default function() {
           processes[stream_name] = null
           socket.emit(`${stream_name}-error`, { code, signal })
 
-           Sentry.captureException(new Error(message), {
+          Sentry.captureException(new Error(message), {
             tags: { stream_name },
           })
         })
@@ -138,7 +142,8 @@ export default function() {
 
         // Await the last chunk to finish
         setTimeout(() => {
-          processes[processName].kill('SIGINT')
+          ffmpegProcess.kill('SIGINT')
+          processes[processName] = null
           console.warn(`ffmpeg process for ${processName} ended`)
         }, 1500)
       }

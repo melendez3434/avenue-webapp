@@ -266,6 +266,12 @@ export default {
       this.mediaRecorder.start(1000)
       this.startingStream = true
       this.playing = true
+
+      // Timeout for enabling manually the stream. 20 sec should be enough for MUX
+      // to notify the event
+      setTimeout(() => {
+        this.startingStream = false
+      }, 20000)
     },
 
     stopStreaming() {
