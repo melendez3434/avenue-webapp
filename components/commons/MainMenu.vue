@@ -140,8 +140,8 @@ export default {
 
     filteredTalents() {
       return this.talents.filter(talent => {
-        return talent.name.toLowerCase().match(this.search)
-      })
+        return talent.name.toLowerCase().match(this.search.toLowerCase())
+      }).slice(0, 10)
     },
   },
 
