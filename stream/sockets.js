@@ -50,10 +50,16 @@ export default function() {
           // video codec config: low latency, adaptive bitrate
           '-c:v',
           'libx264',
-          '-preset',
-          'veryfast',
-          '-tune',
-          'zerolatency',
+          // '-preset',
+          // 'veryfast',
+          // '-tune',
+          // 'zerolatency',
+          '-b:v',
+          '3M',
+          '-maxrate',
+          '3M',
+          '-bufsize',
+          '1M',
 
           // audio codec config: sampling frequency (11025, 22050, 44100), bitrate 64 kbits
           '-c:a',
