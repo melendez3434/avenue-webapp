@@ -47,7 +47,7 @@ export default function() {
           '-i',
           '-',
 
-          // video codec config: low latency, adaptive bitrate
+          // video codec config
           '-c:v',
           'libx264',
           '-preset',
@@ -56,18 +56,12 @@ export default function() {
           '640x480',
           '-vf',
           'scale=640:-1',
-          // '-tune',
-          // 'zerolatency',
           '-b:v',
           '1000k',
           '-maxrate',
           '1000k',
           '-bufsize',
           '1000k',
-          '-framerate',
-          '30',
-          '-g',
-          '60',
 
           // audio codec config: sampling frequency (11025, 22050, 44100), bitrate 64 kbits
           '-c:a',
