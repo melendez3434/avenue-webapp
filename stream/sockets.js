@@ -86,6 +86,8 @@ export default function() {
           '1000',
           '-f',
           'flv',
+          '-flvflags',
+          'no_duration_filesize',
 
           endpoint,
         ])
