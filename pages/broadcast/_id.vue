@@ -208,10 +208,10 @@ export default {
         this.video.play()
       }
 
-      socket.on(`${this.talent.stream_key}-error`, () => {
+      socket.on(`${this.talent.stream_key}-error`, text => {
         if (!this.playing) return
         this.$modal.show('warning-modal', {
-          text: 'Streaming server has stopped. Please try again.',
+          text,
         })
         this.playing = false
         this.mediaRecorder.stop()

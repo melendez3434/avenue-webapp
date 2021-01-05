@@ -54,18 +54,18 @@ export default function() {
           'libx264',
           '-preset',
           'ultrafast',
-          '-video_size',
-          '640x480',
-          '-vf',
-          'scale=640:-1',
+          // '-video_size',
+          // '640x480',
+          // '-vf',
+          // 'scale=640:-1',
           '-minrate',
           CBR,
           '-maxrate',
           CBR,
           '-bufsize',
           CBR,
-          '-pix_fmt',
-          'yuv420p',
+          // '-pix_fmt',
+          // 'yuv420p',
 
           '-f',
           'flv',
@@ -95,7 +95,7 @@ export default function() {
           console.error(message, { code, signal })
 
           processes[stream_name] = null
-          socket.emit(`${stream_name}-error`, { code, signal })
+          socket.emit(`${stream_name}-error`, 'Streaming server has stopped. Please try again.')
 
           Sentry.captureException(new Error(message), {
             tags: { stream_name },
