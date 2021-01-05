@@ -10,23 +10,29 @@
       >
         The avenue
       </nuxt-link>
-      <a
-        class="ml-3"
-        href="https://m.facebook.com/The-Avenue-Live-104529974684723/?tsid=0.19766261221210102&source=result"
-        target="_blank"
-      >
-        <Facebook class="w-4 h-4 sm:w-6 sm:h-6" />
-      </a>
-      <a
-        class="ml-3"
-        href="https://instagram.com/theavenuelive?igshid=12ufzffu2aygl"
-        target="_blank"
-      >
-        <Instagram class="w-4 h-4 sm:w-6 sm:h-6" />
-      </a>
-      <a class="ml-3" href="https://www.linkedin.com/mwlite/company/theavenuelive" target="_blank">
-        <Linkedin class="w-4 h-4 sm:w-6 sm:h-6" />
-      </a>
+      <section class="flex flex-row items-center">
+        <a
+          class="ml-3"
+          href="https://m.facebook.com/The-Avenue-Live-104529974684723/?tsid=0.19766261221210102&source=result"
+          target="_blank"
+        >
+          <Facebook class="w-4 h-4 sm:w-6 sm:h-6" />
+        </a>
+        <a
+          class="ml-3"
+          href="https://instagram.com/theavenuelive?igshid=12ufzffu2aygl"
+          target="_blank"
+        >
+          <Instagram class="w-5 h-5 sm:w-7 sm:h-7" />
+        </a>
+        <a
+          class="ml-3"
+          href="https://www.linkedin.com/mwlite/company/theavenuelive"
+          target="_blank"
+        >
+          <Linkedin class="w-4 h-4 sm:w-6 sm:h-6" />
+        </a>
+      </section>
     </div>
     <nav class="hidden lg:flex items-center text-sm">
       <client-only>
