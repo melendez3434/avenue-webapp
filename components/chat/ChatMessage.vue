@@ -48,7 +48,7 @@ export default {
         smile: 'IcSmile',
         fire: 'IcFire',
       }
-      return this.message.message.split(':').map(message => {
+      return this.message.message.split('[:]').map(message => {
         const icon = message.split('.')[0] // nuxt adds an extra hash in production
         return {
           message,
