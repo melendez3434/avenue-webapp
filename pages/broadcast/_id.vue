@@ -11,6 +11,7 @@
     <IcSettings
       slot="settings"
       class="cursor-pointer h-12"
+      :class="{ 'opacity-25 pointer-events-none': playing }"
       @click="$modal.show('device-settings-modal')"
     />
     <div class="h-full relative bg-theavenue-black">
@@ -32,6 +33,7 @@
         :audio-sources="audioDevices"
         :selected-audio="audioInput.value"
         :selected-video="videoInput.value"
+        :selected-bitrate="bitrate"
         @confirm="updateVideoStream"
       />
     </modal>
@@ -141,6 +143,7 @@ export default {
       pendingChunks: [],
       stoppingStream: false,
       startingStream: false,
+      bitrate: 1000,
     }
   },
 
@@ -205,12 +208,19 @@ export default {
         this.video.play()
       }
 
-      socket.on(`${this.talent.stream_key}-error`, () => {
+      socket.on(`${this.talent.stream_key}-error`, (text, forceKill) => {
         if (!this.playing) return
         this.$modal.show('warning-modal', {
-          text: 'Streaming server has stopped. Please try again.',
+          text,
         })
-        this.stopStreaming()
+        this.playing = false
+        this.mediaRecorder.stop()
+
+        if (!forceKill) return
+
+        if (window.confirm('Do you want to force closing the streaming?')) {
+          socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
+        }
       })
 
       socket.on(`${this.talent.stream_key}-processed-chunk`, chunkId => {
@@ -262,10 +272,16 @@ export default {
 
   methods: {
     startStreaming() {
-      socket.emit('create-ffmpeg-process', this.talent.stream_key)
+      socket.emit('create-ffmpeg-process', this.talent.stream_key, this.bitrate)
       this.mediaRecorder.start(1000)
       this.startingStream = true
       this.playing = true
+
+      // Timeout for enabling manually the stream. 20 sec should be enough for MUX
+      // to notify the event
+      setTimeout(() => {
+        this.startingStream = false
+      }, 20000)
     },
 
     stopStreaming() {
@@ -281,6 +297,11 @@ export default {
         return requestAnimationFrame(this.killFfmpegProcess)
       }
       socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
+      // Timeout for enabling manually the stream. 20 sec should be enough for MUX
+      // to notify the event
+      setTimeout(() => {
+        this.stoppingStream = false
+      }, 20000)
     },
 
     stopStreamingAndFinishEvent() {
@@ -289,8 +310,9 @@ export default {
       this.$modal.hide('extend-event-modal')
     },
 
-    async updateVideoStream({ audio, video }) {
+    async updateVideoStream({ audio, video, bitrate }) {
       this.stopCameraStream()
+      this.bitrate = bitrate
       this.audioInput = this.audioDevices.find(a => a.value === audio) || {}
       this.videoInput = this.videoDevices.find(v => v.value === video) || {}
       this.cameraStream = await navigator.mediaDevices.getUserMedia({
@@ -300,7 +322,7 @@ export default {
 
       this.mediaRecorder = new MediaRecorder(this.cameraStream, {
         mimeType: 'video/webm',
-        videoBitsPerSecond: 3000000,
+        videoBitsPerSecond: this.bitrate * 1000,
       })
 
       this.mediaRecorder.ondataavailable = async e => {

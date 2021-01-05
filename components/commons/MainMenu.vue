@@ -2,6 +2,51 @@
   <div>
     <client-only>
       <el-dropdown trigger="click" placement="top-start">
+        <div class="flex items-center" @click="fetchTalents">
+          <span
+            class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+          >
+            Artists
+          </span>
+          <IcArrowDown class="w-10 h-10" />
+        </div>
+        <el-dropdown-menu slot="dropdown" class="w-80">
+          <fieldset class="w-full flex justify-center items-center mb-4">
+            <input
+              v-model="search"
+              placeholder="search artists"
+              type="text"
+              class="w-11/12 rounded bg-theavenue-background-extra-light h-9 relative text-white text-xs p-2"
+            />
+            <SearchIcon class="w-6 h-6 absolute right-6 cursor-pointer" />
+          </fieldset>
+          <div v-if="isLoading">
+            <base-spinner />
+          </div>
+          <el-dropdown-item v-for="talent in filteredTalents" :key="talent.id">
+            <nuxt-link
+              class="text-base flex items-center"
+              :to="{ name: 'artist-id', params: { id: talent.id } }"
+            >
+              <img
+                v-if="talent.photo"
+                :src="talent.photo"
+                :alt="`${talent.name} photo`"
+                class="rounded-full w-6 h-6 mr-3"
+              />
+              {{ talent.name }}
+            </nuxt-link>
+          </el-dropdown-item>
+          <nuxt-link
+            v-if="showViewAll"
+            :to="{ name: 'artists' }"
+            class="text-base text-theavenue-gray ml-4"
+          >
+            View All
+          </nuxt-link>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <el-dropdown trigger="click" placement="top-start">
         <div class="flex items-center">
           <span
             class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
@@ -73,17 +118,22 @@
 <script>
 import { mapState } from 'vuex'
 import IcArrowDown from '@/assets/svg/arrow_down.svg?inline'
+import SearchIcon from '@/assets/svg/search.svg?inline'
 
 export default {
   name: 'MainMenu',
 
   components: {
     IcArrowDown,
+    SearchIcon,
   },
 
   data() {
     return {
       activeItem: 'All Genres',
+      talents: [],
+      search: '',
+      isLoading: false,
     }
   },
 
@@ -106,6 +156,18 @@ export default {
       }
 
       return categories
+    },
+
+    filteredTalents() {
+      return this.talents
+        .filter(talent => {
+          return talent.name.toLowerCase().match(this.search.toLowerCase())
+        })
+        .slice(0, 10)
+    },
+
+    showViewAll() {
+      return !this.isLoading && this.search.length === 0
     },
   },
 
@@ -137,10 +199,21 @@ export default {
       const { data: url } = await this.$api.talent.stripeAuthorize(this.$auth.user.talent_id)
       window.location.href = url
     },
+
+    async fetchTalents() {
+      this.isLoading = true
+      try {
+        const { data: talents } = await this.$api.talent.list({ all: true })
+        this.talents = talents
+      } catch {
+        console.log('Sorry. Something went wrong when fetching the talents')
+      }
+      this.isLoading = false
+    },
   },
 }
 </script>
-<style>
+<style scoped>
 .el-popper.el-dropdown-menu {
   @apply bg-theavenue-background-light;
   @apply border-none;

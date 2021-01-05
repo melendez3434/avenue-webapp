@@ -1,13 +1,15 @@
 <template>
-  <div title="Add to Calendar" class="addeventatc">
-    Add to Calendar
-    <span class="start">{{ start }}</span>
-    <span class="end">{{ end }}</span>
-    <span class="timezone">{{ event.timezone }}</span>
-    <span class="title">{{ title }}</span>
-    <span class="description">{{ `https://www.theavenue.live/event/${event.id}` }}</span>
-    <span class="location">The Avenue</span>
-  </div>
+  <client-only>
+    <div title="Add to Calendar" class="addeventatc">
+      Add to Calendar
+      <span class="start">{{ start }}</span>
+      <span class="end">{{ end }}</span>
+      <span class="timezone">{{ event.timezone }}</span>
+      <span class="title">{{ title }}</span>
+      <span class="description">{{ `https://www.theavenue.live/event/${event.id}` }}</span>
+      <span class="location">The Avenue</span>
+    </div>
+  </client-only>
 </template>
 
 <script>

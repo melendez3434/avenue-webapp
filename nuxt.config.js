@@ -15,6 +15,8 @@ const config = {
     baseURL: '${BASE_URL}',
     stripeKey: process.env.STRIPE_KEY,
     videoBuffer: process.env.VIDEO_PLAYER_BUFFER,
+    sentryEnabled: process.env.SENTRY_DISABLED !== 'true',
+    sentryDSN: process.env.SENTRY_DSN,
   },
 
   privateRuntimeConfig: {},
@@ -64,6 +66,7 @@ const config = {
     '~/plugins/infinite-loading.client.js',
     '~/plugins/elementui.js',
     '~plugins/vue-js-modal.js',
+    '~/plugins/sentry.client.js',
   ],
 
   /*
@@ -79,7 +82,7 @@ const config = {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/sentry', '@nuxtjs/axios', '@nuxtjs/auth', '~/stream/sockets'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth', '~/stream/sockets'],
 
   /*
    ** Axios module configuration

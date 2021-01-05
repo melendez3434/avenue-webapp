@@ -1,5 +1,13 @@
 import http from 'http'
 import socketIO from 'socket.io'
+import * as Sentry from '@sentry/node'
+
+if (process.env.SENTRY_DISABLED !== 'true') {
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    tracesSampleRate: 1.0,
+  })
+}
 
 const spawn = require('child_process').spawn
 
@@ -25,43 +33,37 @@ export default function() {
 
     // Add socket.io events
     io.on('connection', socket => {
-      socket.on('create-ffmpeg-process', function(stream_name) {
+      socket.on('create-ffmpeg-process', function(stream_name, bitrate) {
         const endpoint = `${process.env.RTMP_SERVER}/${stream_name}`
+
+        if (processes[stream_name]) {
+          socket.emit(`${stream_name}-error`, 'Event already live', true)
+          Sentry.captureException(new Error('Event tried to start twice'), {
+            tags: { stream_name },
+          })
+          return
+        }
+
+        const CBR = `${bitrate || 1000}k`
         processes[stream_name] = spawn('ffmpeg', [
           '-i',
           '-',
 
-          // video codec config: low latency, adaptive bitrate
           '-c:v',
           'libx264',
           '-preset',
-          'veryfast',
-          '-tune',
-          'zerolatency',
-
-          // audio codec config: sampling frequency (11025, 22050, 44100), bitrate 64 kbits
-          '-c:a',
-          'aac',
-          '-ar',
-          '44100',
-          '-b:a',
-          '64k',
-
-          //force to overwrite
-          '-y',
-
-          // used for audio sync
-          '-use_wallclock_as_timestamps',
-          '1',
-          '-async',
-          '1',
-
-          //'-filter_complex', 'aresample=44100', // resample audio to 44100Hz, needed if input is not 44100
-          //'-strict', 'experimental',
+          'ultrafast',
+          '-minrate',
+          CBR,
+          '-maxrate',
+          CBR,
           '-bufsize',
-          '1000',
+          CBR,
+
           '-f',
           'flv',
+          '-flvflags',
+          'no_duration_filesize',
 
           endpoint,
         ])
@@ -69,10 +71,7 @@ export default function() {
 
         process.on('uncaughtException', error => {
           console.error(error)
-
-          if (!process.sentry) return
-
-          process.sentry.captureException(new Error(error), {
+          Sentry.captureException(new Error(error), {
             tags: { stream_name },
           })
         })
@@ -89,11 +88,9 @@ export default function() {
           console.error(message, { code, signal })
 
           processes[stream_name] = null
-          socket.emit(`${stream_name}-error`, { code, signal })
+          socket.emit(`${stream_name}-error`, 'Streaming server has stopped. Please try again.')
 
-          if (!process.sentry) return
-
-          process.sentry.captureException(new Error(message), {
+          Sentry.captureException(new Error(message), {
             tags: { stream_name },
           })
         })
@@ -104,9 +101,7 @@ export default function() {
         processes[stream_name].stdin.on('error', e => {
           console.error(e)
 
-          if (!process.sentry) return
-
-          process.sentry.captureException(new Error(e), {
+          Sentry.captureException(new Error(e), {
             tags: { stream_name },
           })
         })
@@ -133,9 +128,10 @@ export default function() {
 
         // Await the last chunk to finish
         setTimeout(() => {
-          processes[processName].kill('SIGINT')
+          ffmpegProcess.kill('SIGINT')
+          processes[processName] = null
           console.warn(`ffmpeg process for ${processName} ended`)
-        }, 1500)
+        }, 5000)
       }
     })
   })
