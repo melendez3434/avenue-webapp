@@ -25,14 +25,14 @@
           </div>
           <el-dropdown-item v-for="talent in filteredTalents" :key="talent.id">
             <nuxt-link
-              class="text-base flex items-center"
+              class="text-base flex items-start"
               :to="{ name: 'artist-id', params: { id: talent.id } }"
             >
               <img
                 v-if="talent.photo"
                 :src="talent.photo"
                 :alt="`${talent.name} photo`"
-                class="rounded-full w-6 h-6 mr-3"
+                class="rounded-full w-6 h-6 mr-3 mt-1.5"
               />
               {{ talent.name }}
             </nuxt-link>
@@ -40,7 +40,7 @@
           <nuxt-link
             v-if="showViewAll"
             :to="{ name: 'artists' }"
-            class="text-base text-theavenue-gray ml-4"
+            class="text-base text-theavenue-gray ml-4 hover:text-white"
           >
             View All
           </nuxt-link>
