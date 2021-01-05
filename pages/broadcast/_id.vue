@@ -11,6 +11,7 @@
     <IcSettings
       slot="settings"
       class="cursor-pointer h-12"
+      :class="{ 'opacity-25 pointer-events-none': playing }"
       @click="$modal.show('device-settings-modal')"
     />
     <div class="h-full relative bg-theavenue-black">
@@ -32,6 +33,7 @@
         :audio-sources="audioDevices"
         :selected-audio="audioInput.value"
         :selected-video="videoInput.value"
+        :selected-bitrate="bitrate"
         @confirm="updateVideoStream"
       />
     </modal>
@@ -141,6 +143,7 @@ export default {
       pendingChunks: [],
       stoppingStream: false,
       startingStream: false,
+      bitrate: 1000,
     }
   },
 
@@ -263,7 +266,7 @@ export default {
 
   methods: {
     startStreaming() {
-      socket.emit('create-ffmpeg-process', this.talent.stream_key)
+      socket.emit('create-ffmpeg-process', this.talent.stream_key, this.bitrate)
       this.mediaRecorder.start(1000)
       this.startingStream = true
       this.playing = true
@@ -301,8 +304,9 @@ export default {
       this.$modal.hide('extend-event-modal')
     },
 
-    async updateVideoStream({ audio, video }) {
+    async updateVideoStream({ audio, video, bitrate }) {
       this.stopCameraStream()
+      this.bitrate = bitrate
       this.audioInput = this.audioDevices.find(a => a.value === audio) || {}
       this.videoInput = this.videoDevices.find(v => v.value === video) || {}
       this.cameraStream = await navigator.mediaDevices.getUserMedia({
@@ -312,7 +316,7 @@ export default {
 
       this.mediaRecorder = new MediaRecorder(this.cameraStream, {
         mimeType: 'video/webm',
-        videoBitsPerSecond: 3000000,
+        videoBitsPerSecond: this.bitrate * 1000,
       })
 
       this.mediaRecorder.ondataavailable = async e => {

@@ -17,8 +17,11 @@
       <div class="mb-6">
         <R64Select v-model="audio" :options="audioSources" label="Microphone" />
       </div>
+      <div class="mb-6">
+        <R64Input v-model="bitrate" type="number" label="Bitrate (kbps)" />
+      </div>
 
-      <R64Button type="submit" class="mt-8 mb-24 md:mb-0" full>
+      <R64Button :disabled="bitrateInvalid" type="submit" class="mt-8 mb-24 md:mb-0" full>
         Confirm
       </R64Button>
     </form>
@@ -52,6 +55,11 @@ export default {
       type: String,
       default: '',
     },
+
+    selectedBitrate: {
+      type: Number,
+      default: 1000,
+    },
   },
 
   data() {
@@ -60,8 +68,15 @@ export default {
     return {
       audio: this.selectedAudio || audioSource.value,
       video: this.selectedVideo || videoSource.value,
+      bitrate: this.selectedBitrate || 1000,
       streamPreview: null,
     }
+  },
+
+  computed: {
+    bitrateInvalid() {
+      return Number(this.bitrate) < 1
+    },
   },
 
   async mounted() {
@@ -76,7 +91,7 @@ export default {
 
   methods: {
     updateSettings() {
-      this.$emit('confirm', { audio: this.audio, video: this.video })
+      this.$emit('confirm', { audio: this.audio, video: this.video, bitrate: Number(this.bitrate) })
       this.close()
     },
 

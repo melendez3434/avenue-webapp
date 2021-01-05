@@ -33,7 +33,7 @@ export default function() {
 
     // Add socket.io events
     io.on('connection', socket => {
-      socket.on('create-ffmpeg-process', function(stream_name) {
+      socket.on('create-ffmpeg-process', function(stream_name, bitrate) {
         const endpoint = `${process.env.RTMP_SERVER}/${stream_name}`
 
         if (processes[stream_name]) {
@@ -43,7 +43,7 @@ export default function() {
           return
         }
 
-        const CBR = process.env.STREAM_CBR || '1000k'
+        const CBR = `${bitrate || 1000}k`
 
         processes[stream_name] = spawn('ffmpeg', [
           '-i',
