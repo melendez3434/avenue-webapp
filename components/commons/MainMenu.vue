@@ -38,7 +38,7 @@
             </nuxt-link>
           </el-dropdown-item>
           <nuxt-link
-            v-if="!isLoading"
+            v-if="showViewAll"
             :to="{ name: 'artists' }"
             class="text-base text-theavenue-gray ml-4"
           >
@@ -164,6 +164,10 @@ export default {
           return talent.name.toLowerCase().match(this.search.toLowerCase())
         })
         .slice(0, 10)
+    },
+
+    showViewAll() {
+      return !this.isLoading && this.search.length === 0
     },
   },
 
