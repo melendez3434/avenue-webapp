@@ -43,13 +43,12 @@ export default function() {
           return
         }
 
-        const CBR = '1000k'
+        const CBR = process.env.STREAM_CBR || '1000k'
 
         processes[stream_name] = spawn('ffmpeg', [
           '-i',
           '-',
 
-          // video codec config
           '-c:v',
           'libx264',
           '-preset',
@@ -58,8 +57,6 @@ export default function() {
           '640x480',
           '-vf',
           'scale=640:-1',
-          // '-b:v',
-          // '1000k',
           '-minrate',
           CBR,
           '-maxrate',
@@ -69,25 +66,6 @@ export default function() {
           '-pix_fmt',
           'yuv420p',
 
-          // audio codec config: sampling frequency (11025, 22050, 44100), bitrate 64 kbits
-          // '-c:a',
-          // 'aac',
-          // '-ar',
-          // '44100',
-          // '-b:a',
-          // '64k',
-
-          //force to overwrite
-          // '-y',
-
-          // used for audio sync
-          // '-use_wallclock_as_timestamps',
-          // '1',
-          // '-async',
-          // '1',
-
-          //'-filter_complex', 'aresample=44100', // resample audio to 44100Hz, needed if input is not 44100
-          //'-strict', 'experimental',
           '-f',
           'flv',
           '-flvflags',
