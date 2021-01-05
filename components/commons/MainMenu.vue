@@ -16,18 +16,21 @@
               v-model="search"
               placeholder="search artists"
               type="text"
-              class="w-10/12 rounded bg-theavenue-background-extra-light h-9 relative text-white text-xs p-2"
+              class="w-11/12 rounded bg-theavenue-background-extra-light h-9 relative text-white text-xs p-2"
             />
-            <SearchIcon class="w-6 h-6 absolute right-8 cursor-pointer" />
+            <SearchIcon class="w-6 h-6 absolute right-6 cursor-pointer" />
           </fieldset>
           <el-dropdown-item v-for="talent in filteredTalents" :key="talent.id">
-            <nuxt-link class="text-base flex items-center" :to="{ name: 'artist-id', params: { id: talent.id } }">
-               <img
-                  v-if="talent.photo"
-                  :src="talent.photo"
-                  :alt="`${talent.name} photo`"
-                  class="rounded-full w-6 h-6 mr-3"
-                />
+            <nuxt-link
+              class="text-base flex items-center"
+              :to="{ name: 'artist-id', params: { id: talent.id } }"
+            >
+              <img
+                v-if="talent.photo"
+                :src="talent.photo"
+                :alt="`${talent.name} photo`"
+                class="rounded-full w-6 h-6 mr-3"
+              />
               {{ talent.name }}
             </nuxt-link>
           </el-dropdown-item>
@@ -145,9 +148,11 @@ export default {
     },
 
     filteredTalents() {
-      return this.talents.filter(talent => {
-        return talent.name.toLowerCase().match(this.search.toLowerCase())
-      }).slice(0, 10)
+      return this.talents
+        .filter(talent => {
+          return talent.name.toLowerCase().match(this.search.toLowerCase())
+        })
+        .slice(0, 10)
     },
   },
 
@@ -215,5 +220,4 @@ export default {
   @apply bg-transparent;
   @apply text-theavenue-white;
 }
-
 </style>
