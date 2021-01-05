@@ -18,7 +18,7 @@
               type="text"
               class="w-11/12 rounded bg-theavenue-background-extra-light h-9 relative text-white text-xs p-2"
             />
-            <SearchIcon class="w-6 h-6 absolute right-6 cursor-pointer" />
+            <IcSearch class="w-6 h-6 absolute right-6 cursor-pointer" />
           </fieldset>
           <div v-if="isLoading">
             <base-spinner />
@@ -118,14 +118,14 @@
 <script>
 import { mapState } from 'vuex'
 import IcArrowDown from '@/assets/svg/arrow_down.svg?inline'
-import SearchIcon from '@/assets/svg/search.svg?inline'
+import IcSearch from '@/assets/svg/search.svg?inline'
 
 export default {
   name: 'MainMenu',
 
   components: {
     IcArrowDown,
-    SearchIcon,
+    IcSearch,
   },
 
   data() {
