@@ -12,6 +12,7 @@ if (process.env.SENTRY_DISABLED !== 'true') {
 const spawn = require('child_process').spawn
 
 var processes = {}
+var active_processes = []
 
 export default function() {
   this.nuxt.hook('render:before', () => {
@@ -36,7 +37,7 @@ export default function() {
       socket.on('create-ffmpeg-process', function(stream_name, bitrate) {
         const endpoint = `${process.env.RTMP_SERVER}/${stream_name}`
 
-        if (processes[stream_name]) {
+        if (active_processes.includes(stream_name)) {
           socket.emit(`${stream_name}-error`, 'Event already live')
           Sentry.captureException(new Error('Event tried to start twice'), {
             tags: { stream_name },
@@ -45,7 +46,7 @@ export default function() {
         }
 
         const CBR = `${bitrate || 1000}k`
-
+        active_processes.push(stream_name)
         processes[stream_name] = spawn('ffmpeg', [
           '-i',
           '-',
@@ -95,6 +96,7 @@ export default function() {
           console.error(message, { code, signal })
 
           processes[stream_name] = null
+          active_processes = active_processes.filter(p => p !== stream_name)
           socket.emit(`${stream_name}-error`, 'Streaming server has stopped. Please try again.')
 
           Sentry.captureException(new Error(message), {
@@ -137,6 +139,7 @@ export default function() {
         setTimeout(() => {
           ffmpegProcess.kill('SIGINT')
           processes[processName] = null
+          active_processes = active_processes.filter(p => p !== processName)
           console.warn(`ffmpeg process for ${processName} ended`)
         }, 5000)
       }
