@@ -36,7 +36,10 @@
       </div>
     </div>
 
-    <div class="container mx-auto hidden md:flex md:flex-col py-8 max-w-screen-lg">
+    <div
+      v-if="talent.biography"
+      class="container mx-auto hidden md:flex md:flex-col py-8 max-w-screen-lg"
+    >
       <div class="mb-4">
         <h2 ref="about" class="text-3xl">About</h2>
       </div>
