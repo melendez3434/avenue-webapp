@@ -18,21 +18,21 @@
               type="text"
               class="w-11/12 rounded bg-theavenue-background-extra-light h-9 relative text-white text-xs p-2"
             />
-            <SearchIcon class="w-6 h-6 absolute right-6 cursor-pointer" />
+            <IcSearch class="w-6 h-6 absolute right-6 cursor-pointer" />
           </fieldset>
           <div v-if="isLoading">
             <base-spinner />
           </div>
           <el-dropdown-item v-for="talent in filteredTalents" :key="talent.id">
             <nuxt-link
-              class="text-base flex items-center"
+              class="text-base flex items-start"
               :to="{ name: 'artist-id', params: { id: talent.id } }"
             >
               <img
                 v-if="talent.photo"
                 :src="talent.photo"
                 :alt="`${talent.name} photo`"
-                class="rounded-full w-6 h-6 mr-3"
+                class="rounded-full w-6 h-6 mr-3 mt-1.5"
               />
               {{ talent.name }}
             </nuxt-link>
@@ -40,7 +40,7 @@
           <nuxt-link
             v-if="showViewAll"
             :to="{ name: 'artists' }"
-            class="text-base text-theavenue-gray ml-4"
+            class="text-base text-theavenue-gray ml-4 hover:text-white"
           >
             View All
           </nuxt-link>
@@ -118,14 +118,14 @@
 <script>
 import { mapState } from 'vuex'
 import IcArrowDown from '@/assets/svg/arrow_down.svg?inline'
-import SearchIcon from '@/assets/svg/search.svg?inline'
+import IcSearch from '@/assets/svg/search.svg?inline'
 
 export default {
   name: 'MainMenu',
 
   components: {
     IcArrowDown,
-    SearchIcon,
+    IcSearch,
   },
 
   data() {
