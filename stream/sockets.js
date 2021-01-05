@@ -44,6 +44,7 @@ export default function() {
           })
           return
         }
+        console.log('THIS SHOULD NOT HAPPEN ON A SECOND START')
 
         const CBR = `${bitrate || 1000}k`
         active_processes.push(stream_name)
