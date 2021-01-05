@@ -20,6 +20,9 @@
             />
             <SearchIcon class="w-6 h-6 absolute right-6 cursor-pointer" />
           </fieldset>
+          <div v-if="isLoading">
+            <base-spinner />
+          </div>
           <el-dropdown-item v-for="talent in filteredTalents" :key="talent.id">
             <nuxt-link
               class="text-base flex items-center"
@@ -34,6 +37,13 @@
               {{ talent.name }}
             </nuxt-link>
           </el-dropdown-item>
+          <nuxt-link
+            v-if="!isLoading"
+            :to="{ name: 'artists' }"
+            class="text-base text-theavenue-gray ml-4"
+          >
+            View All
+          </nuxt-link>
         </el-dropdown-menu>
       </el-dropdown>
       <el-dropdown trigger="click" placement="top-start">
@@ -123,6 +133,7 @@ export default {
       activeItem: 'All Genres',
       talents: [],
       search: '',
+      isLoading: false,
     }
   },
 
@@ -186,12 +197,14 @@ export default {
     },
 
     async fetchTalents() {
+      this.isLoading = true
       try {
         const { data: talents } = await this.$api.talent.list({ all: true })
         this.talents = talents
       } catch {
         console.log('Sorry. Something went wrong when fetching the talents')
       }
+      this.isLoading = false
     },
   },
 }
