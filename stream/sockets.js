@@ -37,6 +37,7 @@ export default function() {
         const endpoint = `${process.env.RTMP_SERVER}/${stream_name}`
 
         if (processes[stream_name]) {
+          socket.emit(`${stream_name}-error`, 'Event already live')
           Sentry.captureException(new Error('Event tried to start twice'), {
             tags: { stream_name },
           })
