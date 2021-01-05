@@ -208,13 +208,19 @@ export default {
         this.video.play()
       }
 
-      socket.on(`${this.talent.stream_key}-error`, text => {
+      socket.on(`${this.talent.stream_key}-error`, (text, forceKill) => {
         if (!this.playing) return
         this.$modal.show('warning-modal', {
           text,
         })
         this.playing = false
         this.mediaRecorder.stop()
+
+        if (!forceKill) return
+
+        if (window.confirm('Do you want to force closing the streaming?')) {
+          socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
+        }
       })
 
       socket.on(`${this.talent.stream_key}-processed-chunk`, chunkId => {
