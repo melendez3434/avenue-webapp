@@ -103,7 +103,7 @@ export default {
   components: { VideoLayout, DeviceSettingsModal, IcLive, IcSettings },
 
   beforeRouteLeave(to, from, next) {
-    if (this.occupiedProcess) {
+    if (this.serverProcessOpen) {
       this.$modal.show('pending-streaming-modal')
       return next(false)
     }
@@ -143,15 +143,12 @@ export default {
       pendingChunks: [],
       stoppingStream: false,
       startingStream: false,
+      serverProcessOpen: false,
       bitrate: 1000,
     }
   },
 
   computed: {
-    occupiedProcess() {
-      return this.playing || this.stoppingStream
-    },
-
     audioDevices() {
       const devices = []
       for (const device of this.devices) {
@@ -189,14 +186,14 @@ export default {
 
   async mounted() {
     window.onbeforeunload = event => {
-      if (this.occupiedProcess) {
+      if (this.serverProcessOpen) {
         event.returnValue = this.leaveWarning
       }
     }
 
     window.addEventListener('unload', () => {
-      if (this.occupiedProcess) {
-        socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
+      if (this.serverProcessOpen) {
+        this.terminateServerProcess()
       }
     })
 
@@ -215,11 +212,12 @@ export default {
         })
         this.playing = false
         this.mediaRecorder.stop()
+        this.serverProcessOpen = false
 
         if (!forceKill) return
 
         if (window.confirm('Do you want to force closing the streaming?')) {
-          socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
+          this.terminateServerProcess()
         }
       })
 
@@ -273,6 +271,7 @@ export default {
   methods: {
     startStreaming() {
       socket.emit('create-ffmpeg-process', this.talent.stream_key, this.bitrate)
+      this.serverProcessOpen = true
       this.mediaRecorder.start(1000)
       this.startingStream = true
       this.playing = true
@@ -296,7 +295,7 @@ export default {
       if (this.pendingChunks.length) {
         return requestAnimationFrame(this.killFfmpegProcess)
       }
-      socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
+      this.terminateServerProcess()
       // Timeout for enabling manually the stream. 20 sec should be enough for MUX
       // to notify the event
       setTimeout(() => {
@@ -393,6 +392,11 @@ export default {
       this.$echo.channel(`event.${this.event.id}`).listen('EventIsEndedNow', () => {
         this.$modal.show('extend-event-modal')
       })
+    },
+
+    terminateServerProcess() {
+      socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
+      this.serverProcessOpen = false
     },
   },
 }

@@ -203,7 +203,7 @@ export default {
     async fetchTalents() {
       this.isLoading = true
       try {
-        const { data: talents } = await this.$api.talent.list({ all: true })
+        const { data: talents } = await this.$api.talent.list({ all: true, items_per_page: 10000 })
         this.talents = talents
       } catch {
         console.log('Sorry. Something went wrong when fetching the talents')
