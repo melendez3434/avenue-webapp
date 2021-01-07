@@ -88,30 +88,30 @@ export default {
     },
 
     handleSocketEvent(event, type) {
+      const addEventToList = event => {
+        // If there is an event on the list that begins after upcomin event on the list then add it to that position
+        const eventStart = spacetime(event.starts_at)
+        const indexFrom = this.events.findIndex(e => eventStart.isBefore(spacetime(e.starts_at)))
+
+        if (indexFrom < 0) return
+
+        this.events.splice(indexFrom, 0, event)
+      }
       const map = {
         created: () => {
-          const eventStart = spacetime(event.starts_at)
-          const indexFrom = this.events.findIndex(e => eventStart.isBefore(spacetime(e.starts_at)))
-          this.events.splice(indexFrom, 0, event)
+          addEventToList(event)
         },
         updated: () => {
           const index = this.events.findIndex(e => event.id === e.id)
-          const differentStartDate = this.events[index].starts_at !== event.starts_at
 
-          if (index < 0) return
-
-          if (!differentStartDate) {
-            this.events[index] = event
+          // If event is in the list then update it
+          if (index >= 0) {
+            console.log('encontrao')
+            this.$set(this.events, index, event)
             return
           }
 
-          const eventStart = spacetime(event.starts_at)
-          const indexFrom = this.events.findIndex(e => eventStart.isBefore(spacetime(e.starts_at)))
-          // Add the event to the new position
-          this.events.splice(indexFrom, 0, event)
-          // Remove from the old one
-          this.events.splice(index, 1)
-          return
+          addEventToList(event)
         },
         deleted: () => {
           const index = this.events.findIndex(e => event.id === e.id)
