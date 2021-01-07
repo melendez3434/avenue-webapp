@@ -106,7 +106,6 @@ export default {
 
           // If event is in the list then update it
           if (index >= 0) {
-            console.log('encontrao')
             this.$set(this.events, index, event)
             return
           }
