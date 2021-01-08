@@ -179,22 +179,20 @@ export default {
       window.location.href = url
     },
 
-    async fetchTalents() {
-      await debounce(() => {
-        this.isLoading = true
-        try {
-          const { data: talents } = this.$api.talent.list({
-            items_per_page: 10,
-            name: this.search || null,
-          })
-          this.talents = talents
-          console.log(talents)
-        } catch {
-          console.error('Sorry. Something went wrong when fetching the talents')
-        }
-        this.isLoading = false
-      }, 500)
-    },
+    fetchTalents: debounce(async function() {
+      this.isLoading = true
+      try {
+        const { data: talents } = await this.$api.talent.list({
+          items_per_page: 10,
+          name: this.search || null,
+        })
+        this.talents = talents
+        console.log(talents)
+      } catch {
+        console.error('Sorry. Something went wrong when fetching the talents')
+      }
+      this.isLoading = false
+    }, 500),
   },
 }
 </script>
