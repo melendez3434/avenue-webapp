@@ -105,7 +105,7 @@
 import { mapState } from 'vuex'
 import IcArrowDown from '@/assets/svg/arrow_down.svg?inline'
 import IcSearch from '@/assets/svg/search.svg?inline'
-import debounce from 'lodash/debounce'
+// import debounce from 'lodash/debounce'
 
 export default {
   name: 'MainMenu',
@@ -200,7 +200,7 @@ export default {
         const { data: talents } = await this.$api.talent.list({ name: this.search })
         this.talents = talents
       } catch {
-        console.error('Sorry. Something went wrong wen fetching the talents')
+        console.error('Sorry. Something went wrong when fetching the talents')
       }
       this.isLoading = false
     },
