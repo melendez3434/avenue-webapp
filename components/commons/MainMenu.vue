@@ -22,7 +22,7 @@
             <IcSearch class="w-6 h-6 absolute right-6 cursor-pointer" />
           </fieldset>
           <base-spinner v-if="isLoading" />
-          <TalentsDropdown :talents="filteredTalents" />
+          <TalentsDropdown :talents="talents" />
           <nuxt-link
             v-if="showViewAll"
             :to="{ name: 'artists' }"
@@ -145,10 +145,6 @@ export default {
       return categories
     },
 
-    filteredTalents() {
-      return this.talents.slice(0, 10)
-    },
-
     showViewAll() {
       return this.search.length === 0 && this.talents.length > 0
     },
@@ -186,7 +182,7 @@ export default {
     async fetchTalents() {
       this.isLoading = true
       try {
-        const { data: talents } = await this.$api.talent.list()
+        const { data: talents } = await this.$api.talent.list({ items_per_page: 10 })
         this.talents = talents
       } catch {
         console.error('Sorry. Something went wrong when fetching the talents')
@@ -197,7 +193,10 @@ export default {
     async fetchSearchTalents() {
       this.isLoading = true
       try {
-        const { data: talents } = await this.$api.talent.list({ name: this.search })
+        const { data: talents } = await this.$api.talent.list({
+          name: this.search,
+          items_per_page: 10,
+        })
         this.talents = talents
       } catch {
         console.error('Sorry. Something went wrong when fetching the talents')
