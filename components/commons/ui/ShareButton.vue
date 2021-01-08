@@ -48,14 +48,10 @@ import IcMail from '@/assets/svg/mail.svg?inline'
 import IcSms from '@/assets/svg/sms.svg?inline'
 import IcShare from '@/assets/svg/anchor_arrow.svg?inline'
 import AddToCalendar from '@/components/commons/ui/AddToCalendar'
-
 export default {
   name: 'ShareButton',
-
   components: { IcCopy, IcMail, IcSms, IcShare, AddToCalendar },
-
   directives: { clipboard },
-
   props: {
     url: {
       type: String,
@@ -66,18 +62,15 @@ export default {
       default: null,
     },
   },
-
   data() {
     return {
       urlCopied: false,
     }
   },
-
   computed: {
     urlWithEnter() {
       return `${this.url}${String.fromCharCode(13)}`
     },
-
     emailUrl() {
       const subject = encodeURI(`${this.event.name} on The Avenue. ${this.formattedEventDate}`)
       const body = encodeURI(
@@ -85,50 +78,41 @@ export default {
       )
       return `mailto:?subject=${subject}&body=${body}`
     },
-
     smsUrl() {
       const body = encodeURI(
         `Watch ${this.event.talent.name} stream live, ${this.formattedEventDate}, on The Avenue.\n\n${this.eventUrl}`
       )
       return `sms:?&body=${body}`
     },
-
     formattedEventDate() {
       return `${this.eventDate} at ${this.eventStartTime} - ${this.eventEndTime} (${this.timezoneFormatted})`
     },
-
     eventDate() {
       return spacetime(this.event.starts_at, 'UTC')
         .goto(this.event.timezone)
         .format('{month-short} {date-pad}, {year}')
     },
-
     eventStartTime() {
       return spacetime(this.event.starts_at, 'UTC')
         .goto(this.event.timezone)
         .format('{hour}:{minute-pad}{ampm}')
     },
-
     eventEndTime() {
       return spacetime(this.event.ends_at, 'UTC')
         .goto(this.event.timezone)
         .format('{hour}:{minute-pad}{ampm}')
     },
-
     eventUrl() {
       return `https://www.theavenue.live/event/${this.event.id}`
     },
-
     timezoneFormatted() {
       const [, city] = this.event.timezone.split('/')
       return city.replace('_', ' ')
     },
   },
-
   methods: {
     showPopover() {
       this.urlCopied = true
-
       setTimeout(() => {
         this.urlCopied = false
       }, 2000)
