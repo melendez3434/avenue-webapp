@@ -18,7 +18,7 @@
       <TalentProfile
         v-else-if="event"
         class="hidden md:block"
-        :talent="event.talent"
+        :talent="eventTalent"
         :event="event"
       />
     </div>
@@ -87,6 +87,12 @@ export default {
       }
 
       return ['idle', 'disconnected', 'no-channel'].includes(this.streaming.status)
+    },
+
+    eventTalent() {
+      if (!this.event) return {}
+
+      return { ...this.event.talent, social_media_links: this.event.social_media_links }
     },
   },
 
