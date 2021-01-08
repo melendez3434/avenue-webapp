@@ -59,14 +59,14 @@
       {{ error }}
     </p>
 
-    <div v-if="!form.scout_token" class="my-6 flex">
+    <!-- <div v-if="!form.scout_token" class="my-6 flex">
       <R64Checkbox
         :value="form.is_scout"
         label="I'm a talent scout"
         wrapper-class="mr-3 mt-0.5"
         @change="form.is_scout = $event"
       />
-    </div>
+    </div> -->
 
     <div class="w-full flex items-center justify-center mt-8">
       <p class="text-theavenue-off-white text-xs text-center w-2/3">
