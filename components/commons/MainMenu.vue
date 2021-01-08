@@ -17,7 +17,7 @@
               placeholder="search artists"
               type="text"
               class="w-11/12 rounded bg-theavenue-background-extra-light h-9 relative text-white text-xs p-2"
-              @keyup="fetchSearchTalents"
+              @keyup="fetchTalents"
             />
             <IcSearch class="w-6 h-6 absolute right-6 cursor-pointer" />
           </fieldset>
@@ -105,7 +105,7 @@
 import { mapState } from 'vuex'
 import IcArrowDown from '@/assets/svg/arrow_down.svg?inline'
 import IcSearch from '@/assets/svg/search.svg?inline'
-// import debounce from 'lodash/debounce'
+import debounce from 'lodash/debounce'
 
 export default {
   name: 'MainMenu',
@@ -180,28 +180,20 @@ export default {
     },
 
     async fetchTalents() {
-      this.isLoading = true
-      try {
-        const { data: talents } = await this.$api.talent.list({ items_per_page: 10 })
-        this.talents = talents
-      } catch {
-        console.error('Sorry. Something went wrong when fetching the talents')
-      }
-      this.isLoading = false
-    },
-
-    async fetchSearchTalents() {
-      this.isLoading = true
-      try {
-        const { data: talents } = await this.$api.talent.list({
-          name: this.search,
-          items_per_page: 10,
-        })
-        this.talents = talents
-      } catch {
-        console.error('Sorry. Something went wrong when fetching the talents')
-      }
-      this.isLoading = false
+      await debounce(() => {
+        this.isLoading = true
+        try {
+          const { data: talents } = this.$api.talent.list({
+            items_per_page: 10,
+            name: this.search || null,
+          })
+          this.talents = talents
+          console.log(talents)
+        } catch {
+          console.error('Sorry. Something went wrong when fetching the talents')
+        }
+        this.isLoading = false
+      }, 500)
     },
   },
 }
