@@ -51,10 +51,10 @@ export default {
   name: 'ShareButton',
   components: { IcCopy, IcMail, IcSms, IcShare, AddToCalendar },
   props: {
-    url: {
-      type: String,
-      default: process.client ? window.location.href : '',
-    },
+    // url: {
+    //   type: String,
+    //   default: process.client ? window.location.href : '',
+    // },
     event: {
       type: Object,
       default: null,
@@ -63,6 +63,7 @@ export default {
   data() {
     return {
       urlCopied: false,
+      url: process.client ? window.location.href : '',
     }
   },
   computed: {
