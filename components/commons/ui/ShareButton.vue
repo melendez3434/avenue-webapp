@@ -7,7 +7,6 @@
       <IcCopy />
       <span v-if="urlCopied">Done!</span>
       <span v-else>Copy Url</span>
-      <input type="text" :value="url" class="url hidden" />
     </div>
     <template v-if="event">
       <a
@@ -51,10 +50,10 @@ export default {
   name: 'ShareButton',
   components: { IcCopy, IcMail, IcSms, IcShare, AddToCalendar },
   props: {
-    // url: {
-    //   type: String,
-    //   default: process.client ? window.location.href : '',
-    // },
+    url: {
+      type: String,
+      default: process.client ? window.location.href : '',
+    },
     event: {
       type: Object,
       default: null,
@@ -63,7 +62,6 @@ export default {
   data() {
     return {
       urlCopied: false,
-      url: process.client ? window.location.href : '',
     }
   },
   computed: {
@@ -122,6 +120,12 @@ export default {
         .catch(error => {
           console.log(`Copy failed! ${error}`)
         })
+    },
+  },
+
+  watchers: {
+    url() {
+      this.url = process.client ? window.location.href : ''
     },
   },
 }

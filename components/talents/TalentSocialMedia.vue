@@ -17,7 +17,7 @@
       <IcExternalLink class="w-6 h-6" />
       website
     </a>
-    <ShareButton :event="event" />
+    <ShareButton :key="talent.name" :event="event" :url="baseUrl" />
   </div>
 </template>
 
@@ -52,6 +52,12 @@ export default {
       url: process.client ? window.location.href : '',
       urlCopied: false,
     }
+  },
+
+  computed: {
+    baseUrl() {
+      return process.client ? window.location.href : ''
+    },
   },
 
   methods: {
