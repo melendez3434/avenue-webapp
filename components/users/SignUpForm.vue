@@ -121,6 +121,7 @@ export default {
             password: this.form.password,
           },
         })
+        await this.$auth.fetchUser()
 
         this.busy = false
         this.$modal.hide('user-access-modal')
