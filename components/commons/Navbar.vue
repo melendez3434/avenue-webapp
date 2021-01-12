@@ -25,11 +25,7 @@
         >
           <Instagram class="w-5 h-5 sm:w-7 sm:h-7" />
         </a>
-        <a
-          class="ml-3"
-          href="https://www.linkedin.com/mwlite/company/theavenuelive"
-          target="_blank"
-        >
+        <a class="ml-3" href="https://www.linkedin.com/company/theavenuelive" target="_blank">
           <Linkedin class="w-4 h-4 sm:w-6 sm:h-6" />
         </a>
       </section>
