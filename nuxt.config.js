@@ -60,7 +60,7 @@ const config = {
     '~/plugins/api',
     '~/plugins/r64components',
     '~/plugins/vuelidate',
-    '~/plugins/auth-sanctum',
+    // '~/plugins/auth-sanctum',
     '~/plugins/chat-scroll.client.js',
     '~/plugins/vcalendar.client.js',
     '~/plugins/infinite-loading.client.js',
@@ -82,15 +82,32 @@ const config = {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/auth', '~/stream/sockets'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next', '~/stream/sockets'],
 
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.BASE_URL,
     proxy: true,
+    credentials: true,
+  },
+
+  proxy: {
+    '/api': {
+      target: `${process.env.BASE_URL}/api`,
+      pathRewrite: {
+        '^/api': '',
+      },
+      secure: process.env.SECURE,
+      changeOrigin: true,
+    },
+    '/backend': {
+      target: process.env.BASE_URL,
+      pathRewrite: {
+        '^/backend': '/',
+      },
+    },
   },
 
   auth: {
@@ -105,74 +122,10 @@ const config = {
       logout: '/',
     },
     strategies: {
-      local: false,
-      sanctum: {
-        _scheme: '~/schemes/cookie',
-        name: 'sanctum',
-        cookie: {
-          name: 'XSRF-TOKEN',
-        },
-        endpoints: {
-          csrf: {
-            url: '/sanctum/csrf-cookie',
-            withCredentials: true,
-            headers: {
-              'X-Requested-With': 'XMLHttpRequest',
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
-            },
-          },
-
-          login: {
-            url: '/api/auth/login',
-            method: 'post',
-            withCredentials: true,
-            headers: {
-              'X-Requested-With': 'XMLHttpRequest',
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
-            },
-          },
-
-          logout: {
-            url: '/api/auth/logout',
-            withCredentials: true,
-            headers: {
-              'X-Requested-With': 'XMLHttpRequest',
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
-            },
-          },
-
-          user: {
-            url: '/api/user',
-            withCredentials: true,
-            headers: {
-              'X-Requested-With': 'XMLHttpRequest',
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
-            },
-            propertyName: 'data',
-          },
-        },
-        user: 'data',
+      laravelSanctum: {
+        url: '/backend',
+        user: { property: 'data' },
       },
-    },
-  },
-
-  proxy: {
-    '/sanctum/csrf-cookie': {
-      target: `${process.env.BASE_URL}`,
-      secure: process.env.SECURE,
-      changeOrigin: true,
-    },
-    '/api': {
-      target: `${process.env.BASE_URL}/api`,
-      pathRewrite: {
-        '^/api': '',
-      },
-      secure: process.env.SECURE,
-      changeOrigin: true,
     },
   },
 

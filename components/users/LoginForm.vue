@@ -1,5 +1,5 @@
 <template>
-  <form @submit="login">
+  <form @submit.prevent="login">
     <R64Input
       v-model="form.email"
       label="Email"
@@ -53,16 +53,16 @@ export default {
   },
 
   methods: {
-    async login(e) {
-      e.preventDefault()
+    async login() {
       try {
         this.busy = true
-        await this.$auth.loginWith('sanctum', {
+        await this.$auth.loginWith('laravelSanctum', {
           data: {
             identifier: this.form.email,
             password: this.form.password,
           },
         })
+        await this.$auth.fetchUser()
         this.error = null
         this.busy = false
         this.$modal.hide('user-access-modal')
