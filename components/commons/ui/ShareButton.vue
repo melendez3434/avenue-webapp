@@ -3,11 +3,12 @@
     <div
       v-clipboard="urlWithEnter"
       class="flex items-center cursor-pointer space-x-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
-      @success="showPopover"
+      @click="copyUrl"
     >
       <IcCopy />
       <span v-if="urlCopied">Done!</span>
       <span v-else>Copy Url</span>
+      <input type="text" :value="url" class="url hidden" />
     </div>
     <template v-if="event">
       <a
@@ -111,11 +112,18 @@ export default {
     },
   },
   methods: {
-    showPopover() {
-      this.urlCopied = true
-      setTimeout(() => {
-        this.urlCopied = false
-      }, 2000)
+    copyUrl() {
+      navigator.clipboard
+        .writeText(this.url)
+        .then(() => {
+          this.urlCopied = true
+          setTimeout(() => {
+            this.urlCopied = false
+          }, 2000)
+        })
+        .catch(error => {
+          console.log(`Copy failed! ${error}`)
+        })
     },
   },
 }
