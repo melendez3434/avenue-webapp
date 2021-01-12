@@ -122,11 +122,5 @@ export default {
         })
     },
   },
-
-  watchers: {
-    url() {
-      this.url = process.client ? window.location.href : ''
-    },
-  },
 }
 </script>
