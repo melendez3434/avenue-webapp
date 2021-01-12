@@ -14,9 +14,9 @@
   },
   "dependencies": {
     "@64robots/r64components": "^0.1.28",
-    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/auth-next": "^5.0.0-1610375166.4d8db9d",
     "@nuxtjs/axios": "^5.10.3",
-    "@nuxtjs/laravel-echo": "^1.1.0",
+    "@nuxtjs/laravel-echo": "https://github.com/64robots/laravel-echo",
     "@sentry/node": "^5.29.2",
     "@sentry/vue": "^5.29.2",
     "@tailwindcss/ui": "^0.6.2",

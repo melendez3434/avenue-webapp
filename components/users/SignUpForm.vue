@@ -59,26 +59,9 @@
       {{ error }}
     </p>
 
-    <!-- <div v-if="!form.scout_token" class="my-6 flex">
-      <R64Checkbox
-        :value="form.is_scout"
-        label="I'm a talent scout"
-        wrapper-class="mr-3 mt-0.5"
-        @change="form.is_scout = $event"
-      />
-    </div> -->
-
     <div class="w-full flex items-center justify-center mt-8">
       <p class="text-theavenue-off-white text-xs text-center w-2/3">
         By clicking Sign Up, you are indicating that you have read and acknowledge the
-        <nuxt-link
-          v-if="form.is_scout"
-          :to="{ name: 'scout-agreement' }"
-          class="text-theavenue-white font-medium"
-          target="_blank"
-        >
-          Scout Agreement
-        </nuxt-link>
         <nuxt-link :to="{ name: 'tos' }" class="text-theavenue-white font-medium" target="_blank">
           Terms and Service
         </nuxt-link>
@@ -119,7 +102,6 @@ export default {
         confirmPassword: '',
         name: '',
         date_of_birth: '',
-        is_scout: false,
         scout_token: this.$route.params.token || null,
       },
       error: null,
@@ -133,24 +115,12 @@ export default {
       try {
         this.busy = true
         await this.$api.signup.register(this.form)
-        await this.$auth.loginWith('sanctum', {
+        await this.$auth.loginWith('laravelSanctum', {
           data: {
             identifier: this.form.email,
             password: this.form.password,
           },
         })
-
-        if (this.form.is_scout) {
-          const { data: talent } = await this.$api.talent.register({
-            is_scout: true,
-            name: this.form.name,
-            category_id: 1,
-            sign_user_agreement: true,
-          })
-          const { data: url } = await this.$api.talent.stripeAuthorize(talent.id)
-          window.location.href = url
-          return
-        }
 
         this.busy = false
         this.$modal.hide('user-access-modal')
