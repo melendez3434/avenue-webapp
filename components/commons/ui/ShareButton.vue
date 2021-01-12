@@ -42,7 +42,6 @@
 
 <script>
 import spacetime from 'spacetime'
-import { clipboard } from 'vue-clipboards'
 import IcCopy from '@/assets/svg/copy.svg?inline'
 import IcMail from '@/assets/svg/mail.svg?inline'
 import IcSms from '@/assets/svg/sms.svg?inline'
@@ -51,7 +50,6 @@ import AddToCalendar from '@/components/commons/ui/AddToCalendar'
 export default {
   name: 'ShareButton',
   components: { IcCopy, IcMail, IcSms, IcShare, AddToCalendar },
-  directives: { clipboard },
   props: {
     url: {
       type: String,
