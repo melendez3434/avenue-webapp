@@ -1,7 +1,6 @@
 <template>
   <el-popover placement="top" trigger="click">
     <div
-      v-clipboard="urlWithEnter"
       class="flex items-center cursor-pointer space-x-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
       @click="copyUrl"
     >
