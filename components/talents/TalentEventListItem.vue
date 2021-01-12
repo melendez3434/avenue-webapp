@@ -25,40 +25,32 @@
 
 <script>
 import spacetime from 'spacetime'
-
 export default {
   name: 'TalentEventListItem',
-
   props: {
     event: {
       type: Object,
       default: null,
     },
-
     talent: {
       type: Object,
       default: null,
     },
-
     isFuture: {
       type: Boolean,
       default: false,
     },
   },
-
   computed: {
     startTimeZoneDate() {
       return spacetime(this.event.starts_at, 'UTC').goto(this.userTimezone)
     },
-
     dateTimeFormatted() {
       return this.startTimeZoneDate.format('{month} {date-pad} / {hour}:{minute-pad} {ampm}')
     },
-
     dateFormatted() {
       return this.startTimeZoneDate.format('{month} {date-pad} / {year}')
     },
-
     eventDuration() {
       if (this.event.duration < 60) {
         return `00:${this.event.duration}`
@@ -68,7 +60,6 @@ export default {
       return `${hours}:${minutes}`
     },
   },
-
   methods: {
     timeString(n) {
       if (n < 10) return `0${n}`

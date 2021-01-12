@@ -9,22 +9,15 @@
       <span v-if="urlCopied">Done!</span>
       <span v-else>Copy Url</span>
     </div>
+    <a
+      :href="emailUrl"
+      class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
+    >
+      <IcMail />
+      <span>Send Email</span>
+    </a>
     <template v-if="event">
-      <a
-        :href="emailUrl"
-        class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
-      >
-        <IcMail />
-        <span>Send Email</span>
-      </a>
-      <a
-        :href="smsUrl"
-        class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
-      >
-        <IcSms />
-        <span>Send SMS</span>
-      </a>
-      <div v-if="event" class="shadow-solid rounded mt-2">
+      <div class="shadow-solid rounded mt-2">
         <AddToCalendar :event="event" />
       </div>
     </template>
@@ -45,12 +38,11 @@ import spacetime from 'spacetime'
 import { clipboard } from 'vue-clipboards'
 import IcCopy from '@/assets/svg/copy.svg?inline'
 import IcMail from '@/assets/svg/mail.svg?inline'
-import IcSms from '@/assets/svg/sms.svg?inline'
 import IcShare from '@/assets/svg/anchor_arrow.svg?inline'
 import AddToCalendar from '@/components/commons/ui/AddToCalendar'
 export default {
   name: 'ShareButton',
-  components: { IcCopy, IcMail, IcSms, IcShare, AddToCalendar },
+  components: { IcCopy, IcMail, IcShare, AddToCalendar },
   directives: { clipboard },
   props: {
     url: {
@@ -78,12 +70,12 @@ export default {
       )
       return `mailto:?subject=${subject}&body=${body}`
     },
-    smsUrl() {
-      const body = encodeURI(
-        `Watch ${this.event.talent.name} stream live, ${this.formattedEventDate}, on The Avenue.\n\n${this.eventUrl}`
-      )
-      return `sms:?&body=${body}`
-    },
+    // smsUrl() {
+    //   const body = encodeURI(
+    //     `Watch ${this.event.talent.name} stream live, ${this.formattedEventDate}, on The Avenue.\n\n${this.eventUrl}`
+    //   )
+    //   return `sms:?&body=${body}`
+    // },
     formattedEventDate() {
       return `${this.eventDate} at ${this.eventStartTime} - ${this.eventEndTime} (${this.timezoneFormatted})`
     },
