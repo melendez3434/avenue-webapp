@@ -16,7 +16,7 @@
         <img v-if="event.thumbnail" :src="event.thumbnail" alt="Event thumbnail" />
         <img
           v-else-if="event.assets.length > 0"
-          src="`https://image.mux.com/${event.assets[0].playback_id}/thumbnail.JPG`"
+          :src="`https://image.mux.com/${event.assets[0].playback_id}/thumbnail.JPG`"
           alt="Event thumbnail"
         />
 
