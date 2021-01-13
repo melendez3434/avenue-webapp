@@ -120,11 +120,13 @@ export default {
 
       if (events.length) event = events[0]
 
+      //should we redirect to the homepage here?
       if (!talent.stream_key) return error('Invalid broadcast settings')
 
       return { event, talent }
     } catch (e) {
-      error('Invalid broadcast settings')
+      console.error('Invalid broadcast settings')
+      return { talent: {}, events: [] }
     }
   },
 
