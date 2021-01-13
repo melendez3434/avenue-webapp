@@ -60,7 +60,7 @@ const config = {
     '~/plugins/api',
     '~/plugins/r64components',
     '~/plugins/vuelidate',
-    // '~/plugins/auth-sanctum',
+    '~/plugins/auth-sanctum',
     '~/plugins/chat-scroll.client.js',
     '~/plugins/vcalendar.client.js',
     '~/plugins/infinite-loading.client.js',
@@ -120,6 +120,7 @@ const config = {
     redirect: {
       login: '/?action=login',
       logout: '/',
+      home: false,
     },
     strategies: {
       laravelSanctum: {

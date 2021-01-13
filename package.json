@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "dev:https": "HOST=frontend.theavenue.live HTTPS_LOCALHOST=true nuxt",
+    "dev:https": "NODE_TLS_REJECT_UNAUTHORIZED=0 HOST=frontend.theavenue.live HTTPS_LOCALHOST=true nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
