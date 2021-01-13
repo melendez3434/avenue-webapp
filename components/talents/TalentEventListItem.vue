@@ -84,8 +84,8 @@ export default {
   },
 
   methods: {
-    timeString(n) {
-      return n < 10 ? `0${n}` : `${n}`
+    timeString(time) {
+      return time < 10 ? `0${time}` : `${time}`
     },
   },
 }
