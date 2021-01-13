@@ -19,7 +19,7 @@
           :src="`https://image.mux.com/${event.assets[0].playback_id}/thumbnail.JPG`"
           alt="Event thumbnail"
         />
-        <Placeholder v-else />
+        <Placeholder v-else title="Event thumbnail" />
       </div>
       <div class="flex flex-col">
         <h3 class="font-league-gothic text-2xl uppercase tracking-wide text-left mb-1">
@@ -85,7 +85,7 @@ export default {
 
   methods: {
     timeString(n) {
-      if (n < 10) return `0${n}`
+      return n < 10 ? `0${n}` : `${n}`
     },
   },
 }
