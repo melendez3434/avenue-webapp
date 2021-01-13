@@ -42,7 +42,6 @@ export default {
 
       const pastEvents = { list: pastEventsList, meta: pastEventsMeta }
       const upcomingEvents = { list: upcomingEventsList, meta: upcomingEventsMeta }
-      console.log(pastEvents.list)
       return { talent, pastEvents, upcomingEvents }
     } catch {
       error("We couldn't find this artist or events")
