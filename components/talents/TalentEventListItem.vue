@@ -19,7 +19,6 @@
           :src="`https://image.mux.com/${event.assets[0].playback_id}/thumbnail.JPG`"
           alt="Event thumbnail"
         />
-
         <Placeholder v-else />
       </div>
       <div class="flex flex-col">

@@ -95,7 +95,7 @@ export default {
   },
 
   beforeDestroy() {
-    this.$echo.channel(`event.${this.event}`).stopListening('ChatMessageCreated')
+    this.$echo.channel(`event.${this.event}`).stopListening('TipCreated')
     clearInterval(this.interval)
   },
 

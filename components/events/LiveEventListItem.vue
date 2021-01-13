@@ -30,7 +30,12 @@
         />
         <div class="flex items-center mb-0 md:mb-2 mx-auto md:mx-0">
           <div class="font-sans flex flex-col items-end">
-            <ShareButton class="mb-2" :url="`${baseUrl}event/${event.id}`" :event="event" />
+            <ShareButton
+              :key="event.id"
+              class="mb-2"
+              :event="event"
+              :url="`${baseUrl}event/${event.id}`"
+            />
             <p class="text-md md:text-lg font-bold leading-6">
               {{ event.name }} ({{ event.rating.name }} Rating)
             </p>
