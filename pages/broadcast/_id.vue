@@ -125,6 +125,7 @@ export default {
       return { event, talent }
     } catch (e) {
       error('Invalid broadcast settings')
+      return { talent: {}, events: [] }
     }
   },
 
@@ -152,13 +153,14 @@ export default {
   computed: {
     audioDevices() {
       const devices = []
+      let i = 0
       for (const device of this.devices) {
-        if (!device.label) continue
-
         if (device.kind === 'audioinput') {
+          if (!device.label) i++
+
           devices.push({
             value: device.deviceId,
-            label: device.label,
+            label: device.label || `Audio Input #${i}`,
           })
         }
       }
@@ -167,13 +169,14 @@ export default {
 
     videoDevices() {
       const devices = []
+      let i = 0
       for (const device of this.devices) {
-        if (!device.label) continue
-
         if (device.kind === 'videoinput') {
+          if (!device.label) i++
+
           devices.push({
             value: device.deviceId,
-            label: device.label,
+            label: device.label || `Video Input #${i}`,
           })
         }
       }
