@@ -12,7 +12,7 @@ const config = {
   components: true,
 
   publicRuntimeConfig: {
-    baseURL: '${BASE_URL}',
+    baseURL: process.env.BASE_URL,
     stripeKey: process.env.STRIPE_KEY,
     videoBuffer: process.env.VIDEO_PLAYER_BUFFER,
     sentryEnabled: process.env.SENTRY_DISABLED !== 'true',
