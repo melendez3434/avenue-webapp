@@ -12,11 +12,12 @@ const config = {
   components: true,
 
   publicRuntimeConfig: {
-    baseURL: '${BASE_URL}',
+    baseURL: process.env.BASE_URL,
     stripeKey: process.env.STRIPE_KEY,
     videoBuffer: process.env.VIDEO_PLAYER_BUFFER,
     sentryEnabled: process.env.SENTRY_DISABLED !== 'true',
     sentryDSN: process.env.SENTRY_DSN,
+    wsUrl: process.env.WS_URL,
   },
 
   privateRuntimeConfig: {},
@@ -82,7 +83,7 @@ const config = {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next', '~/stream/sockets'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next'],
 
   /*
    ** Axios module configuration
