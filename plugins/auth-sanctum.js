@@ -5,7 +5,7 @@ export default function({ $axios }) {
     if (code === 419 && !error.config.__isRetryRequest) {
       error.config.__isRetryRequest = true
 
-      await $axios.get('/sanctum/csrf-cookie', {
+      await $axios.get('/backend/sanctum/csrf-cookie', {
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
         },
