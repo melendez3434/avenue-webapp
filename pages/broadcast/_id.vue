@@ -249,7 +249,6 @@ export default {
         this.listenForEventToFinish()
       })
     } catch (error) {
-      console.log('wtf', error)
       this.error = true
     }
   },
@@ -376,7 +375,6 @@ export default {
       }
 
       // At this point the user has denied the access to some device
-      console.log('llego hasta el final')
       this.error = true
     },
 
