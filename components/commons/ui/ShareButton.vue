@@ -8,15 +8,15 @@
       <span v-if="urlCopied">Done!</span>
       <span v-else>Copy Url</span>
     </div>
-    <a
-      :href="emailUrl"
-      class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
-    >
-      <IcMail />
-      <span>Send Email</span>
-    </a>
     <template v-if="event">
-      <div class="shadow-solid rounded mt-2">
+      <a
+        :href="emailUrl"
+        class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
+      >
+        <IcMail />
+        <span>Send Email</span>
+      </a>
+      <div v-if="event" class="shadow-solid rounded mt-2">
         <AddToCalendar :event="event" />
       </div>
     </template>
