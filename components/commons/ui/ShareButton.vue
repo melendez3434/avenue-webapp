@@ -107,7 +107,11 @@ export default {
       return city.replace('_', ' ')
     },
     hasShareApi() {
-      return process.client ? navigator.share : null
+      return process.client ? navigator.canShare : null
+    },
+    shareApiText() {
+      if (this.event) return `Watch ${this.event.talent.name} performing on The Avenue`
+      else return 'Watch this artist on The Avenue'
     },
   },
   methods: {
@@ -123,6 +127,28 @@ export default {
         .catch(error => {
           console.log(`Copy failed! ${error}`)
         })
+    },
+
+    shareMobile() {
+      const shareData = {
+        title: 'The Avenue',
+        text: this.shareApiText,
+        url: this.url,
+      }
+      if (this.hasShareApi) {
+        if (process.client) {
+          navigator
+            .share(shareData)
+            .then(() => {
+              //maybe make modal to thank?
+              console.log('Thanks for sharing')
+            })
+            .catch(() => {
+              //modal to communicate error
+              console.error("Couldn't share")
+            })
+        }
+      }
     },
   },
 }
