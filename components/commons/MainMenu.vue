@@ -187,7 +187,6 @@ export default {
           name: this.search || null,
         })
         this.talents = talents
-        console.log(talents)
       } catch {
         console.error('Sorry. Something went wrong when fetching the talents')
       }
