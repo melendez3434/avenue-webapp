@@ -22,7 +22,7 @@
         <Placeholder v-else title="Event thumbnail" class="h-full " />
       </div>
       <div class="flex flex-col">
-        <h3 class="font-league-gothic text-2xl uppercase tracking-wide text-left mb-3">
+        <h3 class="font-league-gothic text-2xl uppercase tracking-wide text-left mb-4">
           {{ event.name }}
         </h3>
         <h3 class="font-league-gothic text-xl uppercase tracking-wide">{{ eventDuration }} hs</h3>
