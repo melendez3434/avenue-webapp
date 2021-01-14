@@ -98,6 +98,8 @@ import IcLive from '@/assets/svg/live_w_text.svg?inline'
 import IcSettings from '@/assets/svg/settings.svg?inline'
 
 export default {
+  auth: false,
+
   name: 'BroadcastChannel',
 
   components: { VideoLayout, DeviceSettingsModal, IcLive, IcSettings },
@@ -152,13 +154,14 @@ export default {
   computed: {
     audioDevices() {
       const devices = []
+      let i = 0
       for (const device of this.devices) {
-        if (!device.label) continue
-
         if (device.kind === 'audioinput') {
+          if (!device.label) i++
+
           devices.push({
             value: device.deviceId,
-            label: device.label,
+            label: device.label || `Audio Input #${i}`,
           })
         }
       }
@@ -167,13 +170,14 @@ export default {
 
     videoDevices() {
       const devices = []
+      let i = 0
       for (const device of this.devices) {
-        if (!device.label) continue
-
         if (device.kind === 'videoinput') {
+          if (!device.label) i++
+
           devices.push({
             value: device.deviceId,
-            label: device.label,
+            label: device.label || `Video Input #${i}`,
           })
         }
       }
@@ -247,6 +251,7 @@ export default {
         this.listenForEventToFinish()
       })
     } catch (error) {
+      console.log('wtf', error)
       this.error = true
     }
   },
@@ -373,6 +378,7 @@ export default {
       }
 
       // At this point the user has denied the access to some device
+      console.log('llego hasta el final')
       this.error = true
     },
 
