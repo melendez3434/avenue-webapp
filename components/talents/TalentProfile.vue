@@ -43,7 +43,7 @@
       <div class="mb-4">
         <h2 ref="about" class="text-3xl">About</h2>
       </div>
-      <div class="leading-8 ml-0 text-theavenue-white">
+      <div class="prose lg:prose-lg ml-0 text-theavenue-white max-w-none">
         <p>
           {{ talent.biography }}
         </p>
