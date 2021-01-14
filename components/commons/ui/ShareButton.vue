@@ -1,25 +1,39 @@
 <template>
   <el-popover placement="top" trigger="click">
-    <div
-      class="flex items-center cursor-pointer space-x-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
-      @click="copyUrl"
-    >
-      <IcCopy />
-      <span v-if="urlCopied">Done!</span>
-      <span v-else>Copy Url</span>
-    </div>
-    <template v-if="event">
-      <a
-        :href="emailUrl"
+    <div v-if="hasShareApi">
+      <button
         class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
+        @click="shareMobile"
       >
-        <IcMail />
-        <span>Send Email</span>
-      </a>
+        <IcShare />
+        Share
+      </button>
       <div v-if="event" class="shadow-solid rounded mt-2">
         <AddToCalendar :event="event" />
       </div>
-    </template>
+    </div>
+    <div v-else>
+      <div
+        class="flex items-center cursor-pointer space-x-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
+        @click="copyUrl"
+      >
+        <IcCopy />
+        <span v-if="urlCopied">Done!</span>
+        <span v-else>Copy Url</span>
+      </div>
+      <template v-if="event">
+        <a
+          :href="emailUrl"
+          class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
+        >
+          <IcMail />
+          <span>Send Email</span>
+        </a>
+        <div v-if="event" class="shadow-solid rounded mt-2">
+          <AddToCalendar :event="event" />
+        </div>
+      </template>
+    </div>
     <button
       slot="reference"
       class="font-library text-lg hover:text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
@@ -91,6 +105,9 @@ export default {
     timezoneFormatted() {
       const [, city] = this.event.timezone.split('/')
       return city.replace('_', ' ')
+    },
+    hasShareApi() {
+      return process.client ? navigator.share : null
     },
   },
   methods: {
