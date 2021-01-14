@@ -1,9 +1,8 @@
 <template>
   <el-popover placement="top" trigger="click">
     <div
-      v-clipboard="urlWithEnter"
       class="flex items-center cursor-pointer space-x-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
-      @success="showPopover"
+      @click="copyUrl"
     >
       <IcCopy />
       <span v-if="urlCopied">Done!</span>
@@ -35,7 +34,6 @@
 
 <script>
 import spacetime from 'spacetime'
-import { clipboard } from 'vue-clipboards'
 import IcCopy from '@/assets/svg/copy.svg?inline'
 import IcMail from '@/assets/svg/mail.svg?inline'
 import IcShare from '@/assets/svg/anchor_arrow.svg?inline'
@@ -43,7 +41,6 @@ import AddToCalendar from '@/components/commons/ui/AddToCalendar'
 export default {
   name: 'ShareButton',
   components: { IcCopy, IcMail, IcShare, AddToCalendar },
-  directives: { clipboard },
   props: {
     url: {
       type: String,
@@ -70,12 +67,6 @@ export default {
       )
       return `mailto:?subject=${subject}&body=${body}`
     },
-    // smsUrl() {
-    //   const body = encodeURI(
-    //     `Watch ${this.event.talent.name} stream live, ${this.formattedEventDate}, on The Avenue.\n\n${this.eventUrl}`
-    //   )
-    //   return `sms:?&body=${body}`
-    // },
     formattedEventDate() {
       return `${this.eventDate} at ${this.eventStartTime} - ${this.eventEndTime} (${this.timezoneFormatted})`
     },
@@ -103,11 +94,18 @@ export default {
     },
   },
   methods: {
-    showPopover() {
-      this.urlCopied = true
-      setTimeout(() => {
-        this.urlCopied = false
-      }, 2000)
+    copyUrl() {
+      navigator.clipboard
+        .writeText(this.url)
+        .then(() => {
+          this.urlCopied = true
+          setTimeout(() => {
+            this.urlCopied = false
+          }, 2000)
+        })
+        .catch(error => {
+          console.log(`Copy failed! ${error}`)
+        })
     },
   },
 }

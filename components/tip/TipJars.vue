@@ -39,10 +39,14 @@ export default {
   },
 
   async fetch() {
-    const { data: jars } = await this.$api.events.getTipJars(this.event.id)
-    const { data: tippers } = await this.$api.events.topTippers(this.event.id)
-    this.jars = jars
-    this.topTipper = tippers.length ? tippers[0].user : {}
+    try {
+      const { data: jars } = await this.$api.events.getTipJars(this.event.id)
+      const { data: tippers } = await this.$api.events.topTippers(this.event.id)
+      this.jars = jars
+      this.topTipper = tippers.length ? tippers[0].user : {}
+    } catch {
+      console.error("Couldn't fetch jars and tippers")
+    }
   },
 
   data() {
@@ -95,7 +99,7 @@ export default {
   },
 
   beforeDestroy() {
-    this.$echo.channel(`event.${this.event}`).stopListening('ChatMessageCreated')
+    this.$echo.channel(`event.${this.event}`).stopListening('TipCreated')
     clearInterval(this.interval)
   },
 
@@ -114,8 +118,12 @@ export default {
     },
 
     async fetchTopTipper() {
-      const { data: tippers } = await this.$api.events.topTippers(this.event.id)
-      this.topTipper = tippers[0].user
+      try {
+        const { data: tippers } = await this.$api.events.topTippers(this.event.id)
+        this.topTipper = tippers[0].user
+      } catch {
+        console.error("Couldn't fetch the top tipper")
+      }
     },
   },
 }

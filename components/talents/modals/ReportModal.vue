@@ -53,8 +53,12 @@ export default {
   },
 
   async fetch() {
-    const { data } = await this.$api.talent.reportReasons()
-    this.reasons = data
+    try {
+      const { data } = await this.$api.talent.reportReasons()
+      this.reasons = data
+    } catch {
+      console.error("Couldn't fetch the data for 'reasons'")
+    }
   },
 
   data() {

@@ -23,7 +23,8 @@
 export default {
   auth: false,
   name: 'ArtistPage',
-  async asyncData({ $api, params, error }) {
+
+  async asyncData({ $api, params }) {
     try {
       const { data: talent } = await $api.talent.get(params.id)
       const { data: upcomingEventsList, meta: upcomingEventsMeta } = await $api.events.list({
@@ -40,7 +41,8 @@ export default {
       const upcomingEvents = { list: upcomingEventsList, meta: upcomingEventsMeta }
       return { talent, pastEvents, upcomingEvents }
     } catch {
-      error("We couldn't find this artist or events")
+      console.error("We couldn't find this artist or events")
+      return { talent: {}, pastEvents: [], upcomingEvents: [] }
     }
   },
   async fetchEvents(pageNumber, events, isFuture) {

@@ -34,9 +34,13 @@ export default {
   },
 
   async asyncData({ $api }) {
-    const { data: events, meta } = await $api.events.list({ page: 0 })
-
-    return { events, meta }
+    try {
+      const { data: events, meta } = await $api.events.list({ page: 0 })
+      return { events, meta }
+    } catch (error) {
+      console.warn(error)
+      return { events: [], meta: {} }
+    }
   },
 
   watch: {

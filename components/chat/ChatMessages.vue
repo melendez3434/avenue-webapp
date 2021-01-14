@@ -25,8 +25,12 @@ export default {
   },
 
   async fetch() {
-    const { data } = await this.$api.events.getChat(this.event)
-    this.messages = data
+    try {
+      const { data } = await this.$api.events.getChat(this.event)
+      this.messages = data
+    } catch {
+      console.error("Couldn't fetch messages")
+    }
   },
 
   data() {
