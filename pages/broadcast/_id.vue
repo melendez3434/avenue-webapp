@@ -124,7 +124,7 @@ export default {
 
       return { event, talent }
     } catch (e) {
-      console.error('Invalid broadcast settings')
+      error('Invalid broadcast settings')
       return { talent: {}, events: [] }
     }
   },
