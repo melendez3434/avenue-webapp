@@ -15,7 +15,7 @@
       <div class="w-48 h-28 mr-6 overflow-hidden">
         <img v-if="event.thumbnail" :src="event.thumbnail" alt="Event thumbnail" />
         <img
-          v-else-if="event.assets.length > 0"
+          v-else-if="hasAssets"
           :src="`https://image.mux.com/${event.assets[0].playback_id}/thumbnail.jpg`"
           alt="Event thumbnail"
         />
@@ -80,6 +80,10 @@ export default {
       let hours = this.timeString(Math.floor(this.event.duration / 60))
       let minutes = this.timeString(Math.floor(this.event.duration % 60))
       return `${hours}:${minutes}`
+    },
+
+    hasAssets() {
+      return this.event.assets.length > 0 && this.event.assets[0].playback_id
     },
   },
 
