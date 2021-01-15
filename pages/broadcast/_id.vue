@@ -235,6 +235,10 @@ export default {
 
       this.socket.on(`${this.talent.stream_key}-reconnecting`, () => {
         this.startingStream = true
+        this.mediaRecorder.stop()
+        setTimeout(() => {
+          this.startStreaming()
+        }, 1000)
       })
 
       this.socket.on(`${this.talent.stream_key}-processed-chunk`, chunkId => {
