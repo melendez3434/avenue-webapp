@@ -9,11 +9,11 @@
     />
     <template #placeholder>
       <div
-        class="w-full h-full flex flex-col md:items-center justify-center bg-no-repeat bg-gray-900 bg-cover pt-20 md:pt-0 text-center font-league-gothic uppercase text-2xl tracking-wide"
+        class="w-full h-full flex flex-col md:items-center justify-center bg-no-repeat bg-cover pt-20 md:pt-0 text-center font-league-gothic uppercase text-2xl tracking-wide"
         :style="{
           backgroundImage: `linear-gradient(
-			      rgba(0, 0, 0, 0.9),
-			      rgba(0, 0, 0, 0.95)
+			      rgba(0, 0, 0, 0.85),
+			      rgba(0, 0, 0, 0.9)
 		        ),url(${event.talent.cover_photo})`,
         }"
       >
