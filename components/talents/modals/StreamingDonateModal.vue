@@ -62,9 +62,6 @@
         </label>
         <R64Input
           v-model="customAmount"
-          type="number"
-          min="1"
-          max="100000"
           class="font-library"
           placeholder="$ 0000.00"
           base-class="leading-snug text-5xl text-center outline-none mt-1 px-3 py-2 block w-full bg-theavenue-background-dark rounded-md focus:shadow-outline-white focus:border-white"
@@ -96,7 +93,7 @@
   </div>
 </template>
 <script>
-import { required, minValue } from 'vuelidate/lib/validators'
+import { required, minValue, maxValue } from 'vuelidate/lib/validators'
 import StripeInput from '@/components/commons/ui/StripeInput'
 import IcStripe from '@/assets/svg/stripe.svg?inline'
 import IcSecured from '@/assets/svg/secured.svg?inline'
@@ -216,7 +213,7 @@ export default {
 
   validations: {
     donation: {
-      amount: { required, minValue: minValue(1) },
+      amount: { required, minValue: minValue(1), maxValue: maxValue(100000) },
       stripeValidated: {
         mustBeTrue(value) {
           if (this.card) return true
