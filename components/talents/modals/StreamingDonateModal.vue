@@ -62,6 +62,9 @@
         </label>
         <R64Input
           v-model="customAmount"
+          type="number"
+          min="1"
+          max="100000"
           class="font-library"
           placeholder="$ 0000.00"
           base-class="leading-snug text-5xl text-center outline-none mt-1 px-3 py-2 block w-full bg-theavenue-background-dark rounded-md focus:shadow-outline-white focus:border-white"
@@ -70,7 +73,7 @@
             ' text-avenue-white': !isCustomAmountSet,
           }"
           :v="$v.donation.amount"
-          error-message="Minimum amount to donate is $1"
+          error-message="Minimum amount to donate is $1. Biggest is $100.000"
           @input="setAmount($event)"
         />
       </div>

@@ -1,5 +1,6 @@
 <template>
   <article class="available-min-height">
+    <R64Input v-model="test" type="number" class="w-32" max="2002" />
     <TalentProfile :talent="talent" page />
     <TalentEvents
       :talent="talent"
@@ -46,6 +47,12 @@ export default {
     } catch {
       console.error("We couldn't find this artist or events")
       return { talent: {}, pastEvents: [], upcomingEvents: [] }
+    }
+  },
+
+  data() {
+    return {
+      test: '',
     }
   },
 
