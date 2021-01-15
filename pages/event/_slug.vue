@@ -9,16 +9,16 @@
     />
     <template #placeholder>
       <div
-        class="w-full h-full flex flex-col bg-no-repeat bg-gray-900 bg-cover pt-20 md:pt-0 md:items-center justify-center text-center font-league-gothic uppercase text-2xl tracking-wide"
+        class="w-full h-full flex flex-col md:items-center justify-center bg-no-repeat bg-gray-900 bg-cover pt-20 md:pt-0 text-center font-league-gothic uppercase text-2xl tracking-wide"
         :style="{
           backgroundImage: `linear-gradient(
-			rgba(0, 0, 0, 0.8),
-			rgba(0, 0, 0, 0.9)
-		),url(${event.talent.cover_photo})`,
+			      rgba(0, 0, 0, 0.9),
+			      rgba(0, 0, 0, 0.9)
+		        ),url(${event.talent.cover_photo})`,
         }"
       >
         <p>{{ event.talent.name }}'s streaming is not live yet or it is idle.</p>
-        <p>When its live you'll see it here.</p>
+        <p>When it's live you'll see it here.</p>
       </div>
     </template>
   </VideoLayout>
