@@ -70,7 +70,7 @@
             ' text-avenue-white': !isCustomAmountSet,
           }"
           :v="$v.donation.amount"
-          error-message="Minimum amount to donate is $1"
+          error-message="Minimum amount to donate is $1. Biggest is $100.000"
           @input="setAmount($event)"
         />
       </div>
@@ -93,7 +93,7 @@
   </div>
 </template>
 <script>
-import { required, minValue } from 'vuelidate/lib/validators'
+import { required, minValue, maxValue } from 'vuelidate/lib/validators'
 import StripeInput from '@/components/commons/ui/StripeInput'
 import IcStripe from '@/assets/svg/stripe.svg?inline'
 import IcSecured from '@/assets/svg/secured.svg?inline'
@@ -213,7 +213,7 @@ export default {
 
   validations: {
     donation: {
-      amount: { required, minValue: minValue(1) },
+      amount: { required, minValue: minValue(1), maxValue: maxValue(100000) },
       stripeValidated: {
         mustBeTrue(value) {
           if (this.card) return true
