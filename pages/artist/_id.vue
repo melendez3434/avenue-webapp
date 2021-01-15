@@ -49,12 +49,6 @@ export default {
     }
   },
 
-  data() {
-    return {
-      test: '',
-    }
-  },
-
   async fetchEvents(pageNumber, events, isFuture) {
     events.meta.current_page = pageNumber
 
