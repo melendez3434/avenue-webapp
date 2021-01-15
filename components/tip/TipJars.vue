@@ -81,21 +81,23 @@ export default {
   async mounted() {
     this.initializeDonationsInterval()
 
-    this.$echo.channel(`event.${this.event.id}`).listen('TipCreated', ({ chatMessage }) => {
-      const jar = this.jars.find(j => j.id === chatMessage.tip_jar_id)
-      if (!jar) return
+    this.$echo
+      .channel(`event.${this.event.id}`)
+      .listen('TipCreated', ({ chatMessage, topContributors }) => {
+        const jar = this.jars.find(j => j.id === chatMessage.tip_jar_id)
+        if (!jar) return
 
-      this.activeJar = jar.id
-      this.$set(jar, 'total_amount', jar.total_amount + chatMessage.amount)
-      this.fetchTopTipper()
+        this.activeJar = jar.id
+        this.$set(jar, 'total_amount', jar.total_amount + chatMessage.amount)
+        this.topTipper = topContributors[0].user
 
-      clearInterval(this.interval)
-      this.initializeDonationsInterval()
+        clearInterval(this.interval)
+        this.initializeDonationsInterval()
 
-      setTimeout(() => {
-        this.activeJar = null
-      }, 4000)
-    })
+        setTimeout(() => {
+          this.activeJar = null
+        }, 4000)
+      })
   },
 
   beforeDestroy() {

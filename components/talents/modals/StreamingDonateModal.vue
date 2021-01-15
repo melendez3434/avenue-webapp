@@ -204,10 +204,15 @@ export default {
 
     async getCardData() {
       this.loadingCardData = true
-      const { data } = await this.$api.global.stripeCard()
-      this.card = data
-      this.donation.name = this.card.name
-      this.loadingCardData = false
+      try {
+        const { data } = await this.$api.global.stripeCard()
+        this.card = data
+        this.donation.name = this.card.name
+        this.loadingCardData = false
+      } catch (e) {
+        console.error(e)
+        this.loadingCardData = false
+      }
     },
   },
 
