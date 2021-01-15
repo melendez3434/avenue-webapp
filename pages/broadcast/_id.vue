@@ -155,6 +155,8 @@ export default {
       const devices = []
       let i = 0
       for (const device of this.devices) {
+        if (!device.deviceId) continue
+
         if (device.kind === 'audioinput') {
           if (!device.label) i++
 
@@ -171,6 +173,8 @@ export default {
       const devices = []
       let i = 0
       for (const device of this.devices) {
+        if (!device.deviceId) continue
+
         if (device.kind === 'videoinput') {
           if (!device.label) i++
 
