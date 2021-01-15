@@ -13,7 +13,7 @@
         :style="{
           backgroundImage: `linear-gradient(
 			      rgba(0, 0, 0, 0.9),
-			      rgba(0, 0, 0, 0.9)
+			      rgba(0, 0, 0, 0.95)
 		        ),url(${event.talent.cover_photo})`,
         }"
       >
