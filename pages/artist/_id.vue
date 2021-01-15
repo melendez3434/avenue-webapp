@@ -1,6 +1,5 @@
 <template>
   <article class="available-min-height">
-    <R64Input v-model="test" type="number" class="w-32" max="2002" />
     <TalentProfile :talent="talent" page />
     <TalentEvents
       :talent="talent"
