@@ -121,7 +121,6 @@ const config = {
     redirect: {
       login: '/?action=login',
       logout: '/',
-      home: false,
     },
     strategies: {
       laravelSanctum: {

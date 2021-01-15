@@ -233,6 +233,10 @@ export default {
         }
       })
 
+      this.socket.on(`${this.talent.stream_key}-reconnecting`, () => {
+        this.startingStream = true
+      })
+
       this.socket.on(`${this.talent.stream_key}-processed-chunk`, chunkId => {
         const index = this.pendingChunks.indexOf(chunkId)
         if (index > -1) {
