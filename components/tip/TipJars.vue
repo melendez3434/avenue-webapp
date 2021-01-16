@@ -39,10 +39,14 @@ export default {
   },
 
   async fetch() {
-    const { data: jars } = await this.$api.events.getTipJars(this.event.id)
-    const { data: tippers } = await this.$api.events.topTippers(this.event.id)
-    this.jars = jars
-    this.topTipper = tippers.length ? tippers[0].user : {}
+    try {
+      const { data: jars } = await this.$api.events.getTipJars(this.event.id)
+      const { data: tippers } = await this.$api.events.topTippers(this.event.id)
+      this.jars = jars
+      this.topTipper = tippers.length ? tippers[0].user : {}
+    } catch {
+      console.error("Couldn't fetch jars and tippers")
+    }
   },
 
   data() {
@@ -77,25 +81,27 @@ export default {
   async mounted() {
     this.initializeDonationsInterval()
 
-    this.$echo.channel(`event.${this.event.id}`).listen('TipCreated', ({ chatMessage }) => {
-      const jar = this.jars.find(j => j.id === chatMessage.tip_jar_id)
-      if (!jar) return
+    this.$echo
+      .channel(`event.${this.event.id}`)
+      .listen('TipCreated', ({ chatMessage, topContributors }) => {
+        const jar = this.jars.find(j => j.id === chatMessage.tip_jar_id)
+        if (!jar) return
 
-      this.activeJar = jar.id
-      this.$set(jar, 'total_amount', jar.total_amount + chatMessage.amount)
-      this.fetchTopTipper()
+        this.activeJar = jar.id
+        this.$set(jar, 'total_amount', jar.total_amount + chatMessage.amount)
+        this.topTipper = topContributors[0].user
 
-      clearInterval(this.interval)
-      this.initializeDonationsInterval()
+        clearInterval(this.interval)
+        this.initializeDonationsInterval()
 
-      setTimeout(() => {
-        this.activeJar = null
-      }, 4000)
-    })
+        setTimeout(() => {
+          this.activeJar = null
+        }, 4000)
+      })
   },
 
   beforeDestroy() {
-    this.$echo.channel(`event.${this.event}`).stopListening('ChatMessageCreated')
+    this.$echo.channel(`event.${this.event}`).stopListening('TipCreated')
     clearInterval(this.interval)
   },
 
@@ -114,8 +120,12 @@ export default {
     },
 
     async fetchTopTipper() {
-      const { data: tippers } = await this.$api.events.topTippers(this.event.id)
-      this.topTipper = tippers[0].user
+      try {
+        const { data: tippers } = await this.$api.events.topTippers(this.event.id)
+        this.topTipper = tippers[0].user
+      } catch {
+        console.error("Couldn't fetch the top tipper")
+      }
     },
   },
 }

@@ -84,6 +84,8 @@ export default {
   },
 
   beforeDestroy() {
+    if (!this.streamPreview) return
+
     this.streamPreview.getTracks().forEach(track => {
       track.stop()
     })
@@ -104,6 +106,9 @@ export default {
         audio: { deviceId: { exact: this.audio } },
         video: { deviceId: { exact: this.video } },
       })
+
+      if (!this.streamPreview) return
+
       this.$refs.preview.srcObject = this.streamPreview
     },
   },
