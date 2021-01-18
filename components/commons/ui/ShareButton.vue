@@ -27,6 +27,12 @@
       >
         <span>Facebook</span>
       </div>
+      <div
+        class="flex items-center cursor-pointer space-x-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
+        @click="socialWindow(twitterUrl)"
+      >
+        <span>Twitter</span>
+      </div>
       <template v-if="event">
         <a
           :href="emailUrl"
@@ -124,6 +130,9 @@ export default {
     },
     facebookUrl() {
       return `https://www.facebook.com/sharer.php?u=${this.socialUrl}`
+    },
+    twitterUrl() {
+      return `https://twitter.com/intent/tweet?url=${this.socialUrl}&text=Come+and+watch+this+performance+in+The+Avenue&hashtags=theavenue,streaming`
     },
   },
   methods: {
