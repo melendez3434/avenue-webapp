@@ -89,7 +89,9 @@ export default {
 
         this.activeJar = jar.id
         this.$set(jar, 'total_amount', jar.total_amount + chatMessage.amount)
-        this.topTipper = topContributors[0].user
+        if (topContributors.length) {
+          this.topTipper = topContributors[0].user
+        }
 
         clearInterval(this.interval)
         this.initializeDonationsInterval()
