@@ -206,6 +206,7 @@ export default {
       this.loadingCardData = true
       try {
         const { data } = await this.$api.global.stripeCard()
+        if (!data) return
         this.card = data
         this.donation.name = this.card.name
         this.loadingCardData = false
