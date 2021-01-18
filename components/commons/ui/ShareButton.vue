@@ -21,6 +21,12 @@
         <span v-if="urlCopied">Done!</span>
         <span v-else>Copy Url</span>
       </div>
+      <div
+        class="flex items-center cursor-pointer space-x-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
+        @click="socialWindow(facebookUrl)"
+      >
+        <span>Facebook</span>
+      </div>
       <template v-if="event">
         <a
           :href="emailUrl"
@@ -113,6 +119,12 @@ export default {
       if (this.event) return `Watch ${this.event.talent.name} performing on The Avenue`
       else return 'Watch this artist on The Avenue'
     },
+    socialUrl() {
+      return this.url.replace('/', '%2F').replace(':', '%3A')
+    },
+    facebookUrl() {
+      return `https://www.facebook.com/sharer.php?u=${this.socialUrl}`
+    },
   },
   methods: {
     copyUrl() {
@@ -149,6 +161,14 @@ export default {
             })
         }
       }
+    },
+
+    socialWindow(url) {
+      const left = (screen.width - 570) / 2
+      const top = (screen.height - 570) / 2
+      const params =
+        'menubar=no,toolbar=no,status=no,width=570,height=570,top=' + top + ',left=' + left
+      process.client ? window.open(url, 'NewWindow', params) : null
     },
   },
 }
