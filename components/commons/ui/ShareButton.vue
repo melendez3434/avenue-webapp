@@ -22,15 +22,17 @@
         <span v-else>Copy Url</span>
       </div>
       <div
-        class="flex items-center cursor-pointer space-x-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
+        class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
         @click="socialWindow(facebookUrl)"
       >
+        <IcFacebook class="w-6" />
         <span>Facebook</span>
       </div>
       <div
-        class="flex items-center cursor-pointer space-x-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
+        class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2.5 px-3 font-semibold text-black"
         @click="socialWindow(twitterUrl)"
       >
+        <IcTwitter class="w-6" />
         <span>Twitter</span>
       </div>
       <template v-if="event">
@@ -63,10 +65,12 @@ import spacetime from 'spacetime'
 import IcCopy from '@/assets/svg/copy.svg?inline'
 import IcMail from '@/assets/svg/mail.svg?inline'
 import IcShare from '@/assets/svg/anchor_arrow.svg?inline'
+import IcFacebook from '@/assets/svg/facebook_black.svg?inline'
+import IcTwitter from '@/assets/svg/twitter_black.svg?inline'
 import AddToCalendar from '@/components/commons/ui/AddToCalendar'
 export default {
   name: 'ShareButton',
-  components: { IcCopy, IcMail, IcShare, AddToCalendar },
+  components: { IcCopy, IcMail, IcShare, IcFacebook, IcTwitter, AddToCalendar },
   props: {
     url: {
       type: String,
