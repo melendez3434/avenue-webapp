@@ -9,7 +9,7 @@
     />
     <template #placeholder>
       <div
-        class="w-full h-full flex flex-col md:items-center justify-center bg-no-repeat bg-cover pt-20 md:pt-0 text-center font-league-gothic uppercase text-2xl tracking-wide"
+        class="w-full h-screen flex flex-col md:items-center justify-center bg-no-repeat bg-cover bg-center pt-20 md:pt-0 text-center font-league-gothic uppercase text-2xl tracking-wide"
         :style="{
           backgroundImage: `linear-gradient(
 			      rgba(0, 0, 0, 0.85),
