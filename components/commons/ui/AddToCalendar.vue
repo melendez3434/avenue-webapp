@@ -88,7 +88,7 @@ export default {
     },
 
     yahooCalendarLink() {
-      return `https://calendar.yahoo.com/?v=60&title=${this.title}&st=${this.event.starts_at}&et=${this.event.ends_at}`
+      return `https://calendar.yahoo.com/?v=60&title=${this.title}&st=${this.start}&et=${this.end}`
     },
   },
 }
