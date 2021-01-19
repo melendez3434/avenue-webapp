@@ -41,15 +41,16 @@
           class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
         >
           <IcMail />
-          <span>Send Email</span>
+          <span>Email</span>
         </a>
-        <div v-if="event" class="shadow-solid rounded mt-2">
-          <AddToCalendar :event="event" />
+        <div v-if="event" class="shadow-solid rounded mt- border-black">
+          <AddToCalendar :event="event" aria-haspopup="true" />
         </div>
       </template>
     </div>
     <button
       slot="reference"
+      aria-haspopup="true"
       class="font-library text-lg hover:text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
       style="box-shadow: 0px 0px 10px #FFFFFF;"
       target="_blank"
@@ -126,8 +127,9 @@ export default {
       return process.client ? navigator.canShare : null
     },
     shareApiText() {
-      if (this.event) return `Watch ${this.event.talent.name} performing on The Avenue`
-      else return 'Watch this artist on The Avenue'
+      return this.event
+        ? `Watch ${this.event.talent.name} performing on The Avenue`
+        : 'Watch this artist on The Avenue'
     },
     socialUrl() {
       return this.url.replace('/', '%2F').replace(':', '%3A')
@@ -136,7 +138,7 @@ export default {
       return `https://www.facebook.com/sharer.php?u=${this.socialUrl}`
     },
     twitterUrl() {
-      return `https://twitter.com/intent/tweet?url=${this.socialUrl}&text=Come+and+watch+this+performance+in+The+Avenue&hashtags=theavenue,streaming`
+      return `https://twitter.com/intent/tweet?url=${this.socialUrl}&text=Come+and+watch+this+artist+on+The+Avenue&hashtags=theavenue,streaming`
     },
   },
   methods: {
@@ -155,27 +157,21 @@ export default {
     },
 
     shareMobile() {
+      if (!this.hasShareApi || !process.client) return
       const shareData = {
         title: 'The Avenue',
         text: this.shareApiText,
         url: this.url,
       }
-      if (this.hasShareApi) {
-        if (process.client) {
-          navigator
-            .share(shareData)
-            .then(() => {
-              //maybe make modal to thank?
-              console.log('Thanks for sharing')
-            })
-            .catch(() => {
-              //modal to communicate error
-              console.error("Couldn't share")
-            })
-        }
-      }
+      navigator
+        .share(shareData)
+        .then(() => {
+          console.log('Thanks for sharing')
+        })
+        .catch(() => {
+          console.error("Couldn't share")
+        })
     },
-
     socialWindow(url) {
       const left = (screen.width - 570) / 2
       const top = (screen.height - 570) / 2

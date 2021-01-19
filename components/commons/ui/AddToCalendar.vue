@@ -1,22 +1,51 @@
 <template>
-  <client-only>
-    <div title="Add to Calendar" class="addeventatc">
+  <el-popover placement="top" trigger="click">
+    <a
+      :href="googleCalendarLink"
+      class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
+      target="_blank"
+    >
+      <IcGoogle class="w-6 mr-3" />
+      Google Calendar
+    </a>
+    <a
+      :href="yahooCalendarLink"
+      class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
+      target="_blank"
+    >
+      <IcYahoo class="w-6 mr-3" />
+      Yahoo! Calendar
+    </a>
+    <a
+      :href="outlookCalendarLink"
+      class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
+      target="_blank"
+    >
+      <IcOutlook class="w-6 mr-3" />
+      Outlook Calendar
+    </a>
+    <button
+      slot="reference"
+      class="flex items-center cursor-pointer space-x-2 mt-2 border-black shadow-solid rounded py-2 px-3 font-semibold text-black"
+      style="box-shadow: 0px 0px 10px #FFFFFF;"
+      target="_blank"
+    >
+      <IcCalendar class="mr-2" />
       Add to Calendar
-      <span class="start">{{ start }}</span>
-      <span class="end">{{ end }}</span>
-      <span class="timezone">{{ event.timezone }}</span>
-      <span class="title">{{ title }}</span>
-      <span class="description">{{ `https://www.theavenue.live/event/${event.id}` }}</span>
-      <span class="location">The Avenue</span>
-    </div>
-  </client-only>
+    </button>
+  </el-popover>
 </template>
 
 <script>
-import spacetime from 'spacetime'
+import IcCalendar from '@/assets/svg/calendar.svg?inline'
+import IcGoogle from '@/assets/svg/google.svg?inline'
+import IcOutlook from '@/assets/svg/outlook.svg?inline'
+import IcYahoo from '@/assets/svg/yahoo.svg?inline'
 
 export default {
   name: 'AddToCalendar',
+
+  components: { IcCalendar, IcGoogle, IcOutlook, IcYahoo },
 
   props: {
     event: {
@@ -27,19 +56,39 @@ export default {
 
   computed: {
     start() {
-      return spacetime(this.event.starts_at, 'UTC')
-        .goto(this.event.timezone)
-        .format('{month-pad}/{date-pad}/{year} {hour-pad}:{minute-pad} {ampm}')
+      const formatted = this.event.starts_at.replace(/-/g, '').replace(/:/g, '')
+      return formatted.slice(0, 8) + 'T' + formatted.slice(9)
+    },
+
+    outlookStart() {
+      const time = this.event.starts_at.slice(0, 10) + 'T' + this.event.starts_at.slice(10)
+      return time.replace(/ /g, '')
     },
 
     end() {
-      return spacetime(this.event.ends_at, 'UTC')
-        .goto(this.event.timezone)
-        .format('{month-pad}/{date-pad}/{year} {hour-pad}:{minute-pad} {ampm}')
+      const time = this.event.ends_at.replace(/-/g, '').replace(/:/g, '')
+      return time.slice(0, 8) + 'T' + time.slice(9)
+    },
+
+    outlookEnd() {
+      const time = this.event.ends_at.slice(0, 10) + 'T' + this.event.ends_at.slice(10)
+      return time.replace(/ /g, '')
     },
 
     title() {
       return `Watch ${this.event.talent.name} stream live on The Avenue`
+    },
+
+    googleCalendarLink() {
+      return `http://www.google.com/calendar/event?action=TEMPLATE&dates=${this.start}/${this.end}&text=${this.title}&location=&details=${this.title}`
+    },
+
+    outlookCalendarLink() {
+      return `https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&startdt=${this.outlookStart}&enddt=${this.outlookEnd}&subject=${this.title}`
+    },
+
+    yahooCalendarLink() {
+      return `https://calendar.yahoo.com/?v=60&title=${this.title}&st=${this.event.starts_at}&et=${this.event.ends_at}`
     },
   },
 }
