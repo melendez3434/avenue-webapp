@@ -141,6 +141,7 @@ export default {
       return `https://twitter.com/intent/tweet?url=${this.socialUrl}&text=Come+and+watch+this+artist+on+The+Avenue&hashtags=theavenue,streaming`
     },
   },
+
   methods: {
     copyUrl() {
       navigator.clipboard
@@ -172,6 +173,7 @@ export default {
           console.error("Couldn't share")
         })
     },
+
     socialWindow(url) {
       const left = (screen.width - 570) / 2
       const top = (screen.height - 570) / 2
