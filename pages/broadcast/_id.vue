@@ -147,6 +147,7 @@ export default {
       serverProcessOpen: false,
       bitrate: 1000,
       socket: null,
+      reconnections: 0,
     }
   },
 
@@ -234,6 +235,8 @@ export default {
       })
 
       this.socket.on(`${this.talent.stream_key}-reconnecting`, () => {
+        this.reconnections++
+        if (this.reconnections > this.$config.maxRetries) return
         this.startingStream = true
         this.mediaRecorder.stop()
         setTimeout(() => {

@@ -18,6 +18,7 @@ const config = {
     sentryEnabled: process.env.SENTRY_DISABLED !== 'true',
     sentryDSN: process.env.SENTRY_DSN,
     wsUrl: process.env.WS_URL,
+    maxRetries: process.env.MAX_RETRIES || 0,
   },
 
   privateRuntimeConfig: {},
