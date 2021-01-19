@@ -9,7 +9,7 @@
         Share
       </button>
       <div v-if="event" class="shadow-solid rounded mt-2">
-        <AddToCalendar :event="event" />
+        <AddToCalendar :event="event" aria-haspopup="true" />
       </div>
     </div>
     <div v-else>
