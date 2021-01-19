@@ -1,5 +1,5 @@
 <template>
-  <el-popover placement="top" trigger="click">
+  <el-popover placement="left" trigger="click">
     <a
       :href="googleCalendarLink"
       class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
@@ -10,10 +10,10 @@
     </a>
     <a
       :href="yahooCalendarLink"
-      class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
+      class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2.5 px-3 font-semibold text-black"
       target="_blank"
     >
-      <IcYahoo class="w-6 mr-3" />
+      <IcYahoo class="w-4 mr-3" />
       Yahoo! Calendar
     </a>
     <a
@@ -26,8 +26,7 @@
     </a>
     <button
       slot="reference"
-      class="flex items-center cursor-pointer space-x-2 mt-2 border-black shadow-solid rounded py-2 px-3 font-semibold text-black"
-      style="box-shadow: 0px 0px 10px #FFFFFF;"
+      class="flex items-center cursor-pointer space-x-2 mt-2 shadow-solid rounded py-2 px-3 font-semibold text-black"
       target="_blank"
     >
       <IcCalendar class="mr-2" />
