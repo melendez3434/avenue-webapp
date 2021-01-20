@@ -63,6 +63,10 @@ export default {
       .listen('EventIsEndedNow', ({ event }) => {
         this.handleSocketEvent(event, 'deleted')
       })
+      .listen('TalentIsLiveNow', ({ event }) => {
+        event.is_live = true
+        this.handleSocketEvent(event, 'updated')
+      })
   },
 
   beforeDestroy() {
