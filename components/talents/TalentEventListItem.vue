@@ -48,31 +48,25 @@ export default {
       type: Object,
       default: null,
     },
-
     talent: {
       type: Object,
       default: null,
     },
-
     isFuture: {
       type: Boolean,
       default: false,
     },
   },
-
   computed: {
     startTimeZoneDate() {
       return spacetime(this.event.starts_at, 'UTC').goto(this.userTimezone)
     },
-
     dateTimeFormatted() {
       return this.startTimeZoneDate.format('{month} {date-pad} / {hour}:{minute-pad} {ampm}')
     },
-
     dateFormatted() {
       return this.startTimeZoneDate.format('{month} {date-pad} / {year}')
     },
-
     eventDuration() {
       if (this.event.duration < 60) {
         return `00:${this.event.duration}`
@@ -86,7 +80,6 @@ export default {
       return this.event.assets.length > 0 && this.event.assets[0].playback_id
     },
   },
-
   methods: {
     timeString(time) {
       return time < 10 ? `0${time}` : `${time}`

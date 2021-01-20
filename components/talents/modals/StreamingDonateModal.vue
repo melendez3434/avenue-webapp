@@ -186,7 +186,7 @@ export default {
         this.busy = false
         this.$modal.hide('streaming-donate-modal')
       } catch (e) {
-        this.error = e.response.data.error
+        this.error = "Couldn't make the donation. Please try again"
         this.busy = false
       }
     },
@@ -206,6 +206,7 @@ export default {
       this.loadingCardData = true
       try {
         const { data } = await this.$api.global.stripeCard()
+        if (!data) return
         this.card = data
         this.donation.name = this.card.name
         this.loadingCardData = false

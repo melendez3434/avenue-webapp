@@ -18,6 +18,7 @@ const config = {
     sentryEnabled: process.env.SENTRY_DISABLED !== 'true',
     sentryDSN: process.env.SENTRY_DSN,
     wsUrl: process.env.WS_URL,
+    maxRetries: process.env.MAX_RETRIES || 0,
   },
 
   privateRuntimeConfig: {},
@@ -38,10 +39,7 @@ const config = {
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    script: [
-      { src: 'https://js.stripe.com/v3/' },
-      { src: 'https://addevent.com/libs/atc/1.6.1/atc.min.js', async: true, defer: true },
-    ],
+    script: [{ src: 'https://js.stripe.com/v3/' }],
   },
 
   /*
