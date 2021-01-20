@@ -342,8 +342,9 @@ export default {
         video: { deviceId: { exact: video } },
       })
 
+      const isSafari = window.safari !== undefined
       this.mediaRecorder = new MediaRecorder(this.cameraStream, {
-        mimeType: 'video/webm',
+        mimeType: isSafari ? 'video/mp4' : 'video/webm',
         videoBitsPerSecond: this.bitrate * 1000,
       })
 
