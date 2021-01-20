@@ -220,23 +220,23 @@ export default {
 
       this.socket.on(`${this.talent.stream_key}-error`, (text, forceKill) => {
         if (!this.playing) return
-        this.$modal.show('warning-modal', {
-          text,
-        })
-        this.playing = false
-        this.mediaRecorder.stop()
-        this.serverProcessOpen = false
+
+        this.showWarningAndStop(text)
 
         if (!forceKill) return
 
-        if (window.confirm('Do you want to force closing the streaming?')) {
+        if (window.confirm('Streaming already live. Do you want to force closing the streaming?')) {
           this.terminateServerProcess()
         }
       })
 
       this.socket.on(`${this.talent.stream_key}-reconnecting`, () => {
         this.reconnections++
-        if (this.reconnections > this.$config.maxRetries) return
+
+        if (this.reconnections > this.$config.maxRetries) {
+          return this.showWarningAndStop('Something went wrong on our end. Please try again')
+        }
+
         this.startingStream = true
         this.mediaRecorder.stop()
         setTimeout(() => {
@@ -292,6 +292,15 @@ export default {
   },
 
   methods: {
+    showWarningAndStop(text) {
+      this.$modal.show('warning-modal', {
+        text,
+      })
+      this.playing = false
+      this.mediaRecorder.stop()
+      this.serverProcessOpen = false
+    },
+
     startStreaming() {
       this.socket.emit('create-ffmpeg-process', this.talent.stream_key, this.bitrate)
       this.serverProcessOpen = true
