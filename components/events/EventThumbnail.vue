@@ -22,5 +22,11 @@ export default {
       default: null,
     },
   },
+
+  computed: {
+    hasAssets() {
+      return this.event.assets.length > 0 && this.event.assets[0].playback_id
+    },
+  },
 }
 </script>

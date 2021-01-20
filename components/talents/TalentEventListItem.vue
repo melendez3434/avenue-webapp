@@ -70,10 +70,6 @@ export default {
       let minutes = this.timeString(Math.floor(this.event.duration % 60))
       return `${hours}:${minutes}`
     },
-
-    hasAssets() {
-      return this.event.assets.length > 0 && this.event.assets[0].playback_id
-    },
   },
 
   methods: {
