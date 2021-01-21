@@ -1,20 +1,23 @@
 <template>
-  <VideoLayout :event="event">
-    <EventVideo
-      :key="activePlaybackId"
-      :playback-id="activePlaybackId"
-      :offline="isFinished"
-      :assets="event.assets"
-      @selected-asset="selectedAsset = $event"
-    />
-    <template #placeholder>
-      <div
-        class="w-full h-full flex items-start pt-20 md:pt-0 md:items-center justify-center text-center"
-      >
-        Streaming is not live yet or it is idle. When its live you'll watch it here.
-      </div>
-    </template>
-  </VideoLayout>
+  <section>
+    <VideoLayout :event="event">
+      <EventVideo
+        :key="activePlaybackId"
+        :playback-id="activePlaybackId"
+        :offline="isFinished"
+        :assets="event.assets"
+        @selected-asset="selectedAsset = $event"
+      />
+      <template #placeholder>
+        <div
+          class="w-full h-full flex items-start pt-20 md:pt-0 md:items-center justify-center text-center"
+        >
+          Streaming is not live yet or it is idle. When its live you'll watch it here.
+        </div>
+      </template>
+    </VideoLayout>
+    <OtherLiveEvents :events="otherLiveEvents" />
+  </section>
 </template>
 <script>
 import spacetime from 'spacetime'
@@ -41,9 +44,30 @@ export default {
     }
   },
 
+  data() {
+    return {
+      otherLiveEvents: [],
+    }
+  },
+
+  async fetchOtherLiveEvents() {
+    try {
+      const { data: events } = await this.$api.events.list({
+        talent: { streaming_status: 'active' },
+      })
+      this.otherLiveEvents = events
+    } catch {
+      console.error("Sorry, we couldn't fetch other live events")
+    }
+  },
+
   computed: {
     isFinished() {
       return this.event.is_finished
+    },
+
+    isNotLive() {
+      return this.isFinished || this.event.talent.streaming_status === 'idle'
     },
 
     activePlaybackId() {
@@ -63,6 +87,14 @@ export default {
     timezoneFormatted() {
       const [, city] = this.event.timezone.split('/')
       return city.replace('_', ' ')
+    },
+  },
+
+  watch: {
+    isNotLive(value) {
+      if (value) {
+        this.fetchOtherLiveEvents()
+      }
     },
   },
 
