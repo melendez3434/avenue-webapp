@@ -6,15 +6,15 @@
       :events="upcomingEvents.list"
       :meta="upcomingEvents.meta"
       is-future
-      @page:previous="fetchUpcomingEvents(upcomingEvents.meta.current_page - 1, upcomingEvents)"
-      @page:next="fetchUpcomingEvents(upcomingEvents.meta.current_page + 1, upcomingEvents)"
+      @page:previous="fetchUpcomingEvents(upcomingEvents.meta.current_page - 1)"
+      @page:next="fetchUpcomingEvents(upcomingEvents.meta.current_page + 1)"
     />
     <TalentEvents
       :talent="talent"
       :events="pastEvents.list"
       :meta="pastEvents.meta"
-      @page:previous="fetchPastEvents(pastEvents.meta.current_page - 1, pastEvents)"
-      @page:next="fetchPastEvents(pastEvents.meta.current_page + 1, pastEvents)"
+      @page:previous="fetchPastEvents(pastEvents.meta.current_page - 1)"
+      @page:next="fetchPastEvents(pastEvents.meta.current_page + 1)"
     />
   </article>
 </template>
