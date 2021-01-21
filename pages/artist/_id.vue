@@ -49,14 +49,12 @@ export default {
     }
   },
 
-  async fetchPastEvents(pageNumber, events) {
-    events.meta.current_page = pageNumber
-
+  async fetchPastEvents(pageNumber) {
     try {
       const { data: events, meta } = await this.$api.events.list({
         talent: this.$route.params.id,
         past: true,
-        page: events.meta.current_page,
+        page: pageNumber,
       })
       this.pastEvents.list = events
       this.pastEvents.meta = meta
@@ -65,14 +63,12 @@ export default {
     }
   },
 
-  async fetchUpcomingEvents(pageNumber, events) {
-    events.meta.current_page = pageNumber
-
+  async fetchUpcomingEvents(pageNumber) {
     try {
       const { data: events, meta } = await this.$api.events.list({
         talent: this.$route.params.id,
         past: false,
-        page: events.meta.current_page,
+        page: pageNumber,
       })
       this.upcomingEvents.list = events
       this.upcomingEvents.meta = meta
