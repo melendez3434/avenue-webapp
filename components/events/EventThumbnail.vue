@@ -1,5 +1,5 @@
 <template>
-  <div class="w-48 h-28 mr-6 flex items-center justify-center overflow-hidden">
+  <div class="w-48 h-28 flex items-center justify-center overflow-hidden">
     <img v-if="event.thumbnail" :src="event.thumbnail" alt="Event thumbnail" />
     <img
       v-else-if="hasAssets"

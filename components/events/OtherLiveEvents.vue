@@ -11,7 +11,7 @@
         <h2 class="text-2xl mb-3">Stay Tuned!</h2>
         <p>This streaming is about to end but these events are live now</p>
       </header>
-      <ul class="sm:flex sm:flex-row m-auto gap-4">
+      <ul class="sm:flex sm:flex-row m-auto gap-4 ">
         <li v-for="event in events" :key="event.id" class="h-3/6 w-52 overflow-hidden mb-6 sm:mb-0">
           <nuxt-link
             :to="{ name: 'event-slug', params: { slug: event.id } }"
