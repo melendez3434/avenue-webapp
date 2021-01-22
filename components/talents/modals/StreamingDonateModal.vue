@@ -70,7 +70,7 @@
             ' text-avenue-white': !isCustomAmountSet,
           }"
           :v="$v.donation.amount"
-          error-message="Minimum amount to donate is $1"
+          error-message="Minimum amount to donate is $1. Biggest is $100.000"
           @input="setAmount($event)"
         />
       </div>
@@ -93,7 +93,7 @@
   </div>
 </template>
 <script>
-import { required, minValue } from 'vuelidate/lib/validators'
+import { required, minValue, maxValue } from 'vuelidate/lib/validators'
 import StripeInput from '@/components/commons/ui/StripeInput'
 import IcStripe from '@/assets/svg/stripe.svg?inline'
 import IcSecured from '@/assets/svg/secured.svg?inline'
@@ -186,7 +186,7 @@ export default {
         this.busy = false
         this.$modal.hide('streaming-donate-modal')
       } catch (e) {
-        this.error = e.response.data.error
+        this.error = "Couldn't make the donation. Please try again"
         this.busy = false
       }
     },
@@ -204,16 +204,22 @@ export default {
 
     async getCardData() {
       this.loadingCardData = true
-      const { data } = await this.$api.global.stripeCard()
-      this.card = data
-      this.donation.name = this.card.name
-      this.loadingCardData = false
+      try {
+        const { data } = await this.$api.global.stripeCard()
+        if (!data) return
+        this.card = data
+        this.donation.name = this.card.name
+        this.loadingCardData = false
+      } catch (e) {
+        console.error(e)
+        this.loadingCardData = false
+      }
     },
   },
 
   validations: {
     donation: {
-      amount: { required, minValue: minValue(1) },
+      amount: { required, minValue: minValue(1), maxValue: maxValue(100000) },
       stripeValidated: {
         mustBeTrue(value) {
           if (this.card) return true

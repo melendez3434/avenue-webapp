@@ -21,7 +21,10 @@
       <div class="mb-8">
         <h2 class="text-3xl">Past Shows</h2>
       </div>
-      <p class="mb-8">Revive {{ talent.name }} past shows with just one click</p>
+      <p v-if="hasPastEvents" class="mb-8">
+        Revive {{ talent.name }} past shows with just one click
+      </p>
+      <p v-else class="mb-8">This artist doesn't have past events yet.</p>
       <div v-for="event in events" :key="event.id">
         <TalentEventListItem :event="event" :talent="talent" />
       </div>
@@ -88,6 +91,9 @@ export default {
 
     currentPage() {
       return this.meta.current_page
+    },
+    hasPastEvents() {
+      return !this.isFuture && this.events.length > 0
     },
   },
 }

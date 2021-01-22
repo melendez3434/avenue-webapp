@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import socket from '~/plugins/socket.io.js'
+import io from 'socket.io-client'
 import VideoLayout from '@/components/commons/ui/VideoLayout'
 import DeviceSettingsModal from '@/components/talents/modals/DeviceSettingsModal'
 import IcLive from '@/assets/svg/live_w_text.svg?inline'
@@ -146,19 +146,24 @@ export default {
       startingStream: false,
       serverProcessOpen: false,
       bitrate: 1000,
+      socket: null,
+      reconnections: 0,
     }
   },
 
   computed: {
     audioDevices() {
       const devices = []
+      let i = 0
       for (const device of this.devices) {
-        if (!device.label) continue
+        if (!device.deviceId) continue
 
         if (device.kind === 'audioinput') {
+          if (!device.label) i++
+
           devices.push({
             value: device.deviceId,
-            label: device.label,
+            label: device.label || `Audio Input #${i}`,
           })
         }
       }
@@ -167,13 +172,16 @@ export default {
 
     videoDevices() {
       const devices = []
+      let i = 0
       for (const device of this.devices) {
-        if (!device.label) continue
+        if (!device.deviceId) continue
 
         if (device.kind === 'videoinput') {
+          if (!device.label) i++
+
           devices.push({
             value: device.deviceId,
-            label: device.label,
+            label: device.label || `Video Input #${i}`,
           })
         }
       }
@@ -186,6 +194,10 @@ export default {
   },
 
   async mounted() {
+    this.socket = io(this.$config.wsUrl, {
+      transports: ['websocket', 'polling', 'flashsocket'],
+    })
+
     window.onbeforeunload = event => {
       if (this.serverProcessOpen) {
         event.returnValue = this.leaveWarning
@@ -206,23 +218,33 @@ export default {
         this.video.play()
       }
 
-      socket.on(`${this.talent.stream_key}-error`, (text, forceKill) => {
+      this.socket.on(`${this.talent.stream_key}-error`, (text, forceKill) => {
         if (!this.playing) return
-        this.$modal.show('warning-modal', {
-          text,
-        })
-        this.playing = false
-        this.mediaRecorder.stop()
-        this.serverProcessOpen = false
+
+        this.showWarningAndStop(text)
 
         if (!forceKill) return
 
-        if (window.confirm('Do you want to force closing the streaming?')) {
+        if (window.confirm('Streaming already live. Do you want to force closing the streaming?')) {
           this.terminateServerProcess()
         }
       })
 
-      socket.on(`${this.talent.stream_key}-processed-chunk`, chunkId => {
+      this.socket.on(`${this.talent.stream_key}-reconnecting`, () => {
+        this.reconnections++
+
+        if (this.reconnections > this.$config.maxRetries) {
+          return this.showWarningAndStop('Something went wrong on our end. Please try again')
+        }
+
+        this.startingStream = true
+        this.mediaRecorder.stop()
+        setTimeout(() => {
+          this.startStreaming()
+        }, 1000)
+      })
+
+      this.socket.on(`${this.talent.stream_key}-processed-chunk`, chunkId => {
         const index = this.pendingChunks.indexOf(chunkId)
         if (index > -1) {
           this.pendingChunks.splice(index, 1)
@@ -260,7 +282,7 @@ export default {
 
     this.stopCameraStream()
 
-    socket.disconnect()
+    this.socket.disconnect()
 
     this.$echo.channel(`live.${this.talent.id}`).stopListening('TalentIsLiveNow')
 
@@ -270,8 +292,17 @@ export default {
   },
 
   methods: {
+    showWarningAndStop(text) {
+      this.$modal.show('warning-modal', {
+        text,
+      })
+      this.playing = false
+      this.mediaRecorder.stop()
+      this.serverProcessOpen = false
+    },
+
     startStreaming() {
-      socket.emit('create-ffmpeg-process', this.talent.stream_key, this.bitrate)
+      this.socket.emit('create-ffmpeg-process', this.talent.stream_key, this.bitrate)
       this.serverProcessOpen = true
       this.mediaRecorder.start(1000)
       this.startingStream = true
@@ -320,8 +351,9 @@ export default {
         video: { deviceId: { exact: video } },
       })
 
+      const isSafari = window.safari !== undefined
       this.mediaRecorder = new MediaRecorder(this.cameraStream, {
-        mimeType: 'video/webm',
+        mimeType: isSafari ? 'video/mp4' : 'video/webm',
         videoBitsPerSecond: this.bitrate * 1000,
       })
 
@@ -335,7 +367,7 @@ export default {
 
         this.pendingChunks.push(chunkId)
 
-        socket.emit('stream-video-chunk', {
+        this.socket.emit('stream-video-chunk', {
           chunk: e.data,
           stream_name: this.talent.stream_key,
           chunkId,
@@ -396,7 +428,7 @@ export default {
     },
 
     terminateServerProcess() {
-      socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
+      this.socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
       this.serverProcessOpen = false
     },
   },

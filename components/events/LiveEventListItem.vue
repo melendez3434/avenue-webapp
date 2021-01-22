@@ -97,6 +97,10 @@ export default {
     },
 
     isLive() {
+      if (this.event.is_live) return true
+
+      if (this.event.is_finished) return false
+
       return spacetime().isBetween(this.startTimeZoneDate, this.endTimeZoneDate)
     },
 

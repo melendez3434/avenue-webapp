@@ -12,11 +12,13 @@ const config = {
   components: true,
 
   publicRuntimeConfig: {
-    baseURL: '${BASE_URL}',
+    baseURL: process.env.BASE_URL,
     stripeKey: process.env.STRIPE_KEY,
     videoBuffer: process.env.VIDEO_PLAYER_BUFFER,
     sentryEnabled: process.env.SENTRY_DISABLED !== 'true',
     sentryDSN: process.env.SENTRY_DSN,
+    wsUrl: process.env.WS_URL,
+    maxRetries: process.env.MAX_RETRIES || 0,
   },
 
   privateRuntimeConfig: {},
@@ -37,10 +39,7 @@ const config = {
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    script: [
-      { src: 'https://js.stripe.com/v3/' },
-      { src: 'https://addevent.com/libs/atc/1.6.1/atc.min.js', async: true, defer: true },
-    ],
+    script: [{ src: 'https://js.stripe.com/v3/' }],
   },
 
   /*
@@ -82,7 +81,7 @@ const config = {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next', '~/stream/sockets'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next'],
 
   /*
    ** Axios module configuration
@@ -120,7 +119,6 @@ const config = {
     redirect: {
       login: '/?action=login',
       logout: '/',
-      home: false,
     },
     strategies: {
       laravelSanctum: {

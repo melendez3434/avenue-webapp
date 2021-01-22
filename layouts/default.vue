@@ -12,7 +12,6 @@
       scrollable
       height="auto"
       @before-open="beforeOpenUserAccess"
-      @before-close="beforeCloseUserAccess"
     >
       <UserAccessModal :active-tab="modal.active" :title="modal.title" :subtitle="modal.subtitle" />
     </modal>
@@ -124,11 +123,6 @@ export default {
       this.modal.active = params.active || 'login'
       this.modal.title = params.title || 'Welcome to the avenue'
       this.modal.subtitle = params.subtitle || ''
-    },
-
-    beforeCloseUserAccess() {
-      if (this.$route.name === 'event-slug') return
-      this.$router.replace({ path: this.$route.path })
     },
 
     beforeOpenWarning(data) {
