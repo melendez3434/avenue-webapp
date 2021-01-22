@@ -83,15 +83,6 @@ export default {
     },
   },
 
-  // watch: {
-  //   isNotLive: function(value) {
-  //     if (value) {
-  //       this.showModal = true
-  //       this.fetchOtherLiveEvents()
-  //     }
-  //   },
-  // },
-
   methods: {
     closeModal() {
       return (this.showModal = false)
