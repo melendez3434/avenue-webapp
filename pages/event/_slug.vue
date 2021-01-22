@@ -37,10 +37,10 @@ export default {
     try {
       const { data: event } = await $api.events.get(params.slug)
       const selectedAsset = event.assets.length ? event.assets[0].playback_id : ''
-      const { data: otherLiveEvents } = await $api.events.list({
+      const { data: otherEvents } = await $api.events.list({
         live: true,
       })
-      return { event, selectedAsset, otherLiveEvents }
+      return { event, selectedAsset, otherEvents }
     } catch (e) {
       redirect('/')
     }
@@ -63,6 +63,10 @@ export default {
 
     showOtherEvents() {
       return this.isNotLive && this.showModal && this.otherLiveEvents.length > 0
+    },
+
+    otherLiveEvents() {
+      return this.otherEvents.slice(0, 4)
     },
 
     activePlaybackId() {
