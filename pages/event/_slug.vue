@@ -37,7 +37,9 @@ export default {
     try {
       const { data: event } = await $api.events.get(params.slug)
       const selectedAsset = event.assets.length ? event.assets[0].playback_id : ''
-      const { data: otherLiveEvents } = await $api.events.list({ past: true })
+      const { data: otherLiveEvents } = await $api.events.list({
+        talent: { streaming_status: 'active' },
+      })
       return { event, selectedAsset, otherLiveEvents }
     } catch (e) {
       redirect('/')
