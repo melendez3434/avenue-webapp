@@ -16,7 +16,7 @@
         </div>
       </template>
     </VideoLayout>
-    <OtherLiveEvents :events="otherLiveEvents" />
+    <OtherLiveEvents v-if="showOtherEvents" :events="otherLiveEvents" @close="closeModal" />
   </section>
 </template>
 <script>
@@ -37,8 +37,8 @@ export default {
     try {
       const { data: event } = await $api.events.get(params.slug)
       const selectedAsset = event.assets.length ? event.assets[0].playback_id : ''
-
-      return { event, selectedAsset }
+      const { data: otherLiveEvents } = await $api.events.list({ past: true })
+      return { event, selectedAsset, otherLiveEvents }
     } catch (e) {
       redirect('/')
     }
@@ -46,18 +46,7 @@ export default {
 
   data() {
     return {
-      otherLiveEvents: [],
-    }
-  },
-
-  async fetchOtherLiveEvents() {
-    try {
-      const { data: events } = await this.$api.events.list({
-        talent: { streaming_status: 'active' },
-      })
-      this.otherLiveEvents = events
-    } catch {
-      console.error("Sorry, we couldn't fetch other live events")
+      showModal: true,
     }
   },
 
@@ -68,6 +57,10 @@ export default {
 
     isNotLive() {
       return this.isFinished || this.event.talent.streaming_status === 'idle'
+    },
+
+    showOtherEvents() {
+      return this.isNotLive && this.showModal && this.otherLiveEvents.length > 0
     },
 
     activePlaybackId() {
@@ -90,11 +83,18 @@ export default {
     },
   },
 
-  watch: {
-    isNotLive(value) {
-      if (value) {
-        this.fetchOtherLiveEvents()
-      }
+  // watch: {
+  //   isNotLive: function(value) {
+  //     if (value) {
+  //       this.showModal = true
+  //       this.fetchOtherLiveEvents()
+  //     }
+  //   },
+  // },
+
+  methods: {
+    closeModal() {
+      return (this.showModal = false)
     },
   },
 
