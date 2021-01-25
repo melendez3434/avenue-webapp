@@ -49,6 +49,7 @@ export default {
   data() {
     return {
       showModal: true,
+      eventIsNearEnd: false,
     }
   },
 
@@ -57,16 +58,12 @@ export default {
       return this.event.is_finished
     },
 
-    isNotLive() {
-      return this.isFinished || this.event.talent.streaming_status === 'idle'
-    },
-
     showOtherEvents() {
-      return this.isNotLive && this.showModal && this.otherLiveEvents.length > 0
+      return this.eventIsNearEnd && this.showModal && this.otherLiveEvents.length > 0
     },
 
     otherLiveEvents() {
-      return this.otherEvents.slice(0, 4)
+      return this.otherEvents.slice(0, 4).filter(event => event.id != this.event.id)
     },
 
     activePlaybackId() {
@@ -87,6 +84,21 @@ export default {
       const [, city] = this.event.timezone.split('/')
       return city.replace('_', ' ')
     },
+  },
+
+  async mounted() {
+    try {
+      this.$echo.channel(`live.${this.event.id}`).listen('EventIsEndedNow', () => {
+        this.showModal = true
+        this.eventIsNearEnd = true
+      })
+    } catch {
+      console.error("Couldn't listen to EventIsEndedNow event")
+    }
+  },
+
+  beforeDestroy() {
+    this.$echo.channel(`live.${this.event.id}`).stopListening('EventIsEndedNow')
   },
 
   methods: {
