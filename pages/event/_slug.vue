@@ -37,10 +37,7 @@ export default {
     try {
       const { data: event } = await $api.events.get(params.slug)
       const selectedAsset = event.assets.length ? event.assets[0].playback_id : ''
-      const { data: otherEvents } = await $api.events.list({
-        live: true,
-      })
-      return { event, selectedAsset, otherEvents }
+      return { event, selectedAsset }
     } catch (e) {
       redirect('/')
     }
@@ -48,8 +45,8 @@ export default {
 
   data() {
     return {
-      showModal: true,
-      eventIsNearEnd: false,
+      showModal: false,
+      otherEvents: [],
     }
   },
 
@@ -59,7 +56,7 @@ export default {
     },
 
     showOtherEvents() {
-      return this.eventIsNearEnd && this.showModal && this.otherLiveEvents.length > 0
+      return this.showModal && this.otherLiveEvents.length > 0
     },
 
     otherLiveEvents() {
@@ -86,15 +83,10 @@ export default {
     },
   },
 
-  async mounted() {
-    try {
-      this.$echo.channel(`live.${this.event.id}`).listen('EventIsEndedNow', () => {
-        this.showModal = true
-        this.eventIsNearEnd = true
-      })
-    } catch {
-      console.error("Couldn't listen to EventIsEndedNow event")
-    }
+  mounted() {
+    this.$echo.channel(`live.${this.event.id}`).listen('EventIsEndedNow', () => {
+      this.fetchOtherLiveEvents()
+    })
   },
 
   beforeDestroy() {
@@ -104,6 +96,16 @@ export default {
   methods: {
     closeModal() {
       return (this.showModal = false)
+    },
+
+    async fetchOtherLiveEvents() {
+      try {
+        const { data: otherEvents } = await this.$api.events.list({ live: true })
+        this.otherEvents = otherEvents
+        this.showModal = true
+      } catch {
+        console.error("Couldn't fetch other live events")
+      }
     },
   },
 
