@@ -90,7 +90,7 @@ export default {
   },
 
   beforeDestroy() {
-    this.$echo.channel(`live.${this.event.id}`).stopListening('EventIsEndedNow')
+    this.$echo.channel(`event.${this.event.id}`).stopListening('EventIsEndedNow')
   },
 
   methods: {
