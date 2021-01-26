@@ -1,6 +1,6 @@
 <template>
   <transition name="show">
-    <section class="bg-avenue-blue-light p-6 sm:h-72 fixed bottom-0 z-10">
+    <section class="bg-avenue-blue-light p-6 sm:h-80 fixed bottom-0 z-10">
       <IcClose
         aria-role="button"
         aria-label="close"
@@ -9,9 +9,15 @@
       />
       <header class="mb-8">
         <h2 class="text-2xl mb-3">Stay Tuned!</h2>
-        <p>This streaming is about to end but these events are live now</p>
+        <div v-if="hasManyEvents">
+          <p>This stream is about to end but these events are live now</p>
+        </div>
+        <div v-else>
+          <p>This stream is about to end</p>
+          <p>but this event is live now</p>
+        </div>
       </header>
-      <ul class="sm:flex sm:flex-row m-auto gap-4 ">
+      <ul class="sm:flex sm:flex-row m-auto gap-4 mb-3">
         <li v-for="event in events" :key="event.id" class="h-3/6 w-52 overflow-hidden mb-6 sm:mb-0">
           <nuxt-link
             :to="{ name: 'event-slug', params: { slug: event.id } }"
@@ -38,6 +44,12 @@ export default {
     events: {
       type: Array,
       default: () => [],
+    },
+  },
+
+  computed: {
+    hasManyEvents() {
+      return this.events.length > 1
     },
   },
 
