@@ -84,7 +84,7 @@ export default {
   },
 
   mounted() {
-    this.$echo.channel(`live.${this.event.id}`).listen('EventIsEndedNow', () => {
+    this.$echo.channel(`event.${this.event.id}`).listen('EventIsEndedNow', () => {
       this.fetchOtherLiveEvents()
     })
   },
