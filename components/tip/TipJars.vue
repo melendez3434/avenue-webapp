@@ -103,7 +103,7 @@ export default {
   },
 
   beforeDestroy() {
-    this.$echo.channel(`event.${this.event}`).stopListening('TipCreated')
+    this.$echo.channel(`event.${this.event.id}`).stopListening('TipCreated')
     clearInterval(this.interval)
   },
 
