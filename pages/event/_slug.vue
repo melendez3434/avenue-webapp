@@ -10,9 +10,16 @@
       />
       <template #placeholder>
         <div
-          class="w-full h-full flex items-start pt-20 md:pt-0 md:items-center justify-center text-center"
+          class="w-full h-screen flex flex-col md:items-center justify-center bg-no-repeat bg-cover bg-center pt-20 md:pt-0 text-center font-league-gothic uppercase text-2xl tracking-wide"
+          :style="{
+            backgroundImage: `linear-gradient(
+			      rgba(0, 0, 0, 0.85),
+			      rgba(0, 0, 0, 0.9)
+		        ),url(${event.talent.cover_photo})`,
+          }"
         >
-          Streaming is not live yet or it is idle. When its live you'll watch it here.
+          <p>{{ event.talent.name }}'s stream is not live yet or it is idle.</p>
+          <p>When it's live you'll see it here.</p>
         </div>
       </template>
     </VideoLayout>
