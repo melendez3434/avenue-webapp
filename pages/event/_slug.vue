@@ -107,7 +107,7 @@ export default {
 
     async fetchOtherLiveEvents() {
       try {
-        const { data: otherEvents } = await this.$api.events.list({ live: true })
+        const { data: otherEvents } = await this.$api.events.list({ suggestions: true })
         this.otherEvents = otherEvents
         this.showModal = true
       } catch {
