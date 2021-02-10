@@ -32,6 +32,23 @@
         <CompetitionTalentListItem />
       </div>
     </section>
+
+    <section class="container mx-auto mt-12">
+      <p class="font-bold text-lg">This event is sponsored by</p>
+      <div class="mt-5 px-12 md:px-32 grid grid-cols-3">
+        <div class="w-60 h-32 flex items-center justify-center bg-theavenue-gray">Logo</div>
+        <div class="w-60 h-32 flex items-center justify-center bg-theavenue-gray">Logo</div>
+        <div class="w-60 h-32 flex items-center justify-center bg-theavenue-gray">Logo</div>
+      </div>
+    </section>
+    <section class="container mx-auto mt-12">
+      <nuxt-link
+        class="font-bold text-lg"
+        :to="{ name: 'competitions-id-join', params: { id: competition.id } }"
+      >
+        Want to join the competition? Click here to see the conditions
+      </nuxt-link>
+    </section>
   </div>
 </template>
 <script>
