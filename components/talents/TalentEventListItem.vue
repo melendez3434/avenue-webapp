@@ -47,6 +47,9 @@ export default {
     },
   },
   computed: {
+    userTimezone() {
+      return Intl.DateTimeFormat().resolvedOptions().timeZone
+    },
     startTimeZoneDate() {
       return spacetime(this.event.starts_at, 'UTC').goto(this.userTimezone)
     },

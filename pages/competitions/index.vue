@@ -12,25 +12,13 @@
     </div>
 
     <div class="container mx-auto mt-10">
-      <section v-if="competitions.length" class="grid grid-cols-4 gap-6">
-        <div
+      <section v-if="competitions.length" class="grid grid-cols-3 gap-6">
+        <CompetitionListItem
           v-for="competition in competitions"
           :key="competition.id"
-          class="border border-theavenue-yellow-neon px-5 py-2 rounded-lg"
-        >
-          <!-- TODO: Icon from font awesome -->
-          <p class="text-3xl text-center text-avenue-white-light">{{ competition.name }}</p>
-          <p class="text-avenue-white text-sm text-center">{{ competition.description }}</p>
-          <p class="mt-3 text-center">Join today!</p>
-          <div class="mt-3 w-full flex items-center justify-center">
-            <nuxt-link
-              :to="{ name: 'competitions-id', params: { id: competition.id } }"
-              class="uppercase text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-            >
-              See event
-            </nuxt-link>
-          </div>
-        </div>
+          :competition="competition"
+          class="border border-theavenue-yellow-neon px-10 py-5 rounded-lg"
+        />
       </section>
       <section v-else class="text-center">
         <p class="text-lg">There is no active events at the moment</p>
@@ -39,10 +27,16 @@
   </div>
 </template>
 <script>
+import CompetitionListItem from '@/components/competitions/CompetitionListItem'
+
 export default {
   name: 'CompetitionsIndexPage',
 
   auth: false,
+
+  components: {
+    CompetitionListItem,
+  },
 
   async fetch() {
     try {
