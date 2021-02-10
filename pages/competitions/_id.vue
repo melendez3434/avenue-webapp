@@ -21,22 +21,56 @@
     </section>
 
     <section class="container mx-auto mt-12">
+      <!-- TODO: ORDER BY POINTS -->
       <div class="w-full flex pl-16 py-3">
         <div class="flex-1">Artist</div>
-        <div class="w-48">Weekly Points</div>
-        <div class="w-52">Total Points</div>
+        <div class="w-48 text-right">Weekly Points</div>
+        <div class="w-52 pr-16 text-right">Total Points</div>
       </div>
       <div>
         <Collapse>
           <template slot="header">
             <div class="w-full flex">
               <div class="flex-1">Artist name</div>
-              <div class="w-48">100</div>
-              <div class="w-48">300</div>
+              <div class="w-48 text-right">100</div>
+              <div class="w-48 text-right pr-12">300</div>
             </div>
           </template>
-          <div class="pl-12">
-            Content
+          <div class="px-12">
+            <div class="w-full flex items-center justify-between">
+              <div class="flex space-x-3 items-center">
+                <div class="w-10 h-10 bg-theavenue-gray rounded-full" />
+                <span>Artist name</span>
+              </div>
+              <span>Restaurant name with link</span>
+              <span>City and State</span>
+            </div>
+
+            <div class="mt-10">
+              <p class="text-xl">Past performances</p>
+              <div class="mt-5 grid grid-cols-4 gap-5">
+                <div class="text-center">
+                  <div class="w-full h-32 bg-theavenue-gray" />
+                  <span class="block mt-3">Performance Name</span>
+                </div>
+                <div class="text-center">
+                  <div class="w-full h-32 bg-theavenue-gray" />
+                  <span class="block mt-3">Performance Name</span>
+                </div>
+                <div class="text-center">
+                  <div class="w-full h-32 bg-theavenue-gray" />
+                  <span class="block mt-3">Performance Name</span>
+                </div>
+                <div class="text-center">
+                  <div class="w-full h-32 bg-theavenue-gray" />
+                  <span class="block mt-3">Performance Name</span>
+                </div>
+                <div class="text-center">
+                  <div class="w-full h-32 bg-theavenue-gray" />
+                  <span class="block mt-3">Performance Name</span>
+                </div>
+              </div>
+            </div>
           </div>
         </Collapse>
       </div>
