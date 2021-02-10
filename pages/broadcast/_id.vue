@@ -225,7 +225,11 @@ export default {
 
         if (!forceKill) return
 
-        if (window.confirm('Streaming already live. Do you want to force closing the streaming?')) {
+        if (
+          window.confirm(
+            'This stream is already live. Check your other tabs and browsers. Do you want to force closing this one?'
+          )
+        ) {
           this.terminateServerProcess()
         }
       })
