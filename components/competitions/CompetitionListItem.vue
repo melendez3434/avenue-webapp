@@ -41,7 +41,9 @@ export default {
 
     buttonLink() {
       const params = { id: this.competition.id }
-      return this.isTalent ? { name: 'events-id-join', params } : { name: 'events-id', params }
+      return this.isTalent
+        ? { name: 'events-id-requirements', params }
+        : { name: 'events-id', params }
     },
 
     buttonText() {

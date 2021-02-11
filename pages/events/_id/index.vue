@@ -44,7 +44,7 @@
     <section class="container mx-auto mt-12">
       <nuxt-link
         class="font-bold text-lg"
-        :to="{ name: 'events-id-join', params: { id: competition.id } }"
+        :to="{ name: 'events-id-requirements', params: { id: competition.id } }"
       >
         Want to join the competition? Click here to see the conditions
       </nuxt-link>
@@ -67,7 +67,6 @@ export default {
   async fetch() {
     try {
       const { data } = await this.$api.competitions.get(this.$route.params.id)
-      console.log('data', data)
       this.competition = data
     } catch (error) {
       console.error("Couldn't fetch the event")
