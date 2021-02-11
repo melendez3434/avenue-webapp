@@ -6,13 +6,13 @@
     </p>
     <p class="text-avenue-white text-sm mt-5">{{ competition.description }}</p>
     <p class="text-avenue-grey mt-5">From {{ dateFrom }} to {{ dateTo }}</p>
-    <p class="mt-5 font-bold">Who will win this competition? It’s on you</p>
+    <p class="mt-5 font-bold">Join today!</p>
     <div class="mt-5 w-full flex items-center justify-center">
       <nuxt-link
         :to="{ name: 'competitions-id', params: { id: competition.id } }"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
       >
-        See event
+        Join
       </nuxt-link>
     </div>
   </div>
