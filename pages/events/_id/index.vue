@@ -44,7 +44,7 @@
     <section class="container mx-auto mt-12">
       <nuxt-link
         class="font-bold text-lg"
-        :to="{ name: 'competitions-id-join', params: { id: competition.id } }"
+        :to="{ name: 'events-id-join', params: { id: competition.id } }"
       >
         Want to join the competition? Click here to see the conditions
       </nuxt-link>
@@ -56,7 +56,7 @@ import spacetime from 'spacetime'
 import CompetitionTalentListItem from '@/components/competitions/CompetitionTalentListItem'
 
 export default {
-  name: 'CompetitionDetailPage',
+  name: 'EventDetailPage',
 
   auth: false,
 

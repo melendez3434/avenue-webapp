@@ -6,13 +6,13 @@
     </p>
     <p class="text-avenue-white text-sm mt-5">{{ competition.description }}</p>
     <p class="text-avenue-grey mt-5">From {{ dateFrom }} to {{ dateTo }}</p>
-    <p class="mt-5 font-bold">Join today!</p>
+    <p class="mt-5 font-bold">{{ caption }}</p>
     <div class="mt-5 w-full flex items-center justify-center">
       <nuxt-link
-        :to="{ name: 'competitions-id', params: { id: competition.id } }"
+        :to="buttonLink"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
       >
-        Join
+        {{ buttonText }}
       </nuxt-link>
     </div>
   </div>
@@ -28,9 +28,26 @@ export default {
       type: Object,
       required: true,
     },
+    isTalent: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
+    caption() {
+      return this.isTalent ? 'Join today!' : 'Who will win this competition? It’s on you'
+    },
+
+    buttonLink() {
+      const params = { id: this.competition.id }
+      return this.isTalent ? { name: 'events-id-join', params } : { name: 'events-id', params }
+    },
+
+    buttonText() {
+      return this.isTalent ? 'Join' : 'See event'
+    },
+
     userTimezone() {
       return Intl.DateTimeFormat().resolvedOptions().timeZone
     },

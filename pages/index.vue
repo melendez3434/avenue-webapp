@@ -15,6 +15,16 @@
         </infinite-loading>
       </client-only>
     </div>
+
+    <modal
+      width="100%"
+      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+      name="talent-event-modal"
+      scrollable
+      height="auto"
+    >
+      <CompetitionModalAnnouncement />
+    </modal>
   </div>
 </template>
 
@@ -22,6 +32,7 @@
 import spacetime from 'spacetime'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
 import LogoLights from '@/components/commons/LogoLights'
+import CompetitionModalAnnouncement from '@/components/competitions/CompetitionModalAnnouncement'
 
 export default {
   name: 'IndexPage',
@@ -31,6 +42,7 @@ export default {
   components: {
     LiveEventListItem,
     LogoLights,
+    CompetitionModalAnnouncement,
   },
 
   async asyncData({ $api }) {
@@ -67,6 +79,8 @@ export default {
         event.is_live = true
         this.handleSocketEvent(event, 'updated')
       })
+
+    this.$modal.show('talent-event-modal')
   },
 
   beforeDestroy() {

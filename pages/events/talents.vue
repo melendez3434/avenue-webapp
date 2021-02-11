@@ -50,17 +50,12 @@
           :key="competition.id"
           :competition="competition"
           class="border border-theavenue-yellow-neon px-10 py-5 rounded-lg"
+          is-talent
         />
       </section>
       <section v-else class="text-center">
         <p class="text-lg">There is no active events at the moment</p>
       </section>
-    </div>
-
-    <div class="container mx-auto mt-10">
-      <nuxt-link :to="{ name: 'events-terms-and-conditions' }" class="hover:underline">
-        Before joining you should click here to read the terms and conditions of the events
-      </nuxt-link>
     </div>
   </div>
 </template>
@@ -73,7 +68,7 @@ import IcCake from '@/assets/svg/cake.svg?inline'
 import IcStars from '@/assets/svg/stars.svg?inline'
 
 export default {
-  name: 'CompetitionsIndexPage',
+  name: 'EventsTalentPage',
 
   auth: false,
 
