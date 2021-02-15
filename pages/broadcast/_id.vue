@@ -100,7 +100,7 @@
         </p>
         <p class="text-xs text-avenue-white">
           We recommend that you try using
-          <a href="https://obsproject.com/es" target="_blank">OBS</a>
+          <a href="https://obsproject.com/" target="_blank">OBS</a>
           instead of the browser to stream.
         </p>
         <p class="text-xl text-avenue-white-light">
