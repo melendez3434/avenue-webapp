@@ -63,7 +63,7 @@
           </el-dropdown-item>
           <el-dropdown-item>
             <button v-if="!$auth.user.talent_id" @click="$modal.show('talent-signup-modal')">
-              Start Streaming
+              Sign Up to Stream
             </button>
           </el-dropdown-item>
           <el-dropdown-item>

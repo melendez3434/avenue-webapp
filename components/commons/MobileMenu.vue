@@ -41,7 +41,7 @@
             class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
             @click="startStreaming"
           >
-            Start Streaming
+            Sign Up to Stream
           </button>
           <button
             v-if="$auth.user.talent_id && !$auth.user.has_confirmed_talent"
