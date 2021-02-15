@@ -22,7 +22,7 @@
       </div>
       <div>
         <p class="text-2xl leading-tight font-xs">
-          If you have a slow internet connection we recommend choosing lower bit rates.
+          If you have a slow internet connection we recommend choosing lower bitrates.
         </p>
       </div>
 
