@@ -28,7 +28,7 @@
         <div class="w-52 pr-16 text-right">Total Points</div>
       </div>
       <div>
-        <!-- TOOD: Iterate on competition talents -->
+        <!-- TODO: Iterate on competition talents -->
         <CompetitionTalentListItem />
       </div>
     </section>

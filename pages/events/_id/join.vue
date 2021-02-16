@@ -31,6 +31,14 @@
             <div class="mt-5"><R64Input v-model="week.dish" label="Dish of the week" /></div>
           </div>
         </div>
+
+        <div class="mt-5">
+          <p class="text-center mb-5">
+            By clicking Sign Up, you are indicating that you have read and acknowledge the Terms and
+            Conditions of the event
+          </p>
+          <R64Button full>Confirm</R64Button>
+        </div>
       </form>
     </section>
   </div>
