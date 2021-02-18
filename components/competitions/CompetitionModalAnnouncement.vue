@@ -1,10 +1,12 @@
 <template>
-  <div class="px-24 py-12 bg-avenue-blue-light text-center">
+  <div class="px-8 py-8 bg-avenue-blue-light text-center flex flex-col items-center">
     <p class="text-3xl">Haven't your heard?</p>
-    <p class="mt-10 text-lg">The Avenue has events now!</p>
-    <p class="mt-5 text-lg px-6">
-      Compite with other performants, donate to charity and win the prize
+    <p class="mt-8 text-lg font-bold">The Avenue hosts cooking competitions now!</p>
+    <p class="my-5 text-lg px-6">
+      Help charity organizations, engage your audience and win the price!
     </p>
+    <IcDish />
+
     <div class="mt-10">
       <nuxt-link
         :to="{ name: 'events-talents' }"
@@ -16,7 +18,10 @@
   </div>
 </template>
 <script>
+import IcDish from '@/assets/svg/dish.svg?inline'
+
 export default {
   name: 'CompetitionModalAnnouncement',
+  components: { IcDish },
 }
 </script>
