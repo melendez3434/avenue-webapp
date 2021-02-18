@@ -54,7 +54,7 @@
         />
       </section>
       <section v-else class="text-center">
-        <p class="text-lg">There is no active events at the moment</p>
+        <p class="text-lg">There are no active events at the moment</p>
       </section>
     </div>
   </div>
