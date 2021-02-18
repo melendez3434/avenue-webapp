@@ -29,7 +29,11 @@
       </div>
       <div>
         <!-- TODO: Iterate on competition talents -->
-        <CompetitionTalentListItem />
+        <CompetitionTalentListItem
+          v-for="talent in competition.talent"
+          :key="talent.id"
+          :talent="talent"
+        />
       </div>
     </section>
 
@@ -68,6 +72,7 @@ export default {
     try {
       const { data } = await this.$api.competitions.get(this.$route.params.id)
       this.competition = data
+      console.log('competition', data)
     } catch (error) {
       console.error("Couldn't fetch the event")
     }

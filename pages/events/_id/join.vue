@@ -76,7 +76,9 @@
             By clicking Sign Up, you are indicating that you have read and acknowledge the Terms and
             Conditions of the event
           </p>
-          <R64Button full :disabled="$v.form.$invalid">Confirm</R64Button>
+          <R64Button type="submit" full :disabled="$v.form.$invalid">
+            Confirm
+          </R64Button>
         </div>
       </form>
     </section>
@@ -126,6 +128,21 @@ export default {
         v.charity.$touch
         v.website.$touch
         v.dish.$touch
+      }
+    },
+
+    async join() {
+      try {
+        const { success } = await this.$api.competitions.talentSignUp(
+          this.competition.id,
+          this.form
+        )
+
+        if (success) {
+          this.$route.push({ name: 'events-id', params: { id: this.competition.id } })
+        }
+      } catch (e) {
+        console.error(e)
       }
     },
   },

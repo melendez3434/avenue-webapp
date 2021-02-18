@@ -2,16 +2,22 @@
   <Collapse>
     <template slot="header">
       <div class="w-full flex">
-        <div class="flex-1">Artist name</div>
-        <div class="w-48 text-right">100</div>
-        <div class="w-48 text-right pr-12">300</div>
+        <div class="flex-1">{{ talent.name }}</div>
+        <!-- TODO: Weekly points -->
+        <div class="w-48 text-right">{{ talent.points }}</div>
+        <!-- TODO: Total points -->
+        <div class="w-48 text-right pr-12">{{ talent.points }}</div>
       </div>
     </template>
     <div class="px-12 pb-12">
       <div class="w-full flex items-center justify-between">
         <div class="flex space-x-3 items-center">
-          <div class="w-10 h-10 bg-theavenue-gray rounded-full" />
-          <span>Artist name</span>
+          <img
+            :src="talent.talent.photo"
+            :alt="`${talent.name} photo`"
+            class="w-10 h-10 rounded-full"
+          />
+          <span>{{ talent.name }}</span>
         </div>
         <span>Restaurant name with link</span>
         <span>City and State</span>
@@ -68,6 +74,13 @@ export default {
     Collapse,
     EventThumbnail,
     ShareButton,
+  },
+
+  props: {
+    talent: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 }
 </script>

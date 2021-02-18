@@ -9,7 +9,12 @@ export default $axios => ({
     return $axios.$get(`${resource}/${id}`)
   },
 
-  talentSignUp(id) {
-    return $axios.$post(`${resource}/${id}/talent`)
+  talent(competition, talent) {
+    return $axios.$get(`${resource}/${competition}/talents/${talent}`)
+  },
+
+  talentSignUp(id, payload) {
+    // TODO: Change to talents
+    return $axios.$post(`${resource}/${id}/talent`, payload)
   },
 })
