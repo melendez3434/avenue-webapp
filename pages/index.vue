@@ -24,7 +24,22 @@
       height="auto"
     >
       <IcClose class="cursor-pointer absolute top-4 right-4" @click="close" />
-      <CompetitionModalAnnouncement />
+      <CompetitionModalAnnouncement>
+        Help charity organizations, engage your audience and win the price!
+      </CompetitionModalAnnouncement>
+    </modal>
+    <modal
+      width="100%"
+      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+      name="user-event-modal"
+      scrollable
+      height="auto"
+    >
+      <IcClose class="cursor-pointer absolute top-4 right-4" @click="close" />
+      <CompetitionModalAnnouncement>
+        Engage in the competition by helping your favorite chefs win the price while they donate to
+        charity organizations
+      </CompetitionModalAnnouncement>
     </modal>
   </div>
 </template>
@@ -84,6 +99,8 @@ export default {
       })
     if (this.$auth.loggedIn && this.$auth.user.talent_id) {
       this.$modal.show('talent-event-modal')
+    } else {
+      this.$modal.show('user-event-modal')
     }
   },
 
