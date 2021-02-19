@@ -17,7 +17,6 @@
     </div>
 
     <modal
-      v-if="$auth.loggedIn && $auth.user.talent_id"
       width="100%"
       classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
       name="talent-event-modal"
@@ -83,8 +82,9 @@ export default {
         event.is_live = true
         this.handleSocketEvent(event, 'updated')
       })
-
-    this.$modal.show('talent-event-modal')
+    if (this.$auth.loggedIn && this.$auth.user.talent_id) {
+      this.$modal.show('talent-event-modal')
+    }
   },
 
   beforeDestroy() {
