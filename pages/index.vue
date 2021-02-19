@@ -23,6 +23,7 @@
       scrollable
       height="auto"
     >
+      <IcClose class="cursor-pointer absolute top-4 right-4" @click="close" />
       <CompetitionModalAnnouncement />
     </modal>
   </div>
@@ -33,6 +34,7 @@ import spacetime from 'spacetime'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
 import LogoLights from '@/components/commons/LogoLights'
 import CompetitionModalAnnouncement from '@/components/competitions/CompetitionModalAnnouncement'
+import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
   name: 'IndexPage',
@@ -43,6 +45,7 @@ export default {
     LiveEventListItem,
     LogoLights,
     CompetitionModalAnnouncement,
+    IcClose,
   },
 
   async asyncData({ $api }) {
@@ -141,6 +144,10 @@ export default {
       }
 
       return map[type]()
+    },
+
+    close() {
+      return this.$modal.hide('talent-event-modal')
     },
   },
 }

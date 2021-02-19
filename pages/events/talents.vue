@@ -2,8 +2,8 @@
   <div
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
-    <div class="container mx-auto text-center mt-10">
-      <h1 class="text-4xl">Events</h1>
+    <div class="container mx-auto text-center mt-14">
+      <h1 class="text-4xl font-bold">Events</h1>
       <h2 class="mt-3 text-lg">
         Join the competition, help charity organizations and win the price!
       </h2>
@@ -26,7 +26,7 @@
         <div class="mt-12 grid grid-cols-2 gap-6 md:px-48">
           <div>
             <IcCake class="mx-auto h-40" />
-            <p class="sm:px-6">Be among the first four each week to face your competitors</p>
+            <p class="sm:px-6">Be among the first four scores each week to face your competitors</p>
           </div>
           <div>
             <IcStars class="mx-auto h-40" />
@@ -36,8 +36,8 @@
       </section>
     </div>
 
-    <div class="container mx-auto text-center mt-12 text-avenue-white-light">
-      <p class="text-4xl">What are you waiting for?</p>
+    <div class="container mx-auto text-center mt-16 text-avenue-white-light">
+      <p class="text-3xl">What are you waiting for?</p>
       <p class="mt-3 text-lg">
         Join an event now!
       </p>
