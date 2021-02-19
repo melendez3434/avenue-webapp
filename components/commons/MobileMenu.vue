@@ -13,6 +13,12 @@
         <IcClose />
       </div>
       <div class="flex flex-col items-center space-y-5 mt-5">
+        <nuxt-link
+          :to="{ name: 'events' }"
+          class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+        >
+          Events
+        </nuxt-link>
         <a
           v-for="category in categories"
           :key="category.name"

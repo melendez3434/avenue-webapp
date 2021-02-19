@@ -15,6 +15,17 @@
         </infinite-loading>
       </client-only>
     </div>
+
+    <modal
+      width="100%"
+      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+      name="talent-event-modal"
+      scrollable
+      height="auto"
+    >
+      <IcClose class="cursor-pointer absolute top-4 right-4" @click="close" />
+      <CompetitionModalAnnouncement />
+    </modal>
   </div>
 </template>
 
@@ -22,6 +33,8 @@
 import spacetime from 'spacetime'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
 import LogoLights from '@/components/commons/LogoLights'
+import CompetitionModalAnnouncement from '@/components/competitions/CompetitionModalAnnouncement'
+import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
   name: 'IndexPage',
@@ -31,6 +44,8 @@ export default {
   components: {
     LiveEventListItem,
     LogoLights,
+    CompetitionModalAnnouncement,
+    IcClose,
   },
 
   async asyncData({ $api }) {
@@ -67,6 +82,9 @@ export default {
         event.is_live = true
         this.handleSocketEvent(event, 'updated')
       })
+    if (this.$auth.loggedIn && this.$auth.user.talent_id) {
+      this.$modal.show('talent-event-modal')
+    }
   },
 
   beforeDestroy() {
@@ -127,6 +145,10 @@ export default {
       }
 
       return map[type]()
+    },
+
+    close() {
+      return this.$modal.hide('talent-event-modal')
     },
   },
 }
