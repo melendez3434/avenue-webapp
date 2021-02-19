@@ -1,9 +1,11 @@
 <template>
   <div class="border border-theavenue-yellow-neon px-10 py-8 rounded-lg text-center">
-    <!-- TODO: Icon from font awesome -->
     <p class="text-3xl text-avenue-white-light font-library uppercase">
       {{ competition.name }}
     </p>
+    <div class="w-full flex items-center justify-center my-4">
+      <IcBread />
+    </div>
     <p class="text-avenue-white text-sm mt-5">{{ competition.description }}</p>
     <p class="text-avenue-grey mt-5">From {{ dateFrom }} to {{ dateTo }}</p>
     <p class="mt-5 font-bold">{{ caption }}</p>
@@ -19,9 +21,14 @@
 </template>
 <script>
 import spacetime from 'spacetime'
+import IcBread from '@/assets/svg/bread.svg?inline'
 
 export default {
   name: 'CompetitionListItem',
+
+  components: {
+    IcBread,
+  },
 
   props: {
     competition: {

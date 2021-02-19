@@ -3,10 +3,12 @@
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
     <section class="container mx-auto mt-12">
-      <!-- TODO: Icon from font awesome -->
-      <p class="text-3xl font-library text-center text-avenue-white-light text-light-white">
-        {{ competition.name }}
-      </p>
+      <div class="flex items-center justify-center w-full space-x-6">
+        <p class="text-3xl font-library text-center text-avenue-white-light text-light-white">
+          {{ competition.name }}
+        </p>
+        <IcBread />
+      </div>
       <p class="max-w-xl mx-auto text-avenue-white text-center mt-5">
         {{ competition.description }}
       </p>
@@ -57,6 +59,7 @@
 </template>
 <script>
 import spacetime from 'spacetime'
+import IcBread from '@/assets/svg/bread.svg?inline'
 import CompetitionTalentListItem from '@/components/competitions/CompetitionTalentListItem'
 
 export default {
@@ -66,6 +69,7 @@ export default {
 
   components: {
     CompetitionTalentListItem,
+    IcBread,
   },
 
   async fetch() {
