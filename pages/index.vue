@@ -165,7 +165,8 @@ export default {
     },
 
     close() {
-      return this.$modal.hide('talent-event-modal')
+      this.$modal.hide('talent-event-modal')
+      this.$modal.hide('user-event-modal')
     },
   },
 }
