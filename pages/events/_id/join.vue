@@ -15,6 +15,9 @@
           :v="$v.form.name"
           error-message="Artist or group name is required"
         />
+        <div class="mt-7">
+          <p class="font-bold text-sm">Do you work at a restaurant or cater?</p>
+        </div>
         <div class="mt-5">
           <R64Input v-model="form.business_name" label="Restaurant or cater name" />
         </div>
@@ -39,39 +42,54 @@
         </div>
 
         <div class="mt-5">
-          <div v-for="(v, index) in $v.form.weeks.$each.$iter" :key="index" class="mt-8">
-            <p class="mt-1 underline">Week {{ parseInt(index) + 1 }}</p>
-            <div v-if="form.weeks[index].charity !== false" class="mt-5">
+          <R64Textarea
+            v-model="form.motivation"
+            label="Tell your viewers what motivates your to win"
+            :v="$v.form.motivation"
+            error-message="Motivation text is required"
+          />
+        </div>
+
+        <p class="mt-12 text-sm font-bold">
+          Charity organizations you want to collaborate with
+        </p>
+
+        <div class="mt-5">
+          <div
+            v-for="(v, index) in $v.form.rounds_info.$each.$iter"
+            :key="index"
+            :class="{ 'mt-12': index > 0, 'mt-5': index === 0 }"
+          >
+            <p class="mt-1 text-sm font-bold">Charity organization</p>
+            <div v-if="form.rounds_info[index].charity !== false" class="mt-5">
               <R64Input
-                v-model="form.weeks[index].charity"
-                label="Charity"
+                v-model="form.rounds_info[index].charity"
+                label="Name"
                 :v="v.charity"
-                error-message="Artist or group name is required"
+                error-message="Charity name is required"
                 @input="v.charity.$touch"
               />
             </div>
-            <div v-if="form.weeks[index].website !== false" class="mt-5">
+            <div v-if="form.rounds_info[index].charity_website !== false" class="mt-5">
               <R64Input
-                v-model="form.weeks[index].website"
-                label="Charity website"
-                :v="v.website"
+                v-model="form.rounds_info[index].charity_website"
+                label="Website"
+                :v="v.charity_website"
                 error-message="Charity website is required"
-                @input="v.website.$touch"
-              />
-            </div>
-            <div class="mt-5">
-              <R64Input
-                v-model="form.weeks[index].dish"
-                label="Dish of the week"
-                :v="v.dish"
-                error-message="Dish of the week is required"
-                @input="touchDishOfWeek(v, index)"
+                @input="v.charity_website.$touch"
               />
             </div>
           </div>
         </div>
 
         <div class="mt-5">
+          <button class="text-sm flex items-center space-x-3" @click="addNewCharity">
+            <IcPlus />
+            <span>Add new charity organization</span>
+          </button>
+        </div>
+
+        <div class="mt-12">
           <p class="text-center mb-5">
             By clicking Sign Up, you are indicating that you have read and acknowledge the Terms and
             Conditions of the event
@@ -85,12 +103,18 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
+import IcPlus from '@/assets/svg/plus.svg?inline'
 
 export default {
   name: 'CompetitionJoinPage',
 
   auth: false,
+
+  components: {
+    IcPlus,
+  },
 
   async fetch() {
     try {
@@ -110,29 +134,46 @@ export default {
         website: '',
         city: '',
         state: '',
-        weeks: [
-          { charity: '', website: '', dish: '' },
-          { charity: '', website: '', dish: '' },
-          { charity: '', website: '', dish: '' },
-          { charity: '', website: '', dish: '' },
-          { charity: false, website: false, dish: '' },
-        ],
+        motivation: '',
+        rounds_info: [{ charity: '', charity_website: '' }],
       },
     }
   },
 
+  created() {
+    const isLoggedIn = this.$store.state.auth.loggedIn
+    const isTalent = this.$store.state.auth.user && this.$store.state.auth.user.has_confirmed_talent
+    if (!isLoggedIn || !isTalent) {
+      this.$router.replace({ name: 'events-id', params: this.$route.params })
+    }
+  },
+
+  computed: {
+    ...mapState({
+      user: state => state.auth.user,
+    }),
+  },
+
   methods: {
-    touchDishOfWeek(v, index) {
-      const isLastIndex = this.form.weeks.length - 1 === parseInt(index)
-      if (isLastIndex) {
-        v.charity.$touch
-        v.website.$touch
-        v.dish.$touch
-      }
-    },
+    // touchDishOfWeek(v, index) {
+    //   const isLastIndex = this.form.rounds_info.length - 1 === parseInt(index)
+    //   if (isLastIndex) {
+    //     v.charity.$touch
+    //     v.website.$touch
+    //     v.dish.$touch
+    //   }
+    // },
 
     async join() {
       try {
+        const alreadyRegistered = this.competition.talent.find(
+          t => t.talent.id === this.user.talent_id
+        )
+        if (alreadyRegistered) {
+          // TODO: Show error message
+          return this.$router.replace({ name: 'events-id', params: this.$route.params })
+        }
+
         const { success } = await this.$api.competitions.talentSignUp(
           this.competition.id,
           this.form
@@ -142,8 +183,12 @@ export default {
           this.$route.push({ name: 'events-id', params: { id: this.competition.id } })
         }
       } catch (e) {
-        console.error(e)
+        console.log(e)
       }
+    },
+
+    addNewCharity() {
+      this.form.rounds_info.push({ charity: '', charity_website: '' })
     },
   },
 
@@ -153,11 +198,11 @@ export default {
         name: { required },
         city: { required },
         state: { required },
-        weeks: {
+        motivation: { required },
+        rounds_info: {
           $each: {
             charity: { required },
-            website: { required },
-            dish: { required },
+            charity_website: { required },
           },
         },
       },

@@ -76,9 +76,8 @@ export default {
     try {
       const { data } = await this.$api.competitions.get(this.$route.params.id)
       this.competition = data
-      console.log('competition', data)
     } catch (error) {
-      console.error("Couldn't fetch the event")
+      this.$router.replace({ name: 'events' })
     }
   },
 
