@@ -36,13 +36,13 @@
         </div>
       </section>
     </div>
-    <div class="container mx-auto text-center mt-20 text-avenue-white-light">
+    <div class="container mx-auto text-center mt-40 text-avenue-white-light">
       <h2 class="text-3xl">Rules and conditions</h2>
       <p class="mt-3 text-lg font-bold">
         Before you sign up to an event we encourage you to read the rules and conditions for events
       </p>
     </div>
-    <section class="mx-8 mt-12">
+    <section class="mx-auto mt-12 container">
       <div>
         <h3 class="text-xl mb-3">Entering Requirements</h3>
         <p class="text-base">
@@ -66,7 +66,7 @@
             Learn more about the rules...
           </button>
         </p>
-        <div id="rules" :style="{ display: showRules ? 'block' : 'none' }">
+        <div v-show="showRules">
           <p class="text-base mb-2">
             Each event consists of a five weeks competition where you will try to earn the biggest
             amount of points you can. These points will be earned with tips from the users, as in
@@ -165,7 +165,7 @@
         </button>
       </div>
     </section>
-    <div class="container mx-auto text-center mt-20 text-avenue-white-light">
+    <div class="container mx-auto text-center mt-40 text-avenue-white-light">
       <h2 class="text-3xl">What are you waiting for?</h2>
       <p class="mt-3 text-lg font-bold">
         Join an event now!
