@@ -3,7 +3,7 @@
     <p class="text-3xl font-bold">Haven't your heard?</p>
     <p class="mt-8 text-lg font-bold">The Avenue hosts cooking competitions now!</p>
     <p class="my-5 text-lg px-6">
-      Help charity organizations, engage your audience and win the price!
+      <slot />
     </p>
     <IcDish />
 
@@ -21,7 +21,7 @@
 import IcDish from '@/assets/svg/dish.svg?inline'
 
 export default {
-  name: 'CompetitionModalAnnouncement',
+  name: 'CompetitionModalAnnouncemnt',
   components: { IcDish },
 }
 </script>
