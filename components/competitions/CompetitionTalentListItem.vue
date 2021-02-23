@@ -19,8 +19,8 @@
           />
           <span>{{ talent.name }}</span>
         </div>
-        <span>Restaurant name with link</span>
-        <span>City and State</span>
+        <a :href="talent.website" target="_blank">{{ talent.bussiness_name }}</a>
+        <span>{{ talent.city }}, {{ talent.state }}</span>
       </div>
 
       <div class="mt-10">
