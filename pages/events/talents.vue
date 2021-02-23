@@ -194,7 +194,7 @@ import IcPodium from '@/assets/svg/podium.svg?inline'
 import IcDish from '@/assets/svg/dish.svg?inline'
 import IcLoveHand from '@/assets/svg/love_hand.svg?inline'
 import IcCake from '@/assets/svg/cake.svg?inline'
-import IcStars from '@/assets/svg/Stars.svg?inline'
+import IcStars from '@/assets/svg/stars.svg?inline'
 
 export default {
   name: 'EventsTalentPage',
