@@ -51,8 +51,15 @@
 
       <div class="mt-10 text-center">
         <p>
-          Charities this performer is contributing to: Charity 1, charity 2, charity 3, charity 4
-          with their links
+          Charities this performer is contributing to:
+          <a
+            v-for="charity in talent.rounds.charity"
+            :key="charity.charity_website"
+            :href="charity.charity_website"
+            target="_blank"
+          >
+            {{ charity }}
+          </a>
         </p>
       </div>
 
