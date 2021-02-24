@@ -14,7 +14,6 @@ export default $axios => ({
   },
 
   talentSignUp(id, payload) {
-    // TODO: Change to talents
-    return $axios.$post(`${resource}/${id}/talent`, payload)
+    return $axios.$post(`${resource}/${id}/talents`, payload)
   },
 })

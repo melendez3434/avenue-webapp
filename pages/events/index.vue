@@ -12,27 +12,27 @@
         Five weeks competitions featuring The Avenue’s top talent
       </h6>
     </div>
-    <section class="grid grid-cols-3 gap-6 mx-8 my-16">
+    <section class="container mx-auto my-16 grid grid-cols-3 gap-6">
       <div class="flex flex-col items-center">
         <IcPodium class="h-40" />
-        <p class="text-center mt-2">
+        <p class="text-center mt-2 leading-8">
           Get to know the chefs in a pre-tournament where you’ll get 200 points to spend on them.
-          These points will be added to the final score
+          These points will be added to the final score.
         </p>
       </div>
       <div class="flex flex-col items-center">
         <IcLoveHand class="h-40" />
-        <p class="text-center mt-2">
+        <p class="text-center mt-2 leading-8">
           Contribute to charity with your tips every Monday. All the tips from that day’s
-          performances will go to a charity of the performer’s choice
+          performances will go to a charity of the performer’s choice.
         </p>
       </div>
       <div class="flex flex-col items-center">
         <IcStars class="h-40" />
-        <p class="text-center mt-2">
+        <p class="text-center mt-2 leading-8">
           Tip their performances and help them be among the first four of each week to meet their
           competitors in a face-off on Saturdays, where they’ll cook their dish of the week. 1$ = 1
-          point
+          point.
         </p>
       </div>
     </section>

@@ -15,11 +15,8 @@
       <!-- <div v-for="artist in talent"></div> -->
     </section>
 
-    <section class="container mx-auto mt-16">
-      <p>This event starts on {{ dateFrom }} and ends on {{ dateTo }}</p>
-      <p class="mt-3">
-        Help your favorite performers win by tipping their performances. 1$ = 1 point
-      </p>
+    <section class="container text-center mx-auto mt-16 text-xs">
+      <p>From {{ dateFrom }} to {{ dateTo }}</p>
     </section>
 
     <section class="container mx-auto mt-12">
@@ -76,9 +73,8 @@ export default {
     try {
       const { data } = await this.$api.competitions.get(this.$route.params.id)
       this.competition = data
-      console.log('competition', data)
     } catch (error) {
-      console.error("Couldn't fetch the event")
+      this.$router.replace({ name: 'events' })
     }
   },
 
