@@ -12,15 +12,11 @@
     <div class="px-12 pb-12">
       <div class="w-full flex items-center justify-between">
         <div class="flex space-x-3 items-center">
-          <img
-            :src="talent.talent.photo"
-            :alt="`${talent.name} photo`"
-            class="w-10 h-10 rounded-full"
-          />
-          <span>{{ talent.name }}</span>
+          <img :src="talent.talent.photo" :alt="`${talent.name}`" class="w-10 h-10 rounded-full" />
+          <span class="font-bold">{{ talent.name }}</span>
         </div>
         <a :href="talent.website" target="_blank">{{ talent.bussiness_name }}</a>
-        <span>{{ talent.city }}, {{ talent.state }}</span>
+        <span class="font-bold">{{ talent.city }}, {{ talent.state }}</span>
       </div>
 
       <div class="mt-10">
@@ -28,37 +24,26 @@
         <div class="mt-5 grid grid-cols-4 gap-5">
           <div class="text-center">
             <EventThumbnail width="w-full" height="h-32" />
-            <span class="block mt-3">Performance Name</span>
-          </div>
-          <div class="text-center">
-            <EventThumbnail width="w-full" height="h-32" />
-            <span class="block mt-3">Performance Name</span>
-          </div>
-          <div class="text-center">
-            <EventThumbnail width="w-full" height="h-32" />
-            <span class="block mt-3">Performance Name</span>
-          </div>
-          <div class="text-center">
-            <EventThumbnail width="w-full" height="h-32" />
-            <span class="block mt-3">Performance Name</span>
-          </div>
-          <div class="text-center">
-            <EventThumbnail width="w-full" height="h-32" />
-            <span class="block mt-3">Performance Name</span>
+            <span class="block mt-3 font-bold text-xs">Performance Name</span>
           </div>
         </div>
       </div>
 
       <div class="mt-10 text-center">
-        <p>
+        <p class="font-bold">
+          Prizes:
+          <span class="font-normal" />
+        </p>
+        <p class="font-bold">
           Charities this performer is contributing to:
           <a
             v-for="charity in talent.rounds.charity"
             :key="charity.charity_website"
             :href="charity.charity_website"
             target="_blank"
+            class="font-normal"
           >
-            {{ charity }}
+            {{ charity.charity }}
           </a>
         </p>
       </div>

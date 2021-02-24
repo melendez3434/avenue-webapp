@@ -140,18 +140,18 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState({
+      user: state => state.auth.user,
+    }),
+  },
+
   created() {
     const isLoggedIn = this.$store.state.auth.loggedIn
     const isTalent = this.$store.state.auth.user && this.$store.state.auth.user.has_confirmed_talent
     if (!isLoggedIn || !isTalent) {
       this.$router.replace({ name: 'events-id', params: this.$route.params })
     }
-  },
-
-  computed: {
-    ...mapState({
-      user: state => state.auth.user,
-    }),
   },
 
   methods: {
