@@ -14,7 +14,8 @@
 import IcDish from '@/assets/svg/dish.svg?inline'
 
 export default {
-  name: 'CompetitionModalAnnouncemnt',
+  name: 'CompetitionModalAnnouncement',
+
   components: {
     IcDish,
   },
