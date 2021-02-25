@@ -91,7 +91,6 @@ export default {
 
   data() {
     return {
-      modalCounter: 0,
       maxModalShow: 4,
     }
   },
@@ -124,16 +123,20 @@ export default {
     if (localStorage.modalCounter) {
       this.modalCounter = localStorage.modalCounter
     } else {
-      localStorage.modalCounter = this.modalCounter
+      localStorage.modalCounter = 1
     }
 
-    if (this.$auth.loggedIn && this.$auth.user.talent_id && this.modalCounter < this.maxModalShow) {
+    if (
+      this.$auth.loggedIn &&
+      this.$auth.user.talent_id &&
+      localStorage.modalCounter < this.maxModalShow
+    ) {
       this.$modal.show('talent-event-modal')
-      this.modalCounter++
+      localStorage.modalCounter++
     } else {
-      if (this.modalCounter < this.maxModalShow) {
+      if (localStorage.modalCounter < this.maxModalShow) {
         this.$modal.show('user-event-modal')
-        this.modalCounter++
+        localStorage.modalCounter++
       }
     }
   },
