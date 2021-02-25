@@ -3,7 +3,7 @@
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
     <section class="max-w-lg w-full mx-auto text-center mt-10">
-      <h1 class="text-4xl">Welcome to the competition!</h1>
+      <h1 class="text-3xl">Welcome to the competition!</h1>
       <h2 class="mt-3 text-lg">Signup to {{ competition.name }}</h2>
     </section>
 
@@ -11,12 +11,12 @@
       <form class="mt-3 px-6 pb-10 pt-5" @submit.prevent="join">
         <R64Input
           v-model="form.name"
-          label="Artist or Group Name"
+          label="Your Name"
           :v="$v.form.name"
           error-message="Artist or group name is required"
         />
         <div class="mt-7">
-          <p class="font-bold text-sm">Do you work at a restaurant or cater?</p>
+          <p class="font-bold">Do you work at a restaurant or cater?</p>
         </div>
         <div class="mt-5">
           <R64Input v-model="form.business_name" label="Restaurant or cater name" />
@@ -50,8 +50,8 @@
           />
         </div>
 
-        <p class="mt-12 text-sm font-bold">
-          Charity organizations you want to collaborate with
+        <p class="mt-12 font-bold">
+          Charity organizations you want to collaborate with:
         </p>
 
         <div class="mt-5">
@@ -90,7 +90,7 @@
         </div>
 
         <div class="mt-12">
-          <p class="text-center mb-5">
+          <p class="text-center text-xs mb-5">
             By clicking Sign Up, you are indicating that you have read and acknowledge the Terms and
             Conditions of the event
           </p>

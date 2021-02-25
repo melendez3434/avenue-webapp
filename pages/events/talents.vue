@@ -173,7 +173,21 @@
     </div>
 
     <div class="container mx-auto mt-10">
-      <section v-if="competitions.length" class="grid grid-cols-3 gap-6">
+      <section v-if="competitions.length" class="flex flex-wrap justify-center gap-6">
+        <CompetitionListItem
+          v-for="competition in competitions"
+          :key="competition.id"
+          :competition="competition"
+          class="border border-theavenue-yellow-neon px-10 py-5 rounded-lg"
+          is-talent
+        />
+        <CompetitionListItem
+          v-for="competition in competitions"
+          :key="competition.id"
+          :competition="competition"
+          class="border border-theavenue-yellow-neon px-10 py-5 rounded-lg"
+          is-talent
+        />
         <CompetitionListItem
           v-for="competition in competitions"
           :key="competition.id"

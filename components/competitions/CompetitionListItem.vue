@@ -1,5 +1,5 @@
 <template>
-  <div class="border border-theavenue-yellow-neon px-10 py-8 rounded-lg text-center w-2/6">
+  <div class="border border-theavenue-yellow-neon px-10 py-8 rounded-lg text-center event-width">
     <p class="text-3xl text-avenue-white-light font-library uppercase">
       {{ competition.name }}
     </p>
@@ -19,7 +19,11 @@
       >
         {{ buttonText }}
       </nuxt-link>
-      <button v-else @click="$modal.show('join-event-modal')">
+      <button
+        v-else
+        class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+        @click="$modal.show('join-event-modal')"
+      >
         {{ buttonText }}
       </button>
     </div>
@@ -78,3 +82,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.event-width {
+  width: calc(33.3% - 1.5rem);
+}
+</style>
