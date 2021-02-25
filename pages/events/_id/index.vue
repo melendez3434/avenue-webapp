@@ -45,11 +45,8 @@
       </div>
     </section>
     <section class="container mx-auto mt-12">
-      <nuxt-link
-        class="font-bold text-lg"
-        :to="{ name: 'events-id-requirements', params: { id: competition.id } }"
-      >
-        Want to join the competition? Click here to see the conditions
+      <nuxt-link class="font-bold text-lg" :to="{ name: 'events-talents' }">
+        Want to join the competition? Click here to learn more
       </nuxt-link>
     </section>
   </div>

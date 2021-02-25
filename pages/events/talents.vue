@@ -81,7 +81,7 @@
             The Avenue. A good way to get your following to activate their cards for voting is to do
             several charitable performances that will encourage them to sign up and do good at the
             same time. You can choose up to four charities. For every charity organization you add
-            starting from the second onez, you get 50 points for the final FACE-OFF.
+            starting from the second one, you get 50 points for the final FACE-OFF.
           </p>
           <p class="text-base mb-2">
             Before competing, the performer must list the focus dish that will be streamed for each
@@ -173,7 +173,7 @@
     </div>
 
     <div class="container mx-auto mt-10">
-      <section v-if="competitions.length" class="grid grid-cols-3 gap-6">
+      <section v-if="competitions.length" class="flex flex-wrap justify-center gap-6">
         <CompetitionListItem
           v-for="competition in competitions"
           :key="competition.id"
