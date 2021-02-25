@@ -108,7 +108,7 @@ import { required } from 'vuelidate/lib/validators'
 import IcPlus from '@/assets/svg/plus.svg?inline'
 
 export default {
-  name: 'CompetitionJoinPage',
+  name: 'JoinEventModal',
 
   auth: false,
 
