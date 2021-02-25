@@ -1,14 +1,15 @@
 <template>
-  <div class="border border-theavenue-yellow-neon px-10 py-8 rounded-lg text-center">
+  <div class="border border-theavenue-yellow-neon px-10 py-8 rounded-lg text-center w-2/6">
     <p class="text-3xl text-avenue-white-light font-library uppercase">
       {{ competition.name }}
     </p>
     <div class="w-full flex items-center justify-center my-4">
       <!-- TODO: change for the competition's icon -->
       <IcBread />
+      <!-- <img :src="competition.icon" alt="competition icon" /> -->
     </div>
-    <p class="text-avenue-white text-sm mt-5">{{ competition.description }}</p>
-    <p class="text-avenue-grey mt-5">From {{ dateFrom }} to {{ dateTo }}</p>
+    <p class="text-avenue-white mt-5">{{ competition.description }}</p>
+    <p class="text-avenue-grey mt-5 text-xs">From {{ dateFrom }} to {{ dateTo }}</p>
     <p class="mt-5 font-bold">{{ caption }}</p>
     <div class="mt-5 w-full flex items-center justify-center">
       <nuxt-link
