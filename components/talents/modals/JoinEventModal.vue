@@ -44,7 +44,7 @@
         <div class="mt-5">
           <R64Textarea
             v-model="form.motivation"
-            label="Tell your viewers what motivates your to win"
+            label="Tell your viewers what motivates you to win"
             :v="$v.form.motivation"
             error-message="Motivation text is required"
           />

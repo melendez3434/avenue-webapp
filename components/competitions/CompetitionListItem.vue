@@ -4,6 +4,7 @@
       {{ competition.name }}
     </p>
     <div class="w-full flex items-center justify-center my-4">
+      <!-- TODO: change for the competition's icon -->
       <IcBread />
     </div>
     <p class="text-avenue-white text-sm mt-5">{{ competition.description }}</p>
@@ -11,11 +12,15 @@
     <p class="mt-5 font-bold">{{ caption }}</p>
     <div class="mt-5 w-full flex items-center justify-center">
       <nuxt-link
-        :to="buttonLink"
+        v-if="!isTalent"
+        :to="{ name: 'events-id', params: { id: competition.id } }"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
       >
         {{ buttonText }}
       </nuxt-link>
+      <button v-else @click="$modal.show('join-event-modal')">
+        {{ buttonText }}
+      </button>
     </div>
   </div>
 </template>
@@ -44,13 +49,6 @@ export default {
   computed: {
     caption() {
       return this.isTalent ? 'Join today!' : 'Who will win this competition? It’s on you'
-    },
-
-    buttonLink() {
-      const params = { id: this.competition.id }
-      return this.isTalent
-        ? { name: 'events-id-requirements', params }
-        : { name: 'events-id', params }
     },
 
     buttonText() {

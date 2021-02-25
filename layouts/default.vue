@@ -50,6 +50,16 @@
     >
       <StreamingDonateModal :event="streamingDonate.event" :jar="streamingDonate.jar" />
     </modal>
+
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="join-event-modal"
+      scrollable
+      height="auto"
+    >
+      <JoinEventModal />
+    </modal>
   </div>
 </template>
 
