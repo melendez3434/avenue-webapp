@@ -89,6 +89,13 @@ export default {
     }
   },
 
+  data() {
+    return {
+      modalCounter: 0,
+      maxModalShow: 4,
+    }
+  },
+
   watch: {
     async '$route.query.category'(category) {
       const { data: events, meta } = await this.$api.events.list({ page: 0, category })
@@ -113,10 +120,21 @@ export default {
         event.is_live = true
         this.handleSocketEvent(event, 'updated')
       })
-    if (this.$auth.loggedIn && this.$auth.user.talent_id) {
-      this.$modal.show('talent-event-modal')
+
+    if (localStorage.modalCounter) {
+      this.modalCounter = localStorage.modalCounter
     } else {
-      this.$modal.show('user-event-modal')
+      localStorage.modalCounter = this.modalCounter
+    }
+
+    if (this.$auth.loggedIn && this.$auth.user.talent_id && this.modalCounter < this.maxModalShow) {
+      this.$modal.show('talent-event-modal')
+      this.modalCounter++
+    } else {
+      if (this.modalCounter < this.maxModalShow) {
+        this.$modal.show('user-event-modal')
+        this.modalCounter++
+      }
     }
   },
 
