@@ -95,6 +95,16 @@ export default {
     }
   },
 
+  computed: {
+    isSuitableTalent() {
+      return (
+        this.$auth.loggedIn &&
+        this.$auth.user.talent_id &&
+        localStorage.modalCounter < this.maxModalShow
+      )
+    },
+  },
+
   watch: {
     async '$route.query.category'(category) {
       const { data: events, meta } = await this.$api.events.list({ page: 0, category })
@@ -126,11 +136,7 @@ export default {
       localStorage.modalCounter = 1
     }
 
-    if (
-      this.$auth.loggedIn &&
-      this.$auth.user.talent_id &&
-      localStorage.modalCounter < this.maxModalShow
-    ) {
+    if (this.isSuitableTalent) {
       this.$modal.show('talent-event-modal')
       localStorage.modalCounter++
     } else {
