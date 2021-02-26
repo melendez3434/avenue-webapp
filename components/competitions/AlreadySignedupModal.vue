@@ -1,6 +1,11 @@
 <template>
   <div class="px-8 py-8 bg-avenue-blue-light text-center flex flex-col items-center">
-    <IcClose class="cursor-pointer absolute top-4 right-4" @click="close" />
+    <IcClose
+      class="cursor-pointer absolute top-4 right-4"
+      aria-role="button"
+      aria-label="close"
+      @click="close"
+    />
     <div>
       <h3 class="font-bold mb-6 text-2xl">Ups! There is an error</h3>
       <p class="font-bold">It seems that you had already enrolled in this event</p>
