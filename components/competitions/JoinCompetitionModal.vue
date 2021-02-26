@@ -116,18 +116,15 @@ export default {
     IcPlus,
   },
 
-  async fetch() {
-    try {
-      const { data } = await this.$api.competitions.get(this.$route.params.id)
-      this.competition = data
-    } catch (error) {
-      console.error("Couldn't fetch the event")
-    }
+  props: {
+    competition: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 
   data() {
     return {
-      competition: {},
       form: {
         name: '',
         business_name: '',
@@ -150,7 +147,7 @@ export default {
     const isLoggedIn = this.$store.state.auth.loggedIn
     const isTalent = this.$store.state.auth.user && this.$store.state.auth.user.has_confirmed_talent
     if (!isLoggedIn || !isTalent) {
-      this.$router.replace({ name: 'events-id', params: this.$route.params })
+      this.$router.replace({ name: 'events-id', params: { id: this.competition.id } })
     }
   },
 
@@ -162,7 +159,7 @@ export default {
         )
         if (alreadyRegistered) {
           // TODO: Show error message
-          this.$router.replace({ name: 'events-id', params: this.$route.params })
+          this.$router.replace({ name: 'events-id', params: { id: this.competition.id } })
           return this.$modal.show('already-signedup-modal')
         }
 

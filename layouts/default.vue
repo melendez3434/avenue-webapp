@@ -57,8 +57,9 @@
       name="join-event-modal"
       scrollable
       height="auto"
+      @before-open="beforeOpenJoinEventModal"
     >
-      <JoinCompetitionModal />
+      <JoinCompetitionModal :competition="activeCompetition" />
     </modal>
 
     <modal
@@ -106,7 +107,7 @@ export default {
         event: null,
         jar: null,
       },
-
+      activeCompetition: {},
       warningText: '',
     }
   },
@@ -153,6 +154,10 @@ export default {
     beforeOpenStreamingDonate({ params }) {
       this.streamingDonate.event = params.event
       this.streamingDonate.jar = params.jar
+    },
+
+    beforeOpenJoinEventModal(data) {
+      this.activeCompetition = data.params.competition
     },
   },
 }

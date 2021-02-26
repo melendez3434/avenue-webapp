@@ -181,6 +181,20 @@
           class="border border-theavenue-yellow-neon px-10 py-5 rounded-lg"
           is-talent
         />
+        <CompetitionListItem
+          v-for="competition in competitions"
+          :key="competition.id"
+          :competition="competition"
+          class="border border-theavenue-yellow-neon px-10 py-5 rounded-lg"
+          is-talent
+        />
+        <CompetitionListItem
+          v-for="competition in competitions"
+          :key="competition.id"
+          :competition="competition"
+          class="border border-theavenue-yellow-neon px-10 py-5 rounded-lg"
+          is-talent
+        />
       </section>
       <section v-else class="text-center">
         <p class="text-lg">There are no active events at the moment</p>
