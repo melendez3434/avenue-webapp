@@ -3,7 +3,7 @@
     <div class="px-6 pb-5 pt-10 bg-theavenue-background flex items-center justify-between">
       <p class="leading-5 text-xl font-bold">Support {{ event }}</p>
       <button type="button" @click="$modal.hide('streaming-donate-modal')">
-        <IcClose />
+        <IcClose aria-role="button" aria-label="close" />
       </button>
     </div>
     <div class="flex flex-col p-4 space-y-4">

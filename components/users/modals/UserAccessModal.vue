@@ -1,7 +1,12 @@
 <template>
   <div class="relative">
     <div class="absolute text-theavenue-white top-0 right-0 mt-4 mr-6">
-      <IcClose class="cursor-pointer" @click="$modal.hide('user-access-modal')" />
+      <IcClose
+        class="cursor-pointer"
+        aria-role="button"
+        aria-label="close"
+        @click="$modal.hide('user-access-modal')"
+      />
     </div>
     <div class="px-6 py-10 bg-theavenue-background">
       <p v-if="heading.subtitle" class="text-sm leading-5">{{ heading.subtitle }}</p>

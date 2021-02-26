@@ -10,7 +10,7 @@
         >
           The avenue
         </nuxt-link>
-        <IcClose />
+        <IcClose aria-role="button" aria-label="close" />
       </div>
       <div class="flex flex-col items-center space-y-5 mt-5">
         <nuxt-link

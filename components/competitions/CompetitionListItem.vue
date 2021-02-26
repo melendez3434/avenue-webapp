@@ -22,7 +22,7 @@
       <button
         v-else
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-        @click="$modal.show('join-event-modal')"
+        @click="$modal.show('join-event-modal', { competition })"
       >
         {{ buttonText }}
       </button>
@@ -86,5 +86,17 @@ export default {
 <style scoped>
 .event-width {
   width: calc(33.3% - 1.5rem);
+}
+
+@media screen and (max-width: 800px) {
+  .event-width {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .event-width {
+    width: calc(50% - 0.75rem);
+  }
 }
 </style>

@@ -57,8 +57,19 @@
       name="join-event-modal"
       scrollable
       height="auto"
+      @before-open="beforeOpenJoinEventModal"
     >
-      <JoinEventModal />
+      <JoinCompetitionModal :competition="activeCompetition" />
+    </modal>
+
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="already-signedup-modal"
+      scrollable
+      height="auto"
+    >
+      <AlreadySignedupModal @close="closeModal('already-signedup-modal')" />
     </modal>
   </div>
 </template>
@@ -96,7 +107,7 @@ export default {
         event: null,
         jar: null,
       },
-
+      activeCompetition: {},
       warningText: '',
     }
   },
@@ -143,6 +154,14 @@ export default {
     beforeOpenStreamingDonate({ params }) {
       this.streamingDonate.event = params.event
       this.streamingDonate.jar = params.jar
+    },
+
+    beforeOpenJoinEventModal(data) {
+      this.activeCompetition = data.params.competition
+    },
+
+    closeModal(modal) {
+      return this.$modal.hide(modal)
     },
   },
 }

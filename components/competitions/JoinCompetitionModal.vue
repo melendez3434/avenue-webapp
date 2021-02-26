@@ -91,7 +91,7 @@
 
         <div class="mt-12">
           <p class="text-center text-xs mb-5">
-            By clicking Sign Up, you are indicating that you have read and acknowledge the Terms and
+            By clicking Confirm, you are indicating that you have read and acknowledge the Rules and
             Conditions of the event
           </p>
           <R64Button type="submit" full :disabled="$v.form.$invalid">
@@ -116,18 +116,15 @@ export default {
     IcPlus,
   },
 
-  async fetch() {
-    try {
-      const { data } = await this.$api.competitions.get(this.$route.params.id)
-      this.competition = data
-    } catch (error) {
-      console.error("Couldn't fetch the event")
-    }
+  props: {
+    competition: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 
   data() {
     return {
-      competition: {},
       form: {
         name: '',
         business_name: '',
@@ -150,20 +147,11 @@ export default {
     const isLoggedIn = this.$store.state.auth.loggedIn
     const isTalent = this.$store.state.auth.user && this.$store.state.auth.user.has_confirmed_talent
     if (!isLoggedIn || !isTalent) {
-      this.$router.replace({ name: 'events-id', params: this.$route.params })
+      this.$router.replace({ name: 'events-id', params: { id: this.competition.id } })
     }
   },
 
   methods: {
-    // touchDishOfWeek(v, index) {
-    //   const isLastIndex = this.form.rounds_info.length - 1 === parseInt(index)
-    //   if (isLastIndex) {
-    //     v.charity.$touch
-    //     v.website.$touch
-    //     v.dish.$touch
-    //   }
-    // },
-
     async join() {
       try {
         const alreadyRegistered = this.competition.talent.find(
@@ -171,7 +159,8 @@ export default {
         )
         if (alreadyRegistered) {
           // TODO: Show error message
-          return this.$router.replace({ name: 'events-id', params: this.$route.params })
+          this.$router.replace({ name: 'events-id', params: { id: this.competition.id } })
+          this.$modal.show('already-signedup-modal')
         }
 
         const { success } = await this.$api.competitions.talentSignUp(
