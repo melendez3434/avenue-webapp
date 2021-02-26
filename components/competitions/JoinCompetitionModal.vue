@@ -160,7 +160,7 @@ export default {
         if (alreadyRegistered) {
           // TODO: Show error message
           this.$router.replace({ name: 'events-id', params: { id: this.competition.id } })
-          return this.$modal.show('already-signedup-modal')
+          this.$modal.show('already-signedup-modal')
         }
 
         const { success } = await this.$api.competitions.talentSignUp(

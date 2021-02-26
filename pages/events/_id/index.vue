@@ -7,6 +7,7 @@
         <p class="text-3xl font-library text-center text-avenue-white-light text-light-white">
           {{ competition.name }}
         </p>
+        <!-- TODO: change for competition icon -->
         <IcBread />
       </div>
       <p class="max-w-xl mx-auto text-avenue-white text-center mt-5">
@@ -45,7 +46,7 @@
       </div>
     </section>
     <section class="container mx-auto mt-12">
-      <nuxt-link class="font-bold text-lg" :to="{ name: 'events-talents' }">
+      <nuxt-link class="font-bold" :to="{ name: 'events-talents' }">
         Want to join the competition? Click here to learn more
       </nuxt-link>
     </section>

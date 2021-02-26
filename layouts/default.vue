@@ -65,11 +65,11 @@
     <modal
       width="100%"
       classes="max-w-md inset-x-0 m-auto"
-      name="join-event-modal"
+      name="already-signedup-modal"
       scrollable
       height="auto"
     >
-      <AlreadySignedupModal @close="closeModal('join-event-modal')" />
+      <AlreadySignedupModal @close="closeModal('already-signedup-modal')" />
     </modal>
   </div>
 </template>
