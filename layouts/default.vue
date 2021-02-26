@@ -58,7 +58,17 @@
       scrollable
       height="auto"
     >
-      <JoinEventModal />
+      <JoinCompetitionModal />
+    </modal>
+
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="join-event-modal"
+      scrollable
+      height="auto"
+    >
+      <AlreadySignedupModal />
     </modal>
   </div>
 </template>

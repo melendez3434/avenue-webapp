@@ -91,7 +91,7 @@
 
         <div class="mt-12">
           <p class="text-center text-xs mb-5">
-            By clicking Sign Up, you are indicating that you have read and acknowledge the Terms and
+            By clicking Confirm, you are indicating that you have read and acknowledge the Rules and
             Conditions of the event
           </p>
           <R64Button type="submit" full :disabled="$v.form.$invalid">
@@ -155,15 +155,6 @@ export default {
   },
 
   methods: {
-    // touchDishOfWeek(v, index) {
-    //   const isLastIndex = this.form.rounds_info.length - 1 === parseInt(index)
-    //   if (isLastIndex) {
-    //     v.charity.$touch
-    //     v.website.$touch
-    //     v.dish.$touch
-    //   }
-    // },
-
     async join() {
       try {
         const alreadyRegistered = this.competition.talent.find(
@@ -171,7 +162,8 @@ export default {
         )
         if (alreadyRegistered) {
           // TODO: Show error message
-          return this.$router.replace({ name: 'events-id', params: this.$route.params })
+          this.$router.replace({ name: 'events-id', params: this.$route.params })
+          return this.$modal.show('already-signedup-modal')
         }
 
         const { success } = await this.$api.competitions.talentSignUp(

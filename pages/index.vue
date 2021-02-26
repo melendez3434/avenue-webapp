@@ -24,16 +24,8 @@
       height="auto"
     >
       <IcClose class="cursor-pointer absolute top-4 right-4" @click="close" />
-      <CompetitionModalAnnouncement>
+      <CompetitionModalAnnouncement is-talent>
         Help charity organizations, engage your audience and win the price!
-        <template v-slot:link>
-          <nuxt-link
-            :to="{ name: 'events-talents' }"
-            class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-10 focus:outline-none cursor-pointer"
-          >
-            Learn More
-          </nuxt-link>
-        </template>
       </CompetitionModalAnnouncement>
     </modal>
     <modal
@@ -47,14 +39,6 @@
       <CompetitionModalAnnouncement>
         Engage in the competition by helping your favorite chefs win the price while they donate to
         charity organizations
-        <template v-slot:link>
-          <nuxt-link
-            :to="{ name: 'events' }"
-            class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-10 focus:outline-none cursor-pointer"
-          >
-            Learn More
-          </nuxt-link>
-        </template>
       </CompetitionModalAnnouncement>
     </modal>
   </div>

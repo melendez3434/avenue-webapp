@@ -6,8 +6,20 @@
       <slot />
     </p>
     <IcDish />
-
-    <slot name="link" class="mt-10" />
+    <nuxt-link
+      v-if="isTalent"
+      :to="{ name: 'events-talents' }"
+      class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-10 focus:outline-none cursor-pointer"
+    >
+      Learn More
+    </nuxt-link>
+    <nuxt-link
+      v-else
+      :to="{ name: 'events' }"
+      class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-10 focus:outline-none cursor-pointer"
+    >
+      Learn More
+    </nuxt-link>
   </div>
 </template>
 <script>
@@ -15,6 +27,14 @@ import IcDish from '@/assets/svg/dish.svg?inline'
 
 export default {
   name: 'CompetitionModalAnnouncemnt',
+
   components: { IcDish },
+
+  props: {
+    isTalent: {
+      type: Boolean,
+      default: false,
+    },
+  },
 }
 </script>
