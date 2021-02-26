@@ -69,7 +69,7 @@
       scrollable
       height="auto"
     >
-      <AlreadySignedupModal />
+      <AlreadySignedupModal @close="closeModal('join-event-modal')" />
     </modal>
   </div>
 </template>
@@ -158,6 +158,10 @@ export default {
 
     beforeOpenJoinEventModal(data) {
       this.activeCompetition = data.params.competition
+    },
+
+    closeModal(modal) {
+      return this.$modal.hide(modal)
     },
   },
 }
