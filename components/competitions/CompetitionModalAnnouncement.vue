@@ -33,7 +33,7 @@ import IcDish from '@/assets/svg/dish.svg?inline'
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
-  name: 'CompetitionModalAnnouncemnt',
+  name: 'CompetitionModalAnnouncement',
 
   components: {
     IcDish,
