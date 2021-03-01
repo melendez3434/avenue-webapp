@@ -12,8 +12,15 @@
     <div class="px-12 pb-12">
       <div class="w-full flex items-center justify-between">
         <div class="flex space-x-3 items-center">
-          <img :src="talent.talent.photo" :alt="`${talent.name}`" class="w-10 h-10 rounded-full" />
-          <span class="font-bold">{{ talent.name }}</span>
+          <img
+            v-if="talent.talent.photo"
+            :src="talent.talent.photo"
+            :alt="`${talent.name}`"
+            class="w-10 h-10 rounded-full"
+          />
+          <nuxt-link :to="{ name: 'artist-id', params: { id: talent.id } }" class="font-bold">
+            {{ talent.name }}
+          </nuxt-link>
         </div>
         <a :href="talent.website" target="_blank">{{ talent.bussiness_name }}</a>
         <span class="font-bold">{{ talent.city }}, {{ talent.state }}</span>
@@ -29,12 +36,12 @@
         </div>
       </div>
 
-      <div class="mt-10 text-center">
+      <div class="mt-10">
         <p class="font-bold">
           Prizes:
           <span class="font-normal" />
         </p>
-        <p class="font-bold">
+        <p class="font-bold mt-3">
           Charities this performer is contributing to:
           <!-- <a
             TODO: this is wrong
