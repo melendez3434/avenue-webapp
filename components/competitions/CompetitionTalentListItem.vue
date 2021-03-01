@@ -36,7 +36,8 @@
         </p>
         <p class="font-bold">
           Charities this performer is contributing to:
-          <a
+          <!-- <a
+            TODO: this is wrong
             v-for="charity in talent.rounds.charity"
             :key="charity.charity_website"
             :href="charity.charity_website"
@@ -44,7 +45,7 @@
             class="font-normal"
           >
             {{ charity.charity }}
-          </a>
+          </a> -->
         </p>
       </div>
 
