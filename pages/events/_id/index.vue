@@ -21,7 +21,7 @@
       <p>From {{ dateFrom }} to {{ dateTo }}</p>
     </section>
 
-    <section v-if="!eventIsFuture">
+    <section v-if="eventIsFuture">
       <Countdown :competition="competition" />
     </section>
 
