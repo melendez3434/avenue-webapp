@@ -22,7 +22,7 @@
     </section>
 
     <section v-if="eventIsFuture">
-      <Countdown :competition="competition" />
+      <Countdown :start-date="dateFrom" />
     </section>
 
     <section v-else class="container mx-auto mt-12">

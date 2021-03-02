@@ -25,9 +25,9 @@
 <script>
 export default {
   props: {
-    competition: {
-      type: Object,
-      default: () => ({}),
+    startDate: {
+      type: String,
+      default: null,
     },
   },
 
@@ -58,6 +58,8 @@ export default {
   },
 
   methods: {
+    formatNum: num => (num < 10 ? `0${num}` : num),
+
     showRemaining() {
       const timer = setInterval(() => {
         const now = new Date()
@@ -73,10 +75,10 @@ export default {
         const hours = Math.floor((distance % this._days) / this._hours)
         const minutes = Math.floor((distance % this._hours) / this._minutes)
         const seconds = Math.floor((distance % this._minutes) / this._seconds)
-        this.displayDays = days < 10 ? `0${days}` : days
-        this.displayHours = hours < 10 ? `0${hours}` : hours
-        this.displayMinutes = minutes < 10 ? `0${minutes}` : minutes
-        this.displaySeconds = seconds < 10 ? `0${seconds}` : seconds
+        this.displayDays = this.formatNum(days)
+        this.displayHours = this.formatNum(hours)
+        this.displayMinutes = this.formatNum(minutes)
+        this.displaySeconds = this.formatNum(seconds)
       })
     },
   },
