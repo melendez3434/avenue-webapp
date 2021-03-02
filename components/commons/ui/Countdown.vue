@@ -39,19 +39,22 @@ export default {
       displayMinutes: 0,
       displaySeconds: 0,
       loaded: false,
+      timer: null,
     }
   },
 
   computed: {
-    _seconds: () => 1000,
-    _minutes() {
-      return this._seconds * 60
+    seconds() {
+      return 1000
     },
-    _hours() {
-      return this._minutes * 60
+    minutes() {
+      return this.seconds * 60
     },
-    _days() {
-      return this._hours * 24
+    hours() {
+      return this.minutes * 60
+    },
+    days() {
+      return this.hours * 24
     },
   },
 
@@ -59,30 +62,30 @@ export default {
     this.showRemaining()
   },
 
+  beforeDestroy() {
+    clearInterval(this.timer)
+  },
+
   methods: {
-    formatNum: num => (num < 10 ? `0${num}` : num),
+    formatNum(num) {
+      return num < 10 ? `0${num}` : num
+    },
 
     showRemaining() {
-      const timer = setInterval(() => {
+      this.timer = setInterval(() => {
         const now = new Date()
         const end = new Date(this.startDate)
         const distance = end.getTime() - now.getTime()
-
-        if (distance < 0) {
-          clearInterval(timer)
-          return
-        }
-
-        const days = Math.floor(distance / this._days)
-        const hours = Math.floor((distance % this._days) / this._hours)
-        const minutes = Math.floor((distance % this._hours) / this._minutes)
-        const seconds = Math.floor((distance % this._minutes) / this._seconds)
+        const days = Math.floor(distance / this.days)
+        const hours = Math.floor((distance % this.days) / this.hours)
+        const minutes = Math.floor((distance % this.hours) / this.minutes)
+        const seconds = Math.floor((distance % this.minutes) / this.seconds)
         this.displayDays = this.formatNum(days)
         this.displayHours = this.formatNum(hours)
         this.displayMinutes = this.formatNum(minutes)
         this.displaySeconds = this.formatNum(seconds)
         this.loaded = true
-      })
+      }, 1000)
     },
   },
 }

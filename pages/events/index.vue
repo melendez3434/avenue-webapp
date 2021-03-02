@@ -51,7 +51,7 @@
       </section>
     </div>
     <div v-if="$auth.loggedIn && $auth.user.talent_id" class="container">
-      <nuxt-link :to="{ name: 'events-talents' }" class="container font-bold mt-20">
+      <nuxt-link :to="{ name: 'events-talents' }" class="container font-bold text-xs mt-20">
         Want to join the competition? Click here to learn more
       </nuxt-link>
     </div>
