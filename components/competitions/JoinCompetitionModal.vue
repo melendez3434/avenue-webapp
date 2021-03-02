@@ -158,7 +158,6 @@ export default {
           t => t.talent.id === this.user.talent_id
         )
         if (alreadyRegistered) {
-          // TODO: Show error message
           this.$router.replace({ name: 'events-id', params: { id: this.competition.id } })
           this.$modal.show('already-signedup-modal')
         }
@@ -169,6 +168,7 @@ export default {
         )
 
         if (success) {
+          this.$modal.hide('join-event-modal')
           this.$route.push({ name: 'events-id', params: { id: this.competition.id } })
         }
       } catch (e) {

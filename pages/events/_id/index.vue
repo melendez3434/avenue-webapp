@@ -2,6 +2,7 @@
   <div
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
+    <LogoLights class="w-full" />
     <section class="container mx-auto mt-12">
       <div class="flex items-center justify-center w-full space-x-6">
         <p class="text-3xl font-library text-center text-avenue-white-light text-light-white">
@@ -16,11 +17,15 @@
       <!-- <div v-for="artist in talent"></div> -->
     </section>
 
-    <section class="container text-center mx-auto mt-16 text-xs">
+    <section class="container text-center mx-auto mt-10 text-xs">
       <p>From {{ dateFrom }} to {{ dateTo }}</p>
     </section>
 
-    <section class="container mx-auto mt-12">
+    <section v-if="eventIsFuture">
+      <Countdown :start-date="competition.starts_at" />
+    </section>
+
+    <section v-else class="container mx-auto mt-12">
       <!-- TODO: ORDER BY POINTS -->
       <div class="w-full flex pl-16 py-3">
         <div class="flex-1">Artist</div>
@@ -37,7 +42,7 @@
       </div>
     </section>
 
-    <section class="container mx-auto mt-12">
+    <section v-if="competition.sponsors.length" class="container mx-auto mt-12">
       <p class="font-bold text-lg">This event is sponsored by</p>
       <div class="mt-5 px-12 md:px-32 grid grid-cols-3">
         <div class="w-60 h-32 flex items-center justify-center bg-theavenue-gray">Logo</div>
@@ -45,7 +50,7 @@
         <div class="w-60 h-32 flex items-center justify-center bg-theavenue-gray">Logo</div>
       </div>
     </section>
-    <section class="container mx-auto mt-12">
+    <section class="container mx-auto mt-20 text-xs">
       <nuxt-link class="font-bold" :to="{ name: 'events-talents' }">
         Want to join the competition? Click here to learn more
       </nuxt-link>
@@ -101,6 +106,16 @@ export default {
 
     dateTo() {
       return this.endTimeZoneDate.format('{month-short} {date-pad}')
+    },
+
+    today() {
+      let today = new Date()
+      today = spacetime(today, 'UTC').goto(this.userTimezone)
+      return today.format('{month-short} {date-pad}')
+    },
+
+    eventIsFuture() {
+      return this.today < this.dateFrom
     },
   },
 }

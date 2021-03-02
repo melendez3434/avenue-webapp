@@ -88,15 +88,15 @@ export default {
   width: calc(33.3% - 1.5rem);
 }
 
-@media screen and (max-width: 800px) {
-  .event-width {
-    width: 100%;
-  }
-}
-
 @media screen and (max-width: 1200px) {
   .event-width {
     width: calc(50% - 0.75rem);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .event-width {
+    width: 100%;
   }
 }
 </style>
