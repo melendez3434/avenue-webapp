@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="loaded"
     class=" mx-auto w-4/6 lg:w-1/2 mt-20 h-auto text-theavenue-white border p-8 flex justify-around items-center"
     style="box-shadow: 0px 0px 10px #FFFFFF;"
   >
@@ -37,6 +38,7 @@ export default {
       displayHours: 0,
       displayMinutes: 0,
       displaySeconds: 0,
+      loaded: false,
     }
   },
 
@@ -79,6 +81,7 @@ export default {
         this.displayHours = this.formatNum(hours)
         this.displayMinutes = this.formatNum(minutes)
         this.displaySeconds = this.formatNum(seconds)
+        this.loaded = true
       })
     },
   },
