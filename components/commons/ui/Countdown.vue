@@ -1,6 +1,6 @@
 <template>
   <div
-    class=" mx-6 md:mx-auto md:w-1/2 lg:mx-auto mt-20 text-theavenue-white border rounded-lg p-8 flex justify-around items-center"
+    class=" mx-auto w-4/6 lg:w-1/2 mt-20 text-theavenue-white border rounded-lg p-8 flex justify-around items-center"
     style="box-shadow: 0px 0px 10px #FFFFFF;"
   >
     <div class="flex flex-col justify-center items-center w-1/4">
