@@ -2,6 +2,7 @@
   <div
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
+    <LogoLights class="w-full" />
     <section class="container mx-auto mt-12">
       <div class="flex items-center justify-center w-full space-x-6">
         <p class="text-3xl font-library text-center text-avenue-white-light text-light-white">
