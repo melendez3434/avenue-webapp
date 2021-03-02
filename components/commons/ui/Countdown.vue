@@ -65,7 +65,7 @@ export default {
     showRemaining() {
       const timer = setInterval(() => {
         const now = new Date()
-        const end = new Date(this.competition.starts_at)
+        const end = new Date(this.startDate)
         const distance = end.getTime() - now.getTime()
 
         if (distance < 0) {
