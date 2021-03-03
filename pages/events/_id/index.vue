@@ -2,7 +2,6 @@
   <div
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
-    <LogoLights class="w-full" />
     <section class="container mx-auto mt-12">
       <div class="flex items-center justify-center w-full space-x-6">
         <p class="text-3xl font-library text-center text-avenue-white-light text-light-white">
@@ -22,7 +21,10 @@
     </section>
 
     <section v-if="eventIsFuture">
-      <Countdown :start-date="competition.starts_at" />
+      <Countdown :start-date="startTimeZoneDateFormatted" />
+      <div class="container mx-auto flex flex-column justify-center mt-20">
+        <h5>Want to join this competition?</h5>
+      </div>
     </section>
 
     <section v-else class="container mx-auto mt-12">
@@ -42,7 +44,7 @@
       </div>
     </section>
 
-    <section v-if="competition.sponsors.length" class="container mx-auto mt-12">
+    <section v-if="hasSponsors" class="container mx-auto mt-12">
       <p class="font-bold text-lg">This event is sponsored by</p>
       <div class="mt-5 px-12 md:px-32 grid grid-cols-3">
         <div class="w-60 h-32 flex items-center justify-center bg-theavenue-gray">Logo</div>
@@ -50,7 +52,7 @@
         <div class="w-60 h-32 flex items-center justify-center bg-theavenue-gray">Logo</div>
       </div>
     </section>
-    <section class="container mx-auto mt-20 text-xs">
+    <section v-if="!eventIsFuture" class="container mx-auto mt-20 text-xs">
       <nuxt-link class="font-bold" :to="{ name: 'events-talents' }">
         Want to join the competition? Click here to learn more
       </nuxt-link>
@@ -100,6 +102,10 @@ export default {
       return spacetime(this.competition.ends_at, 'UTC').goto(this.userTimezone)
     },
 
+    startTimeZoneDateFormatted() {
+      return this.startTimeZoneDate.format('{year}-{month-pad}-{date-pad}')
+    },
+
     dateFrom() {
       return this.startTimeZoneDate.format('{month-short} {date-pad}')
     },
@@ -116,6 +122,10 @@ export default {
 
     eventIsFuture() {
       return this.today < this.dateFrom
+    },
+
+    hasSponsors() {
+      return this.competition.sponsors && this.competition.sponsors.length
     },
   },
 }

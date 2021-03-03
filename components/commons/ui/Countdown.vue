@@ -68,7 +68,7 @@ export default {
 
   methods: {
     formatNum(num) {
-      return num < 10 ? `0${num}` : num
+      return Number(num) < 10 ? `0${Number(num)}` : Number(num)
     },
 
     showRemaining() {

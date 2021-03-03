@@ -36,7 +36,7 @@
         </div>
       </section>
     </div>
-    <div class="container mx-auto text-center mt-40 text-avenue-white-light">
+    <div class="container mx-auto text-center mt-32 text-avenue-white-light">
       <h2 class="text-3xl">Rules and conditions</h2>
       <p class="mt-3 text-lg font-bold">
         Before you sign up to an event we encourage you to read the rules and conditions for events
@@ -165,7 +165,7 @@
         </button>
       </div>
     </section>
-    <div class="container mx-auto text-center mt-40 text-avenue-white-light">
+    <div class="container mx-auto text-center mt-32 text-avenue-white-light">
       <h2 class="text-3xl">What are you waiting for?</h2>
       <p class="mt-3 text-lg font-bold">
         Join an event now!
@@ -173,21 +173,7 @@
     </div>
 
     <div class="container mx-auto mt-10">
-      <section v-if="competitions.length" class="flex flex-wrap justify-center gap-6">
-        <CompetitionListItem
-          v-for="competition in competitions"
-          :key="competition.id"
-          :competition="competition"
-          class="border border-theavenue-yellow-neon px-10 py-5 rounded-lg"
-          is-talent
-        />
-        <CompetitionListItem
-          v-for="competition in competitions"
-          :key="competition.id"
-          :competition="competition"
-          class="border border-theavenue-yellow-neon px-10 py-5 rounded-lg"
-          is-talent
-        />
+      <section v-if="competitions.length" class="flex flex-wrap justify-between gap-6">
         <CompetitionListItem
           v-for="competition in competitions"
           :key="competition.id"

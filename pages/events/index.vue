@@ -38,7 +38,7 @@
     </section>
 
     <div class="container mx-auto mt-20">
-      <section v-if="competitions.length" class="flex flex-wrap justify-center gap-6">
+      <section v-if="competitions.length" class="flex flex-wrap justify-between gap-6">
         <CompetitionListItem
           v-for="competition in competitions"
           :key="competition.id"
@@ -50,8 +50,8 @@
         <p class="text-lg">There are no active events at the moment</p>
       </section>
     </div>
-    <div v-if="$auth.loggedIn && $auth.user.talent_id" class="container">
-      <nuxt-link :to="{ name: 'events-talents' }" class="container font-bold text-xs mt-20">
+    <div v-if="$auth.loggedIn && $auth.user.talent_id" class="container mx-auto mt-20">
+      <nuxt-link :to="{ name: 'events-talents' }" class="container font-bold text-xs">
         Want to join the competition? Click here to learn more
       </nuxt-link>
     </div>
