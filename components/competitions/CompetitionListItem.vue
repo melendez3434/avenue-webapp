@@ -6,26 +6,24 @@
     <div class="w-full flex items-center justify-center my-4">
       <!-- TODO: change for the competition's icon -->
       <IcBread />
-      <!-- <img :src="competition.icon" alt="competition icon" /> -->
+      <!-- <img :src="competition.icon" alt="" /> -->
     </div>
     <p class="text-avenue-white mt-5">{{ competition.description }}</p>
     <p class="text-avenue-grey mt-5 text-xs">From {{ dateFrom }} to {{ dateTo }}</p>
-    <p class="mt-5 font-bold">{{ caption }}</p>
+    <p class="mt-5 font-bold">Who will win this competition? It’s on&nbsp;you</p>
     <div class="mt-5 w-full flex items-center justify-center">
       <nuxt-link
-        v-if="!isTalent"
         :to="{ name: 'events-id', params: { id: competition.id } }"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
       >
-        {{ buttonText }}
+        See event
       </nuxt-link>
-      <button
-        v-else
+      <nuxt-link
+        :to="{ name: 'events-id-join', params: { id: competition.id } }"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-        @click="$modal.show('join-event-modal', { competition })"
       >
-        {{ buttonText }}
-      </button>
+        Join event
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -45,21 +43,9 @@ export default {
       type: Object,
       required: true,
     },
-    isTalent: {
-      type: Boolean,
-      default: false,
-    },
   },
 
   computed: {
-    caption() {
-      return this.isTalent ? 'Join today!' : 'Who will win this competition? It’s on you'
-    },
-
-    buttonText() {
-      return this.isTalent ? 'Join' : 'See event'
-    },
-
     userTimezone() {
       return Intl.DateTimeFormat().resolvedOptions().timeZone
     },
