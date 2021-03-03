@@ -42,6 +42,7 @@ export default {
     competition: {
       type: Object,
       required: true,
+      default: () => {},
     },
   },
 

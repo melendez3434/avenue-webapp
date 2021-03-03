@@ -22,8 +22,14 @@
 
     <section v-if="eventIsFuture">
       <Countdown :start-date="startTimeZoneDateFormatted" />
-      <div class="container mx-auto flex flex-column justify-center mt-20">
-        <h5>Want to join this competition?</h5>
+      <div class="container mx-auto flex flex-col justify-center items-center mt-20">
+        <h5 class="mb-4">Want to join this competition?</h5>
+        <nuxt-link
+          :to="{ name: 'events-id-join', params: { id: competition.id } }"
+          class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-3xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+        >
+          Join event
+        </nuxt-link>
       </div>
     </section>
 
