@@ -12,7 +12,7 @@
         Five weeks competitions featuring The Avenue’s top talent
       </h6>
     </div>
-    <section class="container grid grid-cols-3 gap-6 mx-auto my-16">
+    <section class="container md:grid grid-cols-3 gap-6 mx-auto my-16">
       <div class="flex flex-col items-center">
         <IcPodium class="h-40" />
         <p class="text-center mt-2 leading-8">
