@@ -1,5 +1,8 @@
 <template>
-  <div class="border border-theavenue-yellow-neon px-10 py-8 rounded-lg text-center event-width">
+  <div
+    class="border border-theavenue-yellow-neon px-10 py-8 rounded-lg text-center event-width"
+    style="box-shadow: 0px 0px 10px rgba(255, 210, 67);"
+  >
     <p class="text-3xl text-avenue-white-light font-library uppercase">
       {{ competition.name }}
     </p>
@@ -8,21 +11,21 @@
       <IcBread />
       <!-- <img :src="competition.icon" alt="" /> -->
     </div>
-    <p class="text-avenue-white mt-5">{{ competition.description }}</p>
+    <p class="text-avenue-white mt-5">{{ croppedDescription }}</p>
     <p class="text-avenue-grey mt-5 text-xs">From {{ dateFrom }} to {{ dateTo }}</p>
     <p class="mt-5 font-bold">Who will win this competition? It’s on&nbsp;you</p>
-    <div class="mt-5 w-full flex items-center justify-center">
+    <div class="mt-5 w-full flex justify-center gap-6">
       <nuxt-link
         :to="{ name: 'events-id', params: { id: competition.id } }"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
       >
-        See event
+        See
       </nuxt-link>
       <nuxt-link
         :to="{ name: 'events-id-join', params: { id: competition.id } }"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
       >
-        Join event
+        Join
       </nuxt-link>
     </div>
   </div>
@@ -65,6 +68,14 @@ export default {
 
     dateTo() {
       return this.endTimeZoneDate.format('{month-short} {date-pad}')
+    },
+
+    croppedDescription() {
+      if (this.competition.description.length > 100) {
+        return `${this.competition.description.slice(0, 100)}...`
+      } else {
+        return this.competition.description
+      }
     },
   },
 }
