@@ -4,8 +4,8 @@
   >
     <LogoLights class="w-full" />
     <div class="container mx-auto text-center mt-20">
-      <h1 class="text-4xl font-bold">Events</h1>
-      <h6 class="mt-5 text-lg font-bold">
+      <h1 class="text-5xl font-bold">Events</h1>
+      <h6 class="mt-5 text-xl font-bold">
         Vote for your favorite performers and show love for their art and the charities they support
       </h6>
       <h6 class="mt-5 text-lg font-bold">
@@ -13,22 +13,22 @@
       </h6>
     </div>
     <section class="container md:grid grid-cols-3 gap-6 mx-auto my-16">
-      <div class="flex flex-col items-center">
-        <IcPodium class="h-40" />
+      <div class="flex flex-col items-center mt-10">
+        <IcPodium class="h-32" />
         <p class="text-center mt-2 leading-8">
           Get to know the chefs in a pre-tournament where you’ll get 200 points to spend on them.
           These points will be added to the final score.
         </p>
       </div>
-      <div class="flex flex-col items-center">
-        <IcLoveHand class="h-40" />
+      <div class="flex flex-col items-center mt-10">
+        <IcLoveHand class="h-32" />
         <p class="text-center mt-2 leading-8">
           Contribute to charity with your tips every Monday. All the tips from that day’s
           performances will go to a charity of the performer’s choice.
         </p>
       </div>
-      <div class="flex flex-col items-center">
-        <IcStars class="h-40" />
+      <div class="flex flex-col items-center mt-10">
+        <IcStars class="h-28 mb-4" />
         <p class="text-center mt-2 leading-8">
           Tip their performances and help them be among the first four of each week to meet their
           competitors in a face-off on Saturdays, where they’ll cook their dish of the week. 1$ = 1
