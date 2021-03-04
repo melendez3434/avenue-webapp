@@ -1,11 +1,11 @@
 <template>
   <div
-    class="border border-theavenue-yellow-neon px-10 py-8 rounded-lg text-center event-width"
+    class="border border-theavenue-yellow-neon p-6 rounded-lg text-center event-width"
     style="box-shadow: 0px 0px 10px rgba(255, 210, 67);"
   >
-    <p class="text-3xl text-avenue-white-light font-library uppercase">
+    <h1 class="text-3xl text-avenue-white-light font-library uppercase">
       {{ competition.name }}
-    </p>
+    </h1>
     <div class="w-full flex items-center justify-center my-4">
       <!-- TODO: change for the competition's icon -->
       <IcBread />

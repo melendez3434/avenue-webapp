@@ -2,17 +2,17 @@
   <div
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
-    <div class="container mx-auto text-center mt-14">
-      <h1 class="text-4xl font-bold font-library">{{ competition.name }}</h1>
-      <p class="mt-3 text-lg font-bold">
-        Join the competition, help charity organizations and win the price!
+    <div class="container mx-auto  text-center flex flex-col justify-center items-center  mt-14">
+      <div class="flex space-x-6 items-center justify-center">
+        <h1 class="text-4xl font-bold font-library">{{ competition.name }}</h1>
+        <IcBread />
+      </div>
+      <p class="mt-5 text-lg font-bold">
+        {{ competition.description }}
       </p>
     </div>
-    <div class="container mx-auto text-center mt-32 text-avenue-white-light">
+    <div class="container mx-auto mt-20 text-avenue-white-light">
       <h2 class="text-3xl">Rules and conditions</h2>
-      <p class="mt-3 text-lg font-bold">
-        Before you sign up to an event we encourage you to read the rules and conditions for events
-      </p>
     </div>
     <section class="mx-auto mt-12 container">
       <div>
@@ -137,11 +137,11 @@
         </button>
       </div>
     </section>
-    <h2 class="container mx-auto text-center mt-32 mb-4 text-avenue-white-light text-xl">
+    <h2 class="container mx-auto text-center mt-20 mb-4 text-avenue-white-light text-xl">
       What are you waiting for?
     </h2>
     <button
-      class="uppercase border text-light-yellow border-theavenue-yellow-neon roundedpx-3 py-0.5 text-theavenue-yellow-neon font-library text-4xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+      class="mx-auto border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
       @click="$modal.show('join-event-modal', { competition })"
     >
       Join {{ competition.name }}
@@ -150,10 +150,14 @@
 </template>
 
 <script>
+import IcBread from '@/assets/svg/bread.svg?inline'
+
 export default {
   name: 'JoinEventPage',
 
   auth: false,
+
+  components: { IcBread },
 
   async fetch() {
     try {
@@ -168,6 +172,7 @@ export default {
   data() {
     return {
       competition: {},
+      showRules: false,
     }
   },
 

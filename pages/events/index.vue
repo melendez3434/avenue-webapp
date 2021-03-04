@@ -43,7 +43,6 @@
           v-for="competition in competitions"
           :key="competition.id"
           :competition="competition"
-          class="border border-theavenue-yellow-neon px-10 py-5 rounded-lg"
         />
       </section>
       <section v-else class="text-center">
