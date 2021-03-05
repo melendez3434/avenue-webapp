@@ -21,15 +21,6 @@
 
     <section v-if="eventIsFuture">
       <Countdown :start-date="competition.starts_at" />
-      <div class="container mx-auto flex flex-col justify-center items-center mt-10 md:mt-20">
-        <h5 class="mb-4">Want to join this competition?</h5>
-        <nuxt-link
-          :to="{ name: 'events-id-join', params: { id: competition.id } }"
-          class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-xl md:text-2xl text-center hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-        >
-          Join {{ competition.name }}
-        </nuxt-link>
-      </div>
     </section>
 
     <div v-else>
@@ -121,6 +112,19 @@
     <section v-if="!eventIsFuture" class="container mx-auto mt-20 text-xs">
       <nuxt-link class="font-bold" :to="{ name: 'events-talents' }">
         Want to join the competition? Click here to learn more
+      </nuxt-link>
+    </section>
+
+    <section
+      v-if="showSignupBtn"
+      class="container mx-auto flex flex-col justify-center items-center mt-10 md:mt-20"
+    >
+      <h5 class="mb-4">Want to join this competition?</h5>
+      <nuxt-link
+        :to="{ name: 'events-id-join', params: { id: competition.id } }"
+        class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-xl md:text-2xl text-center hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+      >
+        Join {{ competition.name }}
       </nuxt-link>
     </section>
   </div>
@@ -221,6 +225,10 @@ export default {
 
     weekPrizeStatus() {
       return Math.floor((this.currentRound.round_points / 100) * this.prizesPercentage) || 0
+    },
+
+    showSignupBtn() {
+      return this.currentRound < 3 || this.eventIsFuture
     },
   },
 }
