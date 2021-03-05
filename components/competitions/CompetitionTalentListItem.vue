@@ -27,11 +27,23 @@
       </div>
 
       <div class="mt-10">
+        <p class="text-xl">Future performances</p>
+        <div class="mt-5 grid grid-cols-4 gap-5">
+          <div class="text-center">
+            <EventThumbnail width="w-full" height="h-32" />
+            <span class="block mt-3 font-bold text-xs">Performance Name</span>
+            <span class="block mt-3 font-bold text-xxs">Performance date</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10">
         <p class="text-xl">Past performances</p>
         <div class="mt-5 grid grid-cols-4 gap-5">
           <div class="text-center">
             <EventThumbnail width="w-full" height="h-32" />
             <span class="block mt-3 font-bold text-xs">Performance Name</span>
+            <span class="block mt-3 font-bold text-xxs">Performance date</span>
           </div>
         </div>
       </div>

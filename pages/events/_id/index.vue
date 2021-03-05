@@ -13,7 +13,6 @@
       <p class="max-w-xl mx-auto text-avenue-white text-center mt-5 text-lg">
         {{ competition.description }}
       </p>
-      <!-- <div v-for="artist in talent"></div> -->
     </section>
 
     <section class="container text-center mx-auto mt-10 text-xs">
@@ -52,7 +51,7 @@
             Grand prize status
           </h4>
           <IcTrophy class="h-20" />
-          <span class="text-4xl lg:text-5xl font-league-gothic">160</span>
+          <span class="text-4xl lg:text-5xl font-league-gothic">{{ grandPrizeStatus }}</span>
         </div>
         <div class="flex flex-col items-center gap-6">
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl self-end">
@@ -161,6 +160,7 @@ export default {
   data() {
     return {
       competition: {},
+      prizesPercentage: 5,
     }
   },
 
@@ -201,6 +201,21 @@ export default {
 
     hasSponsors() {
       return this.competition.sponsors && this.competition.sponsors.length
+    },
+
+    currentRound() {
+      return this.competition.rounds.filter(round => round.current)
+    },
+
+    grandPrizeStatus() {
+      const points = []
+      for (let i = 0; i < this.competition.rounds.length; i++) {
+        points.push(this.competition.rounds[i].round_points)
+      }
+      const totalPoints = points.reduce((accumulator, current) => {
+        return accumulator + current
+      }, 0)
+      return Math.floor((totalPoints / 100) * this.prizesPercentage)
     },
   },
 }
