@@ -68,7 +68,7 @@
         <div class="col-start-2 flex flex-col items-center gap-6 mt-6">
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">Week prize status</h4>
           <IcPodium class="h-20" />
-          <span class="text-4xl lg:text-5xl font-league-gothic">50</span>
+          <span class="text-4xl lg:text-5xl font-league-gothic">{{ weekPrizeStatus }}</span>
         </div>
       </section>
       <section class="container mx-auto mt-20">
@@ -215,7 +215,12 @@ export default {
       const totalPoints = points.reduce((accumulator, current) => {
         return accumulator + current
       }, 0)
-      return Math.floor((totalPoints / 100) * this.prizesPercentage)
+      const grandPrizeStatus = Math.floor((totalPoints / 100) * this.prizesPercentage)
+      return grandPrizeStatus || 0
+    },
+
+    weekPrizeStatus() {
+      return Math.floor((this.currentRound.round_points / 100) * this.prizesPercentage) || 0
     },
   },
 }
