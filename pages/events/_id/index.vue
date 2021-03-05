@@ -29,12 +29,12 @@
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl self-start">
             Last week's winner
           </h4>
-          <!-- <img
-            v-if="lastWeekWinner.photo"
+          <img
+            v-if="lastWeekWinner && lastWeekWinner.photo"
             :src="lastWeekWinner.photo"
             :alt="`${lastWeekWinner.name}`"
             class="rounded-full w-24 h-24"
-          /> -->
+          />
           <!-- <span class="text-xs font-bold">{{ lastWeekWinner.name }}</span> -->
         </div>
         <div class="flex flex-col items-center gap-6">
@@ -229,6 +229,24 @@ export default {
 
     showSignupBtn() {
       return this.currentRound < 3 || this.eventIsFuture
+    },
+
+    lastRound() {
+      let lastRound = null
+      if (this.currentRound.round > 1) {
+        lastRound = this.competition.rounds.filter(
+          round => round.round === this.currentRound.round - 1
+        )
+      }
+      return lastRound
+    },
+
+    lastWeekWinner() {
+      if (this.lastRound) {
+        return this.lastRound.winners[0].competition_talent.talent
+      } else {
+        return this.lastRound
+      }
     },
   },
 }
