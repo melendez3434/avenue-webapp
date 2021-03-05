@@ -3,14 +3,14 @@
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
     <section class="container mx-auto mt-12">
-      <div class="flex items-center justify-center w-full space-x-6">
+      <div class="flex flex-col md:flex-row items-center justify-center w-full md:space-x-6">
         <p class="text-3xl font-library text-center text-avenue-white-light text-light-white">
           {{ competition.name }}
         </p>
         <!-- TODO: change for competition icon -->
         <IcBread />
       </div>
-      <p class="max-w-xl mx-auto text-avenue-white text-center mt-5">
+      <p class="max-w-xl mx-auto text-avenue-white text-center mt-5 text-lg">
         {{ competition.description }}
       </p>
       <!-- <div v-for="artist in talent"></div> -->
@@ -21,14 +21,14 @@
     </section>
 
     <section v-if="eventIsFuture">
-      <Countdown :start-date="startTimeZoneDateFormatted" />
-      <div class="container mx-auto flex flex-col justify-center items-center mt-20">
+      <Countdown :start-date="competition.starts_at" />
+      <div class="container mx-auto flex flex-col justify-center items-center mt-10 md:mt-20">
         <h5 class="mb-4">Want to join this competition?</h5>
         <nuxt-link
           :to="{ name: 'events-id-join', params: { id: competition.id } }"
-          class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-3xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+          class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-xl md:text-2xl text-center hover:text-light-white mt-1 focus:outline-none cursor-pointer"
         >
-          Join event
+          Join {{ competition.name }}
         </nuxt-link>
       </div>
     </section>
