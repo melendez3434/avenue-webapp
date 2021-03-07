@@ -55,16 +55,15 @@
         </p>
         <p class="font-bold mt-3">
           Charities this performer is contributing to:
-          <!-- <a
-            TODO: this is wrong
-            v-for="charity in talent.rounds.charity"
+          <a
+            v-for="charity in talent.rounds"
             :key="charity.charity_website"
             :href="charity.charity_website"
             target="_blank"
             class="font-normal"
           >
-            {{ charity.charity }}
-          </a> -->
+            {{ charity.charity }},
+          </a>
         </p>
       </div>
 

@@ -48,12 +48,12 @@
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl self-end">
             General top scorer
           </h4>
-          <!-- <img
-            v-if="topScorer.photo"
+          <img
+            v-if="topScorer && topScorer.photo"
             :src="topScorer.photo"
             :alt="`${topScorer.name}`"
             class="rounded-full w-24 h-24"
-          /> -->
+          />
           <!-- <span class="text-xs font-bold">{{ topScorer.name }}</span> -->
         </div>
         <div class="col-start-2 flex flex-col items-center gap-6 mt-6">
@@ -71,7 +71,7 @@
           <p>Watch them compite for the week’s prize on next Saturday’s face-off</p>
         </div>
         <div class=" grid grid-flow-cols grid-cols-3 gap-6">
-          <FaceOffScorer v-for="topScorer in topScorers" :key="topScorer.id" :talent="topScorer" />
+          <FaceOffScorer v-for="scorer in topScorers" :key="scorer.id" :talent="topScorer" />
         </div>
       </section>
       <section class="container mx-auto mt-20">
@@ -98,6 +98,19 @@
       </section>
     </div>
 
+    <section
+      v-if="showSignupBtn"
+      class="container mx-auto flex flex-col justify-center items-center mt-10 md:mt-20"
+    >
+      <h5 class="mb-4">Want to join this competition?</h5>
+      <nuxt-link
+        :to="{ name: 'events-id-join', params: { id: competition.id } }"
+        class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-xl md:text-2xl text-center hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+      >
+        Join {{ competition.name }}
+      </nuxt-link>
+    </section>
+
     <section class="container mx-auto mt-20">
       <div class="flex flex-row gap-4 justify-start mb-6">
         <IcSponsor class="h-8" />
@@ -112,19 +125,6 @@
     <section v-if="!eventIsFuture" class="container mx-auto mt-20 text-xs">
       <nuxt-link class="font-bold" :to="{ name: 'events-talents' }">
         Want to join the competition? Click here to learn more
-      </nuxt-link>
-    </section>
-
-    <section
-      v-if="showSignupBtn"
-      class="container mx-auto flex flex-col justify-center items-center mt-10 md:mt-20"
-    >
-      <h5 class="mb-4">Want to join this competition?</h5>
-      <nuxt-link
-        :to="{ name: 'events-id-join', params: { id: competition.id } }"
-        class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-xl md:text-2xl text-center hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-      >
-        Join {{ competition.name }}
       </nuxt-link>
     </section>
   </div>
@@ -247,6 +247,20 @@ export default {
       } else {
         return this.lastRound
       }
+    },
+
+    topScorer() {
+      let topScore = 0
+      let topScorer = null
+      if (this.competition.talent.length) {
+        for (let i = 0; i < this.competition.talent.length; i++) {
+          if (this.competition.talent[i].points && this.competition.talent[i].points > topScore) {
+            topScore = this.competition[i].points
+            topScorer = this.competition.talent.find(talent => talent.points === topScore)
+          }
+        }
+      }
+      return topScorer
     },
   },
 }
