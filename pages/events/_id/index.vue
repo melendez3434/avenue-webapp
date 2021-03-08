@@ -7,8 +7,8 @@
         <p class="text-3xl font-library text-center text-avenue-white-light text-light-white">
           {{ competition.name }}
         </p>
-        <!-- TODO: change for competition icon -->
-        <IcBread />
+        <!-- TODO: This image is not working correctly -->
+        <img v-if="competition.icon" :src="competition.icon" alt="" class="w-8 h-8" />
       </div>
       <p class="max-w-xl mx-auto text-avenue-white text-center mt-5 text-lg">
         {{ competition.description }}
@@ -35,7 +35,7 @@
             :alt="`${lastWeekWinner.name}`"
             class="rounded-full w-24 h-24"
           />
-          <!-- <span class="text-xs font-bold">{{ lastWeekWinner.name }}</span> -->
+          <span class="text-xs font-bold">{{ lastWeekWinner.name }}</span>
         </div>
         <div class="flex flex-col items-center justify-center gap-6 col-end-3 row-end-2">
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
@@ -56,7 +56,7 @@
             :alt="`${topScorer.name}`"
             class="rounded-full w-24 h-24"
           />
-          <!-- <span class="text-xs font-bold">{{ topScorer.name }}</span> -->
+          <span class="text-xs font-bold">{{ topScorer.name }}</span>
         </div>
         <div
           class="col-start-2 flex flex-col items-center justify-center gap-6 mt-6 col-end-3 row-end-3"
@@ -120,10 +120,11 @@
         <IcSponsor class="h-8" />
         <h2 class="text-xl font-bold">Sponsors</h2>
       </div>
-      <div class="mt-5 px-12 md:px-32 grid grid-cols-3">
-        <div class="w-60 h-32 flex items-center justify-center bg-theavenue-gray">Logo</div>
-        <div class="w-60 h-32 flex items-center justify-center bg-theavenue-gray">Logo</div>
-        <div class="w-60 h-32 flex items-center justify-center bg-theavenue-gray">Logo</div>
+      <div v-if="competition.sponsors.length" class="mt-5 px-12 md:px-32 grid grid-cols-3">
+        <div v-for="sponsor in competition.sponsors" :key="sponsor.id">
+          <img v-if="sponsor.logo" :src="sponsor.logo" :alt="`${sponsor.name} logo`" class="w-10" />
+          <span class="text-xs font-bold">{{ sponsor.name }}</span>
+        </div>
       </div>
     </section>
     <section v-if="!eventIsFuture" class="container mx-auto mt-20 text-xs">
@@ -135,7 +136,6 @@
 </template>
 <script>
 import spacetime from 'spacetime'
-import IcBread from '@/assets/svg/bread.svg?inline'
 import CompetitionTalentListItem from '@/components/competitions/CompetitionTalentListItem'
 import IcTrophy from '@/assets/svg/trophy.svg?inline'
 import IcPodium from '@/assets/svg/podium.svg?inline'
@@ -149,7 +149,6 @@ export default {
 
   components: {
     CompetitionTalentListItem,
-    IcBread,
     IcTrophy,
     IcPodium,
     IcSponsor,
@@ -216,13 +215,16 @@ export default {
     },
 
     scores() {
-      let scores = new Set()
+      let scores = []
       for (let i = 0; i < this.competition.talent; i++) {
-        scores.push(this.competition.talent[i].points)
+        if (!scores[this.competition.talent[i].points]) {
+          scores.push(this.competition.talent[i].points)
+        }
       }
-      return scores.sort(function(a, b) {
+      scores.sort(function(a, b) {
         return b - a
       })
+      return scores
     },
 
     grandPrizeStatus() {
@@ -255,7 +257,7 @@ export default {
       if (this.lastRound) {
         return this.lastRound.winners[0].competition_talent.talent
       } else {
-        return this.lastRound
+        return null
       }
     },
 
