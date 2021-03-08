@@ -3,7 +3,7 @@
     <template slot="header">
       <div class="w-full flex">
         <div class="flex-1 text-xxs md:text-xs">{{ talent.name }}</div>
-        <a class="w-48 text-xxs md:text-xs" :href="talent.website" target="_blank">
+        <a class="w-48 text-xxs md:text-xs text-right" :href="talent.website" target="_blank">
           {{ talent.business_name }}
         </a>
 
@@ -25,12 +25,14 @@
           <!-- TODO: Nuxt link not working for some reason -->
           <nuxt-link
             :to="{ name: 'artist-id', params: { id: talent.id } }"
-            class="font-bold text-xxs md:text-xs"
+            class="font-bold text-xs md:text-xs"
           >
             {{ talent.name }}
           </nuxt-link>
         </div>
-        <span class="font-bold">{{ talent.city }}, {{ talent.state }}</span>
+        <span class="font-bold text-xs md:text-xs text-right">
+          {{ talent.city }}, {{ talent.state }}
+        </span>
       </div>
 
       <div class="mt-10">
