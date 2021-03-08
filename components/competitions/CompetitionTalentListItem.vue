@@ -2,14 +2,18 @@
   <Collapse>
     <template slot="header">
       <div class="w-full flex">
-        <div class="flex-1">{{ talent.name }}</div>
+        <div class="flex-1 text-xxs md:text-xs">{{ talent.name }}</div>
+        <a class="w-48 text-xxs md:text-xs" :href="talent.website" target="_blank">
+          {{ talent.business_name }}
+        </a>
+
         <!-- TODO: Weekly points -->
-        <div class="w-48 text-right">{{ talent.points }}</div>
+        <div class="w-48 text-right text-xxs md:text-xs">{{ talent.points }}</div>
         <!-- TODO: Total points -->
-        <div class="w-48 text-right pr-12">{{ talent.points }}</div>
+        <div class="w-48 text-right text-xxs md:text-xs md:pr-12">{{ talent.points }}</div>
       </div>
     </template>
-    <div class="px-12 pb-12">
+    <div class="px-2 pb-2 md:px-12 md:pb-12">
       <div class="w-full flex items-center justify-between">
         <div class="flex space-x-3 items-center">
           <img
@@ -18,32 +22,35 @@
             :alt="`${talent.name}`"
             class="w-10 h-10 rounded-full"
           />
-          <nuxt-link :to="{ name: 'artist-id', params: { id: talent.id } }" class="font-bold">
+          <!-- TODO: Nuxt link not working for some reason -->
+          <nuxt-link
+            :to="{ name: 'artist-id', params: { id: talent.id } }"
+            class="font-bold text-xxs md:text-xs"
+          >
             {{ talent.name }}
           </nuxt-link>
         </div>
-        <a :href="talent.website" target="_blank">{{ talent.bussiness_name }}</a>
         <span class="font-bold">{{ talent.city }}, {{ talent.state }}</span>
       </div>
 
       <div class="mt-10">
-        <p class="text-xl">Future performances</p>
-        <div class="mt-5 grid grid-cols-4 gap-5">
+        <p class="text-base md:text-lg">Future performances</p>
+        <div class="mt-5 md:grid grid-cols-4 gap-5">
           <div class="text-center">
-            <EventThumbnail width="w-full" height="h-32" />
+            <EventThumbnail width="w-full border border-gray-600" height="h-32" />
             <span class="block mt-3 font-bold text-xs">Performance Name</span>
-            <span class="block mt-3 font-bold text-xxs">Performance date</span>
+            <span class="block mt-3 text-xxs">Performance date</span>
           </div>
         </div>
       </div>
 
       <div class="mt-10">
-        <p class="text-xl">Past performances</p>
-        <div class="mt-5 grid grid-cols-4 gap-5">
+        <p class="text-base md:text-lg">Past performances</p>
+        <div class="mt-5 md:grid grid-cols-4 gap-5">
           <div class="text-center">
             <EventThumbnail width="w-full" height="h-32" />
             <span class="block mt-3 font-bold text-xs">Performance Name</span>
-            <span class="block mt-3 font-bold text-xxs">Performance date</span>
+            <span class="block mt-3 text-xxs">Performance date</span>
           </div>
         </div>
       </div>

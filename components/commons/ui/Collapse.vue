@@ -5,7 +5,7 @@
       class="flex items-center bg-avenue-blue-dark rounded transition duration-150 ease-in-out collapse__header px-4 py-3"
       @click="toggle"
     >
-      <div v-show="showArrow" class="w-12">
+      <div v-show="showArrow" class="w-6 md:w-12">
         <svg
           :class="{ 'origin-center transform rotate-180': !open }"
           class="text-gray-500 transition duration-150 ease-in-out"

@@ -24,19 +24,7 @@
     </section>
 
     <div v-else>
-      <section class="grid grid-cols-3 grid-rows-2 gap-12 mx-auto mt-12 container">
-        <div v-show="lastWeekWinner" class="flex flex-col items-center justify-center gap-6 mt-32">
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
-            Last week's winner
-          </h4>
-          <img
-            v-if="lastWeekWinner && lastWeekWinner.photo"
-            :src="lastWeekWinner.photo"
-            :alt="`${lastWeekWinner.name}`"
-            class="rounded-full w-24 h-24"
-          />
-          <span class="text-xs font-bold">{{ lastWeekWinner.name }}</span>
-        </div>
+      <section class="md:grid grid-cols-3 grid-rows-2 gap-12 mx-auto mt-12 container">
         <div class="flex flex-col items-center justify-center gap-6 col-end-3 row-end-2">
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Grand prize status
@@ -46,7 +34,32 @@
             {{ grandPrizeStatus }}
           </span>
         </div>
-        <div v-show="topScorer" class="flex flex-col items-center justify-center gap-6 mt-32">
+        <div
+          class="col-start-2 flex flex-col items-center justify-center gap-6 mt-6 col-end-3 row-end-3"
+        >
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">Week prize status</h4>
+          <IcPodium class="h-20" />
+          <span class="text-4xl lg:text-5xl font-league-gothic">{{ weekPrizeStatus }}</span>
+        </div>
+        <div
+          v-show="lastWeekWinner"
+          class="flex flex-col items-center justify-center gap-6 mt-32 col-end-2 row-end-2"
+        >
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
+            Last week's winner
+          </h4>
+          <img
+            v-if="lastWeekWinner && lastWeekWinner.photo"
+            :src="lastWeekWinner.photo"
+            :alt="`${lastWeekWinner.name}`"
+            class="rounded-full w-24 h-24"
+          />
+          <!-- <span class="text-xs font-bold">{{ lastWeekWinner.name }}</span> -->
+        </div>
+        <div
+          v-show="topScorer"
+          class="flex flex-col items-center justify-center gap-6 mt-32 col-end-4 row-end-2"
+        >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             General top scorer
           </h4>
@@ -56,14 +69,7 @@
             :alt="`${topScorer.name}`"
             class="rounded-full w-24 h-24"
           />
-          <span class="text-xs font-bold">{{ topScorer.name }}</span>
-        </div>
-        <div
-          class="col-start-2 flex flex-col items-center justify-center gap-6 mt-6 col-end-3 row-end-3"
-        >
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">Week prize status</h4>
-          <IcPodium class="h-20" />
-          <span class="text-4xl lg:text-5xl font-league-gothic">{{ weekPrizeStatus }}</span>
+          <!-- <span class="text-xs font-bold"  >{{ topScorer.name }}</span> -->
         </div>
       </section>
       <section class="container mx-auto mt-20">
@@ -83,9 +89,9 @@
           <IcScoreboard class="h-8" />
           <h2 class="text-xl font-bold">Scoreboard</h2>
         </div>
-        <div class="container mx-auto mt-12">
+        <div class="md:container mx-auto mt-12">
           <!-- TODO: ORDER BY POINTS -->
-          <div class="w-full flex pl-16 py-3">
+          <div class="w-full flex pl-16 py-3 text-xxs md:text-base">
             <div class="flex-1">Artist</div>
             <div class="w-48 text-right">Weekly Points</div>
             <div class="w-52 pr-16 text-right">Total Points</div>
@@ -115,19 +121,19 @@
       </nuxt-link>
     </section>
 
-    <section class="container mx-auto mt-20">
+    <section v-if="competition.sponsors.length" class="container mx-auto mt-20">
       <div class="flex flex-row gap-4 items-start mb-6">
         <IcSponsor class="h-8" />
         <h2 class="text-xl font-bold">Sponsors</h2>
       </div>
-      <div v-if="competition.sponsors.length" class="mt-5 px-12 md:px-32 grid grid-cols-3">
+      <div class="mt-5 px-12 md:px-32 grid grid-cols-3">
         <div v-for="sponsor in competition.sponsors" :key="sponsor.id">
           <img v-if="sponsor.logo" :src="sponsor.logo" :alt="`${sponsor.name} logo`" class="w-10" />
           <span class="text-xs font-bold">{{ sponsor.name }}</span>
         </div>
       </div>
     </section>
-    <section v-if="!eventIsFuture" class="container mx-auto mt-20 text-xs">
+    <section v-if="showSignupBtn" class="container mx-auto mt-20 text-xs">
       <nuxt-link class="font-bold" :to="{ name: 'events-talents' }">
         Want to join the competition? Click here to learn more
       </nuxt-link>

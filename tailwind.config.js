@@ -71,6 +71,10 @@ module.exports = {
       listStyleType: {
         'lower-alpha': 'lower-alpha',
       },
+
+      width: {
+        screen: '90vw',
+      },
     },
   },
   variants: {},
