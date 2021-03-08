@@ -25,8 +25,8 @@
 
     <div v-else>
       <section class="grid grid-cols-3 grid-rows-2 gap-12 mx-auto mt-12 container">
-        <div class="flex flex-col items-center gap-6">
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl self-start">
+        <div v-show="lastWeekWinner" class="flex flex-col items-center justify-center gap-6 mt-32">
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Last week's winner
           </h4>
           <img
@@ -37,15 +37,17 @@
           />
           <!-- <span class="text-xs font-bold">{{ lastWeekWinner.name }}</span> -->
         </div>
-        <div class="flex flex-col items-center gap-6">
+        <div class="flex flex-col items-center justify-center gap-6 col-end-3 row-end-2">
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Grand prize status
           </h4>
           <IcTrophy class="h-20" />
-          <span class="text-4xl lg:text-5xl font-league-gothic">{{ grandPrizeStatus }}</span>
+          <span class="text-4xl lg:text-5xl font-league-gothic ">
+            {{ grandPrizeStatus }}
+          </span>
         </div>
-        <div class="flex flex-col items-center gap-6">
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl self-end">
+        <div v-show="topScorer" class="flex flex-col items-center justify-center gap-6 mt-32">
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             General top scorer
           </h4>
           <img
@@ -56,7 +58,9 @@
           />
           <!-- <span class="text-xs font-bold">{{ topScorer.name }}</span> -->
         </div>
-        <div class="col-start-2 flex flex-col items-center gap-6 mt-6">
+        <div
+          class="col-start-2 flex flex-col items-center justify-center gap-6 mt-6 col-end-3 row-end-3"
+        >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">Week prize status</h4>
           <IcPodium class="h-20" />
           <span class="text-4xl lg:text-5xl font-league-gothic">{{ weekPrizeStatus }}</span>
@@ -64,9 +68,9 @@
       </section>
       <section class="container mx-auto mt-20">
         <div>
-          <div class="flex flex-row gap-4 justify-start mb-6">
+          <div class="flex flex-row gap-4 mb-6">
             <IcPodium class="h-8" />
-            <h2 class="text-2xl font-bold">Top four scores of the week</h2>
+            <h2 class="text-xl font-bold mt-1">Top four scores of the week</h2>
           </div>
           <p>Watch them compite for the week’s prize on next Saturday’s face-off</p>
         </div>
@@ -75,9 +79,9 @@
         </div>
       </section>
       <section class="container mx-auto mt-20">
-        <div class="flex flex-row gap-4 justify-start mb-6">
+        <div class="flex flex-row gap-4 mb-6">
           <IcScoreboard class="h-8" />
-          <h2 class="text-2xl font-bold">Scoreboard</h2>
+          <h2 class="text-xl font-bold">Scoreboard</h2>
         </div>
         <div class="container mx-auto mt-12">
           <!-- TODO: ORDER BY POINTS -->
@@ -112,9 +116,9 @@
     </section>
 
     <section class="container mx-auto mt-20">
-      <div class="flex flex-row gap-4 justify-start mb-6">
+      <div class="flex flex-row gap-4 items-start mb-6">
         <IcSponsor class="h-8" />
-        <h2 class="text-2xl font-bold">Sponsors</h2>
+        <h2 class="text-xl font-bold">Sponsors</h2>
       </div>
       <div class="mt-5 px-12 md:px-32 grid grid-cols-3">
         <div class="w-60 h-32 flex items-center justify-center bg-theavenue-gray">Logo</div>
@@ -211,12 +215,18 @@ export default {
       return this.competition.rounds.filter(round => round.current)
     },
 
-    grandPrizeStatus() {
-      const points = []
-      for (let i = 0; i < this.competition.rounds.length; i++) {
-        points.push(this.competition.rounds[i].round_points)
+    scores() {
+      let scores = new Set()
+      for (let i = 0; i < this.competition.talent; i++) {
+        scores.push(this.competition.talent[i].points)
       }
-      const totalPoints = points.reduce((accumulator, current) => {
+      return scores.sort(function(a, b) {
+        return b - a
+      })
+    },
+
+    grandPrizeStatus() {
+      const totalPoints = this.scores.reduce((accumulator, current) => {
         return accumulator + current
       }, 0)
       const grandPrizeStatus = Math.floor((totalPoints / 100) * this.prizesPercentage)
