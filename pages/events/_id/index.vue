@@ -92,7 +92,6 @@
           <h2 class="text-xl font-bold">Scoreboard</h2>
         </div>
         <div class="md:container mx-auto mt-12">
-          <!-- TODO: ORDER BY POINTS -->
           <div class="w-full flex pl-8 pr-2 md:pl-16 md:pr-0 py-3 text-xxs md:text-base">
             <div class="flex-1">Artist</div>
             <div class="w-36 md:w-48 text-right">Restaurant</div>
@@ -105,6 +104,7 @@
               :key="talent.talent.id"
               :talent="talent"
               :competition-id="competition.id"
+              :style="{ order: scores.indexOf(talent.points, 0) }"
             />
           </div>
         </div>
