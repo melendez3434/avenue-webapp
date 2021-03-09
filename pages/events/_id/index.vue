@@ -102,8 +102,9 @@
           <div>
             <CompetitionTalentListItem
               v-for="talent in competition.talent"
-              :key="talent.id"
+              :key="talent.talent.id"
               :talent="talent"
+              :competition-id="competition.id"
             />
           </div>
         </div>

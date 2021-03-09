@@ -3,7 +3,11 @@
     <template slot="header">
       <div class="w-full flex">
         <div class="flex-1 text-xxs md:text-xs">{{ talent.name }}</div>
-        <a class="w-48 text-xxs md:text-xs text-right" :href="talent.website" target="_blank">
+        <a
+          class="w-48 text-xxs md:text-xs text-right ml-1 md:ml-0"
+          :href="talent.website"
+          target="_blank"
+        >
           {{ talent.business_name }}
         </a>
 
@@ -35,24 +39,24 @@
         </span>
       </div>
 
-      <div class="mt-10">
+      <div v-if="futurePerformances.length" class="mt-10">
         <p class="text-base md:text-lg">Future performances</p>
         <div class="mt-5 md:grid grid-cols-4 gap-5">
-          <div class="text-center">
+          <div v-for="performance in futurePerformances" :key="performance.id" class="text-center">
             <EventThumbnail width="w-full border border-gray-600" height="h-32" />
-            <span class="block mt-3 font-bold text-xs">Performance Name</span>
-            <span class="block mt-3 text-xxs">Performance date</span>
+            <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
+            <span class="block mt-3 text-xxs">{{ performance.starts_at }}</span>
           </div>
         </div>
       </div>
 
-      <div class="mt-10">
+      <div v-if="pastPerformances.length" class="mt-10">
         <p class="text-base md:text-lg">Past performances</p>
         <div class="mt-5 md:grid grid-cols-4 gap-5">
-          <div class="text-center">
+          <div v-for="performance in pastPerformances" :key="performance.id" class="text-center">
             <EventThumbnail width="w-full" height="h-32" />
-            <span class="block mt-3 font-bold text-xs">Performance Name</span>
-            <span class="block mt-3 text-xxs">Performance date</span>
+            <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
+            <span class="block mt-3 text-xxs">{{ performance.starts_at }}</span>
           </div>
         </div>
       </div>
@@ -101,6 +105,38 @@ export default {
       type: Object,
       default: () => ({}),
     },
+
+    competitionId: {
+      type: String,
+      default: null,
+      required: true,
+    },
+  },
+
+  data() {
+    return {
+      futurePerformances: [],
+      pastPerformances: [],
+    }
+  },
+
+  async fetchPastPerformances() {
+    try {
+      const { past } = await this.$api.events.list({
+        talent: this.talent.talent.id,
+        past: true,
+        competition: this.competitionId,
+      })
+      const { future } = await this.$api.events.list({
+        talent: this.talent.talent.id,
+        past: false,
+        competition: this.competitionId,
+      })
+      this.pastPerformances = past
+      this.futurePerformances = future
+    } catch {
+      console.error("We couldn't fetch this events")
+    }
   },
 }
 </script>
