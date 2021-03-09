@@ -78,7 +78,9 @@
             <IcPodium class="h-8" />
             <h2 class="text-xl font-bold mt-1">Top four scores of the week</h2>
           </div>
-          <p>Watch them compite for the week’s prize on next Saturday’s face-off</p>
+          <p>
+            Watch them compite for the week’s prize on next Saturday’s face-off
+          </p>
         </div>
         <div class=" grid grid-flow-cols grid-cols-3 gap-6">
           <FaceOffScorer v-for="scorer in topScorers" :key="scorer.id" :talent="topScorer" />
@@ -91,13 +93,13 @@
         </div>
         <div class="md:container mx-auto mt-12">
           <!-- TODO: ORDER BY POINTS -->
-          <div class="w-full flex pl-16 py-3 text-xxs md:text-base">
+          <div class="w-full flex pl-8 pr-2 md:pl-16 md:pr-0 py-3 text-xxs md:text-base">
             <div class="flex-1">Artist</div>
-            <div class="w-48 text-right">Weekly Points</div>
-            <div class="w-52 pr-16 text-right">Total Points</div>
+            <div class="w-36 md:w-48 text-right">Restaurant</div>
+            <div class="w-32 md:w-48 text-right">Week Points</div>
+            <div class="w-32 md:w-52 md:pr-16 text-right">Total Points</div>
           </div>
           <div>
-            <!-- TODO: Iterate on competition talents -->
             <CompetitionTalentListItem
               v-for="talent in competition.talent"
               :key="talent.id"
