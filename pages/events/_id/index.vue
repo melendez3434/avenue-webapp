@@ -225,9 +225,8 @@ export default {
 
     scores() {
       let scores = []
-      //TODO: find out why this array is being populated by numbers that it already has
       for (let i = 0; i < this.competition.talent.length; i++) {
-        if (!scores[this.competition.talent[i].points]) {
+        if (!scores.includes(this.competition.talent[i].points)) {
           scores.push(this.competition.talent[i].points)
         }
       }
