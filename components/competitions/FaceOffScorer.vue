@@ -11,7 +11,7 @@
         class="rounded-full w-10 h-10 mr-4"
       />
       <div v-else class="bg-gray-300 rounded-full w-10 h-10 mr-4" />
-      <span class="font-bold">Chef's name</span>
+      <span class="font-bold">{{ talent.name }}</span>
     </div>
     <blockquote class="italic">"{{ talent.motivation }}"</blockquote>
     <span
