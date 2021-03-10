@@ -82,8 +82,8 @@
             Watch them compite for the week’s prize on next Saturday’s face-off
           </p>
         </div>
-        <div class=" grid grid-flow-cols grid-cols-3 gap-6">
-          <FaceOffScorer v-for="scorer in topScorers" :key="scorer.id" :talent="scorer" />
+        <div class=" md:grid grid-flow-cols grid-cols-3 gap-6 mt-6">
+          <FaceOffScorer v-for="scorer in topFourScorers" :key="scorer.id" :talent="scorer" />
         </div>
       </section>
       <section class="container mx-auto mt-20">
@@ -270,12 +270,11 @@ export default {
       }
     },
 
-    topScorers() {
+    topFourScorers() {
       const topFourScores = this.scores.slice(0, 4)
-      console.log(topFourScores)
-      const topScorers = this.competition.talent.filter(scorer => {
+      const topScorers = this.competition.talent.filter(scorer =>
         topFourScores.includes(scorer.points)
-      })
+      )
       return topScorers
     },
 
