@@ -9566,10 +9566,10 @@ source-map@^0.7.3:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
   integrity sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==
 
-spacetime@^6.6.4:
-  version "6.6.4"
-  resolved "https://registry.yarnpkg.com/spacetime/-/spacetime-6.6.4.tgz#671d25824f82a779f30eb1bb3d6b2da57467b353"
-  integrity sha512-zqrj0LUhsX51Zxeg7zBPjadbQZtUpQYoVuFLWWQM+YX9dh4WabaL5RKvQ8kWQaH+iloFQ9O8+w0cVSrpo/El6Q==
+spacetime@^6.13.1:
+  version "6.13.1"
+  resolved "https://registry.yarnpkg.com/spacetime/-/spacetime-6.13.1.tgz#c9bf09c9521cc4c5d32758932e3c6a93787d5e5d"
+  integrity sha512-sXpF4WxTt637z2THlmwfe2OVIIsjPV660NN6oPNsLpFpTt6WtcvImqneWgQJEQDk6S+FfTm4tdiI57Qenb4Idw==
 
 spdx-correct@^3.0.0:
   version "3.1.1"
