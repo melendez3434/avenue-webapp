@@ -72,7 +72,7 @@
           <!-- <span class="text-xs font-bold"  >{{ topScorer.name }}</span> -->
         </div>
       </section>
-      <section class="container mx-auto mt-20">
+      <section v-if="topFourScorers.length" class="container mx-auto mt-20">
         <div>
           <div class="flex flex-row gap-4 mb-6">
             <IcPodium class="h-8" />
@@ -272,8 +272,8 @@ export default {
 
     topFourScorers() {
       const topFourScores = this.scores.slice(0, 4)
-      const topScorers = this.competition.talent.filter(scorer =>
-        topFourScores.includes(scorer.points)
+      const topScorers = this.competition.talent.filter(
+        scorer => topFourScores.includes(scorer.points) && scorer.points > 0
       )
       return topScorers
     },
