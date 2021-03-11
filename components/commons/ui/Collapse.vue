@@ -66,7 +66,7 @@ export default {
     },
 
     arrowMeasure() {
-      return this.sMobileAgent ? 16 : 24
+      return this.isMobileAgent ? 16 : 24
     },
 
     isMobileAgent() {
