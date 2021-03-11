@@ -57,7 +57,6 @@ export default {
   data() {
     return {
       open: false,
-      arrowMeasure: 24,
     }
   },
 
@@ -66,8 +65,18 @@ export default {
       return !!this.$slots.default
     },
 
+    arrowMeasure() {
+      return this.sMobileAgent ? 16 : 24
+    },
+
     isMobileAgent() {
-      return process.client ? this.setArrowMeasure() : null
+      if (!process.client) return false
+      else if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      ) {
+        return true
+      }
+      return false
     },
   },
 
@@ -75,14 +84,6 @@ export default {
     toggle() {
       if (!this.showArrow) return
       this.open = !this.open
-    },
-
-    setArrowMeasure() {
-      if (
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-      ) {
-        this.arrowMeasure = 16
-      }
     },
   },
 }
