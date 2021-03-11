@@ -12,14 +12,6 @@
       error-message="Your name is required"
       help="This is the name people will know you by when you post comments or make donations."
     />
-    <R64Input
-      v-model="form.cellphone"
-      label="Cell Phone"
-      name="phone"
-      :v="$v.form.cellphone"
-      error-message="Your phone is required"
-      help="This is the phone the avenue will send you SMS reminders."
-    />
 
     <R64Input
       v-model="form.email"
@@ -40,20 +32,13 @@
       error-message="Password is required"
     />
 
-    <R64Input
-      v-model="form.confirmPassword"
-      type="password"
-      label="Confirm password"
-      name="confirm-password"
+    <R64Checkbox
+      :value="form.interested_in_event"
+      label="I'm interested in Breaking Bread Competition!"
+      name="interested_in_event"
       class="mt-8"
-      :v="$v.form.confirmPassword"
-      error-message="Passwords should match"
+      :v="$v.form.interested_in_event"
     />
-
-    <div class="mt-8">
-      <label class="block leading-tight text-white">Date of birth</label>
-      <v-date-picker v-model="form.date_of_birth" color="red" type="date" />
-    </div>
 
     <p v-if="error" class="bg-avenue-red text-white rounded py-1 px-3 mt-3 text-center">
       {{ error }}
@@ -97,12 +82,10 @@ export default {
     return {
       form: {
         email: '',
-        cellphone: '',
         password: '',
-        confirmPassword: '',
         name: '',
-        date_of_birth: '',
         scout_token: this.$route.params.token || null,
+        interested_in_event: false,
       },
       error: null,
       busy: false,
@@ -137,9 +120,7 @@ export default {
     form: {
       name: { required },
       password: { required },
-      confirmPassword: { required, sameAsPassword: sameAs('password') },
       email: { email, required },
-      cellphone: { required },
     },
   },
 }

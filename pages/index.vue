@@ -27,12 +27,12 @@
       scrollable
       height="auto"
     >
-      <IcClose
-        class="cursor-pointer absolute top-4 right-4"
-        aria-role="button"
-        aria-label="close"
-        @click="close"
-      />
+        <IcClose
+          class="cursor-pointer absolute top-4 right-4"
+          aria-role="button"
+          aria-label="close"
+          @click="closeModal('talent-event-modal')"
+        />
       <CompetitionModalAnnouncement is-talent @close="closeModal('talent-event-modal')">
         Help charity organizations, engage your audience and win the price!
       </CompetitionModalAnnouncement>
