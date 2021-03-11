@@ -86,7 +86,7 @@
           <FaceOffScorer v-for="scorer in topFourScorers" :key="scorer.id" :talent="scorer" />
         </div>
       </section>
-      <section class="container mx-auto mt-20">
+      <section v-if="competition.talent.length" class="container mx-auto mt-20">
         <div class="flex flex-row gap-4 mb-6">
           <IcScoreboard class="h-8" />
           <h2 class="text-xl font-bold">Scoreboard</h2>
