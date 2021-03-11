@@ -35,8 +35,7 @@
       height="auto"
     >
       <CompetitionModalAnnouncement @close="closeModal('user-event-modal')">
-        Engage in the competition by helping your favorite chefs win the price while they donate to
-        charity organizations
+        Support your favorite performers as they compete for weekly and overall prizes.
       </CompetitionModalAnnouncement>
     </modal>
   </div>

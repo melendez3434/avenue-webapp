@@ -14,18 +14,18 @@
     <p class="text-avenue-white mt-5 h-20 overflow-hidden">{{ competition.description }}...</p>
     <p class="text-avenue-grey mt-5 text-xs">From {{ dateFrom }} to {{ dateTo }}</p>
     <p class="mt-5 font-bold">Who will win this competition? It’s on&nbsp;you</p>
-    <div class="mt-5 w-full flex justify-center gap-6">
+    <div class="mt-5 w-full flex flex-col justify-center items-center gap-6">
       <nuxt-link
         :to="{ name: 'events-id', params: { id: competition.id } }"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
       >
-        See
+        See event
       </nuxt-link>
       <nuxt-link
         :to="{ name: 'events-id-join', params: { id: competition.id } }"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
       >
-        Join
+        Sign up
       </nuxt-link>
     </div>
   </div>

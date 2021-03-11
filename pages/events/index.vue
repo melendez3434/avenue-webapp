@@ -4,34 +4,36 @@
   >
     <div class="container mx-auto text-center mt-20">
       <h1 class="text-5xl font-bold">Events</h1>
-      <h6 class="mt-5 text-xl font-bold">
-        Vote for your favorite performers and show love for their art and the charities they support
-      </h6>
-      <h6 class="mt-5 text-lg font-bold">
+      <h6 class="mt-5 text-lg">
         Five weeks competitions featuring The Avenue’s top talent
+      </h6>
+      <h6 class="mt-5 text-xl font-bold leading-relaxed">
+        Vote for your favorite performers as they compete in our national competitions. Follow these
+        artists on our performers’ scoreboard, tracking their progress and tallying up their
+        contributions to charitable&nbsp;organizations.
       </h6>
     </div>
     <section class="container md:grid grid-cols-3 gap-6 mx-auto my-16">
       <div class="flex flex-col items-center mt-10">
         <IcPodium class="h-32" />
         <p class="text-center mt-2 leading-8">
-          Get to know the chefs in a pre-tournament where you’ll get 200 points to spend on them.
-          These points will be added to the final score.
+          Get to know the sponsors as they stream live at our pre-tournament showcase. Attending
+          competitors will earn an extra 200 points for supporting our sponsors!
         </p>
       </div>
       <div class="flex flex-col items-center mt-10">
         <IcLoveHand class="h-32" />
         <p class="text-center mt-2 leading-8">
-          Contribute to charity with your tips every Monday. All the tips from that day’s
-          performances will go to a charity of the performer’s choice.
+          Participate in Charitable Monday, a day where all of the performers’ tips are donated to
+          the charity of their choice!
         </p>
       </div>
       <div class="flex flex-col items-center mt-10">
         <IcStars class="h-28 mb-4" />
         <p class="text-center mt-2 leading-8">
-          Tip their performances and help them be among the first four of each week to meet their
-          competitors in a face-off on Saturdays, where they’ll cook their dish of the week. 1$ = 1
-          point.
+          Tip the performers and help them lead the way each week! The top four performers each week
+          will compete in a face-off each Saturday, where they’ll bring their best performance of
+          the week. $1 = 1 point.
         </p>
       </div>
     </section>
