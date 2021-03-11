@@ -1,24 +1,24 @@
 <template>
   <div
     v-if="loaded"
-    class=" mx-auto w-4/6 lg:w-1/2 mt-20 h-auto text-theavenue-white border p-8 flex justify-around items-center"
+    class=" mx-auto w-4/6 lg:w-1/2 mt-10 md:mt-20 h-auto text-theavenue-white border p-2 md:p-8 flex justify-around items-center"
     style="box-shadow: 0px 0px 10px #FFFFFF;"
   >
     <div class="flex flex-col justify-center items-center w-1/4">
-      <span class="font-league-gothic text-6xl md:text-xxl">{{ displayDays }}</span>
-      <span class="text-xs md:text-xl">Days</span>
+      <span class="font-league-gothic text-5xl lg:text-xxl">{{ displayDays }}</span>
+      <span class="text-xxs md:text-xl">Days</span>
     </div>
     <div class="flex flex-col justify-center items-center w-1/4">
-      <span class="font-league-gothic text-6xl md:text-xxl">{{ displayHours }}</span>
-      <span class="text-xs md:text-xl">Hours</span>
+      <span class="font-league-gothic text-5xl lg:text-xxl">{{ displayHours }}</span>
+      <span class="text-xxs md:text-xl">Hours</span>
     </div>
     <div class="flex flex-col justify-center items-center w-1/4">
-      <span class="font-league-gothic text-6xl md:text-xxl">{{ displayMinutes }}</span>
-      <span class="text-xs md:text-xl">Minutes</span>
+      <span class="font-league-gothic text-5xl lg:text-xxl">{{ displayMinutes }}</span>
+      <span class="text-xxs md:text-xl">Minutes</span>
     </div>
     <div class="flex flex-col justify-center items-center w-1/4">
-      <span class="font-league-gothic text-6xl md:text-xxl">{{ displaySeconds }}</span>
-      <span class="text-xs md:text-xl">Seconds</span>
+      <span class="font-league-gothic text-5xl lg:text-xxl">{{ displaySeconds }}</span>
+      <span class="text-xxs md:text-xl">Seconds</span>
     </div>
   </div>
 </template>
@@ -68,7 +68,7 @@ export default {
 
   methods: {
     formatNum(num) {
-      return num < 10 ? `0${num}` : num
+      return Number(num) < 10 ? `0${Number(num)}` : Number(num)
     },
 
     showRemaining() {

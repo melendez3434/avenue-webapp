@@ -1,31 +1,32 @@
 <template>
-  <div class="border border-theavenue-yellow-neon px-10 py-8 rounded-lg text-center event-width">
-    <p class="text-3xl text-avenue-white-light font-library uppercase">
+  <div
+    class="border border-theavenue-yellow-neon p-6 rounded-lg text-center event-width"
+    style="box-shadow: 0px 0px 10px rgba(255, 210, 67);"
+  >
+    <h1 class="text-3xl text-avenue-white-light font-library uppercase">
       {{ competition.name }}
-    </p>
+    </h1>
     <div class="w-full flex items-center justify-center my-4">
       <!-- TODO: change for the competition's icon -->
       <IcBread />
-      <!-- <img :src="competition.icon" alt="competition icon" /> -->
+      <!-- <img :src="competition.icon" alt="" /> -->
     </div>
-    <p class="text-avenue-white mt-5">{{ competition.description }}</p>
+    <p class="text-avenue-white mt-5 h-20 overflow-hidden">{{ competition.description }}...</p>
     <p class="text-avenue-grey mt-5 text-xs">From {{ dateFrom }} to {{ dateTo }}</p>
-    <p class="mt-5 font-bold">{{ caption }}</p>
-    <div class="mt-5 w-full flex items-center justify-center">
+    <p class="mt-5 font-bold">Who will win this competition? It’s on&nbsp;you</p>
+    <div class="mt-5 w-full flex flex-col justify-center items-center gap-6">
       <nuxt-link
-        v-if="!isTalent"
         :to="{ name: 'events-id', params: { id: competition.id } }"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
       >
-        {{ buttonText }}
+        See event
       </nuxt-link>
-      <button
-        v-else
+      <nuxt-link
+        :to="{ name: 'events-id-join', params: { id: competition.id } }"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-        @click="$modal.show('join-event-modal', { competition })"
       >
-        {{ buttonText }}
-      </button>
+        Sign up
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -44,22 +45,11 @@ export default {
     competition: {
       type: Object,
       required: true,
-    },
-    isTalent: {
-      type: Boolean,
-      default: false,
+      default: () => {},
     },
   },
 
   computed: {
-    caption() {
-      return this.isTalent ? 'Join today!' : 'Who will win this competition? It’s on you'
-    },
-
-    buttonText() {
-      return this.isTalent ? 'Join' : 'See event'
-    },
-
     userTimezone() {
       return Intl.DateTimeFormat().resolvedOptions().timeZone
     },

@@ -2,15 +2,15 @@
   <div class="collapse">
     <div
       :class="{ 'rounded-b-none': open, 'pr-4 py-4 sm:pr-6': noGap }"
-      class="flex items-center bg-avenue-blue-dark rounded transition duration-150 ease-in-out collapse__header px-4 py-3"
+      class="flex items-center bg-avenue-blue-dark rounded transition duration-150 ease-in-out collapse__header p-2 md:px-4 md:py-3"
       @click="toggle"
     >
-      <div v-show="showArrow" class="w-12">
+      <div v-show="showArrow" class="w-6 md:w-12">
         <svg
           :class="{ 'origin-center transform rotate-180': !open }"
           class="text-gray-500 transition duration-150 ease-in-out"
-          width="24"
-          height="24"
+          :width="arrowMeasure"
+          :height="arrowMeasure"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@
     <div
       v-if="open"
       :class="{ 'pl-16': indentContent }"
-      class="pb-4 text-sm leading-5 bg-avenue-black-light px-4 py-3"
+      class="pb-4 text-sm leading-5 bg-avenue-black-light p-2 md:px-4 md:py-3"
     >
       <slot />
     </div>
@@ -63,6 +63,17 @@ export default {
   computed: {
     showArrow() {
       return !!this.$slots.default
+    },
+
+    arrowMeasure() {
+      return this.isMobileAgent ? 16 : 24
+    },
+
+    isMobileAgent() {
+      if (!process.client) return false
+      
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      
     },
   },
 
