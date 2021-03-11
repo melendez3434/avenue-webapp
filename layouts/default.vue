@@ -141,7 +141,7 @@ export default {
   methods: {
     beforeOpenUserAccess(data) {
       const params = data.params || {}
-      this.modal.active = params.active || 'login'
+      this.modal.active = params.active || 'Login'
       this.modal.title = params.title || 'Welcome to The Avenue'
       this.modal.subtitle = params.subtitle || ''
     },

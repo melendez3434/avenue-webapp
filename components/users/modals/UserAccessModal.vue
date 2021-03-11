@@ -14,7 +14,7 @@
     </div>
     <div class="flex space-x-6 px-6 pt-10">
       <button
-        class="uppercase text-lg pb-0.5 border-b-2"
+        class="uppercase text-lg pb-0-5 border-b-2"
         :class="{
           'border-theavenue-white': isLoginActive,
           'border-transparent': !isLoginActive,

@@ -20,6 +20,11 @@
       <div class="mb-6">
         <R64Input v-model="bitrate" type="number" label="Bitrate (kbps)" />
       </div>
+      <div>
+        <p class="text-xs">
+          If you have a slow internet connection we recommend choosing lower bitrates.
+        </p>
+      </div>
 
       <R64Button :disabled="bitrateInvalid" type="submit" class="mt-8 mb-24 md:mb-0" full>
         Confirm

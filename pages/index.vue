@@ -4,6 +4,10 @@
   >
     <LogoLights class="w-full" />
     <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
+      <CurrentEventListItem
+        title="Breaking Bread Competition"
+        route="events-talents"
+       />
       <LiveEventListItem v-for="event in events" :key="event.id" :event="event" />
     </el-collapse>
     <EventsNoResults v-if="!events.length" />
@@ -43,6 +47,7 @@
 
 <script>
 import spacetime from 'spacetime'
+import CurrentEventListItem from '@/components/events/CurrentEventListItem'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
 import LogoLights from '@/components/commons/LogoLights'
 import CompetitionModalAnnouncement from '@/components/competitions/CompetitionModalAnnouncement'
