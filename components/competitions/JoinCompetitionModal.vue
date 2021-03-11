@@ -22,7 +22,12 @@
           <R64Input v-model="form.business_name" label="Restaurant or cater name" />
         </div>
         <div class="mt-5">
-          <R64Input v-model="form.website" label="Restaurant or cater website" />
+          <R64Input
+            v-model="form.website"
+            label="Restaurant or cater website"
+            :v="$v.form.website"
+            error-message="Url not valid"
+          />
         </div>
         <div class="mt-5">
           <R64Input
@@ -90,6 +95,7 @@
         </div>
 
         <div class="mt-12">
+          <div v-if="error" class="my-2 text-red-400">{{ error }}</div>
           <p class="text-center text-xs mb-5">
             By clicking Confirm, you are indicating that you have read and acknowledge the Rules and
             Conditions of the event
@@ -104,7 +110,7 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import { required } from 'vuelidate/lib/validators'
+import { required, url } from 'vuelidate/lib/validators'
 import IcPlus from '@/assets/svg/plus.svg?inline'
 
 export default {
@@ -125,6 +131,7 @@ export default {
 
   data() {
     return {
+      error: null,
       form: {
         name: '',
         business_name: '',
@@ -154,25 +161,23 @@ export default {
   methods: {
     async join() {
       try {
-        const alreadyRegistered = this.competition.talent.find(
+        const alreadyRegistered = await this.competition.talent.find(
           t => t.talent.id === this.user.talent_id
         )
+
         if (alreadyRegistered) {
           this.$router.replace({ name: 'events-id', params: { id: this.competition.id } })
-          this.$modal.show('already-signedup-modal')
-        }
-
-        const { success } = await this.$api.competitions.talentSignUp(
-          this.competition.id,
-          this.form
-        )
-
-        if (success) {
           this.$modal.hide('join-event-modal')
-          this.$route.push({ name: 'events-id', params: { id: this.competition.id } })
+          this.$modal.show('already-signedup-modal')
+          return
         }
+
+        await this.$api.competitions.talentSignUp(this.competition.id, this.form)
+
+        this.$modal.hide('join-event-modal')
+        this.$router.push({ name: 'events-id', params: { id: this.competition.id } })
       } catch (e) {
-        console.log(e)
+        this.error = e.response.data.error
       }
     },
 
@@ -187,6 +192,7 @@ export default {
         name: { required },
         city: { required },
         state: { required },
+        website: { url },
         motivation: { required },
         rounds_info: {
           $each: {

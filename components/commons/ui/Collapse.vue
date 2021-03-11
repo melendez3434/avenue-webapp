@@ -71,9 +71,10 @@ export default {
 
     isMobileAgent() {
       if (!process.client) return false
-      
-      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-      
+
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
     },
   },
 

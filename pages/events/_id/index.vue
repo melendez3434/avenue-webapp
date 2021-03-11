@@ -175,7 +175,7 @@ export default {
 
   data() {
     return {
-      competition: {},
+      competition: { talent: [], rounds: [], sponsors: [] },
       prizesPercentage: 5,
     }
   },

@@ -73,7 +73,7 @@
   </form>
 </template>
 <script>
-import { email, required, sameAs } from 'vuelidate/lib/validators'
+import { email, required } from 'vuelidate/lib/validators'
 
 export default {
   name: 'SignUp',
@@ -110,6 +110,7 @@ export default {
         this.$modal.hide('user-access-modal')
         this.$modal.show('streaming-profile-modal')
       } catch (e) {
+        console.log(e)
         this.error = e.response.data.error
         this.busy = false
       }
