@@ -11,7 +11,7 @@
       <IcBread />
       <!-- <img :src="competition.icon" alt="" /> -->
     </div>
-    <p class="text-avenue-white mt-5">{{ croppedDescription }}</p>
+    <p class="text-avenue-white mt-5 h-20 overflow-hidden">{{ competition.description }}...</p>
     <p class="text-avenue-grey mt-5 text-xs">From {{ dateFrom }} to {{ dateTo }}</p>
     <p class="mt-5 font-bold">Who will win this competition? It’s on&nbsp;you</p>
     <div class="mt-5 w-full flex justify-center gap-6">
@@ -68,14 +68,6 @@ export default {
 
     dateTo() {
       return this.endTimeZoneDate.format('{month-short} {date-pad}')
-    },
-
-    croppedDescription() {
-      if (this.competition.description.length > 100) {
-        return `${this.competition.description.slice(0, 100)}...`
-      } else {
-        return this.competition.description
-      }
     },
   },
 }
