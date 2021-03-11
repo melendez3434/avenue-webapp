@@ -2,7 +2,6 @@
   <div
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
-    <LogoLights class="w-full" />
     <div class="container mx-auto text-center mt-20">
       <h1 class="text-5xl font-bold">Events</h1>
       <h6 class="mt-5 text-xl font-bold">
