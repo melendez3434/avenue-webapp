@@ -5,7 +5,7 @@
     <div class="container mx-auto text-center mt-20">
       <div class="flex flex-col md:flex-row items-center justify-center w-full md:space-x-6">
         <h1 class="text-4xl font-library text-center text-avenue-white-light text-light-white">
-          Breaking Bread
+          {{ currentCompetition.name }}
         </h1>
         <IcBread />
       </div>
@@ -45,12 +45,8 @@
     </section>
 
     <div class="container mx-auto mt-20">
-      <section v-if="competitions.length" class="flex flex-wrap justify-between gap-6">
-        <CompetitionListItem
-          v-for="competition in competitions"
-          :key="competition.id"
-          :competition="competition"
-        />
+      <section v-if="currentCompetition" class="flex flex-wrap justify-center items-center gap-6">
+        <CompetitionListItem :competition="currentCompetition" />
       </section>
       <section v-else class="text-center">
         <p class="text-lg">There are no active events at the moment</p>
@@ -59,6 +55,7 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 import CompetitionListItem from '@/components/competitions/CompetitionListItem'
 import IcPodium from '@/assets/svg/podium.svg?inline'
 import IcLoveHand from '@/assets/svg/love_hand.svg?inline'
@@ -78,19 +75,10 @@ export default {
     IcBread,
   },
 
-  async fetch() {
-    try {
-      const { data } = await this.$api.competitions.list()
-      this.competitions = data
-    } catch (error) {
-      console.error("Couldn't fetch events")
-    }
-  },
-
-  data() {
-    return {
-      competitions: [],
-    }
+  computed: {
+    ...mapState({
+      currentCompetition: state => state.global.currentCompetition,
+    }),
   },
 }
 </script>
