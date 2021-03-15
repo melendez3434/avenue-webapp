@@ -4,10 +4,7 @@
   >
     <LogoLights class="w-full" />
     <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
-      <CurrentEventListItem
-        title="Breaking Bread Competition"
-        route="events-talents"
-       />
+      <CurrentEventListItem />
       <LiveEventListItem v-for="event in events" :key="event.id" :event="event" />
     </el-collapse>
     <EventsNoResults v-if="!events.length" />
@@ -61,6 +58,7 @@ export default {
     LiveEventListItem,
     LogoLights,
     CompetitionModalAnnouncement,
+    CurrentEventListItem,
   },
 
   async asyncData({ $api }) {
