@@ -80,7 +80,7 @@
           :v="$v.form.sign_user_agreement"
           @change="form.sign_user_agreement = $event"
         />
-        <nuxt-link :to="{ name: 'tos' }" class="mb-1" target="_blank">
+        <nuxt-link :to="{ name: 'tos' }" class="mb-1 hover:underline" target="_blank">
           Terms and Conditions
         </nuxt-link>
       </div>
@@ -94,7 +94,7 @@
           :v="$v.form.talent_agreement"
           @change="form.talent_agreement = $event"
         />
-        <nuxt-link :to="{ name: 'talent-agreement' }" class="mb-1" target="_blank">
+        <nuxt-link :to="{ name: 'talent-agreement' }" class="mb-1 hover:underline" target="_blank">
           Talent Agreement
         </nuxt-link>
       </div>

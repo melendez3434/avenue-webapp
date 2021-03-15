@@ -32,14 +32,6 @@
       error-message="Password is required"
     />
 
-    <R64Checkbox
-      :value="form.interested_in_event"
-      label="I'm interested in Breaking Bread Competition!"
-      name="interested_in_event"
-      class="mt-8"
-      :v="$v.form.interested_in_event"
-    />
-
     <p v-if="error" class="bg-avenue-red text-white rounded py-1 px-3 mt-3 text-center">
       {{ error }}
     </p>
@@ -85,7 +77,6 @@ export default {
         password: '',
         name: '',
         scout_token: this.$route.params.token || null,
-        interested_in_event: false,
       },
       error: null,
       busy: false,
