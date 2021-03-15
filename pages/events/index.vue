@@ -21,9 +21,27 @@
     </div>
     <button
       class="mx-auto border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-10 focus:outline-none cursor-pointer"
-      @click="$modal.show('join-event-modal', { competition })"
+      @click="handleSignup"
     >
-      Join {{ currentCompetition.name }}
+      Sign up for {{ currentCompetition.name }}
+      <modal
+        width="100%"
+        classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+        name="not-logged-modal"
+        scrollable
+        height="auto"
+      >
+        <NotLoggedModal @close="$modal.hide('not-logged-modal')" />
+      </modal>
+      <modal
+        width="100%"
+        classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+        name="not-talent-modal"
+        scrollable
+        height="auto"
+      >
+        <NotTalentModal @close="$modal.hide('not-talent-modal')" />
+      </modal>
     </button>
     <section class="container md:grid grid-cols-3 gap-6 mx-auto my-16">
       <div class="flex flex-col items-center mt-10">
@@ -50,7 +68,7 @@
       </div>
     </section>
 
-    <div class="container mx-auto mt-20">
+    <div class="container mx-auto mt-10">
       <section v-if="currentCompetition" class="flex flex-wrap justify-center items-center gap-6">
         <CompetitionListItem :competition="currentCompetition" />
       </section>
@@ -85,6 +103,17 @@ export default {
     ...mapState({
       currentCompetition: state => state.global.currentCompetition,
     }),
+  },
+
+  methods: {
+    handleSignup() {
+      if (!this.$auth.user) {
+        return this.$modal.show('not-logged-modal')
+      } else if (this.$auth.loggedIn && !this.$auth.user.talent_id) {
+        return this.$modal.show('not-talent-modal')
+      }
+      return this.$modal.show('join-event-modal', { competition: this.competition })
+    },
   },
 }
 </script>

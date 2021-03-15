@@ -120,7 +120,7 @@
         :to="{ name: 'events-id-join', params: { id: competition.id } }"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-xl md:text-2xl text-center hover:text-light-white mt-1 focus:outline-none cursor-pointer"
       >
-        Join {{ competition.name }}
+        Sign up for {{ competition.name }}
       </nuxt-link>
     </section>
 

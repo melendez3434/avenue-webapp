@@ -144,7 +144,7 @@
       class="mx-auto border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
       @click="$modal.show('join-event-modal', { competition })"
     >
-      Join {{ competition.name }}
+      Sign up for {{ competition.name }}
     </button>
   </div>
 </template>
