@@ -16,16 +16,22 @@
     <p class="mt-5 font-bold">Who will win this competition? It’s on&nbsp;you</p>
     <div class="mt-5 w-full flex flex-col justify-center items-center gap-6">
       <nuxt-link
+        :to="{ name: 'events-id-join', params: { id: competition.id } }"
+        class="text-theavenue-turquoise-neon font-bold"
+      >
+        Read the rules
+      </nuxt-link>
+      <button
+        class="mx-auto border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+        @click="$modal.show('join-event-modal', { competition })"
+      >
+        Sign up
+      </button>
+      <nuxt-link
         :to="{ name: 'events-id', params: { id: competition.id } }"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
       >
         See event
-      </nuxt-link>
-      <nuxt-link
-        :to="{ name: 'events-id-join', params: { id: competition.id } }"
-        class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-      >
-        Sign up
       </nuxt-link>
     </div>
   </div>
