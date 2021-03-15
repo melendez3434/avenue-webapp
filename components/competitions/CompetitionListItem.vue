@@ -102,7 +102,7 @@ export default {
       } else if (this.$auth.loggedIn && !this.$auth.user.talent_id) {
         return this.$modal.show('not-talent-modal')
       }
-      return this.$modal.show('join-event-modal', { competition })
+      return this.$modal.show('join-event-modal', { competition: this.competition })
     },
   },
 }
