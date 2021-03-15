@@ -28,6 +28,7 @@
         Help charity organizations, engage your audience and win the price!
       </CompetitionModalAnnouncement>
     </modal>
+
     <modal
       width="100%"
       classes="max-w-md md:max-w-2xl inset-x-0 m-auto"

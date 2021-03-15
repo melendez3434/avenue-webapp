@@ -23,7 +23,7 @@
       </nuxt-link>
       <button
         class="mx-auto border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-        @click="$modal.show('join-event-modal', { competition })"
+        @click="handleSignup"
       >
         Sign up
       </button>
@@ -34,6 +34,24 @@
         See event
       </nuxt-link>
     </div>
+    <modal
+      width="100%"
+      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+      name="not-logged-modal"
+      scrollable
+      height="auto"
+    >
+      <NotLoggedModal @close="$modal.hide('not-logged-modal')" />
+    </modal>
+    <modal
+      width="100%"
+      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+      name="not-talent-modal"
+      scrollable
+      height="auto"
+    >
+      <NotTalentModal @close="$modal.hide('not-talent-modal')" />
+    </modal>
   </div>
 </template>
 <script>
@@ -74,6 +92,17 @@ export default {
 
     dateTo() {
       return this.endTimeZoneDate.format('{month-short} {date-pad}')
+    },
+  },
+
+  methods: {
+    handleSignup() {
+      if (!this.$auth.user) {
+        return this.$modal.show('not-logged-modal')
+      } else if (this.$auth.loggedIn && !this.$auth.user.talent_id) {
+        return this.$modal.show('not-talent-modal')
+      }
+      return this.$modal.show('join-event-modal', { competition: this.competition })
     },
   },
 }
