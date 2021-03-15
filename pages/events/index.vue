@@ -3,14 +3,20 @@
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
     <div class="container mx-auto text-center mt-20">
-      <h1 class="text-5xl font-bold">Events</h1>
+      <div class="flex flex-col md:flex-row items-center justify-center w-full md:space-x-6">
+        <h1 class="text-4xl font-library text-center text-avenue-white-light text-light-white">
+          Breaking Bread
+        </h1>
+        <IcBread />
+      </div>
       <h6 class="mt-5 text-lg">
-        Five weeks competitions featuring The Avenue’s top talent
+        Five weeks competition featuring The Avenue’s top talent
       </h6>
       <h6 class="mt-5 text-xl font-bold leading-relaxed">
-        Vote for your favorite performers as they compete in our national competitions. Follow these
-        artists on our performers’ scoreboard, tracking their progress and tallying up their
-        contributions to charitable&nbsp;organizations.
+        A chef competition helping Black Owned Restaurants. Vote for your favorite performers as
+        they compete in our national competitions. Follow these artists on our performers’
+        scoreboard, tracking their progress and tallying up their contributions to charitable
+        organizations.
       </h6>
     </div>
     <section class="container md:grid grid-cols-3 gap-6 mx-auto my-16">
@@ -50,11 +56,6 @@
         <p class="text-lg">There are no active events at the moment</p>
       </section>
     </div>
-    <div v-if="$auth.loggedIn && $auth.user.talent_id" class="container mx-auto mt-20">
-      <nuxt-link :to="{ name: 'events-talents' }" class="container font-bold text-xs">
-        Want to join the competition? Click here to learn more
-      </nuxt-link>
-    </div>
   </div>
 </template>
 <script>
@@ -62,6 +63,7 @@ import CompetitionListItem from '@/components/competitions/CompetitionListItem'
 import IcPodium from '@/assets/svg/podium.svg?inline'
 import IcLoveHand from '@/assets/svg/love_hand.svg?inline'
 import IcStars from '@/assets/svg/stars.svg?inline'
+import IcBread from '@/assets/svg/bread.svg?inline'
 
 export default {
   name: 'EventsPage',
@@ -73,6 +75,7 @@ export default {
     IcPodium,
     IcLoveHand,
     IcStars,
+    IcBread,
   },
 
   async fetch() {
