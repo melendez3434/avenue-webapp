@@ -14,14 +14,14 @@
     </p>
     <IcDish />
     <button
-      class="mx-auto border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-      @click="$modal.show('user-access-modal', { active: 'signup' })"
+      class="mx-auto my-4 border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white focus:outline-none cursor-pointer"
+      @click="buttonActions('user-access-modal', { active: 'signup' })"
     >
       Sign up
     </button>
     <button
       class="mx-auto border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-      @click="$modal.show('user-access-modal', { active: 'login' })"
+      @click="buttonActions('user-access-modal', { active: 'login' })"
     >
       Login
     </button>
@@ -49,6 +49,11 @@ export default {
   methods: {
     close() {
       return this.$emit('close')
+    },
+
+    buttonActions(modal) {
+      this.$modal.hide('not-logged-modal')
+      this.$modal.show(modal)
     },
   },
 }
