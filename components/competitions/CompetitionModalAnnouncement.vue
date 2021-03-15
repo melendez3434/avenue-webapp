@@ -14,7 +14,7 @@
     <IcDish />
     <nuxt-link
       :to="{ name: 'events' }"
-      class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-10 focus:outline-none cursor-pointer"
+      class="uppercase border border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-10 focus:outline-none cursor-pointer"
     >
       Learn More
     </nuxt-link>
