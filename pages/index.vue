@@ -40,26 +40,6 @@
         Support your favorite performers as they compete for weekly and overall prizes.
       </CompetitionModalAnnouncement>
     </modal>
-
-    <modal
-      width="100%"
-      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
-      name="user-event-modal"
-      scrollable
-      height="auto"
-    >
-      <NotLoggedModal @close="closeModal('not-logged-modal')" />
-    </modal>
-
-    <modal
-      width="100%"
-      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
-      name="user-event-modal"
-      scrollable
-      height="auto"
-    >
-      <NotTalentModal @close="closeModal('not-talent-modal')" />
-    </modal>
   </div>
 </template>
 
