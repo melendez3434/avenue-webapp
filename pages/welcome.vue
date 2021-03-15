@@ -3,14 +3,16 @@
     <div class="px-24 py-8 text-center flex flex-col items-center">
       <p class="text-3xl font-bold">Welcome to The Avenue!</p>
       <p class="mt-8 text-lg font-bold">The Avenue hosts cooking competitions now!</p>
-      <p class="mt-8 text-lg font-bold">Do you want to join Breaking Bread competition?</p>
+      <p class="mt-8 text-lg font-bold">
+        Do you want to join {{ currentCompetition.name }} competition?
+      </p>
       <p class="my-5 text-lg px-6">
         <slot />
       </p>
       <IcDish />
       <button
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-10 focus:outline-none cursor-pointer"
-        @click="$modal.show('join-event-modal', { competition })"
+        @click="$modal.show('join-event-modal', { competition: currentCompetition })"
       >
         I'm in!
       </button>
@@ -19,6 +21,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import IcDish from '@/assets/svg/dish.svg?inline'
 
 export default {
@@ -28,10 +31,10 @@ export default {
     IcDish,
   },
 
-  async asyncData({ $api }) {
-    const { data: competition } = await $api.competitions.get(process.env.BREAKING_BREAD_ID)
-
-    return { competition }
+  computed: {
+    ...mapState({
+      currentCompetition: state => state.global.currentCompetition,
+    }),
   },
 }
 </script>
