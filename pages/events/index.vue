@@ -15,10 +15,16 @@
       <h6 class="mt-5 text-xl font-bold leading-relaxed">
         A chef competition helping Black Owned Restaurants. Vote for your favorite performers as
         they compete in our national competitions. Follow these artists on our performers’
-        scoreboard, tracking their progress and tallying up their contributions to charitable
-        organizations.
+        scoreboard, tracking their progress and tallying up their contributions to
+        charitable&nbsp;organizations.
       </h6>
     </div>
+    <button
+      class="mx-auto border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-10 focus:outline-none cursor-pointer"
+      @click="$modal.show('join-event-modal', { competition })"
+    >
+      Join {{ currentCompetition.name }}
+    </button>
     <section class="container md:grid grid-cols-3 gap-6 mx-auto my-16">
       <div class="flex flex-col items-center mt-10">
         <IcPodium class="h-32" />
