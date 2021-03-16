@@ -4,7 +4,7 @@
   >
     <div class="container mx-auto  text-center flex flex-col justify-center items-center  mt-20">
       <div class="flex space-x-6 items-center justify-center">
-        <h1 class="text-4xl font-bold font-library">{{ competition.name }}</h1>
+        <h1 class="text-4xl font-library text-avenue-white-light">{{ competition.name }}</h1>
         <IcBread />
       </div>
       <p class="mt-5 text-lg font-bold">

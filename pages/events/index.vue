@@ -10,12 +10,12 @@
         <IcBread />
       </div>
       <h6 class="mt-5 text-lg">
-        Five weeks competition featuring The Avenue’s top talent
+        Four weeks competition featuring The Avenue’s top talent
       </h6>
       <h6 class="mt-5 text-xl font-bold leading-relaxed">
-        A chef competition helping Black Owned Restaurants. Vote for your favorite performers as
-        they compete in our national competitions. Follow these artists on our performers’
-        scoreboard, tracking their progress and tallying up their contributions to
+        A cooking competition supporting Black chefs and Black-owned restaurants. Vote for your
+        favorite performers as they compete in our national competitions. Follow these artists on
+        our performers’ scoreboard, tracking their progress and tallying up their contributions to
         charitable&nbsp;organizations.
       </h6>
     </div>

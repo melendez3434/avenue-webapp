@@ -7,10 +7,10 @@
       @click="close"
     />
     <p class="text-3xl font-bold">Ups!</p>
-    <p class="mt-8 text-lg font-bold">It seems that you haven’t signed up in The Avenue</p>
+    <p class="mt-8 text-lg font-bold">It seems that you aren't signed into The Avenue</p>
     <p class="my-5 text-lg px-6">
-      You should also create a talent account after. That’s the only requirement to perform in
-      {{ currentCompetition.name }}. If you already have an account just login.
+      If you already have an account, just log in! You will need to be signed up for a talent
+      account to compete in {{ currentCompetition.name }}
     </p>
     <IcDish />
     <button

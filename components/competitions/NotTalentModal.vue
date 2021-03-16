@@ -6,17 +6,19 @@
       aria-label="close"
       @click="close"
     />
-    <p class="text-3xl font-bold">Ups!</p>
-    <p class="mt-8 text-lg font-bold">It seems that you haven’t signed up as a talent</p>
+    <p class="text-3xl font-bold">Oops!</p>
+    <p class="mt-8 text-lg font-bold">
+      It seems that you aren't signed up for a talent account yet
+    </p>
     <p class="my-5 text-lg px-6">
-      You need to do so in order to perform in {{ currentCompetition.name }}
+      You will need to be signed up for a talent account to compete in {{ currentCompetition.name }}
     </p>
     <IcDish />
     <button
       class="mx-auto my-4 border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white focus:outline-none cursor-pointer"
       @click="buttonActions('talent-signup-modal')"
     >
-      I'm in for it!
+      Talent Sign-Up
     </button>
   </div>
 </template>

@@ -96,7 +96,7 @@
     >
       <div class="text-center py-8">
         <p class="text-xl text-avenue-white-light">
-          Ups! It seems like you have a bad internet connection.
+          Oops! It seems like you have a bad internet connection.
         </p>
         <p class="text-xs text-avenue-white">
           We recommend that you try using
