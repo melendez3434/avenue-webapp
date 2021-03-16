@@ -6,7 +6,7 @@
       aria-label="close"
       @click="close"
     />
-    <p class="text-3xl font-bold">Ups!</p>
+    <p class="text-3xl font-bold">Oops!</p>
     <p class="mt-8 text-lg font-bold">It seems that you aren't signed into The Avenue</p>
     <p class="my-5 text-lg px-6">
       If you already have an account, just log in! You will need to be signed up for a talent
