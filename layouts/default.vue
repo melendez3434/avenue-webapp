@@ -71,6 +71,26 @@
     >
       <AlreadySignedupModal @close="closeModal('already-signedup-modal')" />
     </modal>
+
+    <modal
+      width="100%"
+      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+      name="not-logged-modal"
+      scrollable
+      height="auto"
+    >
+      <NotLoggedModal @close="$modal.hide('not-logged-modal')" />
+    </modal>
+
+    <modal
+      width="100%"
+      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+      name="not-talent-modal"
+      scrollable
+      height="auto"
+    >
+      <NotTalentModal @close="$modal.hide('not-talent-modal')" />
+    </modal>
   </div>
 </template>
 
