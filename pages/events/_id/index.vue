@@ -87,7 +87,12 @@
           </p>
         </div>
         <div class=" md:grid grid-flow-cols grid-cols-3 gap-6 mt-6">
-          <FaceOffScorer v-for="scorer in topFourScorers" :key="scorer.id" :talent="scorer" />
+          <CompetitionTalentCard
+            v-for="scorer in topFourScorers"
+            :key="scorer.id"
+            is-faceoff
+            :talent="scorer"
+          />
         </div>
       </section>
       <section v-if="competition.talent.length" class="container mx-auto mt-20">
@@ -126,6 +131,18 @@
       >
         Sign up for {{ competition.name }}
       </nuxt-link>
+    </section>
+
+    <section v-if="eventIsFuture" class="container mt-20 mx-auto">
+      <h2 class="font-league-gothic text-3xl text-center uppercase">Meet the competitors</h2>
+      <div class="md:flex justify-center flex-wrap gap-6 mt-6 w-full">
+        <CompetitionTalentCard
+          v-for="talent in competition.talent"
+          :key="talent.id"
+          :talent="talent"
+          class="md:w-1/3"
+        />
+      </div>
     </section>
 
     <section v-if="competition.sponsors.length" class="container mx-auto mt-20">

@@ -28,7 +28,7 @@
           />
           <!-- TODO: Nuxt link not working for some reason -->
           <nuxt-link
-            :to="{ name: 'artist-id', params: { id: talent.id } }"
+            :to="{ name: 'artist-id', params: { id: talent.talent.id } }"
             class="font-bold text-xs md:text-xs"
           >
             {{ talent.name }}
