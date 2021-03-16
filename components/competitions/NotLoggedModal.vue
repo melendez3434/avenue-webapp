@@ -51,9 +51,9 @@ export default {
       return this.$emit('close')
     },
 
-    buttonActions(modal) {
+    buttonActions(modal, params) {
       this.$modal.hide('not-logged-modal')
-      this.$modal.show(modal)
+      this.$modal.show(modal, params)
     },
   },
 }
