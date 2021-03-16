@@ -13,7 +13,7 @@
     </div>
     <p class="text-avenue-white mt-5 h-20 overflow-hidden">{{ competition.description }}...</p>
     <p class="text-avenue-grey mt-5 text-xs">From {{ dateFrom }} to {{ dateTo }}</p>
-    <p class="mt-5 font-bold">Who will win this competition? It’s on&nbsp;you</p>
+    <p class="mt-5 font-bold">Who will win this competition? You&nbsp;decide</p>
     <div class="mt-5 w-full flex flex-col justify-center items-center gap-6">
       <nuxt-link
         :to="{ name: 'events-id-join', params: { id: competition.id } }"
