@@ -173,7 +173,7 @@ export default {
         this.$modal.hide('join-event-modal')
         this.$router.push({ name: 'events-id', params: { id: this.competition.id } })
       } catch (e) {
-        if (e.error || e.error.response || e.error.response.data) {
+        if (!e.error || !e.error.response || !e.error.response.data) {
           console.log(e)
           return
         }
