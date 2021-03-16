@@ -45,7 +45,7 @@
         </div>
         <div
           v-show="lastWeekWinner"
-          class="flex flex-col items-center justify-center gap-6 mt-32 col-end-2 row-end-2"
+          class="flex flex-col items-center justify-center gap-6 md:mt-24 col-end-2 row-end-2"
         >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Last week's winner
@@ -56,11 +56,13 @@
             :alt="`${lastWeekWinner.name}`"
             class="rounded-full w-24 h-24"
           />
-          <!-- <span class="text-xs font-bold">{{ lastWeekWinner.name }}</span> -->
+          <span v-if="lastWeekWinner && lastWeekWinner.name" class="text-xs font-bold">
+            {{ lastWeekWinner.name }}
+          </span>
         </div>
         <div
           v-show="topScorer"
-          class="flex flex-col items-center justify-center gap-6 mt-24 col-end-4 row-end-2"
+          class="flex flex-col items-center justify-center gap-6 md:mt-24 col-end-4 row-end-2"
         >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Top scorer
@@ -71,7 +73,7 @@
             :alt="`${topScorer.name}`"
             class="rounded-full w-24 h-24"
           />
-          <!-- <span class="text-xs font-bold"  >{{ topScorer.name }}</span> -->
+          <span class="text-xs font-bold">{{ topScorer.name }}</span>
         </div>
       </section>
       <section v-if="topFourScorers.length" class="container mx-auto mt-20">
@@ -137,11 +139,6 @@
           <span class="text-xs font-bold">{{ sponsor.name }}</span>
         </div>
       </div>
-    </section>
-    <section v-if="showSignupBtn" class="container mx-auto mt-20 text-xs">
-      <nuxt-link class="font-bold" :to="{ name: 'events-talents' }">
-        Want to join the competition? Click here to learn more
-      </nuxt-link>
     </section>
   </div>
 </template>
