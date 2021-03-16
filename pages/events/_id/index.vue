@@ -278,17 +278,7 @@ export default {
     },
 
     topScorer() {
-      let topScore = 0
-      let topScorer = null
-      if (this.competition.talent && this.competition.talent.length) {
-        for (let i = 0; i < this.competition.talent.length; i++) {
-          if (this.competition.talent[i].points && this.competition.talent[i].points > topScore) {
-            topScore = this.competition.talent[i].points
-            topScorer = this.competition.talent.find(talent => talent.points === topScore)
-          }
-        }
-      }
-      return topScorer
+      return this.competition.talent.find(talent => talent.points === this.scores[0])
     },
   },
 }

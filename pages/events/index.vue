@@ -24,24 +24,6 @@
       @click="handleSignup"
     >
       Sign up for {{ currentCompetition.name }}
-      <modal
-        width="100%"
-        classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
-        name="not-logged-modal"
-        scrollable
-        height="auto"
-      >
-        <NotLoggedModal @close="$modal.hide('not-logged-modal')" />
-      </modal>
-      <modal
-        width="100%"
-        classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
-        name="not-talent-modal"
-        scrollable
-        height="auto"
-      >
-        <NotTalentModal @close="$modal.hide('not-talent-modal')" />
-      </modal>
     </button>
     <section class="container md:grid grid-cols-3 gap-6 mx-auto my-16">
       <div class="flex flex-col items-center mt-10">
