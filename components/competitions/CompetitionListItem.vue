@@ -21,12 +21,7 @@
       >
         Read the rules
       </nuxt-link>
-      <button
-        class="mx-auto border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-        @click="handleSignup"
-      >
-        Sign up
-      </button>
+      <JoinEventButton />
       <nuxt-link
         :to="{ name: 'events-id', params: { id: competition.id } }"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
@@ -74,17 +69,6 @@ export default {
 
     dateTo() {
       return this.endTimeZoneDate.format('{month-short} {date-pad}')
-    },
-  },
-
-  methods: {
-    handleSignup() {
-      if (!this.$auth.user) {
-        return this.$modal.show('not-logged-modal')
-      } else if (this.$auth.loggedIn && !this.$auth.user.talent_id) {
-        return this.$modal.show('not-talent-modal')
-      }
-      return this.$modal.show('join-event-modal', { competition: this.competition })
     },
   },
 }

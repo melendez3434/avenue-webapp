@@ -7,8 +7,7 @@
         <p class="text-3xl font-library text-center text-avenue-white-light text-light-white">
           {{ competition.name }}
         </p>
-        <!-- TODO: This image is not working correctly -->
-        <img v-if="competition.icon" :src="competition.icon" alt="" class="w-8 h-8" />
+        <IcBread />
       </div>
       <p class="max-w-xl mx-auto text-avenue-white text-center mt-5 text-lg">
         {{ competition.description }}
@@ -44,14 +43,13 @@
           <span class="text-4xl lg:text-5xl font-league-gothic">{{ weekPrizeStatus }}</span>
         </div>
         <div
-          v-show="lastWeekWinner"
+          v-if="lastWeekWinner"
           class="flex flex-col items-center justify-center gap-6 md:mt-24 col-end-2 row-end-2"
         >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Last week's winner
           </h4>
           <img
-            v-if="lastWeekWinner && lastWeekWinner.photo"
             :src="lastWeekWinner.photo"
             :alt="`${lastWeekWinner.name}`"
             class="rounded-full w-24 h-24"
@@ -61,7 +59,7 @@
           </span>
         </div>
         <div
-          v-show="topScorer"
+          v-if="topScorer"
           class="flex flex-col items-center justify-center gap-6 md:mt-24 col-end-4 row-end-2"
         >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
@@ -125,12 +123,7 @@
       class="container mx-auto flex flex-col justify-center items-center mt-10 md:mt-20"
     >
       <h5 class="mb-4">Want to join this competition?</h5>
-      <nuxt-link
-        :to="{ name: 'events-id-join', params: { id: competition.id } }"
-        class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-xl md:text-2xl text-center hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-      >
-        Sign up for {{ competition.name }}
-      </nuxt-link>
+      <JoinEventButton>for {{ competition.name }}</JoinEventButton>
     </section>
 
     <section v-if="eventIsFuture" class="container mt-20 mx-auto">
@@ -166,6 +159,7 @@ import IcTrophy from '@/assets/svg/trophy.svg?inline'
 import IcPodium from '@/assets/svg/podium.svg?inline'
 import IcSponsor from '@/assets/svg/sponsor.svg?inline'
 import IcScoreboard from '@/assets/svg/scoreboard.svg?inline'
+import IcBread from '@/assets/svg/bread.svg?inline'
 
 export default {
   name: 'EventDetailPage',
@@ -178,6 +172,7 @@ export default {
     IcPodium,
     IcSponsor,
     IcScoreboard,
+    IcBread,
   },
 
   async fetch() {
@@ -295,7 +290,17 @@ export default {
     },
 
     topScorer() {
-      return this.competition.talent.find(talent => talent.points === this.scores[0])
+      let topScore = 0
+      let topScorer = null
+      if (this.competition.talent && this.competition.talent.length) {
+        for (let i = 0; i < this.competition.talent.length; i++) {
+          if (this.competition.talent[i].points && this.competition.talent[i].points > topScore) {
+            topScore = this.competition.talent[i].points
+            topScorer = this.competition.talent.find(talent => talent.points === topScore)
+          }
+        }
+      }
+      return topScorer
     },
   },
 }
