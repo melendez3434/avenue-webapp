@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currentCompetition.id">
+  <div v-show="currentCompetition.id">
     <nuxt-link
       :to="{ name: 'events-id', params: { id: currentCompetition.id } }"
       class="w-full bg-theavenue-white flex items-center justify-center font-league-gothic text-black text-2xl md:text-6xl py-2 px-4 uppercase"
