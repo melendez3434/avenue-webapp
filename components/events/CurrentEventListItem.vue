@@ -2,9 +2,9 @@
   <div>
     <nuxt-link
       :to="{ name: 'events-id', params: { id: currentCompetition.id } }"
-      class="w-full bg-theavenue-white flex items-center justify-center font-league-gothic text-yellow-300 text-2xl md:text-6xl py-2 px-4 uppercase"
+      class="w-full bg-theavenue-white flex items-center justify-center font-league-gothic text-black text-2xl md:text-6xl py-2 px-4 uppercase"
     >
-      <IcBread />
+      <IcBread class="w-12 h-12 mr-5" />
       <p class="whitespace-no-wrap truncate max-w-xs lg:max-w-lg xl:max-w-none">
         {{ currentCompetition.name }}
       </p>
@@ -13,7 +13,7 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import IcBread from '@/assets/svg/bread.svg?inline'
+import IcBread from '@/assets/svg/bread_black.svg?inline'
 
 export default {
   name: 'CurrentEventListItem',
