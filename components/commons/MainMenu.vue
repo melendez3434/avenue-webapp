@@ -2,6 +2,7 @@
   <div>
     <client-only>
       <nuxt-link
+        v-if="currentCompetition.id"
         :to="{ name: 'events' }"
         class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
       >
