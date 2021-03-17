@@ -21,7 +21,7 @@
       >
         Read the rules
       </nuxt-link>
-      <JoinEventButton />
+      <JoinEventButton :competition="competition" />
       <nuxt-link
         :to="{ name: 'events-id', params: { id: competition.id } }"
         class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"

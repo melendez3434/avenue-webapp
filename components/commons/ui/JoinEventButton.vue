@@ -4,13 +4,25 @@
     @click="handleSignup"
   >
     Sign up
-    <slot />
+    <span v-if="hasLongText">for {{ competition.name }}</span>
   </button>
 </template>
 
 <script>
 export default {
   name: 'JoinEventButton',
+
+  props: {
+    competition: {
+      type: Object,
+      default: () => ({}),
+    },
+
+    hasLongText: {
+      type: Boolean,
+      default: false,
+    },
+  },
 
   methods: {
     handleSignup() {

@@ -19,7 +19,7 @@
         charitable&nbsp;organizations.
       </h6>
     </div>
-    <JoinEventButton class="mt-10">for {{ currentCompetition.name }}</JoinEventButton>
+    <JoinEventButton class="mt-10" :competition="currentCompetition" has-long-text />
     <section class="container md:grid grid-cols-3 gap-6 mx-auto my-16">
       <div class="flex flex-col items-center mt-10">
         <IcPodium class="h-32" />

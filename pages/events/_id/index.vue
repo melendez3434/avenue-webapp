@@ -4,9 +4,9 @@
   >
     <section class="container mx-auto mt-12">
       <div class="flex flex-col md:flex-row items-center justify-center w-full md:space-x-6">
-        <p class="text-3xl font-library text-center text-avenue-white-light text-light-white">
+        <h1 class="text-3xl font-library text-center text-avenue-white-light text-light-white">
           {{ competition.name }}
-        </p>
+        </h1>
         <IcBread />
       </div>
       <p class="max-w-xl mx-auto text-avenue-white text-center mt-5 text-lg">
@@ -50,6 +50,7 @@
             Last week's winner
           </h4>
           <img
+            v-if="lastWeekWinner && lastWeekWinner.photo"
             :src="lastWeekWinner.photo"
             :alt="`${lastWeekWinner.name}`"
             class="rounded-full w-24 h-24"
@@ -123,7 +124,7 @@
       class="container mx-auto flex flex-col justify-center items-center mt-10 md:mt-20"
     >
       <h5 class="mb-4">Want to join this competition?</h5>
-      <JoinEventButton>for {{ competition.name }}</JoinEventButton>
+      <JoinEventButton has-long-text :competition="competition" />
     </section>
 
     <section v-if="eventIsFuture" class="container mt-20 mx-auto">
