@@ -14,7 +14,15 @@
       </p>
     </section>
 
-    <section class="container text-center mx-auto mt-10 text-xs">
+    <section
+      v-if="showSignupBtn"
+      class="container mx-auto flex flex-col justify-center items-center mt-10 md:mt-20"
+    >
+      <h5 class="mb-4">Want to join this competition?</h5>
+      <JoinEventButton has-long-text :competition="competition" />
+    </section>
+
+    <section class="container text-center mx-auto mt-10 text-base">
       <p>From {{ dateFrom }} to {{ dateTo }}</p>
     </section>
 
@@ -119,15 +127,7 @@
       </section>
     </div>
 
-    <section
-      v-if="showSignupBtn"
-      class="container mx-auto flex flex-col justify-center items-center mt-10 md:mt-20"
-    >
-      <h5 class="mb-4">Want to join this competition?</h5>
-      <JoinEventButton has-long-text :competition="competition" />
-    </section>
-
-    <section v-if="eventIsFuture" class="container mt-20 mx-auto">
+    <section v-if="eventIsFuture && competition.talent.length" class="container mt-20 mx-auto">
       <h2 class="font-league-gothic text-3xl text-center uppercase">Meet the competitors</h2>
       <div class="md:flex justify-center flex-wrap gap-6 mt-6 w-full">
         <CompetitionTalentCard
