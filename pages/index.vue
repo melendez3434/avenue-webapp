@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import spacetime from 'spacetime'
 import CurrentEventListItem from '@/components/events/CurrentEventListItem'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
@@ -79,6 +80,10 @@ export default {
   },
 
   computed: {
+    ...mapState({
+      currentCompetition: state => state.global.currentCompetition,
+    }),
+
     isSuitableTalent() {
       return (
         this.$auth.loggedIn &&
@@ -112,6 +117,8 @@ export default {
         event.is_live = true
         this.handleSocketEvent(event, 'updated')
       })
+
+    if (!this.currentCompetition.id) return
 
     if (localStorage.modalCounter) {
       this.modalCounter = localStorage.modalCounter
