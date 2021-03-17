@@ -1,6 +1,13 @@
 <template>
   <div>
     <client-only>
+      <nuxt-link
+        v-if="currentCompetition.id"
+        :to="{ name: 'events' }"
+        class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+      >
+        {{ currentCompetition.name }}
+      </nuxt-link>
       <el-dropdown trigger="click" placement="top-start">
         <div class="flex items-center" @click="fetchTalents">
           <span
@@ -63,7 +70,7 @@
           </el-dropdown-item>
           <el-dropdown-item>
             <button v-if="!$auth.user.talent_id" @click="$modal.show('talent-signup-modal')">
-              Start Streaming
+              Sign Up to Stream
             </button>
           </el-dropdown-item>
           <el-dropdown-item>
@@ -127,6 +134,7 @@ export default {
   computed: {
     ...mapState({
       categories: state => state.global.categories,
+      currentCompetition: state => state.global.currentCompetition,
     }),
 
     isAllGenres() {

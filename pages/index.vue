@@ -4,6 +4,7 @@
   >
     <LogoLights class="w-full" />
     <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
+      <CurrentEventListItem />
       <LiveEventListItem v-for="event in events" :key="event.id" :event="event" />
     </el-collapse>
     <EventsNoResults v-if="!events.length" />
@@ -15,13 +16,39 @@
         </infinite-loading>
       </client-only>
     </div>
+
+    <modal
+      width="100%"
+      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+      name="talent-event-modal"
+      scrollable
+      height="auto"
+    >
+      <CompetitionModalAnnouncement @close="closeModal('talent-event-modal')">
+        Help charity organizations, engage your audience and win the price!
+      </CompetitionModalAnnouncement>
+    </modal>
+
+    <modal
+      width="100%"
+      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+      name="user-event-modal"
+      scrollable
+      height="auto"
+    >
+      <CompetitionModalAnnouncement @close="closeModal('user-event-modal')">
+        Support your favorite performers as they compete for weekly and overall prizes.
+      </CompetitionModalAnnouncement>
+    </modal>
   </div>
 </template>
 
 <script>
 import spacetime from 'spacetime'
+import CurrentEventListItem from '@/components/events/CurrentEventListItem'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
 import LogoLights from '@/components/commons/LogoLights'
+import CompetitionModalAnnouncement from '@/components/competitions/CompetitionModalAnnouncement'
 
 export default {
   name: 'IndexPage',
@@ -31,6 +58,8 @@ export default {
   components: {
     LiveEventListItem,
     LogoLights,
+    CompetitionModalAnnouncement,
+    CurrentEventListItem,
   },
 
   async asyncData({ $api }) {
@@ -41,6 +70,22 @@ export default {
       console.warn(error)
       return { events: [], meta: {} }
     }
+  },
+
+  data() {
+    return {
+      maxModalShow: 4,
+    }
+  },
+
+  computed: {
+    isSuitableTalent() {
+      return (
+        this.$auth.loggedIn &&
+        this.$auth.user.talent_id &&
+        localStorage.modalCounter < this.maxModalShow
+      )
+    },
   },
 
   watch: {
@@ -67,6 +112,22 @@ export default {
         event.is_live = true
         this.handleSocketEvent(event, 'updated')
       })
+
+    if (localStorage.modalCounter) {
+      this.modalCounter = localStorage.modalCounter
+    } else {
+      localStorage.modalCounter = 1
+    }
+
+    if (this.isSuitableTalent) {
+      this.$modal.show('talent-event-modal')
+      localStorage.modalCounter++
+    } else {
+      if (localStorage.modalCounter < this.maxModalShow) {
+        this.$modal.show('user-event-modal')
+        localStorage.modalCounter++
+      }
+    }
   },
 
   beforeDestroy() {
@@ -127,6 +188,10 @@ export default {
       }
 
       return map[type]()
+    },
+
+    closeModal(modal) {
+      return this.$modal.hide(modal)
     },
   },
 }

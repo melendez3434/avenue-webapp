@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <div class="absolute text-theavenue-white top-0 right-0 mt-4 mr-6">
-      <IcClose class="cursor-pointer" @click="close" />
+      <IcClose class="cursor-pointer" aria-role="button" aria-label="close" @click="close" />
     </div>
     <div class="px-6 pb-5 pt-10 bg-theavenue-background">
       <p class="text-sm leading-5">Report</p>

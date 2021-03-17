@@ -15,7 +15,7 @@
       @click="$modal.show('device-settings-modal')"
     />
     <div class="h-full relative bg-theavenue-black">
-      <div v-if="error">There was an error loading the media devices</div>
+      <div v-if="error">There was an error loading the media devices. Please try again.</div>
       <div class="relative h-full">
         <IcLive v-if="playing && !startingStream" class="w-32 absolute" />
         <video ref="video" class="h-full w-full" muted />
@@ -84,6 +84,31 @@
         </p>
         <div class="flex items-center justify-center space-x-6 mt-5">
           <R64Button outline @click="$modal.hide('pending-streaming-modal')">Ok</R64Button>
+        </div>
+      </div>
+    </modal>
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="bad-connection-modal"
+      scrollable
+      height="auto"
+    >
+      <div class="text-center py-8">
+        <p class="text-xl text-avenue-white-light">
+          Oops! It seems like you have a bad internet connection.
+        </p>
+        <p class="text-xs text-avenue-white">
+          We recommend that you try using
+          <a href="https://obsproject.com/" target="_blank">OBS</a>
+          instead of the browser to stream.
+        </p>
+        <p class="text-xl text-avenue-white-light">
+          Do you want to finish this stream?
+        </p>
+        <div class="flex items-center justify-center space-x-6 mt-5">
+          <R64Button outline @click="$modal.hide('bad-connection-modal')">No</R64Button>
+          <R64Button @click="stopStreaming">Yes</R64Button>
         </div>
       </div>
     </modal>
@@ -225,16 +250,20 @@ export default {
 
         if (!forceKill) return
 
-        if (window.confirm('Streaming already live. Do you want to force closing the streaming?')) {
+        if (
+          window.confirm(
+            'This stream is already live. Check your other open tabs and browsers. Do you want to force closing this one?'
+          )
+        ) {
           this.terminateServerProcess()
         }
       })
 
       this.socket.on(`${this.talent.stream_key}-reconnecting`, () => {
         this.reconnections++
-
         if (this.reconnections > this.$config.maxRetries) {
-          return this.showWarningAndStop('Something went wrong on our end. Please try again')
+          this.$modal.show('bad-connection-modal')
+          return this.showWarningAndStop()
         }
 
         this.startingStream = true
@@ -292,10 +321,7 @@ export default {
   },
 
   methods: {
-    showWarningAndStop(text) {
-      this.$modal.show('warning-modal', {
-        text,
-      })
+    showWarningAndStop() {
       this.playing = false
       this.mediaRecorder.stop()
       this.serverProcessOpen = false

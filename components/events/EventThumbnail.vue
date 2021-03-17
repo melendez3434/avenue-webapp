@@ -1,12 +1,12 @@
 <template>
-  <div class="w-48 h-28 flex items-center justify-center overflow-hidden">
+  <div class="flex items-center justify-center overflow-hidden" :class="[width, height]">
     <img v-if="event.thumbnail" :src="event.thumbnail" alt="Event thumbnail" />
     <img
       v-else-if="hasAssets"
       :src="`https://image.mux.com/${event.assets[0].playback_id}/thumbnail.jpg`"
       alt="Event thumbnail"
     />
-    <Placeholder v-else title="Event thumbnail" class="h-full " />
+    <Placeholder v-else title="Event thumbnail" class="h-full" />
   </div>
 </template>
 
@@ -14,12 +14,26 @@
 import Placeholder from '@/assets/svg/thumbnail_placeholder.svg?inline'
 
 export default {
+  name: 'EventThumbnail',
+
   components: { Placeholder },
 
   props: {
     event: {
       type: Object,
-      default: null,
+      default: () => ({
+        assets: [],
+      }),
+    },
+
+    width: {
+      type: String,
+      default: 'w-48',
+    },
+
+    height: {
+      type: String,
+      default: 'h-28',
     },
   },
 

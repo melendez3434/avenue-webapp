@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <div class="absolute text-theavenue-white top-0 right-0 mt-4 mr-6">
-      <IcClose class="cursor-pointer" @click="close" />
+      <IcClose class="cursor-pointer" aria-role="button" aria-label="close" @click="close" />
     </div>
     <div class="px-6 pb-5 pt-10 bg-theavenue-background">
       <p class="text-2xl leading-tight font-medium">Set up your live stream</p>
@@ -19,6 +19,11 @@
       </div>
       <div class="mb-6">
         <R64Input v-model="bitrate" type="number" label="Bitrate (kbps)" />
+      </div>
+      <div>
+        <p class="text-xs">
+          If you have a slow internet connection we recommend choosing lower bitrates.
+        </p>
       </div>
 
       <R64Button :disabled="bitrateInvalid" type="submit" class="mt-8 mb-24 md:mb-0" full>

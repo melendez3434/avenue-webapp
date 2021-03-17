@@ -27,7 +27,7 @@
     >
       <div class="w-full flex flex-col lg:flex-row mt-2">
         <div class="flex-1 md:mr-6">
-          <label for="`link-${index}-name`" class="block leading-tight text-white">
+          <label for="`link-${index}-name`" class="block leading-tight text-white mb-2">
             Name
           </label>
           <R64Select v-model="input.social_media_slug" :options="socialNetworkList" />

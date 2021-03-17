@@ -10,9 +10,15 @@
         >
           The avenue
         </nuxt-link>
-        <IcClose />
+        <IcClose aria-role="button" aria-label="close" />
       </div>
       <div class="flex flex-col items-center space-y-5 mt-5">
+        <nuxt-link
+          :to="{ name: 'events' }"
+          class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+        >
+          Events
+        </nuxt-link>
         <a
           v-for="category in categories"
           :key="category.name"
@@ -41,7 +47,7 @@
             class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
             @click="startStreaming"
           >
-            Start Streaming
+            Sign Up to Stream
           </button>
           <button
             v-if="$auth.user.talent_id && !$auth.user.has_confirmed_talent"

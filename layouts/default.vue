@@ -50,6 +50,47 @@
     >
       <StreamingDonateModal :event="streamingDonate.event" :jar="streamingDonate.jar" />
     </modal>
+
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="join-event-modal"
+      scrollable
+      height="auto"
+      @before-open="beforeOpenJoinEventModal"
+    >
+      <JoinCompetitionModal :competition="activeCompetition" />
+    </modal>
+
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="already-signedup-modal"
+      scrollable
+      height="auto"
+    >
+      <AlreadySignedupModal @close="closeModal('already-signedup-modal')" />
+    </modal>
+
+    <modal
+      width="100%"
+      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+      name="not-logged-modal"
+      scrollable
+      height="auto"
+    >
+      <NotLoggedModal @close="$modal.hide('not-logged-modal')" />
+    </modal>
+
+    <modal
+      width="100%"
+      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+      name="not-talent-modal"
+      scrollable
+      height="auto"
+    >
+      <NotTalentModal @close="$modal.hide('not-talent-modal')" />
+    </modal>
   </div>
 </template>
 
@@ -86,7 +127,7 @@ export default {
         event: null,
         jar: null,
       },
-
+      activeCompetition: {},
       warningText: '',
     }
   },
@@ -120,8 +161,8 @@ export default {
   methods: {
     beforeOpenUserAccess(data) {
       const params = data.params || {}
-      this.modal.active = params.active || 'login'
-      this.modal.title = params.title || 'Welcome to the avenue'
+      this.modal.active = params.active || 'Login'
+      this.modal.title = params.title || 'Welcome to The Avenue'
       this.modal.subtitle = params.subtitle || ''
     },
 
@@ -133,6 +174,14 @@ export default {
     beforeOpenStreamingDonate({ params }) {
       this.streamingDonate.event = params.event
       this.streamingDonate.jar = params.jar
+    },
+
+    beforeOpenJoinEventModal(data) {
+      this.activeCompetition = data.params.competition
+    },
+
+    closeModal(modal) {
+      return this.$modal.hide(modal)
     },
   },
 }

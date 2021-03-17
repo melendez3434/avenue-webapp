@@ -3,6 +3,7 @@ import forgotApi from '@/api/forgot-password'
 import talentApi from '@/api/talent'
 import globalApi from '@/api/global'
 import eventsApi from '@/api/events'
+import competitionsApi from '@/api/competitions'
 
 export default function({ $axios }, inject) {
   const repositories = {
@@ -11,6 +12,7 @@ export default function({ $axios }, inject) {
     talent: talentApi($axios),
     global: globalApi($axios),
     events: eventsApi($axios),
+    competitions: competitionsApi($axios),
   }
 
   inject('api', repositories)

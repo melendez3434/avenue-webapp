@@ -1,7 +1,12 @@
 <template>
   <div class="relative">
     <div class="absolute text-theavenue-white top-0 right-0 mt-4 mr-6">
-      <IcClose class="cursor-pointer" @click="$modal.hide('talent-signup-modal')" />
+      <IcClose
+        class="cursor-pointer"
+        aria-role="button"
+        aria-label="close"
+        @click="$modal.hide('talent-signup-modal')"
+      />
     </div>
     <div class="px-6 pb-5 pt-10 bg-theavenue-background">
       <p class="text-sm leading-5">Welcome</p>
@@ -75,7 +80,7 @@
           :v="$v.form.sign_user_agreement"
           @change="form.sign_user_agreement = $event"
         />
-        <nuxt-link :to="{ name: 'tos' }" class="mb-1" target="_blank">
+        <nuxt-link :to="{ name: 'tos' }" class="mb-1 hover:underline" target="_blank">
           Terms and Conditions
         </nuxt-link>
       </div>
@@ -89,7 +94,7 @@
           :v="$v.form.talent_agreement"
           @change="form.talent_agreement = $event"
         />
-        <nuxt-link :to="{ name: 'talent-agreement' }" class="mb-1" target="_blank">
+        <nuxt-link :to="{ name: 'talent-agreement' }" class="mb-1 hover:underline" target="_blank">
           Talent Agreement
         </nuxt-link>
       </div>
