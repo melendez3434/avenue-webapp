@@ -81,5 +81,11 @@ export default {
       currentCompetition: state => state.global.currentCompetition,
     }),
   },
+
+  middleware({ store, redirect }) {
+    if (!store.state.global.currentCompetition.id) {
+      return redirect('/')
+    }
+  },
 }
 </script>

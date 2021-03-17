@@ -7,6 +7,8 @@ export default {
   },
 
   async fetchCurrentCompetition({ commit }) {
+    if (!process.env.BREAKING_BREAD_ID) return
+
     const { data } = await this.$api.competitions.get(process.env.BREAKING_BREAD_ID)
     commit(SET_CURRENT_COMPETITION, data)
   },
