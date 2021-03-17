@@ -224,7 +224,9 @@ export default {
     },
 
     eventIsFuture() {
-      return this.today < this.dateFrom
+      const today = spacetime.now('UTC')
+      const start = spacetime(this.competition.starts_at, 'UTC')
+      return today.isBefore(start)
     },
 
     hasSponsors() {
