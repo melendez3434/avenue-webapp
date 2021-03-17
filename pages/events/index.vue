@@ -19,12 +19,7 @@
         charitable&nbsp;organizations.
       </h6>
     </div>
-    <button
-      class="mx-auto border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-10 focus:outline-none cursor-pointer"
-      @click="handleSignup"
-    >
-      Sign up for {{ currentCompetition.name }}
-    </button>
+    <JoinEventButton class="mt-10" :competition="currentCompetition" has-long-text />
     <section class="container md:grid grid-cols-3 gap-6 mx-auto my-16">
       <div class="flex flex-col items-center mt-10">
         <IcPodium class="h-32" />
@@ -85,17 +80,6 @@ export default {
     ...mapState({
       currentCompetition: state => state.global.currentCompetition,
     }),
-  },
-
-  methods: {
-    handleSignup() {
-      if (!this.$auth.user) {
-        return this.$modal.show('not-logged-modal')
-      } else if (this.$auth.loggedIn && !this.$auth.user.talent_id) {
-        return this.$modal.show('not-talent-modal')
-      }
-      return this.$modal.show('join-event-modal', { competition: this.currentCompetition })
-    },
   },
 }
 </script>

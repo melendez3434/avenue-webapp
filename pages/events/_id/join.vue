@@ -4,7 +4,9 @@
   >
     <div class="container mx-auto  text-center flex flex-col justify-center items-center  mt-20">
       <div class="flex space-x-6 items-center justify-center">
-        <h1 class="text-4xl font-library text-avenue-white-light">{{ competition.name }}</h1>
+        <h1 class="text-3xl font-library text-center text-avenue-white-light text-light-white">
+          {{ competition.name }}
+        </h1>
         <IcBread />
       </div>
       <p class="mt-5 text-lg font-bold">
@@ -140,12 +142,7 @@
     <h2 class="container mx-auto text-center mt-20 mb-4 text-avenue-white-light text-xl">
       What are you waiting for?
     </h2>
-    <button
-      class="mx-auto border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-      @click="$modal.show('join-event-modal', { competition })"
-    >
-      Sign up for {{ competition.name }}
-    </button>
+    <JoinEventButton class="mt-10" :competition="competition" has-long-text />
   </div>
 </template>
 
