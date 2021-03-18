@@ -25,7 +25,7 @@
       height="auto"
     >
       <CompetitionModalAnnouncement @close="closeModal('talent-event-modal')">
-        Help charity organizations, engage your audience and win the price!
+        Help charity organizations, engage your audience and win the prize!
       </CompetitionModalAnnouncement>
     </modal>
 
