@@ -107,7 +107,7 @@ export default {
     },
 
     competitionId: {
-      type: String,
+      type: [String, Number],
       default: null,
       required: true,
     },
