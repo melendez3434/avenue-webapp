@@ -15,7 +15,7 @@
     />
     <div class="flex md:flex-col items-center px-3 md:px-0">
       <div
-        class="uppercase text-theavenue-green-neon font-library text-lg md:text-3xl landscape:text-sm my-1 landscape:ml-2"
+        class="uppercase text-theavenue-green-neon font-library text-lg md:text-2xl lg:text-3xl landscape:text-sm my-1 landscape:ml-2 whitespace-no-wrap"
       >
         {{ jarAmount }}
       </div>
