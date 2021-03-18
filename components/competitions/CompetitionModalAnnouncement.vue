@@ -8,7 +8,7 @@
     />
     <p class="text-3xl font-bold">Haven't your heard?</p>
     <p class="mt-8 text-lg font-bold">
-      The Avenue hosts cooking competitions now!
+      The Avenue hosts virtual competitions now!
     </p>
     <p class="my-5 text-lg px-6">
       <slot />
