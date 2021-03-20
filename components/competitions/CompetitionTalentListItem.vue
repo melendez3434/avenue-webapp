@@ -80,8 +80,9 @@
         </p>
       </div>
 
-      <div class="mt-10 flex items-center justify-center w-full">
+      <div class="mt-10 flex items-center justify-center w-full space-x-6">
         <ShareButton />
+        <FollowButton :talent="talent.talent" />
       </div>
     </div>
   </Collapse>
@@ -90,6 +91,7 @@
 import Collapse from '@/components/commons/ui/Collapse'
 import EventThumbnail from '@/components/events/EventThumbnail'
 import ShareButton from '@/components/commons/ui/ShareButton'
+import FollowButton from '@/components/commons/ui/FollowButton'
 
 export default {
   name: 'CompetitionTalentListItem',
@@ -98,6 +100,7 @@ export default {
     Collapse,
     EventThumbnail,
     ShareButton,
+    FollowButton,
   },
 
   props: {
