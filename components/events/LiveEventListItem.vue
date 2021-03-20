@@ -29,13 +29,9 @@
           link
         />
         <div class="flex items-center mb-0 md:mb-2 mx-auto md:mx-0">
-          <div class="font-sans flex flex-col items-end">
-            <ShareButton
-              :key="event.id"
-              class="mb-2"
-              :event="event"
-              :url="`${baseUrl}event/${event.id}`"
-            />
+          <div class="font-sans flex flex-col items-end space-y-2">
+            <FollowButton :talent="event.talent" />
+            <ShareButton :key="event.id" :event="event" :url="`${baseUrl}event/${event.id}`" />
             <p class="text-md md:text-lg font-bold leading-6">
               {{ event.name }} ({{ event.rating.name }} Rating)
             </p>
