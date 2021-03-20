@@ -95,6 +95,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Navbar from '@/components/commons/Navbar'
 import UserAccessModal from '@/components/users/modals/UserAccessModal'
 import TalentSignUpModal from '@/components/talents/modals/TalentSignUpModal'
@@ -147,8 +148,17 @@ export default {
         window.location.href = '/'
       }
     },
+
     '$route.query.action'(active) {
       this.$modal.show('user-access-modal', { active })
+    },
+
+    '$auth.loggedIn': {
+      immediate: true,
+      handler(loggedIn) {
+        if (!loggedIn) return
+        this.fetchFollowedTalents()
+      },
     },
   },
 
@@ -159,6 +169,10 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      fetchFollowedTalents: 'global/fetchFollowedTalents',
+    }),
+
     beforeOpenUserAccess(data) {
       const params = data.params || {}
       this.modal.active = params.active || 'Login'

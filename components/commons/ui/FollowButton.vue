@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="$auth.loggedIn">
     <button
       class="font-library text-lg hover:text-light-white flex space-x-4 items-center border border-theavenue-white px-2 rounded-md py-0.5"
       style="box-shadow: 0px 0px 10px #FFFFFF;"
