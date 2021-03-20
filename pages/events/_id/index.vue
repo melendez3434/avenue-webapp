@@ -9,9 +9,13 @@
         </h1>
         <IcBread />
       </div>
-      <p class="max-w-xl mx-auto text-avenue-white text-center mt-5 text-lg">
+      <p class="max-w-xl mx-auto text-avenue-white text-center mt-5 text-xl">
         {{ competition.description }}
       </p>
+    </section>
+
+    <section class="container text-center mx-auto mt-5 text-gray-400">
+      <p>From {{ dateFrom }} to {{ dateTo }}</p>
     </section>
 
     <section
@@ -20,10 +24,6 @@
     >
       <h5 class="mb-4">Want to join this competition?</h5>
       <JoinEventButton has-long-text :competition="competition" />
-    </section>
-
-    <section class="container text-center mx-auto mt-10 text-base">
-      <p>From {{ dateFrom }} to {{ dateTo }}</p>
     </section>
 
     <section v-if="eventIsFuture">

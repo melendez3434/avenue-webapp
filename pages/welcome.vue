@@ -2,7 +2,7 @@
   <div class="available-min-height bg-avenue-blue-light flex items-center justify-center">
     <div class="px-24 py-8 text-center flex flex-col items-center">
       <p class="text-3xl font-bold">Welcome to The Avenue!</p>
-      <p class="mt-8 text-lg font-bold">The Avenue hosts cooking competitions now!</p>
+      <p class="mt-8 text-lg font-bold">The Avenue hosts virtual competitions now!</p>
       <p class="mt-8 text-lg font-bold">
         Do you want to join {{ currentCompetition.name }} competition?
       </p>

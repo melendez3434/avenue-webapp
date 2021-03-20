@@ -19,6 +19,14 @@ export default {
     },
   },
 
+  mounted() {
+    this.$refs.editable.addEventListener('paste', function(e) {
+      e.preventDefault()
+      var text = e.clipboardData.getData('text/plain')
+      document.execCommand('insertHTML', false, text)
+    })
+  },
+
   methods: {
     submit() {
       const html = this.$refs.editable.innerHTML || ''

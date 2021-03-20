@@ -24,7 +24,7 @@
       >
         <TalentCard
           :talent="event.talent"
-          class="hidden md:flex"
+          class="hidden md:flex md:mr-2"
           :category="event.category.name"
           link
         />
@@ -44,7 +44,7 @@
           <div v-if="isLive" class="ml-6">
             <nuxt-link
               :to="{ name: 'event-slug', params: { slug: event.id } }"
-              class="font-library border-2 py-2 px-3 uppercase text-theavenue-red-neon text-light-red text-md md:text-2xl rounded-md border-theavenue-red-neon"
+              class="font-library border-2 py-2 px-3 uppercase text-theavenue-red-neon text-light-red text-md md:text-2xl rounded-md border-theavenue-red-neon whitespace-no-wrap"
               style="box-shadow: 1px 1px 7px #FF2F2F;"
             >
               WATCH NOW

@@ -1,13 +1,15 @@
 <template>
-  <div>
+  <div class="flex items-center justify-end">
     <client-only>
-      <nuxt-link
-        v-if="currentCompetition.id"
-        :to="{ name: 'events' }"
-        class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-      >
-        {{ currentCompetition.name }}
-      </nuxt-link>
+      <div class=" max-w-xs truncate">
+        <nuxt-link
+          v-if="currentCompetition.id"
+          :to="{ name: 'events' }"
+          class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+        >
+          {{ currentCompetition.name }}
+        </nuxt-link>
+      </div>
       <el-dropdown trigger="click" placement="top-start">
         <div class="flex items-center" @click="fetchTalents">
           <span
@@ -42,7 +44,7 @@
       <el-dropdown trigger="click" placement="top-start">
         <div class="flex items-center">
           <span
-            class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+            class="whitespace-no-wrap uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
           >
             {{ activeItem }}
           </span>
@@ -98,7 +100,7 @@
         </button>
         <button
           :to="{ name: 'signup' }"
-          class="py-0.5 px-3 font-library uppercase text-2xl text-theavenue-yellow-neon text-light-yellow border border-theavenue-yellow-neon rounded-lg"
+          class="py-0.5 px-3 font-library uppercase text-2xl text-theavenue-yellow-neon text-light-yellow border border-theavenue-yellow-neon rounded-lg whitespace-no-wrap"
           @click="$modal.show('user-access-modal', { active: 'signup' })"
         >
           Sign Up

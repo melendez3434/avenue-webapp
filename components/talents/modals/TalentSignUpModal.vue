@@ -115,10 +115,14 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import { required, url } from 'vuelidate/lib/validators'
 import MultipleInput from '@/components/commons/ui/MultipleInput'
 import IcClose from '@/assets/svg/close_2.svg?inline'
 import ImageUpload from '@/components/commons/ui/ImageUpload'
+import { required, helpers } from 'vuelidate/lib/validators'
+const url = helpers.regex(
+  'url',
+  /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/
+)
 
 export default {
   name: 'TalentSignUpModal',
