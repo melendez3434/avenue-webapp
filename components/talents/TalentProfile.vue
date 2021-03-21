@@ -13,7 +13,7 @@
         <TalentCard
           :talent="talent"
           class="hidden md:flex landscape:hidden max-w-1/2"
-          :class="{ 'cursor-pointer': !page }"
+          :class="{ 'cursor-pointer': !page && talent.biography }"
           @click="scrollToAbout"
         />
         <div class="flex space-x-4">
@@ -107,7 +107,8 @@ export default {
     },
 
     scrollToAbout() {
-      if (this.page) return
+      if (this.page || !this.talent.biography) return
+
       this.$refs.about.scrollIntoView({
         behavior: 'smooth',
       })
