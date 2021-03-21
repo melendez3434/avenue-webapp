@@ -1,11 +1,11 @@
 <template>
   <div class="flex items-center justify-end">
     <client-only>
-      <div class=" max-w-xs truncate">
+      <div class="mt-1 max-w-xs truncate">
         <nuxt-link
           v-if="currentCompetition.id"
           :to="{ name: 'events' }"
-          class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+          class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white focus:outline-none cursor-pointer"
         >
           {{ currentCompetition.name }}
         </nuxt-link>

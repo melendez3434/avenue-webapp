@@ -32,4 +32,16 @@ export default $axios => ({
   getScoutByToken(token) {
     return $axios.$get(`api/scouts/token/${token}`)
   },
+
+  follow(talentId) {
+    return $axios.$post(`api/my/followings/${talentId}`)
+  },
+
+  unfollow(talentId) {
+    return $axios.$delete(`api/my/followings/${talentId}`)
+  },
+
+  followedList() {
+    return $axios.$get('api/my/followings')
+  },
 })

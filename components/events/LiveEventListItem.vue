@@ -4,6 +4,8 @@
       <div
         class="w-full bg-theavenue-white text-theavenue-black flex items-center justify-center font-league-gothic text-2xl md:text-6xl py-2 px-4 uppercase"
       >
+        <!-- TODO: change for the competition's icon -->
+        <IcBread v-if="event.is_competition" class="mr-2" />
         <p class="whitespace-no-wrap truncate max-w-xs lg:max-w-lg xl:max-w-none">
           {{ event.talent.name }}
         </p>
@@ -29,13 +31,9 @@
           link
         />
         <div class="flex items-center mb-0 md:mb-2 mx-auto md:mx-0">
-          <div class="font-sans flex flex-col items-end">
-            <ShareButton
-              :key="event.id"
-              class="mb-2"
-              :event="event"
-              :url="`${baseUrl}event/${event.id}`"
-            />
+          <div class="font-sans flex flex-col items-end space-y-2">
+            <FollowButton :talent="event.talent" />
+            <ShareButton :key="event.id" :event="event" :url="`${baseUrl}event/${event.id}`" />
             <p class="text-md md:text-lg font-bold leading-6">
               {{ event.name }} ({{ event.rating.name }} Rating)
             </p>
@@ -58,11 +56,12 @@
 <script>
 import spacetime from 'spacetime'
 import ShareButton from '@/components/commons/ui/ShareButton'
+import IcBread from '@/assets/svg/bread_black.svg?inline'
 
 export default {
   name: 'LiveEventListItem',
 
-  components: { ShareButton },
+  components: { ShareButton, IcBread },
 
   props: {
     event: {

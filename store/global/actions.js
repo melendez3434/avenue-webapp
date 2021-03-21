@@ -1,9 +1,14 @@
-import { SET_CATEGORIES, SET_CURRENT_COMPETITION } from './mutation-types'
+import { SET_CATEGORIES, SET_CURRENT_COMPETITION, SET_FOLLOWED_TALENTS } from './mutation-types'
 
 export default {
   async fetchCategories({ commit }) {
     const { data } = await this.$api.global.categories()
     commit(SET_CATEGORIES, data)
+  },
+
+  async fetchFollowedTalents({ commit }) {
+    const { data } = await this.$api.talent.followedList()
+    commit(SET_FOLLOWED_TALENTS, data)
   },
 
   async fetchCurrentCompetition({ commit }) {

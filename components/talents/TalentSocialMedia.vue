@@ -18,6 +18,7 @@
       website
     </a>
     <ShareButton :key="talent.name" :event="event" :url="baseUrl" />
+    <FollowButton :talent="talent" />
   </div>
 </template>
 
