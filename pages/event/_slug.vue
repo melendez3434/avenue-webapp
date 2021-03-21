@@ -38,10 +38,13 @@ export default {
 
   components: { VideoLayout, EventVideo },
 
-  async asyncData({ $api, redirect, params }) {
+  async asyncData({ $api, redirect, params, $auth }) {
     if (!params.slug) redirect('/')
 
     try {
+      if ($auth.loggedIn) {
+        await $api.events.view(params.slug)
+      }
       const { data: event } = await $api.events.get(params.slug)
       const selectedAsset = event.assets.length ? event.assets[0].playback_id : ''
       return { event, selectedAsset }

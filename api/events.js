@@ -32,4 +32,8 @@ export default $axios => ({
   extendTime(slug, minutes) {
     return $axios.$post(`${resource}/${slug}/extend`, { minutes })
   },
+
+  view(slug) {
+    return $axios.$post(`${resource}/${slug}/attendees`)
+  },
 })
