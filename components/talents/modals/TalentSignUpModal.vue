@@ -205,6 +205,11 @@ export default {
         name: { required },
         category_id: { required },
         website: { url },
+        social_media_links: {
+          $each: {
+            url: { url },
+          },
+        },
         sign_user_agreement: {
           mustBeTrue(value) {
             return !!value
