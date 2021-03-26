@@ -201,7 +201,7 @@ export default {
         rounds_info: {
           $each: {
             charity: { required },
-            charity_website: { required },
+            charity_website: { required, url },
           },
         },
       },
