@@ -6,7 +6,7 @@
       aria-label="close"
       @click="close"
     />
-    <p class="text-3xl font-bold">Haven't your heard?</p>
+    <p class="text-3xl font-bold">Haven you heard?</p>
     <p class="mt-8 text-lg font-bold">
       The Avenue hosts virtual competitions now!
     </p>
