@@ -44,11 +44,13 @@ export default {
     try {
       if ($auth.loggedIn) {
         await $api.events.view(params.slug)
+        throw Error('lol')
       }
       const { data: event } = await $api.events.get(params.slug)
       const selectedAsset = event.assets.length ? event.assets[0].playback_id : ''
       return { event, selectedAsset }
     } catch (e) {
+      console.log(e)
       redirect('/')
     }
   },
