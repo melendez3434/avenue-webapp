@@ -38,14 +38,10 @@ export default {
 
   components: { VideoLayout, EventVideo },
 
-  async asyncData({ $api, redirect, params, $auth }) {
+  async asyncData({ $api, redirect, params }) {
     if (!params.slug) redirect('/')
 
     try {
-      if ($auth.loggedIn) {
-        await $api.events.view(params.slug)
-        throw Error('lol')
-      }
       const { data: event } = await $api.events.get(params.slug)
       const selectedAsset = event.assets.length ? event.assets[0].playback_id : ''
       return { event, selectedAsset }
@@ -95,7 +91,11 @@ export default {
     },
   },
 
-  mounted() {
+  async mounted() {
+    if (this.$auth.loggedIn) {
+      await this.$api.events.view(this.event.id)
+    }
+
     this.$echo.channel(`event.${this.event.id}`).listen('EventIsEndedNow', () => {
       this.fetchOtherLiveEvents()
     })
