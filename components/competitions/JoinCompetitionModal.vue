@@ -76,7 +76,7 @@
                 v-model="form.rounds_info[index].charity_website"
                 label="Website"
                 :v="v.charity_website"
-                error-message="Charity website is required"
+                error-message="Charity website is invalid"
                 @input="v.charity_website.$touch"
               />
             </div>
