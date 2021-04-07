@@ -1424,6 +1424,13 @@
     consola "^2.15.0"
     defu "^3.2.2"
 
+"@nuxtjs/device@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/device/-/device-2.0.1.tgz#eb96764ffd0638e1326f82a6930e9a0add411d29"
+  integrity sha512-T/vUOj9DprR+EV/H2lKy3dj6zuYH0yRV8ZnLXK7WbR1ni4Wrj6nw/qqAy60SOfTupefdnDJPKP3pghwCRpBCbQ==
+  dependencies:
+    defu "^3.2.2"
+
 "@nuxtjs/laravel-echo@https://github.com/64robots/laravel-echo":
   version "1.1.0"
   resolved "https://github.com/64robots/laravel-echo#a9ff6441abc755457c637cd7f2df84d747c109fb"

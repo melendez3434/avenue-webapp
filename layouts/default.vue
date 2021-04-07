@@ -91,6 +91,31 @@
     >
       <NotTalentModal @close="$modal.hide('not-talent-modal')" />
     </modal>
+
+    <modal
+      width="100%"
+      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+      name="mobile-app-modal"
+      scrollable
+      height="auto"
+    >
+      <div class="flex flex-col space-y-8 items-center justify-center p-8">
+        <IcClose
+          class="cursor-pointer absolute top-4 right-4"
+          aria-role="button"
+          aria-label="close"
+          @click="$modal.hide('mobile-app-modal')"
+        />
+        <div class="text-xl">Download our Mobile app</div>
+        <IcPhone />
+        <a href="https://apps.apple.com/us/app/the-avenue-viewer/id1555461012">
+          <IcAppStore />
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.app.theavenuev">
+          <IcGooglePlay />
+        </a>
+      </div>
+    </modal>
   </div>
 </template>
 
@@ -103,6 +128,10 @@ import StreamingProfileModal from '@/components/talents/modals/StreamingProfileM
 import WarningModal from '@/components/talents/modals/WarningModal'
 import StreamingDonateModal from '@/components/talents/modals/StreamingDonateModal'
 import Footer from '@/components/commons/Footer'
+import IcClose from '@/assets/svg/close.svg?inline'
+import IcPhone from '@/assets/svg/phone.svg?inline'
+import IcAppStore from '@/assets/svg/appstore.svg?inline'
+import IcGooglePlay from '@/assets/svg/googleplay.svg?inline'
 
 export default {
   name: 'DefaultLayout',
@@ -115,6 +144,10 @@ export default {
     WarningModal,
     Footer,
     StreamingDonateModal,
+    IcClose,
+    IcPhone,
+    IcAppStore,
+    IcGooglePlay,
   },
 
   data() {
@@ -163,6 +196,10 @@ export default {
   },
 
   mounted() {
+    if (this.$device.isMobileOrTablet) {
+      this.$modal.show('mobile-app-modal')
+    }
+
     const active = this.$route.query.action
     if (!active) return
     this.$modal.show('user-access-modal', { active })
