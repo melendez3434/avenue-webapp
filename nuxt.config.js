@@ -76,6 +76,7 @@ const config = {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/svg',
     '@nuxtjs/laravel-echo',
+    '@nuxtjs/device',
   ],
 
   /*
