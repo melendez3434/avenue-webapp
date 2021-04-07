@@ -96,13 +96,13 @@ export default {
       await this.$api.events.view(this.event.id)
     }
 
-    this.$echo.channel(`event.${this.event.id}`).listen('EventIsEndedNow', () => {
+    this.$echo.channel(`event.${this.event.id}`).listen('EventIsAboutToEnd', () => {
       this.fetchOtherLiveEvents()
     })
   },
 
   beforeDestroy() {
-    this.$echo.channel(`event.${this.event.id}`).stopListening('EventIsEndedNow')
+    this.$echo.channel(`event.${this.event.id}`).stopListening('EventIsAboutToEnd')
   },
 
   methods: {

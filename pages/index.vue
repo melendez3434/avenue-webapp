@@ -110,7 +110,7 @@ export default {
       .listen('EventFinished', ({ event }) => {
         this.handleSocketEvent(event, 'updated')
       })
-      .listen('EventIsEndedNow', ({ event }) => {
+      .listen('EventHasEnded', ({ event }) => {
         this.handleSocketEvent(event, 'deleted')
       })
       .listen('TalentIsLiveNow', ({ event }) => {
@@ -142,7 +142,7 @@ export default {
       .channel('theavenue')
       .stopListening('EventUpdated')
       .stopListening('EventFinished')
-      .stopListening('EventIsEndedNow')
+      .stopListening('EventHasEnded')
   },
 
   methods: {
