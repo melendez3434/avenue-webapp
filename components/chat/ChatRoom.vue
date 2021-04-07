@@ -56,8 +56,11 @@
       </div>
       <div class="block md:hidden">
         <p class="text-xs text-theavenue-white px-2 py-3 text-center bg-theavenue-background-dark">
-          If you want to have a better experience that includes chating, please open The Avenue in a
-          desktop
+          If you want to have a better experience that includes chatting, please open The Avenue in
+          a desktop or download our
+          <span class="cursor-pointer font-bold" @click="$modal.show('mobile-app-modal')">
+            mobile app
+          </span>
         </p>
       </div>
     </client-only>
