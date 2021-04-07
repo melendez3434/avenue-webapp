@@ -316,7 +316,7 @@ export default {
     this.$echo.channel(`live.${this.talent.id}`).stopListening('TalentIsLiveNow')
 
     if (this.event) {
-      this.$echo.channel(`event.${this.event.id}`).stopListening('EventIsEndedNow')
+      this.$echo.channel(`event.${this.event.id}`).stopListening('EventIsAboutToEnd')
     }
   },
 
@@ -448,7 +448,7 @@ export default {
     },
 
     listenForEventToFinish() {
-      this.$echo.channel(`event.${this.event.id}`).listen('EventIsEndedNow', () => {
+      this.$echo.channel(`event.${this.event.id}`).listen('EventIsAboutToEnd', () => {
         this.$modal.show('extend-event-modal')
       })
     },
