@@ -19,7 +19,9 @@
       >
         {{ jarAmount }}
       </div>
-      <div class="hidden md:block landscape:hidden text-center">{{ jar.name }}</div>
+      <div class="hidden md:block landscape:hidden text-center h-12 overflow-hidden">
+        {{ jar.name }}
+      </div>
     </div>
   </div>
 </template>
