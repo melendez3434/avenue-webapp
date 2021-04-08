@@ -17,7 +17,7 @@
         <h3 class="font-league-gothic text-2xl uppercase tracking-wide text-left">
           {{ event.name }}
         </h3>
-        <h4 class="text-sm text-shadow mb-4">{{ event.attendees_count }} total views</h4>
+        <h4 class="text-sm text-shadow mb-4">{{ event.watch_count }} total views</h4>
 
         <h3 class="font-league-gothic text-xl uppercase tracking-wide">{{ eventDuration }} hs</h3>
         <h3 class="font-league-gothic text-xl uppercase tracking-wide">
