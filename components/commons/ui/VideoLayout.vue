@@ -7,7 +7,7 @@
         <div v-if="event" class="absolute right-0 top-0 z-10 mt-4 mr-8 text-right">
           <div class="font-bold text-shadow">{{ event.name }}</div>
           <div class="text-sm text-shadow">{{ usersOnline.length }} watching now</div>
-          <div class="text-sm text-shadow">{{ event.attendees_count }} total views</div>
+          <div class="text-sm text-shadow">{{ event.watch_count }} total views</div>
         </div>
         <slot v-if="inactiveStreaming" name="placeholder" />
         <slot v-else />
