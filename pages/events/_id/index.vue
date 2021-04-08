@@ -26,6 +26,23 @@
       <JoinEventButton has-long-text :competition="competition" />
     </section>
 
+    <section v-if="competition.sponsors.length" class="container mx-auto mt-20">
+      <div class="flex flex-row gap-4 items-start mb-6">
+        <IcSponsor class="h-8" />
+        <h2 class="text-xl font-bold">Sponsors</h2>
+      </div>
+      <div class="mt-5 px-12 md:px-32 grid grid-cols-2 md:grid-cols-4">
+        <div v-for="sponsor in competition.sponsors" :key="sponsor.id">
+          <img
+            v-if="sponsor.logo"
+            :src="sponsor.logo"
+            :alt="`${sponsor.name} logo`"
+            class="w-full"
+          />
+        </div>
+      </div>
+    </section>
+
     <section v-if="eventIsFuture">
       <Countdown :start-date="competition.starts_at" />
     </section>
@@ -136,19 +153,6 @@
           :talent="talent"
           class="md:w-1/3"
         />
-      </div>
-    </section>
-
-    <section v-if="competition.sponsors.length" class="container mx-auto mt-20">
-      <div class="flex flex-row gap-4 items-start mb-6">
-        <IcSponsor class="h-8" />
-        <h2 class="text-xl font-bold">Sponsors</h2>
-      </div>
-      <div class="mt-5 px-12 md:px-32 grid grid-cols-3">
-        <div v-for="sponsor in competition.sponsors" :key="sponsor.id">
-          <img v-if="sponsor.logo" :src="sponsor.logo" :alt="`${sponsor.name} logo`" class="w-10" />
-          <span class="text-xs font-bold">{{ sponsor.name }}</span>
-        </div>
       </div>
     </section>
   </div>
