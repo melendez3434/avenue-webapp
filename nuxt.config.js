@@ -19,6 +19,9 @@ const config = {
     sentryDSN: process.env.SENTRY_DSN,
     wsUrl: process.env.WS_URL,
     maxRetries: process.env.MAX_RETRIES || 0,
+    gtm: {
+      id: process.env.GOOGLE_TAG_MANAGER_ID,
+    },
   },
 
   privateRuntimeConfig: {},
@@ -82,7 +85,7 @@ const config = {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next', '@nuxtjs/gtm'],
 
   /*
    ** Axios module configuration
