@@ -1,0 +1,91 @@
+<template>
+  <div>
+    <div class="px-6 pb-5 pt-10 bg-theavenue-background flex items-center justify-between">
+      <p class="leading-5 text-xl font-bold">Buy a ticket for {{ event.name }}</p>
+      <button type="button" @click="$modal.hide('purchase-ticket-modal')">
+        <IcClose aria-role="button" aria-label="close" />
+      </button>
+    </div>
+    <div class="flex flex-col p-4 space-y-4">
+      <div class="text-xs">We never store any card details. Safe and secure SSL encrypted.</div>
+      <div class="flex items-center space-x-4">
+        <IcStripe class="w-40 fill-current text-white" />
+        <IcSecured class="w-16 fill-current text-theavenue-green-neon" />
+      </div>
+    </div>
+
+    <form class="mt-3 px-6 pb-10 pt-2" @submit.prevent="buyTicket">
+      <StripeCard
+        ref="stripe"
+        :stripe-validated.sync="stripeValidated"
+        @cardOnFile="cardOnFile = $event"
+      />
+
+      <div v-if="error" class="mb-6 text-theavenue-red-neon text-center">{{ error }}</div>
+
+      <div class="mt-8">
+        <R64Button :disabled="$v.$invalid && !error" full type="submit" :loading="busy">
+          Confirm
+        </R64Button>
+        <button
+          class="text-sm mt-5 underline text-theavenue-white w-full bg-transparent"
+          type="button"
+          @click="$modal.hide('streaming-donate-modal')"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</template>
+<script>
+import IcStripe from '@/assets/svg/stripe.svg?inline'
+import IcSecured from '@/assets/svg/secured.svg?inline'
+import IcClose from '@/assets/svg/close.svg?inline'
+
+export default {
+  name: 'PurchaseTicketModal',
+
+  components: { IcStripe, IcSecured, IcClose },
+
+  props: {
+    event: {
+      type: Object,
+      required: true,
+    },
+  },
+
+  data() {
+    return {
+      stripeValidated: false,
+      cardOnFile: null,
+      error: null,
+      busy: false,
+    }
+  },
+
+  methods: {
+    async buyTicket() {
+      try {
+        this.busy = true
+        await this.$refs.stripe.updateCard()
+        await this.$api.events.buyTicket(this.event.id)
+        this.busy = false
+        this.$modal.hide('purchase-ticket-modal')
+      } catch (e) {
+        this.error = "Couldn't make the purchase. Please try again"
+        this.busy = false
+      }
+    },
+  },
+
+  validations: {
+    stripeValidated: {
+      mustBeTrue(value) {
+        if (this.cardOnFile) return true
+        return !!value
+      },
+    },
+  },
+}
+</script>

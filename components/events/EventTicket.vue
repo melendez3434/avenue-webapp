@@ -57,7 +57,9 @@ export default {
 
       if (this.ticket.authPurchased) return
 
-      console.log('open purchase modal')
+      this.$modal.show('purchase-ticket-modal', {
+        event: this.event,
+      })
     },
   },
 }

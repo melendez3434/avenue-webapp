@@ -52,6 +52,17 @@
     </modal>
 
     <modal
+      name="purchase-ticket-modal"
+      width="100%"
+      classes="max-w-xl inset-x-0 m-auto"
+      height="auto"
+      scrollable
+      @before-open="beforeOpenPurchaseTicket"
+    >
+      <PurchaseTicketModal :event="eventForTicketPurchase" />
+    </modal>
+
+    <modal
       width="100%"
       classes="max-w-md inset-x-0 m-auto"
       name="join-event-modal"
@@ -163,6 +174,7 @@ export default {
       },
       activeCompetition: {},
       warningText: '',
+      eventForTicketPurchase: {},
     }
   },
 
@@ -215,6 +227,11 @@ export default {
       this.modal.active = params.active || 'Login'
       this.modal.title = params.title || 'Welcome to The Avenue'
       this.modal.subtitle = params.subtitle || ''
+    },
+
+    beforeOpenPurchaseTicket(data) {
+      const params = data.params || {}
+      this.eventForTicketPurchase = params.event
     },
 
     beforeOpenWarning(data) {
