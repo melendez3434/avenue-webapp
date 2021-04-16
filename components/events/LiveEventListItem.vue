@@ -6,7 +6,12 @@
       >
         <!-- TODO: change for the competition's icon -->
         <IcBread v-if="event.is_competition" class="mr-2" />
-        <EventTicket v-if="event.is_ticketed" class="mr-4" :event="event" />
+        <EventTicket
+          v-if="event.is_ticketed"
+          class="mr-4"
+          :event="event"
+          @ticketPurchased="$emit('ticketPurchased')"
+        />
         <p class="whitespace-no-wrap truncate max-w-xs lg:max-w-lg xl:max-w-none">
           {{ event.talent.name }}
         </p>
@@ -49,7 +54,13 @@
               WATCH NOW
             </nuxt-link>
           </div>
-          <EventTicket v-else-if="event.is_ticketed" button class="ml-6" :event="event" />
+          <EventTicket
+            v-else-if="event.is_ticketed"
+            button
+            class="ml-6"
+            :event="event"
+            @ticketPurchased="$emit('ticketPurchased')"
+          />
         </div>
       </div>
     </div>

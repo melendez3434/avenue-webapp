@@ -59,6 +59,9 @@ export default {
 
       this.$modal.show('purchase-ticket-modal', {
         event: this.event,
+        callback: () => {
+          this.$emit('ticketPurchased')
+        },
       })
     },
   },

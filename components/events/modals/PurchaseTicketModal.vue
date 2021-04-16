@@ -34,14 +34,12 @@
   </div>
 </template>
 <script>
-import IcStripe from '@/assets/svg/stripe.svg?inline'
-import IcSecured from '@/assets/svg/secured.svg?inline'
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
   name: 'PurchaseTicketModal',
 
-  components: { IcStripe, IcSecured, IcClose },
+  components: { IcClose },
 
   props: {
     event: {
@@ -66,6 +64,7 @@ export default {
         await this.$refs.stripe.updateCard()
         await this.$api.events.buyTicket(this.event.id)
         this.busy = false
+        this.$emit('ticketPurchased')
         this.$modal.hide('purchase-ticket-modal')
       } catch (e) {
         this.error = "Couldn't make the purchase. Please try again"

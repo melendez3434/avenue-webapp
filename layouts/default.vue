@@ -59,7 +59,10 @@
       scrollable
       @before-open="beforeOpenPurchaseTicket"
     >
-      <PurchaseTicketModal :event="eventForTicketPurchase" />
+      <PurchaseTicketModal
+        :event="ticketPurchase.event"
+        @ticketPurchased="ticketPurchase.callback()"
+      />
     </modal>
 
     <modal
@@ -173,8 +176,11 @@ export default {
         jar: null,
       },
       activeCompetition: {},
+      ticketPurchase: {
+        event: null,
+        callback: () => {},
+      },
       warningText: '',
-      eventForTicketPurchase: {},
     }
   },
 
@@ -231,7 +237,8 @@ export default {
 
     beforeOpenPurchaseTicket(data) {
       const params = data.params || {}
-      this.eventForTicketPurchase = params.event
+      this.ticketPurchase.event = params.event
+      this.ticketPurchase.callback = params.callback
     },
 
     beforeOpenWarning(data) {
