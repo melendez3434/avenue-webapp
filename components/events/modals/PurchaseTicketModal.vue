@@ -6,13 +6,8 @@
         <IcClose aria-role="button" aria-label="close" />
       </button>
     </div>
-    <div class="flex flex-col p-4 space-y-4">
-      <div class="text-xs">We never store any card details. Safe and secure SSL encrypted.</div>
-      <div class="flex items-center space-x-4">
-        <IcStripe class="w-40 fill-current text-white" />
-        <IcSecured class="w-16 fill-current text-theavenue-green-neon" />
-      </div>
-    </div>
+
+    <StripeLogos />
 
     <form class="mt-3 px-6 pb-10 pt-2" @submit.prevent="buyTicket">
       <StripeCard
