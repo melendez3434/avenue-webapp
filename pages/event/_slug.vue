@@ -43,6 +43,11 @@ export default {
 
     try {
       const { data: event } = await $api.events.get(params.slug)
+
+      if (event.is_ticketed && !event.ticketDetails.authPurchased) {
+        return redirect('/')
+      }
+
       const selectedAsset = event.assets.length ? event.assets[0].playback_id : ''
       return { event, selectedAsset }
     } catch (e) {

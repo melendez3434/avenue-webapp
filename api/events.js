@@ -36,4 +36,8 @@ export default $axios => ({
   view(slug) {
     return $axios.$post(`${resource}/${slug}/attendees`)
   },
+
+  buyTicket(event_id) {
+    return $axios.$post('api/tickets/', { event_id })
+  },
 })
