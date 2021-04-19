@@ -26,7 +26,7 @@
       <JoinEventButton has-long-text :competition="competition" />
     </section>
 
-    <section v-if="competition.sponsors.length" class="container mx-auto mt-20 w-4/6">
+    <section v-if="competition.sponsors.length" class="container md:mx-auto mt-20 w-4/6">
       <div class="flex flex-row gap-4 items-start mb-6">
         <IcSponsor class="h-8" />
         <h2 class="text-xl font-bold">Sponsors</h2>
