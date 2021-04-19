@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import spacetime from 'spacetime'
+
 export default {
   props: {
     startDate: {
@@ -56,6 +58,15 @@ export default {
     days() {
       return this.hours * 24
     },
+    now() {
+      return spacetime.now()
+    },
+    end() {
+      return spacetime(this.startDate)
+    },
+    distance() {
+      return this.now.diff(this.end, 'milliseconds')
+    },
   },
 
   mounted() {
@@ -73,13 +84,10 @@ export default {
 
     showRemaining() {
       this.timer = setInterval(() => {
-        const now = new Date()
-        const end = new Date(this.startDate)
-        const distance = end.getTime() - now.getTime()
-        const days = Math.floor(distance / this.days)
-        const hours = Math.floor((distance % this.days) / this.hours)
-        const minutes = Math.floor((distance % this.hours) / this.minutes)
-        const seconds = Math.floor((distance % this.minutes) / this.seconds)
+        const days = Math.floor(this.distance / this.days)
+        const hours = Math.floor((this.distance % this.days) / this.hours)
+        const minutes = Math.floor((this.distance % this.hours) / this.minutes)
+        const seconds = Math.floor((this.distance % this.minutes) / this.seconds)
         this.displayDays = this.formatNum(days)
         this.displayHours = this.formatNum(hours)
         this.displayMinutes = this.formatNum(minutes)
