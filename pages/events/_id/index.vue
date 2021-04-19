@@ -31,7 +31,7 @@
         <IcSponsor class="h-8" />
         <h2 class="text-xl font-bold">Sponsors</h2>
       </div>
-      <div class="mt-5 px-12 md:px-32 grid grid-cols-2 md:grid-cols-4">
+      <div class="mt-5 grid grid-cols-2 md:grid-cols-4">
         <div v-for="sponsor in competition.sponsors" :key="sponsor.id">
           <img
             v-if="sponsor.logo"
