@@ -52,6 +52,20 @@
     </modal>
 
     <modal
+      name="purchase-ticket-modal"
+      width="100%"
+      classes="max-w-xl inset-x-0 m-auto"
+      height="auto"
+      scrollable
+      @before-open="beforeOpenPurchaseTicket"
+    >
+      <PurchaseTicketModal
+        :event="ticketPurchase.event"
+        @ticketPurchased="ticketPurchase.callback()"
+      />
+    </modal>
+
+    <modal
       width="100%"
       classes="max-w-md inset-x-0 m-auto"
       name="join-event-modal"
@@ -162,6 +176,10 @@ export default {
         jar: null,
       },
       activeCompetition: {},
+      ticketPurchase: {
+        event: null,
+        callback: () => {},
+      },
       warningText: '',
     }
   },
@@ -215,6 +233,12 @@ export default {
       this.modal.active = params.active || 'Login'
       this.modal.title = params.title || 'Welcome to The Avenue'
       this.modal.subtitle = params.subtitle || ''
+    },
+
+    beforeOpenPurchaseTicket(data) {
+      const params = data.params || {}
+      this.ticketPurchase.event = params.event
+      this.ticketPurchase.callback = params.callback
     },
 
     beforeOpenWarning(data) {

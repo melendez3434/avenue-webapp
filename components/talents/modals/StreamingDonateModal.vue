@@ -6,39 +6,15 @@
         <IcClose aria-role="button" aria-label="close" />
       </button>
     </div>
-    <div class="flex flex-col p-4 space-y-4">
-      <div class="text-xs">We never store any card details. Safe and secure SSL encrypted.</div>
-      <div class="flex items-center space-x-4">
-        <IcStripe class="w-40 fill-current text-white" />
-        <IcSecured class="w-16 fill-current text-theavenue-green-neon" />
-      </div>
-    </div>
+
+    <StripeLogos />
 
     <form class="mt-3 px-6 pb-10 pt-2" @submit.prevent="createDonation">
-      <div class="mt-3">
-        <div v-if="loadingCardData" class="mb-10 text-gray-300">Loading Card ...</div>
-        <R64Input v-else v-model="donation.name" :disabled="loadingCardData" label="Name on Card" />
-      </div>
-      <div class="mt-3">
-        <div v-if="card">
-          <span>Credit Card</span>
-          <div class="h-38px bg-theavenue-background-dark flex items-center justify-between px-3">
-            <span>**** **** **** {{ card.last4 }}</span>
-            <span>{{ card.exp_month }} / {{ card.exp_year }}</span>
-          </div>
-          <div class="w-full flex justify-end mt-2">
-            <button
-              v-if="!loadingCardData"
-              type="button"
-              class="text-xs bg-theavenue-background-light border border-theavenue-off-white text-theavenue-off-white px-2 py-0.5 rounded"
-              @click="card = null"
-            >
-              Change card
-            </button>
-          </div>
-        </div>
-        <StripeInput v-else-if="!loadingCardData" ref="stripe" @change="onStripeChange" />
-      </div>
+      <StripeCard
+        ref="stripe"
+        :stripe-validated.sync="donation.stripeValidated"
+        @cardOnFile="cardOnFile = $event"
+      />
 
       <p class="text-theavenue-white text-md mt-5">Quick Select Amount</p>
       <div
@@ -94,21 +70,19 @@
 </template>
 <script>
 import { required, minValue, maxValue } from 'vuelidate/lib/validators'
-import StripeInput from '@/components/commons/ui/StripeInput'
-import IcStripe from '@/assets/svg/stripe.svg?inline'
-import IcSecured from '@/assets/svg/secured.svg?inline'
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
   name: 'StreamingDonateModal',
 
-  components: { StripeInput, IcStripe, IcSecured, IcClose },
+  components: { IcClose },
 
   props: {
     event: {
       type: String,
       default: '',
     },
+
     jar: {
       type: Number,
       default: null,
@@ -118,8 +92,6 @@ export default {
   data() {
     return {
       donation: {
-        name: '',
-        card: '',
         amount: '',
         stripeValidated: false,
       },
@@ -131,18 +103,13 @@ export default {
         { value: '1000', label: '$10.00' },
         { value: '2000', label: '$20.00' },
       ],
-      card: null,
+      cardOnFile: null,
       error: null,
       busy: false,
-      loadingCardData: false,
     }
   },
 
   computed: {
-    isStripeCustomer() {
-      return this.$auth.user.has_stripe_customer_id
-    },
-
     isCustomAmountSet() {
       return this.customAmount.length
     },
@@ -157,35 +124,16 @@ export default {
     },
   },
 
-  async created() {
-    if (this.isStripeCustomer) {
-      await this.getCardData()
-    }
-  },
-
   methods: {
-    onStripeChange(event) {
-      this.donation.stripeValidated = event.complete
-    },
-
     async createDonation() {
       try {
         this.busy = true
-        if (!this.isStripeCustomer) {
-          const data = await this.$refs.stripe.createToken({ name: this.donation.name })
-          await this.$api.global.stripe(data.token.id)
-          await this.$auth.fetchUser()
-        } else if (!this.card) {
-          const data = await this.$refs.stripe.createToken({ name: this.donation.name })
-          await this.$api.global.updateStripe(data.token.id)
-        }
-
+        await this.$refs.stripe.updateCard()
         await this.$api.talent.tip({ tip_jar_id: this.jar, amount: this.donationFormatted })
-        await this.getCardData()
-
         this.busy = false
         this.$modal.hide('streaming-donate-modal')
       } catch (e) {
+        console.log(e)
         this.error = "Couldn't make the donation. Please try again"
         this.busy = false
       }
@@ -201,20 +149,6 @@ export default {
       this.setAmount(amount)
       this.customAmount = ''
     },
-
-    async getCardData() {
-      this.loadingCardData = true
-      try {
-        const { data } = await this.$api.global.stripeCard()
-        if (!data) return
-        this.card = data
-        this.donation.name = this.card.name
-        this.loadingCardData = false
-      } catch (e) {
-        console.error(e)
-        this.loadingCardData = false
-      }
-    },
   },
 
   validations: {
@@ -222,7 +156,7 @@ export default {
       amount: { required, minValue: minValue(1), maxValue: maxValue(100000) },
       stripeValidated: {
         mustBeTrue(value) {
-          if (this.card) return true
+          if (this.cardOnFile) return true
           return !!value
         },
       },

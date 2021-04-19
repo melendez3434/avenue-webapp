@@ -58,15 +58,6 @@ export default {
     days() {
       return this.hours * 24
     },
-    now() {
-      return spacetime.now()
-    },
-    end() {
-      return spacetime(this.startDate)
-    },
-    distance() {
-      return this.now.diff(this.end, 'milliseconds')
-    },
   },
 
   mounted() {
@@ -84,10 +75,13 @@ export default {
 
     showRemaining() {
       this.timer = setInterval(() => {
-        const days = Math.floor(this.distance / this.days)
-        const hours = Math.floor((this.distance % this.days) / this.hours)
-        const minutes = Math.floor((this.distance % this.hours) / this.minutes)
-        const seconds = Math.floor((this.distance % this.minutes) / this.seconds)
+        const now = spacetime.now()
+        const end = spacetime(this.startDate)
+        const distance = now.diff(end, 'milliseconds')
+        const days = Math.floor(distance / this.days)
+        const hours = Math.floor((distance % this.days) / this.hours)
+        const minutes = Math.floor((distance % this.hours) / this.minutes)
+        const seconds = Math.floor((distance % this.minutes) / this.seconds)
         this.displayDays = this.formatNum(days)
         this.displayHours = this.formatNum(hours)
         this.displayMinutes = this.formatNum(minutes)

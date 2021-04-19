@@ -6,6 +6,12 @@
       >
         <!-- TODO: change for the competition's icon -->
         <IcBread v-if="event.is_competition" class="mr-2" />
+        <EventTicket
+          v-if="event.is_ticketed"
+          class="mr-4"
+          :event="event"
+          @ticketPurchased="$emit('ticketPurchased')"
+        />
         <p class="whitespace-no-wrap truncate max-w-xs lg:max-w-lg xl:max-w-none">
           {{ event.talent.name }}
         </p>
@@ -39,7 +45,7 @@
             </p>
             <p class="text-xs md:text-base leading-6 whitespace-no-wrap">{{ dateFormatted }}</p>
           </div>
-          <div v-if="isLive" class="ml-6">
+          <div v-if="showWatchNow" class="ml-6">
             <nuxt-link
               :to="{ name: 'event-slug', params: { slug: event.id } }"
               class="font-library border-2 py-2 px-3 uppercase text-theavenue-red-neon text-light-red text-md md:text-2xl rounded-md border-theavenue-red-neon whitespace-no-wrap"
@@ -48,6 +54,13 @@
               WATCH NOW
             </nuxt-link>
           </div>
+          <EventTicket
+            v-else-if="event.is_ticketed"
+            button
+            class="ml-6"
+            :event="event"
+            @ticketPurchased="$emit('ticketPurchased')"
+          />
         </div>
       </div>
     </div>
@@ -105,6 +118,13 @@ export default {
 
     baseUrl() {
       return process.client ? window.location.href : ''
+    },
+
+    showWatchNow() {
+      if (!this.isLive) return false
+      if (!this.event.is_ticketed) return true
+
+      return this.event.ticketDetails.authPurchased
     },
   },
 }
