@@ -4,8 +4,8 @@
       <div
         class="w-full bg-theavenue-white text-theavenue-black flex items-center justify-center font-league-gothic text-2xl md:text-6xl py-2 px-4 uppercase"
       >
-        <!-- TODO: change for the competition's icon -->
-        <IcBread v-if="event.is_competition" class="mr-2" />
+        <CompetitionIcon v-if="event.is_competition" :icon="event.competition.icon" class="mr-2" />
+
         <EventTicket
           v-if="event.is_ticketed"
           class="mr-4"
@@ -69,12 +69,11 @@
 <script>
 import spacetime from 'spacetime'
 import ShareButton from '@/components/commons/ui/ShareButton'
-import IcBread from '@/assets/svg/bread_black.svg?inline'
 
 export default {
   name: 'LiveEventListItem',
 
-  components: { ShareButton, IcBread },
+  components: { ShareButton },
 
   props: {
     event: {
