@@ -7,9 +7,7 @@
       {{ competition.name }}
     </h1>
     <div class="w-full flex items-center justify-center my-4">
-      <!-- TODO: change for the competition's icon -->
-      <IcBread />
-      <!-- <img :src="competition.icon" alt="" /> -->
+      <CompetitionIcon v-if="competition.icon" :icon="competition.icon" />
     </div>
     <p class="text-avenue-white mt-5 h-20 overflow-hidden">{{ competition.description }}...</p>
     <p class="text-avenue-grey mt-5 text-xs">From {{ dateFrom }} to {{ dateTo }}</p>
@@ -33,14 +31,9 @@
 </template>
 <script>
 import spacetime from 'spacetime'
-import IcBread from '@/assets/svg/bread.svg?inline'
 
 export default {
   name: 'CompetitionListItem',
-
-  components: {
-    IcBread,
-  },
 
   props: {
     competition: {

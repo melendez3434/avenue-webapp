@@ -75,11 +75,11 @@ const config = {
    ** Nuxt.js dev-modules
    */
   buildModules: [
-    // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/svg',
     '@nuxtjs/laravel-echo',
     '@nuxtjs/device',
+    '@nuxtjs/fontawesome',
   ],
 
   /*
@@ -156,6 +156,21 @@ const config = {
     cluster: process.env.PUSHER_CLUSTER,
     encrypted: true,
     plugins: ['~/plugins/echo.js'],
+  },
+
+  fontawesome: {
+    icons: {
+      solid: [
+        'faBreadSlice',
+        'faCocktail',
+        'faCarrot',
+        'faBeer',
+        'faCut',
+        'faDrum',
+        'faGuitar',
+        'faCompactDisc',
+      ],
+    },
   },
 }
 

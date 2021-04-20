@@ -7,7 +7,7 @@
         <h1 class="text-3xl font-library text-center text-avenue-white-light text-light-white">
           {{ competition.name }}
         </h1>
-        <IcBread />
+        <CompetitionIcon v-if="competition.icon" :icon="competition.icon" />
       </div>
       <p class="max-w-xl mx-auto text-avenue-white text-center mt-5 text-xl">
         {{ competition.description }}
@@ -164,7 +164,6 @@ import IcTrophy from '@/assets/svg/trophy.svg?inline'
 import IcPodium from '@/assets/svg/podium.svg?inline'
 import IcSponsor from '@/assets/svg/sponsor.svg?inline'
 import IcScoreboard from '@/assets/svg/scoreboard.svg?inline'
-import IcBread from '@/assets/svg/bread.svg?inline'
 
 export default {
   name: 'EventDetailPage',
@@ -177,7 +176,6 @@ export default {
     IcPodium,
     IcSponsor,
     IcScoreboard,
-    IcBread,
   },
 
   async fetch() {
