@@ -7,7 +7,7 @@
         <h1 class="text-4xl font-library text-center text-avenue-white-light text-light-white">
           {{ currentCompetition.name }}
         </h1>
-        <CompetitionIcon v-if="competition.icon" :icon="competition.icon" />
+        <CompetitionIcon v-if="currentCompetition.icon" :icon="currentCompetition.icon" />
       </div>
       <h6 class="mt-5 text-lg">
         Four weeks competition featuring The Avenue’s top talent
