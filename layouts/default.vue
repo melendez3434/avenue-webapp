@@ -120,7 +120,12 @@
           aria-label="close"
           @click="$modal.hide('mobile-app-modal')"
         />
-        <div class="text-xl">Download our Mobile app</div>
+        <div class="text-xl" @click="$modal.hide('mobile-app-modal')">
+          <span>Trying to sign up for one of our competitions? Please sign up</span>
+          <nuxt-link :to="{ name: 'events' }">here</nuxt-link>
+          <span>.</span>
+        </div>
+        <div class="text-xl">For the best streaming experience download our app.</div>
         <IcPhone />
         <a href="https://apps.apple.com/us/app/the-avenue-viewer/id1555461012">
           <IcAppStore />
