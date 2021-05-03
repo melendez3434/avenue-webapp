@@ -16,7 +16,7 @@
     >
       <div :class="{ 'opacity-50': ticket.authPurchased }">
         <span>$</span>
-        <span>{{ ticket.price_formated }}</span>
+        <span>{{ ticket.price_formatted }}</span>
       </div>
       <div v-if="ticket.authPurchased" class="text-white text-xs uppercase mt-1">Purchased</div>
     </div>

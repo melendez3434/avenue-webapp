@@ -17,7 +17,15 @@
       />
 
       <div v-if="error" class="mb-6 text-theavenue-red-neon text-center">{{ error }}</div>
-
+      <div class="font-bold text-theavenue-green-neon">
+        ${{ event.ticketDetails.total_cost_formatted }}
+      </div>
+      <div class="text-sm">
+        <span>The total includes processing fees of</span>
+        <span>${{ event.ticketDetails.fees_formatted }}</span>
+        <span>added to the ticket price of</span>
+        <span>${{ event.ticketDetails.price_formatted }}.</span>
+      </div>
       <div class="mt-8">
         <R64Button :disabled="$v.$invalid && !error" full type="submit" :loading="busy">
           Confirm
@@ -25,7 +33,7 @@
         <button
           class="text-sm mt-5 underline text-theavenue-white w-full bg-transparent"
           type="button"
-          @click="$modal.hide('streaming-donate-modal')"
+          @click="$modal.hide('purchase-ticket-modal')"
         >
           Cancel
         </button>

@@ -7,7 +7,7 @@
         <h1 class="text-3xl font-library text-center text-avenue-white-light text-light-white">
           {{ competition.name }}
         </h1>
-        <IcBread />
+        <CompetitionIcon v-if="competition.icon" :icon="competition.icon" />
       </div>
       <p class="mt-5 text-lg font-bold">
         {{ competition.description }}
@@ -147,14 +147,10 @@
 </template>
 
 <script>
-import IcBread from '@/assets/svg/bread.svg?inline'
-
 export default {
   name: 'JoinEventPage',
 
   auth: false,
-
-  components: { IcBread },
 
   async fetch() {
     try {

@@ -4,7 +4,11 @@
   >
     <LogoLights class="w-full" />
     <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
-      <CurrentEventListItem />
+      <CompetitionMarqueeItem
+        v-for="competition in competitions"
+        :key="competition.id"
+        :competition="competition"
+      />
       <LiveEventListItem
         v-for="event in events"
         :key="event.id"
@@ -51,7 +55,7 @@
 <script>
 import { mapState } from 'vuex'
 import spacetime from 'spacetime'
-import CurrentEventListItem from '@/components/events/CurrentEventListItem'
+import CompetitionMarqueeItem from '@/components/events/CompetitionMarqueeItem'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
 import LogoLights from '@/components/commons/LogoLights'
 import CompetitionModalAnnouncement from '@/components/competitions/CompetitionModalAnnouncement'
@@ -65,16 +69,17 @@ export default {
     LiveEventListItem,
     LogoLights,
     CompetitionModalAnnouncement,
-    CurrentEventListItem,
+    CompetitionMarqueeItem,
   },
 
   async asyncData({ $api }) {
     try {
       const { data: events, meta } = await $api.events.list({ page: 0 })
-      return { events, meta }
+      const { data: competitions } = await $api.competitions.list()
+      return { events, meta, competitions }
     } catch (error) {
       console.warn(error)
-      return { events: [], meta: {} }
+      return { events: [], meta: {}, competitions: [] }
     }
   },
 
