@@ -13,7 +13,7 @@
     <p class="my-5 text-lg px-6">
       You will need to be signed up for a talent account to compete
     </p>
-    <IcTrophy />
+    <IcTrophy class="h-28" />
     <button
       class="mx-auto my-4 border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white focus:outline-none cursor-pointer"
       @click="buttonActions('talent-signup-modal')"
