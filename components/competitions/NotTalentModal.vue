@@ -11,9 +11,9 @@
       It seems that you aren't signed up for a talent account yet
     </p>
     <p class="my-5 text-lg px-6">
-      You will need to be signed up for a talent account to compete in {{ currentCompetition.name }}
+      You will need to be signed up for a talent account to compete
     </p>
-    <IcDish />
+    <IcTrophy class="h-28" />
     <button
       class="mx-auto my-4 border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white focus:outline-none cursor-pointer"
       @click="buttonActions('talent-signup-modal')"
@@ -24,14 +24,14 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import IcDish from '@/assets/svg/dish.svg?inline'
 import IcClose from '@/assets/svg/close.svg?inline'
+import IcTrophy from '@/assets/svg/trophy.svg?inline'
 
 export default {
   name: 'NotTalentModal',
 
   components: {
-    IcDish,
+    IcTrophy,
     IcClose,
   },
 
