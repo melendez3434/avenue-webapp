@@ -13,7 +13,7 @@
     <p class="my-5 text-lg px-6">
       <slot />
     </p>
-    <IcDish />
+    <IcTrophy class="h-28" />
     <nuxt-link
       :to="{ name: 'events' }"
       class="uppercase border border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-10 focus:outline-none cursor-pointer"
@@ -23,14 +23,14 @@
   </div>
 </template>
 <script>
-import IcDish from '@/assets/svg/dish.svg?inline'
+import IcTrophy from '@/assets/svg/trophy.svg?inline'
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
   name: 'CompetitionModalAnnouncement',
 
   components: {
-    IcDish,
+    IcTrophy,
     IcClose,
   },
 
