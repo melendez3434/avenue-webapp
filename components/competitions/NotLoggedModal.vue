@@ -10,9 +10,9 @@
     <p class="mt-8 text-lg font-bold">It seems that you aren't signed into The Avenue</p>
     <p class="my-5 text-lg px-6">
       If you already have an account, just log in! You will need to be signed up for a talent
-      account to compete in {{ currentCompetition.name }}
+      account to compete
     </p>
-    <IcDish />
+    <IcTrophy />
     <button
       class="mx-auto my-4 border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white focus:outline-none cursor-pointer"
       @click="buttonActions('user-access-modal', { active: 'signup' })"
@@ -29,14 +29,14 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import IcDish from '@/assets/svg/dish.svg?inline'
+import IcTrophy from '@/assets/svg/trophy.svg?inline'
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
   name: 'NotLoggedModal',
 
   components: {
-    IcDish,
+    IcTrophy,
     IcClose,
   },
 
