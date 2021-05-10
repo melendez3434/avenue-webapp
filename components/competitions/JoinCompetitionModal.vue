@@ -99,11 +99,7 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import { required, helpers } from 'vuelidate/lib/validators'
-// const url = helpers.regex(
-//   'url',
-//   /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'() *+,;=.]+$/
-// )
+import { required } from 'vuelidate/lib/validators'
 import IcPlus from '@/assets/svg/plus.svg?inline'
 
 export default {
