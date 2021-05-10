@@ -67,7 +67,6 @@
                 v-model="form.rounds_info[index].charity"
                 label="Name"
                 :v="v.charity"
-                error-message="Charity name is required"
                 @input="v.charity.$touch"
               />
             </div>
@@ -200,8 +199,8 @@ export default {
         motivation: { required },
         rounds_info: {
           $each: {
-            charity: { required },
-            charity_website: { required, url },
+            charity: {},
+            charity_website: { url },
           },
         },
       },
