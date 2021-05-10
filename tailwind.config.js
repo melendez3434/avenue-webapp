@@ -13,6 +13,7 @@ module.exports = {
       screens: {
         portrait: { raw: '(orientation: portrait) and (hover: none) and (pointer: coarse)' },
         landscape: { raw: '(orientation: landscape) and (hover: none) and (pointer: coarse)' },
+        '2xl': '1536px',
       },
       colors: {
         avenue: {
