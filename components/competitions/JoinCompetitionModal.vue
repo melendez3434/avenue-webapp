@@ -10,7 +10,7 @@
       <form class="mt-3 px-6 pb-10 pt-5" @submit.prevent="join">
         <R64Input
           v-model="form.name"
-          label="Your Name"
+          label="Your Name *"
           :v="$v.form.name"
           error-message="Artist or group name is required"
         />
@@ -18,17 +18,12 @@
           <R64Input v-model="form.business_name" label="Restaurant or Business Name" />
         </div>
         <div class="mt-5">
-          <R64Input
-            v-model="form.website"
-            label="Restaurant or Business Website"
-            :v="$v.form.website"
-            error-message="Url not valid"
-          />
+          <R64Input v-model="form.website" label="Restaurant or Business Website" />
         </div>
         <div class="mt-5">
           <R64Input
             v-model="form.city"
-            label="City"
+            label="City *"
             :v="$v.form.city"
             error-message="City is required"
           />
@@ -36,7 +31,7 @@
         <div class="mt-5">
           <R64Input
             v-model="form.state"
-            label="State"
+            label="State *"
             :v="$v.form.state"
             error-message="State is required"
           />
@@ -45,7 +40,7 @@
         <div class="mt-5">
           <R64Textarea
             v-model="form.motivation"
-            label="Tell your viewers what motivates you to win"
+            label="Tell your viewers what motivates you to win *"
             :v="$v.form.motivation"
             error-message="Motivation text is required"
           />
@@ -67,7 +62,6 @@
                 v-model="form.rounds_info[index].charity"
                 label="Name"
                 :v="v.charity"
-                error-message="Charity name is required"
                 @input="v.charity.$touch"
               />
             </div>
@@ -76,7 +70,6 @@
                 v-model="form.rounds_info[index].charity_website"
                 label="Website"
                 :v="v.charity_website"
-                error-message="Charity website is invalid"
                 @input="v.charity_website.$touch"
               />
             </div>
@@ -106,11 +99,7 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import { required, helpers } from 'vuelidate/lib/validators'
-const url = helpers.regex(
-  'url',
-  /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/
-)
+import { required } from 'vuelidate/lib/validators'
 import IcPlus from '@/assets/svg/plus.svg?inline'
 
 export default {
@@ -196,12 +185,11 @@ export default {
         name: { required },
         city: { required },
         state: { required },
-        website: { url },
         motivation: { required },
         rounds_info: {
           $each: {
-            charity: { required },
-            charity_website: { required, url },
+            charity: {},
+            charity_website: {},
           },
         },
       },
