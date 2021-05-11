@@ -4,7 +4,7 @@
       <img src="@/assets/images/singing_girl.jpg" alt="man playing guitar smiling" class="w-full" />
       <div class="lg:absolute bottom-0 bg-avenue-blue-dark w-full p-6 sm:p-20 lg:px-64 lg:py-24 ">
         <div class="mx-auto w-full md:w-2/3">
-          <h1 class="font-bold text-2xl lg:text-4xl">
+          <h1 class="font-semibold text-2xl lg:text-4xl">
             Start Your Journey As A Live Performer
           </h1>
           <p class="my-4 leading-loose lg:text-lg 2xl:text-xl">
@@ -30,7 +30,7 @@
         class="w-full sm:w-1/2 lg:w-1/3"
       />
       <div class="flex flex-col sm:justify-center space-y-5">
-        <quote class="font-bold text-xl lg:text-3xl mb-6">
+        <quote class="font-semibold text-xl lg:text-3xl mb-6">
           Cooking on The Avenue has enabled me to tap into my creativity and entertain others.
         </quote>
         <div class="flex flex-col space-y-1">
@@ -46,6 +46,25 @@
               <span class="text-xs">135k followers</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+    <section class="w-full h-auto p-6 sm:p-12  xl:py-16 xl:px-24 2xl:px-36 bg-avenue-blue-dark">
+      <h2 class="font-semibold text-2xl lg:text-3xl mb-6 md:mb-10">Why Join The Avenue?</h2>
+      <div class="md:flex space-y-6 md:space-x-12 md:space-y-0">
+        <div>
+          <h3 class="font-semibold text-lg lg:text-xl">Increase your following</h3>
+          <p class="mt-2 leading-loose 2xl:text-lg">
+            On The Avenue you can share your passion and monetize your talent! In this arena, you
+            can bring your fans and gain new ones.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg lg:text-xl">Earn money for your work</h3>
+          <p class="mt-2 leading-loose 2xl:text-lg">
+            On The Avenue you can share your passion and monetize your talent! In this arena, you
+            can bring your fans and gain new ones.
+          </p>
         </div>
       </div>
     </section>
