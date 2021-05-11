@@ -7,38 +7,72 @@
           <h1 class="font-bold text-2xl lg:text-4xl">
             Start Your Journey As A Live Performer
           </h1>
-          <p class="my-4 leading-loose lg:text-lg 2xl:text-2xl">
+          <p class="my-4 leading-loose lg:text-lg 2xl:text-xl">
             On The Avenue you can share your passion and monetize your talent! In this arena, you
             can bring your fans and gain new ones. The difference between this and sharing your
             talent for free on Instagram Live is your fans can TIP you as you perform! 🤑
           </p>
-          <button class="px-4 py-2 bg-white text-black text-lg transform scale-100 hover:scale-105">
+          <button
+            class="px-4 py-2 bg-white text-black text-lg transform scale-100 hover:scale-105"
+            @click="openSignup()"
+          >
             Sign Up
           </button>
         </div>
       </div>
     </section>
     <section
-      class="w-full h-auto p-6 sm:p-12 lg:p-28 xl:p-48 bg-white flex flex-col lg:flex-row gap-6 lg:gap-12"
+      class="w-full h-auto p-6 sm:p-12  xl:py-16 xl:px-24 2xl:px-36 bg-white text-black flex flex-col md:flex-row gap-6 lg:gap-12"
     >
       <img
         src="@/assets/images/performers_girl_1.jpg"
-        alt="gitl smiling and resting her head on her hand in front of a microphone"
+        alt="gitl smiling in front of a microphone and resting her head on her hand"
         class="w-full sm:w-1/2 lg:w-1/3"
       />
-      <div>
-        <quote class="text-black font-bold text-xl lg:text-3xl">
+      <div class="flex flex-col sm:justify-center space-y-5">
+        <quote class="font-bold text-xl lg:text-3xl mb-6">
           Cooking on The Avenue has enabled me to tap into my creativity and entertain others.
         </quote>
+        <div class="flex flex-col space-y-1">
+          <span>Chef “JR” Robinson Kitchencray™️</span>
+          <span>Personal Chef</span>
+          <div class="flex space-x-6">
+            <div class="flex space-x-1">
+              <IcInsta class="h-4" />
+              <span class="text-xs">242k followers</span>
+            </div>
+            <div class="flex space-x-1">
+              <IcTwitter class="h-4" />
+              <span class="text-xs">135k followers</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import IcInsta from '@/assets/svg/instagram_color.svg?inline'
+import IcTwitter from '@/assets/svg/twitter_blue.svg?inline'
+
 export default {
   name: 'Performers',
 
   auth: false,
+
+  components: { IcInsta, IcTwitter },
+
+  methods: {
+    openSignup() {
+      if (!this.$auth.user) {
+        this.$modal.show('user-access-modal', { active: 'signup' })
+      } else if (this.$auth.loggedIn && !this.$auth.user.talent_id) {
+        this.$modal.show('talent-sign-up-modal')
+      } else {
+        this.$modal.show('already-talent-modal')
+      }
+    },
+  },
 }
 </script>

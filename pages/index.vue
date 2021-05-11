@@ -46,7 +46,7 @@
       height="auto"
     >
       <CompetitionModalAnnouncement @close="closeModal('user-event-modal')">
-        Support your favorite performers as they compete for weekly and overall prizes.
+        Support your favorite performers as they compete for weekly and overall prizes
       </CompetitionModalAnnouncement>
     </modal>
   </div>
