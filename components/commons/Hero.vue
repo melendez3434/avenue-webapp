@@ -2,16 +2,16 @@
   <div class="w-full relative">
     <img src="@/assets/images/hero.jpg" alt="man recording music on a studio" class="w-full" />
     <div class="absolute top-6 md:top-1/4 p-2 md:p-6 lg:p-10">
-      <h1 class="font-bold text-lg md:text-3xl lg:text-6xl 3xl:text-8xl leading-none	">
+      <h1 class="font-bold text-lg md:text-3xl lg:text-6xl 3xl:text-8xl leading-none">
         Watch Live
       </h1>
-      <h1 class="font-bold text-lg md:text-3xl lg:text-6xl 3xl:text-7xl leading-none	">
+      <h1 class="font-bold text-lg md:text-3xl lg:text-6xl 3xl:text-7xl leading-none">
         Performances.
       </h1>
-      <h1 class="font-bold text-lg md:text-3xl lg:text-6xl 3xl:text-7xl leading-none	">
+      <h1 class="font-bold text-lg md:text-3xl lg:text-6xl 3xl:text-7xl leading-none">
         No Cost to Perform.
       </h1>
-      <h1 class="font-bold text-lg md:text-3xl lg:text-6xl 3xl:text-7xl leading-none	">
+      <h1 class="font-bold text-lg md:text-3xl lg:text-6xl 3xl:text-7xl leading-none">
         No Cost to Watch.
       </h1>
       <div class="mt-4 md:mt-10 space-x-2 md:space-x-6">

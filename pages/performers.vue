@@ -30,7 +30,7 @@
         class="w-full sm:w-1/2 "
       />
       <div class="flex flex-col sm:justify-center space-y-5">
-        <quote class="font-semibold text-xl lg:text-3xl 3xl:text-5xl mb-6">
+        <quote class="font-semibold text-xl lg:text-3xl 3xl:text-5xl md:mb-6">
           Cooking on The Avenue has enabled me to tap into my creativity and entertain others.
         </quote>
         <div class="flex flex-col space-y-1 lg:space-y-2">
@@ -91,9 +91,9 @@
         </p>
       </div>
       <img
-        src=" @/assets/images/stage_man.jpg"
+        src=" @/assets/images/stage-man.jpg"
         alt="man performing in a concert"
-        class="w-full sm:w-1/2 "
+        class="w-full sm:w-1/2"
       />
     </section>
     <section
