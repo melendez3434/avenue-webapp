@@ -22,7 +22,7 @@
       </div>
     </section>
     <section
-      class="w-full h-auto p-6 sm:p-12  xl:py-16 xl:px-24 2xl:px-36 bg-white text-black flex flex-col md:flex-row gap-6 lg:gap-12"
+      class="w-full h-auto p-6 sm:p-12  xl:py-16 xl:px-24 2xl:px-36 3xl:px-60 3xl:py-24 bg-white text-black flex flex-col md:flex-row gap-6 lg:gap-12"
     >
       <img
         src="@/assets/images/performers_girl_1.jpg"
@@ -49,7 +49,9 @@
         </div>
       </div>
     </section>
-    <section class="w-full h-auto p-6 sm:p-12  xl:py-16 xl:px-24 2xl:px-36 bg-avenue-blue-dark">
+    <section
+      class="w-full h-auto p-6 sm:p-12  xl:py-16 xl:px-24 2xl:px-36 3xl:px-60 3xl:py-24 bg-avenue-blue-dark"
+    >
       <h2 class="font-semibold text-2xl lg:text-3xl mb-6 md:mb-10">Why Join The Avenue?</h2>
       <div class="md:flex space-y-6 md:space-x-12 md:space-y-0">
         <div>
