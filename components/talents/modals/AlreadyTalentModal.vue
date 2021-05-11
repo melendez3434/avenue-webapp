@@ -8,11 +8,18 @@
     />
     <div>
       <h3 class="font-bold mb-6 text-2xl">Hi there!</h3>
-      <p class="font-bold">You already are a performer on The Avenue</p>
+      <p class="font-bold">
+        You already are a performer on The Avenue. Go to your dashboard to start performing live!
+      </p>
     </div>
-    <R64Button class="mt-8" @click="close">
-      Close
-    </R64Button>
+    <div class="mt-8">
+      <R64Button @click="close">
+        Close
+      </R64Button>
+      <R64Button @click="close" @click="goToDashboard">
+        Go to dashboard
+      </R64Button>
+    </div>
   </div>
 </template>
 
@@ -29,6 +36,10 @@ export default {
   methods: {
     close() {
       this.$emit('close')
+    },
+
+    goToDashboard() {
+      window.open(this.$config.baseURL)
     },
   },
 }

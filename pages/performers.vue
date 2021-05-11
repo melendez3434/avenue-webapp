@@ -91,7 +91,7 @@
         </p>
       </div>
       <img
-        src=" @/assets/images/stage_guy.jpg"
+        src=" @/assets/images/stage_man.jpg"
         alt="man performing in a concert"
         class="w-full sm:w-1/2 "
       />
@@ -127,7 +127,7 @@
       <img
         src="@/assets/images/performers_girl_2.jpg"
         alt="woman performing in her house in front of a microphonw"
-        class="w-full"
+        class="w-full p-6 md:p-0"
       />
       <div
         class="w-full h-auto p-6 sm:p-12  xl:py-16 xl:px-24 2xl:px-36 3xl:px-60 3xl:py-24 bg-avenue-blue-dark space-y-5"
