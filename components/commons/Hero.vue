@@ -16,12 +16,12 @@
       </h1>
       <div class="mt-4 md:mt-10 space-x-2 md:space-x-6">
         <button
-          class="text-white font-semibold text-base md:text-xl lg:text-2xl 3xl:text-3xl py-2 px-4 md:py-4 md:px-6 bg-theavenue-turquoise-neon transform scale-100 hover:scale-105"
+          class="text-white font-semibold text-sm md:text-xl lg:text-2xl 3xl:text-3xl py-2 px-4 md:py-4 md:px-6 bg-theavenue-turquoise-neon transform scale-100 hover:scale-105"
         >
           Start Watching
         </button>
         <button
-          class="text-white font-semibold text-base md:text-xl lg:text-2xl 3xl:text-3xl py-2 px-4 md:py-4 md:px-6 bg-theavenue-blue-neon transform scale-100 hover:scale-105"
+          class="text-white font-semibold text-sm md:text-xl lg:text-2xl 3xl:text-3xl py-2 px-4 md:py-4 md:px-6 bg-theavenue-blue-neon transform scale-100 hover:scale-105"
           @click="openSignup()"
         >
           Start Performing
