@@ -30,9 +30,9 @@
         class="w-full sm:w-1/2 "
       />
       <div class="flex flex-col sm:justify-center space-y-5">
-        <quote class="font-semibold text-xl lg:text-3xl 3xl:text-5xl md:mb-6">
+        <blockquote class="font-semibold text-xl lg:text-3xl 3xl:text-5xl md:mb-6">
           Cooking on The Avenue has enabled me to tap into my creativity and entertain others.
-        </quote>
+        </blockquote>
         <div class="flex flex-col space-y-1 lg:space-y-2">
           <span class="3xl:text-xl">Chef “JR” Robinson Kitchencray™️</span>
           <span class="3xl:text-xl">Personal Chef</span>
@@ -91,7 +91,7 @@
         </p>
       </div>
       <img
-        src=" @/assets/images/stage-man.jpg"
+        src="@/assets/images/stage-man.jpg"
         alt="man performing in a concert"
         class="w-full sm:w-1/2"
       />
