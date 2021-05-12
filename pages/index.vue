@@ -2,7 +2,7 @@
   <div
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
-    <LogoLights class="w-full" />
+    <Hero />
     <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
       <CompetitionMarqueeItem
         v-for="competition in competitions"
@@ -46,7 +46,7 @@
       height="auto"
     >
       <CompetitionModalAnnouncement @close="closeModal('user-event-modal')">
-        Support your favorite performers as they compete for weekly and overall prizes.
+        Support your favorite performers as they compete for weekly and overall prizes
       </CompetitionModalAnnouncement>
     </modal>
   </div>

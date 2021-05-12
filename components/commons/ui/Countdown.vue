@@ -5,19 +5,19 @@
     style="box-shadow: 0px 0px 10px #FFFFFF;"
   >
     <div class="flex flex-col justify-center items-center w-1/4">
-      <span class="font-league-gothic text-5xl lg:text-xxl">{{ displayDays }}</span>
+      <span class="font-league-gothic text-5xl lg:text-8xl">{{ displayDays }}</span>
       <span class="text-xxs md:text-xl">Days</span>
     </div>
     <div class="flex flex-col justify-center items-center w-1/4">
-      <span class="font-league-gothic text-5xl lg:text-xxl">{{ displayHours }}</span>
+      <span class="font-league-gothic text-5xl lg:text-8xl">{{ displayHours }}</span>
       <span class="text-xxs md:text-xl">Hours</span>
     </div>
     <div class="flex flex-col justify-center items-center w-1/4">
-      <span class="font-league-gothic text-5xl lg:text-xxl">{{ displayMinutes }}</span>
+      <span class="font-league-gothic text-5xl lg:text-8xl">{{ displayMinutes }}</span>
       <span class="text-xxs md:text-xl">Minutes</span>
     </div>
     <div class="flex flex-col justify-center items-center w-1/4">
-      <span class="font-league-gothic text-5xl lg:text-xxl">{{ displaySeconds }}</span>
+      <span class="font-league-gothic text-5xl lg:text-8xl">{{ displaySeconds }}</span>
       <span class="text-xxs md:text-xl">Seconds</span>
     </div>
   </div>
