@@ -18,12 +18,13 @@
         >
           Start Watching
         </button>
-        <nuxt-link
-          :to="{ name: 'performers' }"
-          class="text-white font-semibold text-sm md:text-xl lg:text-2xl 3xl:text-3xl py-2.5 px-4 md:py-4 md:px-6 bg-theavenue-blue-neon transform scale-100 hover:scale-105"
+        <button
+          class="text-white font-semibold text-sm md:text-xl lg:text-2xl 3xl:text-3xl py-2 px-4 md:py-3 md:px-6 bg-theavenue-blue-neon transform scale-100 hover:scale-105"
         >
-          Start Performing
-        </nuxt-link>
+          <nuxt-link :to="{ name: 'performers' }">
+            Start Performing
+          </nuxt-link>
+        </button>
       </div>
     </div>
   </div>
@@ -39,10 +40,8 @@ export default {
     openSignup() {
       if (!this.$auth.user) {
         this.$modal.show('user-access-modal', { active: 'signup' })
-      } else if (this.$auth.loggedIn && !this.$auth.user.talent_id) {
-        this.$modal.show('talent-sign-up-modal')
       } else {
-        this.$modal.show('already-talent-modal')
+        this.modal.show('already-logged-modal')
       }
     },
   },
