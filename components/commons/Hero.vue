@@ -38,11 +38,9 @@ export default {
 
   methods: {
     openSignup() {
-      if (!this.$auth.user) {
-        this.$modal.show('user-access-modal', { active: 'signup' })
-      } else {
-        this.modal.show('already-logged-modal')
-      }
+      !this.$auth.user
+        ? this.$modal.show('user-access-modal', { active: 'signup' })
+        : this.$modal.show('already-logged-modal')
     },
   },
 }

@@ -12,7 +12,7 @@
         You are already logged in. Click on any performance to start watching.
       </p>
     </div>
-    <R64Button @click="close">
+    <R64Button class="mt-10" @click="close">
       Close
     </R64Button>
   </div>
@@ -22,7 +22,7 @@
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
-  name: 'AlreadyTalentModal',
+  name: 'AlreadyLoggedModal',
 
   components: {
     IcClose,
