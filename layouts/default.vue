@@ -109,6 +109,16 @@
     <modal
       width="100%"
       classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+      name="already-talent-modal"
+      scrollable
+      height="auto"
+    >
+      <AlreadyTalentModal @close="$modal.hide('already-talent-modal')" />
+    </modal>
+
+    <modal
+      width="100%"
+      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
       name="mobile-app-modal"
       scrollable
       height="auto"

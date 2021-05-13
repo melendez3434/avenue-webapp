@@ -12,12 +12,12 @@
         You already are a performer on The Avenue. Go to your dashboard to start performing live!
       </p>
     </div>
-    <div class="mt-8">
+    <div class="flex flex-col mt-8 space-y-6">
+      <R64Button @click="goToDashboard">
+        Go to dashboard
+      </R64Button>
       <R64Button @click="close">
         Close
-      </R64Button>
-      <R64Button @click="close" @click="goToDashboard">
-        Go to dashboard
       </R64Button>
     </div>
   </div>

@@ -6,13 +6,13 @@
         Watch Live
       </h1>
       <h1 class="font-bold text-lg md:text-3xl lg:text-6xl 3xl:text-7xl leading-none">
-        Performances.
+        Stream Live.
       </h1>
       <h1 class="font-bold text-lg md:text-3xl lg:text-6xl 3xl:text-7xl leading-none">
-        No Cost to Perform.
+        Grow your following.
       </h1>
       <h1 class="font-bold text-lg md:text-3xl lg:text-6xl 3xl:text-7xl leading-none">
-        No Cost to Watch.
+        Get payed.
       </h1>
       <div class="mt-4 md:mt-10 space-x-2 md:space-x-6">
         <button
