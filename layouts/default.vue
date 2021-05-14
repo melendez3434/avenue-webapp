@@ -220,7 +220,7 @@ export default {
   },
 
   mounted() {
-    if (this.$device.isMobileOrTablet) {
+    if (this.$device.isMobileOrTablet && !this.$route.path.includes('events/')) {
       this.$modal.show('mobile-app-modal')
     }
 
