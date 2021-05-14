@@ -9,17 +9,12 @@
     <div>
       <h3 class="font-bold mb-6 text-2xl">Hi there!</h3>
       <p class="font-bold">
-        You already are a performer on The Avenue. Go to your dashboard to start performing live!
+        You are already logged in. Click on any performance to start watching.
       </p>
     </div>
-    <div class="flex flex-col mt-8 space-y-6">
-      <R64Button @click="goToDashboard">
-        Go to dashboard
-      </R64Button>
-      <R64Button @click="close">
-        Close
-      </R64Button>
-    </div>
+    <R64Button class="mt-10" @click="close">
+      Close
+    </R64Button>
   </div>
 </template>
 
@@ -27,7 +22,7 @@
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
-  name: 'AlreadyTalentModal',
+  name: 'AlreadyLoggedModal',
 
   components: {
     IcClose,
@@ -36,10 +31,6 @@ export default {
   methods: {
     close() {
       this.$emit('close')
-    },
-
-    goToDashboard() {
-      window.open(this.$config.baseURL)
     },
   },
 }
