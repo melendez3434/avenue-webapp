@@ -59,19 +59,15 @@ import CompetitionMarqueeItem from '@/components/events/CompetitionMarqueeItem'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
 import Hero from '@/components/commons/Hero'
 import CompetitionModalAnnouncement from '@/components/competitions/CompetitionModalAnnouncement'
-
 export default {
   name: 'IndexPage',
-
   auth: false,
-
   components: {
     LiveEventListItem,
     CompetitionModalAnnouncement,
     CompetitionMarqueeItem,
     Hero,
   },
-
   async asyncData({ $api }) {
     try {
       const { data: events, meta } = await $api.events.list({ page: 0 })
@@ -82,18 +78,15 @@ export default {
       return { events: [], meta: {}, competitions: [] }
     }
   },
-
   data() {
     return {
       maxModalShow: 4,
     }
   },
-
   computed: {
     ...mapState({
       currentCompetition: state => state.global.currentCompetition,
     }),
-
     isSuitableTalent() {
       return (
         this.$auth.loggedIn &&
@@ -102,17 +95,14 @@ export default {
       )
     },
   },
-
   watch: {
     async '$route.query.category'(category) {
       await this.refetchEvents(category)
     },
-
     async '$auth.loggedIn'() {
       await this.refetchEvents()
     },
   },
-
   mounted() {
     this.$echo
       .channel('theavenue')
@@ -129,15 +119,12 @@ export default {
         event.is_live = true
         this.handleSocketEvent(event, 'updated')
       })
-
     if (!this.currentCompetition.id) return
-
     if (localStorage.modalCounter) {
       this.modalCounter = localStorage.modalCounter
     } else {
       localStorage.modalCounter = 1
     }
-
     if (this.isSuitableTalent) {
       this.$modal.show('talent-event-modal')
       localStorage.modalCounter++
@@ -148,7 +135,6 @@ export default {
       }
     }
   },
-
   beforeDestroy() {
     this.$echo
       .channel('theavenue')
@@ -156,15 +142,12 @@ export default {
       .stopListening('EventFinished')
       .stopListening('EventHasEnded')
   },
-
   methods: {
     async fetchPage($state) {
       const page = this.meta.current_page + 1
-
       if (page > this.meta.last_page) {
         return $state.complete()
       }
-
       try {
         const { data: events, meta } = await this.$api.events.list({ page })
         this.events = [...this.events, ...events]
@@ -174,22 +157,17 @@ export default {
         this.$router.push({ name: 'index' })
       }
     },
-
     async refetchEvents(category = null) {
       const { data: events, meta } = await this.$api.events.list({ page: 0, category })
-
       this.events = events
       this.meta = meta
     },
-
     handleSocketEvent(event, type) {
       const addEventToList = event => {
         // If there is an event on the list that begins after upcomin event on the list then add it to that position
         const eventStart = spacetime(event.starts_at)
         const indexFrom = this.events.findIndex(e => eventStart.isBefore(spacetime(e.starts_at)))
-
         if (indexFrom < 0) return
-
         this.events.splice(indexFrom, 0, event)
       }
       const map = {
@@ -198,13 +176,11 @@ export default {
         },
         updated: () => {
           const index = this.events.findIndex(e => event.id === e.id)
-
           // If event is in the list then update it
           if (index >= 0) {
             this.$set(this.events, index, event)
             return
           }
-
           addEventToList(event)
         },
         deleted: () => {
@@ -212,10 +188,8 @@ export default {
           this.events.splice(index, 1)
         },
       }
-
       return map[type]()
     },
-
     closeModal(modal) {
       return this.$modal.hide(modal)
     },

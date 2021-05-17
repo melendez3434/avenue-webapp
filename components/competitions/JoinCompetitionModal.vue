@@ -60,7 +60,7 @@
             <div v-if="form.rounds_info[index].charity !== false" class="mt-5">
               <R64Input
                 v-model="form.rounds_info[index].charity"
-                label="Name"
+                label="Name *"
                 :v="v.charity"
                 @input="v.charity.$touch"
               />
@@ -68,7 +68,7 @@
             <div v-if="form.rounds_info[index].charity_website !== false" class="mt-5">
               <R64Input
                 v-model="form.rounds_info[index].charity_website"
-                label="Website"
+                label="Website *"
                 :v="v.charity_website"
                 @input="v.charity_website.$touch"
               />
