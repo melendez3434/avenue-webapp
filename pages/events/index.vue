@@ -2,8 +2,8 @@
   <div
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
-    <section class="container">
-      <div class="mx-auto text-center mt-20">
+    <section class="container mx-auto">
+      <div class=" text-center mt-20">
         <div class="flex flex-col md:flex-row items-center justify-center w-full md:space-x-6">
           <h1 class="text-4xl font-library text-center text-avenue-white-light text-light-white">
             {{ currentCompetition.name }}
@@ -19,8 +19,8 @@
           our performers’ scoreboard, tracking their progress and tallying up their contributions to
           charitable&nbsp;organizations.
         </h6>
+        <JoinEventButton class="mt-10" :competition="currentCompetition" has-long-text />
       </div>
-      <JoinEventButton class="mt-10" :competition="currentCompetition" has-long-text />
     </section>
     <section class="container md:grid grid-cols-3 gap-6 mx-auto my-16">
       <div class="flex flex-col items-center mt-10">

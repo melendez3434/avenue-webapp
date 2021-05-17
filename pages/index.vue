@@ -57,7 +57,7 @@ import { mapState } from 'vuex'
 import spacetime from 'spacetime'
 import CompetitionMarqueeItem from '@/components/events/CompetitionMarqueeItem'
 import LiveEventListItem from '@/components/events/LiveEventListItem'
-import LogoLights from '@/components/commons/LogoLights'
+import Hero from '@/components/commons/Hero'
 import CompetitionModalAnnouncement from '@/components/competitions/CompetitionModalAnnouncement'
 
 export default {
@@ -67,7 +67,7 @@ export default {
 
   components: {
     LiveEventListItem,
-    LogoLights,
+    Hero,
     CompetitionModalAnnouncement,
     CompetitionMarqueeItem,
   },
