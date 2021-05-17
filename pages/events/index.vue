@@ -11,7 +11,7 @@
           <CompetitionIcon
             v-if="currentCompetition.icon"
             :icon="currentCompetition.icon"
-            class="text-5xl"
+            class="text-3xl"
           />
         </div>
         <h6 class="mt-5 text-lg">
