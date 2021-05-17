@@ -22,6 +22,7 @@ const config = {
     gtm: {
       id: process.env.GOOGLE_TAG_MANAGER_ID,
       pageTracking: true,
+      scriptURL: 'https://www.googletagmanager.com/gtag/js',
     },
   },
 
