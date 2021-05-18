@@ -161,6 +161,10 @@ export default {
           return
         }
 
+        if (this.form.rounds_info.length < 2 && this.form.rounds_info[0].charity === '') {
+          this.form.rounds_info = []
+        }
+
         await this.$api.competitions.talentSignUp(this.competition.id, this.form)
 
         this.$modal.hide('join-event-modal')
