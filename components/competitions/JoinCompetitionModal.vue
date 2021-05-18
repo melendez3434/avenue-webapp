@@ -157,7 +157,7 @@ export default {
         if (alreadyRegistered) {
           this.$router.replace({ name: 'events-id', params: { id: this.competition.id } })
           this.$modal.hide('join-event-modal')
-          this.$modal.show('already-signedup-modal')
+          this.$modal.show('already-signedup-modal', { competition: this.comeptition.name })
           return
         }
 
@@ -169,6 +169,7 @@ export default {
 
         this.$modal.hide('join-event-modal')
         this.$router.push({ name: 'events-id', params: { id: this.competition.id } })
+        this.$modal.show('welcome-modal')
       } catch (e) {
         if (!e.error || !e.error.response || !e.error.response.data) {
           console.log(e)
