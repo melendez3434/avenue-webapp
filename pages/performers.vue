@@ -1,18 +1,25 @@
 <template>
   <div>
-    <section class="lg:relative 2xl:h-screen 2xl:overflow-hidden">
-      <img src="@/assets/images/singing_girl.jpg" alt="man playing guitar smiling" class="w-full" />
+    <section class="lg:relative lg:h-130 2xl:overflow-hidden">
+      <img
+        src="@/assets/images/singing_girl.jpg"
+        alt="man playing guitar smiling"
+        class="w-full h-5/6 lg:h-4/6 xl:h-130"
+      />
       <div
-        class="lg:absolute bottom-0 bg-avenue-blue-dark w-full p-6 sm:p-20 lg:px-64 lg:py-12 xl:py-24 2xl:py-32"
+        class="lg:absolute bottom-0 bg-avenue-blue-dark w-full p-6 sm:p-20 lg:px-44 lg:py-12 xl:py-24 2xl:py-32"
       >
         <div class="mx-auto w-full md:w-2/3">
           <h1 class="font-semibold text-2xl lg:text-4xl 3xl:text-6xl">
-            Start Your Journey As A Live Performer
+            Stream Live. Bring your following. Get Paid.
           </h1>
           <p class="my-4 leading-loose lg:text-lg 2xl:text-xl 3xl:text-2xl">
-            On The Avenue you can share your passion and monetize your talent! In this arena, you
-            can bring your fans and gain new ones. The difference between this and sharing your
-            talent for free on Instagram Live is your fans can TIP you as you perform! 🤑
+            On The Avenue, you start earning day one, there are no prerequisites for you to make
+            money. Customize your virtual dueling tip jars, magnifying viewer engagement and drive
+            up tips. Easy sign-up and event creation enable you to be performing immediately. Live
+            stream when you want, as often as you want, from anywhere. Generate high-production
+            value events using the leading live streaming technology in the industry. Be sure to
+            join our competitions, where you can earn cash prizes.
           </p>
           <button
             class="px-4 py-2 bg-white text-black text-lg 2xl:text-xl 3xl:text-2xl transform scale-100 hover:scale-105"
