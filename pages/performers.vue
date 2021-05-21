@@ -139,7 +139,6 @@
     >
       <ExternalVideo
         url="https://theavenue-production.s3.amazonaws.com/docs/CatAndMylo.mov"
-        play="true"
         class="w-full"
       />
       <div class="md:grid grid-cols-2 space-y-6 md:space-x-12 md:space-y-0 mt-10">

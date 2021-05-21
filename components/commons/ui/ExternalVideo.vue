@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <video ref="video" :src="url" type="video/mov" loop autoplay />
+    <video ref="video" :src="url" type="video/mov" />
     <template>
       <div class="hidden md:block dimmer-gradient-small w-full absolute top-0 left-0 h-full" />
       <IcPause
@@ -41,17 +41,13 @@ export default {
       type: String,
       required: true,
     },
-
-    play: {
-      type: Boolean,
-      default: false,
-    },
   },
 
   data() {
     return {
-      muted: !this.$nuxt.context.from,
+      muted: false,
       video: null,
+      play: false,
     }
   },
 
