@@ -11,14 +11,14 @@
     </button>
     <div
       v-if="!button"
-      class="bg-black text-theavenue-green-neon font-library p-2 text-lg flex flex-col item-center justify-center cursor-pointer"
+      class="text-black p-2 flex flex-col item-center justify-center cursor-pointer"
+      :class="{ 'opacity-50': ticket.authPurchased }"
       @click="buyTicket"
     >
-      <div :class="{ 'opacity-50': ticket.authPurchased }">
-        <span>$</span>
-        <span>{{ ticket.price_formatted }}</span>
+      <font-awesome-icon :icon="['fas', 'ticket-alt']" class="text-6xl" />
+      <div v-if="ticket.authPurchased" class="text-black text-xl text-center uppercase mt-1">
+        Purchased
       </div>
-      <div v-if="ticket.authPurchased" class="text-white text-xs uppercase mt-1">Purchased</div>
     </div>
   </div>
 </template>
@@ -54,6 +54,8 @@ export default {
           subtitle: 'Log in or sign up to buy the ticket for',
         })
       }
+
+      console.log(this.ticket)
 
       if (this.ticket.authPurchased) return
 

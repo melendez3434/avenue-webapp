@@ -171,6 +171,7 @@ const config = {
         'faDrum',
         'faGuitar',
         'faCompactDisc',
+        'faTicketAlt',
       ],
     },
   },
