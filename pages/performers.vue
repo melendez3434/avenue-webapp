@@ -11,16 +11,20 @@
       >
         <div class="mx-auto w-full md:w-2/3">
           <h1 class="font-semibold text-2xl lg:text-4xl 3xl:text-6xl">
-            Stream Live. Bring your following. Get Paid.
+            Stream Live. Bring Your Following. Get Paid.
           </h1>
-          <p class="my-4 leading-loose lg:text-lg 2xl:text-xl 3xl:text-2xl">
-            On The Avenue, you start earning day one, there are no prerequisites for you to make
-            money. Customize your virtual dueling tip jars, magnifying viewer engagement and drive
-            up tips. Easy sign-up and event creation enable you to be performing immediately. Live
-            stream when you want, as often as you want, from anywhere. Generate high-production
-            value events using the leading live streaming technology in the industry. Be sure to
-            join our competitions, where you can earn cash prizes.
-          </p>
+          <div class="my-4 leading-loose lg:text-lg 2xl:text-xl 3xl:text-2xl">
+            <p>
+              On The Avenue, you start earning day one, there are no prerequisites for you to make
+              money. Customize your virtual dueling tip jars, magnifying viewer engagement and drive
+              up tips. Easy sign-up and event creation enable you to be performing immediately.
+            </p>
+            <p>
+              Live stream when you want, as often as you want, from anywhere. Generate
+              high-production value events using the leading live streaming technology in the
+              industry. Be sure to join our competitions, where you can earn cash prizes.
+            </p>
+          </div>
           <button
             class="px-4 py-2 bg-white text-black text-lg 2xl:text-xl 3xl:text-2xl transform scale-100 hover:scale-105"
             @click="openSignup()"
@@ -94,9 +98,9 @@
       </div>
     </section>
     <section
-      class="w-full h-auto p-6 sm:p-12  xl:py-16 xl:px-24 2xl:px-36 3xl:px-60 3xl:py-24 bg-white text-black flex flex-col-reverse md:flex-row md:space-x-12"
+      class="w-full h-auto p-6 sm:p-12  xl:py-16 xl:px-24 2xl:px-36 3xl:px-60 3xl:py-24 bg-white text-black flex flex-col-reverse lg:flex-row lg:space-x-12"
     >
-      <div class="w-full sm:w-1/2 flex flex-col md:justify-center md:align-center mt-10 md:mt-0">
+      <div class="w-full flex flex-col md:justify-center md:align-center mt-10 lg:mt-0">
         <h2 class="font-semibold text-2xl lg:text-3xl 3xl:text-5xl mb-2 lg:mb-6">
           Streaming Made Simple
         </h2>
@@ -128,20 +132,14 @@
           </p>
         </div>
       </div>
-      <img
-        src="@/assets/images/stage-man.jpg"
-        alt="man performing in a concert"
-        class="w-full sm:w-1/2"
-      />
+      <img src="@/assets/images/stage-man.jpg" alt="man performing in a concert" class="w-full" />
     </section>
     <section
       class="w-full h-auto p-6 sm:p-12  xl:py-16 xl:px-24 2xl:px-36 3xl:px-60 3xl:py-24 bg-avenue-blue-dark"
     >
-      <video
-        src="https://theavenue-production.s3.amazonaws.com/docs/CatAndMylo.mov"
-        type="video/mov"
-        loop
-        autoplay
+      <ExternalVideo
+        url="https://theavenue-production.s3.amazonaws.com/docs/CatAndMylo.mov"
+        play="true"
         class="w-full"
       />
       <div class="md:grid grid-cols-2 space-y-6 md:space-x-12 md:space-y-0 mt-10">
