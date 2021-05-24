@@ -2,53 +2,55 @@
   <div
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
-    <Hero />
-    <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
-      <CompetitionMarqueeItem
-        v-for="competition in competitions"
-        :key="competition.id"
-        :competition="competition"
-      />
-      <LiveEventListItem
-        v-for="event in events"
-        :key="event.id"
-        :event="event"
-        @ticketPurchased="refetchEvents"
-      />
-    </el-collapse>
-    <EventsNoResults v-if="!events.length" />
-
-    <div v-if="meta.total > meta.per_page" class="h-12 w-full">
-      <client-only>
-        <infinite-loading spinner="spiral" @infinite="fetchPage">
-          <div slot="no-more" class="mt-4">Thats all!</div>
-        </infinite-loading>
-      </client-only>
+    <div v-if="$fetchState.pending" class="h-screen">
+      <base-spinner class="transform translate-y-2/4" />
     </div>
-
-    <modal
-      width="100%"
-      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
-      name="talent-event-modal"
-      scrollable
-      height="auto"
-    >
-      <CompetitionModalAnnouncement @close="closeModal('talent-event-modal')">
-        Help charity organizations, engage your audience and win the prize!
-      </CompetitionModalAnnouncement>
-    </modal>
-
-    <modal
-      width="100%"
-      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
-      name="user-event-modal"
-      scrollable
-      height="auto"
-    >
-      <CompetitionModalAnnouncement @close="closeModal('user-event-modal')">
-        Support your favorite performers as they compete for weekly and overall prizes
-      </CompetitionModalAnnouncement>
-    </modal>
+    <div v-else>
+      <Hero />
+      <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
+        <CompetitionMarqueeItem
+          v-for="competition in competitions"
+          :key="competition.id"
+          :competition="competition"
+        />
+        <LiveEventListItem
+          v-for="event in events"
+          :key="event.id"
+          :event="event"
+          @ticketPurchased="refetchEvents"
+        />
+      </el-collapse>
+      <EventsNoResults v-if="!events.length" />
+      <div v-if="meta.total > meta.per_page" class="h-12 w-full">
+        <client-only>
+          <infinite-loading spinner="spiral" @infinite="fetchPage">
+            <div slot="no-more" class="mt-4">Thats all!</div>
+          </infinite-loading>
+        </client-only>
+      </div>
+      <modal
+        width="100%"
+        classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+        name="talent-event-modal"
+        scrollable
+        height="auto"
+      >
+        <CompetitionModalAnnouncement @close="closeModal('talent-event-modal')">
+          Help charity organizations, engage your audience and win the prize!
+        </CompetitionModalAnnouncement>
+      </modal>
+      <modal
+        width="100%"
+        classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+        name="user-event-modal"
+        scrollable
+        height="auto"
+      >
+        <CompetitionModalAnnouncement @close="closeModal('user-event-modal')">
+          Support your favorite performers as they compete for weekly and overall prizes
+        </CompetitionModalAnnouncement>
+      </modal>
+    </div>
   </div>
 </template>
 
@@ -68,19 +70,25 @@ export default {
     CompetitionMarqueeItem,
     Hero,
   },
-  async asyncData({ $api }) {
+
+  async fetch() {
     try {
-      const { data: events, meta } = await $api.events.list({ page: 0 })
-      const { data: competitions } = await $api.competitions.list()
-      return { events, meta, competitions }
+      const { data: events, meta } = await this.$api.events.list({ page: 0 })
+      const { data: competitions } = await this.$api.competitions.list()
+      this.events = events
+      this.meta = meta
+      this.competitions = competitions
     } catch (error) {
       console.warn(error)
-      return { events: [], meta: {}, competitions: [] }
     }
   },
+
   data() {
     return {
       maxModalShow: 4,
+      events: [],
+      meta: {},
+      competitions: [],
     }
   },
   computed: {
