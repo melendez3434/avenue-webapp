@@ -258,6 +258,7 @@ export default {
   methods: {
     ...mapActions({
       initStore: 'global/initStore',
+      fetchFollowedTalents: 'global/fetchFollowedTalents',
     }),
 
     beforeOpenUserAccess(data) {

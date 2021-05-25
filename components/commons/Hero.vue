@@ -1,7 +1,7 @@
 <template>
   <div class="w-full relative">
     <img src="@/assets/images/hero.jpg" alt="man recording music on a studio" class="w-full" />
-    <div class="absolute top-6 md:top-1/3 p-2 md:p-6 lg:p-10">
+    <div class="absolute top-6 sm:top-1/3 p-2 md:p-6 ">
       <h1 class="font-bold text-lg md:text-3xl lg:text-6xl 3xl:text-7xl leading-none">
         Stream Live.
       </h1>
