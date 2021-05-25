@@ -175,6 +175,11 @@ const config = {
       ],
     },
   },
+
+  gtm: {
+    id: process.env.GOOGLE_TAG_MANAGER_ID,
+    pageTracking: true,
+  },
 }
 
 if (process.env.HTTPS_LOCALHOST) {

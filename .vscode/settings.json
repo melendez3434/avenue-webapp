@@ -1,5 +1,5 @@
 {
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "editor.formatOnPaste": false,
   "vetur.validation.template": false,
   "eslint.probe": ["javascript", "javascriptreact", "vue", "vue-html", "html"],
