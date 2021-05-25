@@ -132,22 +132,12 @@ export default {
     IcSearch,
   },
 
-  async fetch() {
-    try {
-      const { data } = await this.$api.competitions.list()
-      this.competitions = data
-    } catch {
-      console.error("Couldn't fetch competitions")
-    }
-  },
-
   data() {
     return {
       activeItem: 'All Genres',
       search: '',
       isLoading: false,
       talents: [],
-      competitions: [],
     }
   },
 
@@ -155,6 +145,7 @@ export default {
     ...mapState({
       categories: state => state.global.categories,
       currentCompetition: state => state.global.currentCompetition,
+      competitions: state => state.global.competitions,
     }),
 
     isAllGenres() {
