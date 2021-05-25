@@ -1,15 +1,23 @@
 <template>
   <div class="flex items-center justify-end">
     <client-only>
-      <div class="mt-1 max-w-xs truncate">
-        <nuxt-link
-          v-if="currentCompetition.id"
-          :to="{ name: 'events' }"
-          class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white focus:outline-none cursor-pointer"
-        >
-          {{ currentCompetition.name }}
-        </nuxt-link>
-      </div>
+      <el-dropdown trigger="click" placement="top-start">
+        <div class="flex items-center">
+          <span
+            class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+          >
+            Competitions
+          </span>
+          <IcArrowDown class="w-10 h-10" />
+        </div>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item v-for="competition in competitions" :key="competition.name">
+            <nuxt-link :to="{ name: 'events-id', params: { id: competition.id } }">
+              {{ competition.name }}
+            </nuxt-link>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
       <el-dropdown trigger="click" placement="top-start">
         <div class="flex items-center" @click="fetchTalents">
           <span
@@ -124,12 +132,22 @@ export default {
     IcSearch,
   },
 
+  async fetch() {
+    try {
+      const { data } = await this.$api.competitions.list()
+      this.competitions = data
+    } catch {
+      console.error("Couldn't fetch competitions")
+    }
+  },
+
   data() {
     return {
       activeItem: 'All Genres',
       search: '',
       isLoading: false,
       talents: [],
+      competitions: [],
     }
   },
 

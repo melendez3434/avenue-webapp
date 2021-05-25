@@ -166,7 +166,11 @@ export default {
         await this.$api.competitions.talentSignUp(this.competition.id, this.form)
 
         this.$modal.hide('join-event-modal')
+
         this.$router.go()
+
+        this.$modal.show('welcome-modal')
+
       } catch (e) {
         if (!e.error || !e.error.response || !e.error.response.data) {
           console.log(e)
