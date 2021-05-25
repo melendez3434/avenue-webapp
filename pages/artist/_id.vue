@@ -73,6 +73,7 @@ export default {
       console.error("We couldn't fetch this events")
     }
   },
+
   head() {
     const title = `${this.talent.name}, performing on The Avenue`
     const meta = [

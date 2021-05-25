@@ -18,7 +18,6 @@
 <script>
 export default {
   auth: false,
-
   async fetch() {
     try {
       const { data: talents } = await this.$api.talent.list({ all: true, items_per_page: 10000 })
@@ -28,7 +27,6 @@ export default {
       this.$router.push('/')
     }
   },
-
   data() {
     return {
       talents: [],

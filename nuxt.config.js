@@ -9,6 +9,8 @@ const config = {
     }),
   ],
 
+  ssr: false,
+
   components: true,
 
   publicRuntimeConfig: {

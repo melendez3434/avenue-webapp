@@ -91,6 +91,7 @@ export default {
       competitions: [],
     }
   },
+
   computed: {
     ...mapState({
       currentCompetition: state => state.global.currentCompetition,
