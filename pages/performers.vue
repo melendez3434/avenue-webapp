@@ -4,7 +4,7 @@
       <img
         src="@/assets/images/singing_girl.jpg"
         alt="man playing guitar smiling"
-        class="w-full h-5/6 lg:h-4/6 xl:h-130"
+        class="w-full h-5/6 lg:h-4/6 xl:h-130 object-cover"
       />
       <div
         class="lg:absolute bottom-0 bg-avenue-blue-dark w-full p-6 sm:p-20 lg:px-44 lg:py-12 xl:py-24 2xl:py-32"
@@ -40,7 +40,7 @@
       <img
         src="@/assets/images/performers_girl_1.jpg"
         alt="gitl smiling in front of a microphone and resting her head on her hand"
-        class="w-full sm:w-1/2 "
+        class="w-full sm:w-2/3 lg:w-1/2 object-cover"
       />
       <div class="flex flex-col sm:justify-center space-y-5">
         <blockquote class="font-semibold text-xl lg:text-3xl 3xl:text-5xl md:mb-6">
@@ -132,7 +132,11 @@
           </p>
         </div>
       </div>
-      <img src="@/assets/images/stage-man.jpg" alt="man performing in a concert" class="w-full" />
+      <img
+        src="@/assets/images/stage-man.jpg"
+        alt="man performing in a concert"
+        class="w-full object-cover"
+      />
     </section>
     <section
       class="w-full h-auto p-6 sm:p-12  xl:py-16 xl:px-24 2xl:px-36 3xl:px-60 3xl:py-24 bg-avenue-blue-dark"
@@ -176,7 +180,7 @@
       <img
         src="@/assets/images/performers_girl_2.jpg"
         alt="woman performing in her house in front of a microphonw"
-        class="w-full p-6 md:p-0"
+        class="w-full p-6 md:p-0 object-cover"
       />
       <div
         class="w-full h-auto p-6 sm:p-12  xl:py-16 xl:px-24 2xl:px-36 3xl:px-60 3xl:py-24 bg-avenue-blue-dark space-y-5"
