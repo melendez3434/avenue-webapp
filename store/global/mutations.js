@@ -1,4 +1,9 @@
-import { SET_CATEGORIES, SET_CURRENT_COMPETITION, SET_FOLLOWED_TALENTS } from './mutation-types'
+import {
+  SET_CATEGORIES,
+  SET_COMPETITIONS,
+  SET_CURRENT_COMPETITION,
+  SET_FOLLOWED_TALENTS,
+} from './mutation-types'
 
 export default {
   [SET_CATEGORIES](state, categories) {
@@ -11,5 +16,9 @@ export default {
 
   [SET_CURRENT_COMPETITION](state, competition) {
     state.currentCompetition = competition
+  },
+
+  [SET_COMPETITIONS](state, competitions) {
+    state.competitions = competitions
   },
 }
