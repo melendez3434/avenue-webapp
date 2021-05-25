@@ -77,7 +77,7 @@
         </div>
 
         <div class="mt-5">
-          <button class="text-sm flex items-center space-x-3" @click="addNewCharity">
+          <button class="text-sm flex items-center space-x-3" type="button" @click="addNewCharity">
             <IcPlus />
             <span>Add new charity organization</span>
           </button>
@@ -161,14 +161,12 @@ export default {
           return
         }
 
-        if (this.form.rounds_info.length < 2 && this.form.rounds_info[0].charity === '') {
-          this.form.rounds_info = []
-        }
+        this.form.rounds_info = this.form.rounds_info.filter(round => round.charity != '')
 
         await this.$api.competitions.talentSignUp(this.competition.id, this.form)
 
         this.$modal.hide('join-event-modal')
-        this.$router.push({ name: 'events-id', params: { id: this.competition.id } })
+        this.$router.go()
       } catch (e) {
         if (!e.error || !e.error.response || !e.error.response.data) {
           console.log(e)
