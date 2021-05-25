@@ -1,4 +1,11 @@
-import { SET_CATEGORIES, SET_CURRENT_COMPETITION, SET_FOLLOWED_TALENTS } from './mutation-types'
+import {
+  SET_CATEGORIES,
+  SET_CURRENT_COMPETITION,
+  SET_FOLLOWED_TALENTS,
+  INITIALIZE_STORE,
+  SET_LOADING_PAGE,
+  SET_COMPETITIONS,
+} from './mutation-types'
 
 export default {
   [SET_CATEGORIES](state, categories) {
@@ -11,5 +18,17 @@ export default {
 
   [SET_CURRENT_COMPETITION](state, competition) {
     state.currentCompetition = competition
+  },
+
+  [SET_COMPETITIONS](state, competitions) {
+    state.competitions = competitions
+  },
+
+  [INITIALIZE_STORE](state) {
+    state.storeInitialized
+  },
+
+  [SET_LOADING_PAGE](state, value) {
+    state.loadingPage = value
   },
 }

@@ -249,9 +249,15 @@ export default {
     this.$modal.show('user-access-modal', { active })
   },
 
+  async created() {
+    if (!this.storeInitialized) {
+      await this.initStore()
+    }
+  },
+
   methods: {
     ...mapActions({
-      fetchFollowedTalents: 'global/fetchFollowedTalents',
+      initStore: 'global/initStore',
     }),
 
     beforeOpenUserAccess(data) {
