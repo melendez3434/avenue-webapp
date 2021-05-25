@@ -1,24 +1,29 @@
 <template>
   <div>
-    <button
-      v-if="button && !ticket.authPurchased"
-      type="button"
-      class="font-library border-2 py-2 px-3 uppercase text-theavenue-red-neon text-light-red text-md md:text-2xl rounded-md border-theavenue-red-neon whitespace-no-wrap"
-      style="box-shadow: 1px 1px 7px #FF2F2F;"
-      @click="buyTicket"
-    >
-      BUY TICKET
-    </button>
+    <div v-if="button && !ticket.authPurchased">
+      <div class="flex text-lg items-center justify-center mb-2 space-x-2">
+        <font-awesome-icon :icon="['fas', 'ticket-alt']" />
+        <span>${{ ticket.total_cost_formatted }}</span>
+      </div>
+      <button
+        type="button"
+        class="font-library border-2 py-2 px-3 uppercase text-theavenue-red-neon text-light-red text-md md:text-2xl rounded-md border-theavenue-red-neon whitespace-no-wrap"
+        style="box-shadow: 1px 1px 7px #FF2F2F;"
+        @click="buyTicket"
+      >
+        BUY TICKET
+      </button>
+    </div>
     <div
       v-if="!button"
-      class="bg-black text-theavenue-green-neon font-library p-2 text-lg flex flex-col item-center justify-center cursor-pointer"
+      class="text-black p-2 flex flex-col item-center justify-center cursor-pointer"
+      :class="{ 'opacity-50': ticket.authPurchased }"
       @click="buyTicket"
     >
-      <div :class="{ 'opacity-50': ticket.authPurchased }">
-        <span>$</span>
-        <span>{{ ticket.price_formatted }}</span>
+      <font-awesome-icon :icon="['fas', 'ticket-alt']" class="text-6xl" />
+      <div v-if="ticket.authPurchased" class="text-black text-xl text-center uppercase mt-1">
+        Purchased
       </div>
-      <div v-if="ticket.authPurchased" class="text-white text-xs uppercase mt-1">Purchased</div>
     </div>
   </div>
 </template>

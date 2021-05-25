@@ -33,12 +33,12 @@
       <JoinEventButton has-long-text :competition="competition" />
     </section>
 
-    <section v-if="competition.sponsors.length" class="container md:mx-auto mt-20 w-4/6">
+    <section v-if="competition.sponsors.length" class="container md:mx-auto mt-20 w-full">
       <div class="flex flex-row gap-4 items-start mb-6">
         <IcSponsor class="h-8" />
         <h2 class="text-xl font-bold">Sponsors</h2>
       </div>
-      <div class="mt-5 grid grid-cols-2 md:grid-cols-4">
+      <div class="mt-5 grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-12 items-end">
         <div v-for="sponsor in competition.sponsors" :key="sponsor.id">
           <img
             v-if="sponsor.logo"

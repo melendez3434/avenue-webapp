@@ -31,4 +31,5 @@ export default {
   [SET_LOADING_PAGE](state, value) {
     state.loadingPage = value
   },
+
 }
