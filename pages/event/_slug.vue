@@ -35,8 +35,11 @@ import VideoLayout from '@/components/commons/ui/VideoLayout'
 import EventVideo from '@/components/events/EventVideo'
 export default {
   name: 'EventPage',
+
   auth: false,
+
   components: { VideoLayout, EventVideo },
+
   async fetch() {
     if (!this.$route.params.slug) return this.$router.push('/')
     try {
@@ -52,6 +55,7 @@ export default {
       return this.$router.push('/')
     }
   },
+
   data() {
     return {
       showModal: false,
@@ -60,6 +64,7 @@ export default {
       selectedAsset: null,
     }
   },
+
   computed: {
     isFinished() {
       if (!this.event) return
@@ -90,6 +95,7 @@ export default {
       return city.replace('_', ' ')
     },
   },
+
   async mounted() {
     if (this.$auth.loggedIn && !this.$fetchState.pending) {
       await this.$api.events.view(this.event.id)
@@ -100,11 +106,13 @@ export default {
       })
     }
   },
+
   beforeDestroy() {
     if (!this.$fetchState.pending) {
       this.$echo.channel(`event.${this.event.id}`).stopListening('EventIsAboutToEnd')
     }
   },
+
   methods: {
     closeModal() {
       return (this.showModal = false)
@@ -119,6 +127,7 @@ export default {
       }
     },
   },
+
   head() {
     if (!this.$fetchState.pending && this.event) {
       const title = `${this.event.talent.name}, performing live on ${this.eventStartTimeZoneDate} (${this.timezoneFormatted}) on The Avenue`
