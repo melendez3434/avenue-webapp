@@ -1,14 +1,19 @@
 <template>
   <div>
-    <button
-      v-if="button && !ticket.authPurchased"
-      type="button"
-      class="font-library border-2 py-2 px-3 uppercase text-theavenue-red-neon text-light-red text-md md:text-2xl rounded-md border-theavenue-red-neon whitespace-no-wrap"
-      style="box-shadow: 1px 1px 7px #FF2F2F;"
-      @click="buyTicket"
-    >
-      BUY TICKET
-    </button>
+    <div v-if="button && !ticket.authPurchased">
+      <div class="flex text-lg items-center justify-center mb-2 space-x-2">
+        <font-awesome-icon :icon="['fas', 'ticket-alt']" />
+        <span>${{ ticket.total_cost_formatted }}</span>
+      </div>
+      <button
+        type="button"
+        class="font-library border-2 py-2 px-3 uppercase text-theavenue-red-neon text-light-red text-md md:text-2xl rounded-md border-theavenue-red-neon whitespace-no-wrap"
+        style="box-shadow: 1px 1px 7px #FF2F2F;"
+        @click="buyTicket"
+      >
+        BUY TICKET
+      </button>
+    </div>
     <div
       v-if="!button"
       class="text-black p-2 flex flex-col item-center justify-center cursor-pointer"

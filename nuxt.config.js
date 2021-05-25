@@ -19,11 +19,6 @@ const config = {
     sentryDSN: process.env.SENTRY_DSN,
     wsUrl: process.env.WS_URL,
     maxRetries: process.env.MAX_RETRIES || 0,
-    gtm: {
-      id: process.env.GOOGLE_TAG_MANAGER_ID,
-      pageTracking: true,
-      scriptURL: 'https://www.googletagmanager.com/gtag/js',
-    },
   },
 
   privateRuntimeConfig: {},
@@ -174,6 +169,11 @@ const config = {
         'faTicketAlt',
       ],
     },
+  },
+
+  gtm: {
+    id: process.env.GOOGLE_TAG_MANAGER_ID,
+    pageTracking: true,
   },
 }
 

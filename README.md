@@ -23,6 +23,9 @@ $ yarn start
 
 # generate static project
 $ yarn generate
+
+#to be able to login using localhost use this route instead of https://localhost:3000
+https://frontend.theavenue.live:3000/
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

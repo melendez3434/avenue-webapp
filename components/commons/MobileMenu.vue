@@ -19,6 +19,14 @@
         >
           Events
         </nuxt-link>
+        <nuxt-link
+          v-for="competition in competitions"
+          :key="competition.id"
+          :to="{ name: 'events-id', params: { id: competition.id } }"
+          class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+        >
+          {{ competition.name }}
+        </nuxt-link>
         <a
           v-for="category in categories"
           :key="category.name"
@@ -103,6 +111,7 @@ export default {
   computed: {
     ...mapState({
       categories: state => state.global.categories,
+      competitions: state => state.global.competitions,
     }),
   },
 
