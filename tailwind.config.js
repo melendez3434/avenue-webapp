@@ -13,6 +13,8 @@ module.exports = {
       screens: {
         portrait: { raw: '(orientation: portrait) and (hover: none) and (pointer: coarse)' },
         landscape: { raw: '(orientation: landscape) and (hover: none) and (pointer: coarse)' },
+        '2xl': '1536px',
+        '3xl': '2400px',
       },
       colors: {
         avenue: {
@@ -56,7 +58,8 @@ module.exports = {
 
       fontSize: {
         xxs: '0.58rem',
-        xxl: '7rem',
+        '7xl': '6rem',
+        '8xl': '7rem',
       },
 
       fontFamily: {
@@ -70,6 +73,10 @@ module.exports = {
 
       listStyleType: {
         'lower-alpha': 'lower-alpha',
+      },
+
+      height: {
+        '130': '130vh',
       },
     },
   },

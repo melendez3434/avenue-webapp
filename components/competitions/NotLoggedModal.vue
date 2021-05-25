@@ -27,6 +27,7 @@
     </button>
   </div>
 </template>
+
 <script>
 import { mapState } from 'vuex'
 import IcTrophy from '@/assets/svg/trophy.svg?inline'
