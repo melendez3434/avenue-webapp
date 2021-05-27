@@ -13,7 +13,7 @@
       <div class="flex flex-col md:flex-row items-center justify-center w-full md:space-x-6">
         <h1 class="text-3xl font-library text-center text-avenue-white-light text-light-white">
           <span>{{ competition.name }}</span>
-          <CompetitionIcon v-if="competition.icon" :icon="competition.icon" />
+          <CompetitionIcon v-if="competition.icon" :icon="competition.icon" is-title />
         </h1>
       </div>
       <p class="max-w-xl mx-auto text-avenue-white text-center mt-5 text-xl">
@@ -171,6 +171,7 @@ import IcTrophy from '@/assets/svg/trophy.svg?inline'
 import IcPodium from '@/assets/svg/podium.svg?inline'
 import IcSponsor from '@/assets/svg/sponsor.svg?inline'
 import IcScoreboard from '@/assets/svg/scoreboard.svg?inline'
+import { mapState } from 'vuex'
 
 export default {
   name: 'EventDetailPage',
@@ -202,6 +203,17 @@ export default {
   },
 
   computed: {
+    ...mapState({
+      user: state => state.auth.user,
+    }),
+
+    alreadyRegistered() {
+      if (this.user.talent_id) {
+        return this.competition.talent.find(t => t.talent.id === this.user.talent_id) || false
+      }
+      return false
+    },
+
     userTimezone() {
       return Intl.DateTimeFormat().resolvedOptions().timeZone
     },
@@ -272,7 +284,7 @@ export default {
     },
 
     showSignupBtn() {
-      return this.currentRound < 3 || this.eventIsFuture
+      return (this.currentRound < 3 || this.eventIsFuture) && !this.alreadyRegistered
     },
 
     lastRound() {
