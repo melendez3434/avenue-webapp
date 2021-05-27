@@ -53,7 +53,8 @@ export default {
       this.$echo.channel(`event.${this.event.id}`).listen('EventIsAboutToEnd', () => {
         this.fetchOtherLiveEvents()
       })
-      console.log(error)
+    } catch (e) {
+      console.log(e)
       return this.$router.push('/')
     }
   },
@@ -153,7 +154,6 @@ export default {
       title,
       meta,
     }
-
   },
 }
 </script>
