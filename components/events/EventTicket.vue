@@ -16,11 +16,11 @@
     </div>
     <div
       v-if="!button"
-      class="text-black p-2 flex flex-col item-center justify-center cursor-pointer"
+      class="text-black lg:p-2 flex flex-col item-center justify-center cursor-pointer"
       :class="{ 'opacity-50': ticket.authPurchased }"
       @click="buyTicket"
     >
-      <font-awesome-icon :icon="['fas', 'ticket-alt']" class="text-6xl" />
+      <font-awesome-icon :icon="['fas', 'ticket-alt']" class="text-xl md:text-5xl lg:text-6xl" />
       <div v-if="ticket.authPurchased" class="text-black text-xl text-center uppercase mt-1">
         Purchased
       </div>
