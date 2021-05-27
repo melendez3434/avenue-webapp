@@ -2,11 +2,11 @@
   <div
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
+    <Hero />
     <div v-if="$fetchState.pending" class="h-screen">
       <base-spinner class="transform translate-y-2/4" />
     </div>
     <div v-else>
-      <Hero />
       <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
         <CompetitionMarqueeItem
           v-for="competition in competitions"
