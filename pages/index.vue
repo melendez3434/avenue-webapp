@@ -13,14 +13,14 @@
           :key="competition.id"
           :competition="competition"
         />
-        <LiveEventListItem
+        <EventListItem
           v-for="event in events"
           :key="event.id"
           :event="event"
           @ticketPurchased="refetchEvents"
         />
       </el-collapse>
-      <EventsNoResults v-if="!events.length" />
+      <EventNoResults v-if="!events.length" />
       <div v-if="meta.total > meta.per_page" class="h-12 w-full">
         <client-only>
           <infinite-loading spinner="spiral" @infinite="fetchPage">
@@ -57,19 +57,10 @@
 <script>
 import { mapState } from 'vuex'
 import spacetime from 'spacetime'
-import CompetitionMarqueeItem from '@/components/events/CompetitionMarqueeItem'
-import LiveEventListItem from '@/components/events/LiveEventListItem'
-import Hero from '@/components/commons/Hero'
-import CompetitionModalAnnouncement from '@/components/competitions/CompetitionModalAnnouncement'
 export default {
   name: 'IndexPage',
+
   auth: false,
-  components: {
-    LiveEventListItem,
-    CompetitionModalAnnouncement,
-    CompetitionMarqueeItem,
-    Hero,
-  },
 
   async fetch() {
     try {

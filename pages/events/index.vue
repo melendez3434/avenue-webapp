@@ -64,7 +64,6 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import CompetitionListItem from '@/components/competitions/CompetitionListItem'
 import IcPodium from '@/assets/svg/podium.svg?inline'
 import IcLoveHand from '@/assets/svg/love_hand.svg?inline'
 import IcStars from '@/assets/svg/stars.svg?inline'

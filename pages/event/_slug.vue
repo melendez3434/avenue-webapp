@@ -25,20 +25,16 @@
           </div>
         </template>
       </VideoLayout>
-      <OtherLiveEvents v-if="showOtherEvents" :events="otherLiveEvents" @close="closeModal" />
+      <EventOtherLiveEvents v-if="showOtherEvents" :events="otherLiveEvents" @close="closeModal" />
     </div>
   </section>
 </template>
 <script>
 import spacetime from 'spacetime'
-import VideoLayout from '@/components/commons/ui/VideoLayout'
-import EventVideo from '@/components/events/EventVideo'
 export default {
   name: 'EventPage',
 
   auth: false,
-
-  components: { VideoLayout, EventVideo },
 
   async fetch() {
     if (!this.$route.params.slug) return this.$router.push('/')

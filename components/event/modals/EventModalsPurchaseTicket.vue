@@ -45,7 +45,7 @@
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
-  name: 'PurchaseTicketModal',
+  name: 'EventModalsPurchaseTicket',
 
   components: { IcClose },
 

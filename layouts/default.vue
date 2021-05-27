@@ -59,7 +59,7 @@
       scrollable
       @before-open="beforeOpenPurchaseTicket"
     >
-      <PurchaseTicketModal
+      <EventModalsPurchaseTicket
         :event="ticketPurchase.event"
         @ticketPurchased="ticketPurchase.callback()"
       />
@@ -73,7 +73,7 @@
       height="auto"
       @before-open="beforeOpenJoinEventModal"
     >
-      <JoinCompetitionModal :competition="activeCompetition" />
+      <CompetitionJoinModal :competition="activeCompetition" />
     </modal>
 
     <modal
@@ -93,7 +93,7 @@
       scrollable
       height="auto"
     >
-      <NotLoggedModal @close="$modal.hide('not-logged-modal')" />
+      <CompetitionNotLoggedModal @close="$modal.hide('not-logged-modal')" />
     </modal>
 
     <modal
@@ -133,7 +133,7 @@
       scrollable
       height="auto"
     >
-      <WelcomeModal @close="$modal.hide('welcome-modal')" />
+      <CompetitionWelcomeModal @close="$modal.hide('welcome-modal')" />
     </modal>
 
     <modal
@@ -173,11 +173,6 @@
 import { mapActions, mapState } from 'vuex'
 import Navbar from '@/components/commons/Navbar'
 import UserAccessModal from '@/components/users/modals/UserAccessModal'
-import TalentSignUpModal from '@/components/talents/modals/TalentSignUpModal'
-import StreamingProfileModal from '@/components/talents/modals/StreamingProfileModal'
-import WarningModal from '@/components/talents/modals/WarningModal'
-import StreamingDonateModal from '@/components/talents/modals/StreamingDonateModal'
-import Footer from '@/components/commons/Footer'
 import IcClose from '@/assets/svg/close.svg?inline'
 import IcPhone from '@/assets/svg/phone.svg?inline'
 import IcAppStore from '@/assets/svg/appstore.svg?inline'
@@ -189,11 +184,6 @@ export default {
   components: {
     Navbar,
     UserAccessModal,
-    TalentSignUpModal,
-    StreamingProfileModal,
-    WarningModal,
-    Footer,
-    StreamingDonateModal,
     IcClose,
     IcPhone,
     IcAppStore,

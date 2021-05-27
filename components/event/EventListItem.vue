@@ -71,7 +71,7 @@ import spacetime from 'spacetime'
 import ShareButton from '@/components/commons/ui/ShareButton'
 
 export default {
-  name: 'LiveEventListItem',
+  name: 'EventListItem',
 
   components: { ShareButton },
 

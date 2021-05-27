@@ -134,15 +134,13 @@
 
 <script>
 import io from 'socket.io-client'
-import VideoLayout from '@/components/commons/ui/VideoLayout'
-import DeviceSettingsModal from '@/components/talents/modals/DeviceSettingsModal'
 import IcLive from '@/assets/svg/live_w_text.svg?inline'
 import IcSettings from '@/assets/svg/settings.svg?inline'
 
 export default {
   name: 'BroadcastChannel',
 
-  components: { VideoLayout, DeviceSettingsModal, IcLive, IcSettings },
+  components: { IcLive, IcSettings },
 
   beforeRouteLeave(to, from, next) {
     if (this.serverProcessOpen) {

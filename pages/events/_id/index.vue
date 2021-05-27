@@ -163,7 +163,6 @@
 </template>
 <script>
 import spacetime from 'spacetime'
-import CompetitionTalentListItem from '@/components/competitions/CompetitionTalentListItem'
 import IcTrophy from '@/assets/svg/trophy.svg?inline'
 import IcPodium from '@/assets/svg/podium.svg?inline'
 import IcSponsor from '@/assets/svg/sponsor.svg?inline'
@@ -176,11 +175,17 @@ export default {
   auth: false,
 
   components: {
-    CompetitionTalentListItem,
     IcTrophy,
     IcPodium,
     IcSponsor,
     IcScoreboard,
+  },
+
+  data() {
+    return {
+      competition: { talent: [], rounds: [], sponsors: [] },
+      prizesPercentage: 5,
+    }
   },
 
   async fetch() {
@@ -192,23 +197,15 @@ export default {
     }
   },
 
-  data() {
-    return {
-      competition: { talent: [], rounds: [], sponsors: [] },
-      prizesPercentage: 5,
-    }
-  },
-
   computed: {
     ...mapState({
       user: state => state.auth.user,
     }),
 
     alreadyRegistered() {
-      if (this.user.talent_id) {
-        return this.competition.talent.find(t => t.talent.id === this.user.talent_id) || false
-      }
-      return false
+      if (!this.user) return false
+
+      return this.competition.talent.find(t => t.talent.id === this.user.talent_id) || false
     },
 
     userTimezone() {

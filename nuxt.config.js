@@ -11,7 +11,12 @@ const config = {
 
   ssr: false,
 
-  components: ['~/components', '~/components/commons/ui', '~/components/commons'],
+  components: [
+    '~/components',
+    '~/components/commons/ui',
+    '~/components/commons',
+    '~/components/talent/modals', // TODO: Rename and find a better path
+  ],
 
   publicRuntimeConfig: {
     baseURL: process.env.BASE_URL,
