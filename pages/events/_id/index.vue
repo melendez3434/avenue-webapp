@@ -1,9 +1,6 @@
 <template>
-  <div
-    v-if="!competition.id"
-    class="flex items-center justify-center bg-theavenue-background-light available-min-height"
-  >
-    Loading competition...
+  <div v-if="!competition.id" class="h-screen">
+    <base-spinner v-if="$fetchState.pending" class="transform translate-y-2/4" />
   </div>
   <div
     v-else

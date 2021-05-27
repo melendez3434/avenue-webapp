@@ -3,4 +3,5 @@ export default () => ({
   followedTalents: [],
   currentCompetition: {},
   competitions: [],
+  storeInitialized: false,
 })
