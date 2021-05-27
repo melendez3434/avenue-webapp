@@ -11,7 +11,7 @@ const config = {
 
   ssr: false,
 
-  components: true,
+  components: ['~/components', '~/components/commons/ui', '~/components/commons'],
 
   publicRuntimeConfig: {
     baseURL: process.env.BASE_URL,
