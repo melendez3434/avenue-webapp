@@ -7,7 +7,7 @@
         <h1 class="text-3xl font-library text-center text-avenue-white-light text-light-white">
           {{ competition.name }}
         </h1>
-        <CompetitionIcon v-if="competition.icon" :icon="competition.icon" />
+        <CompetitionIcon v-if="competition.icon" :icon="competition.icon" is-title />
       </div>
       <p class="mt-5 text-lg font-bold">
         {{ competition.description }}

@@ -12,6 +12,7 @@
             v-if="currentCompetition.icon"
             :icon="currentCompetition.icon"
             class="text-3xl"
+            is-title
           />
         </div>
         <h6 class="mt-5 text-lg">
