@@ -32,7 +32,6 @@ export default {
   async initStore({ dispatch, commit }) {
     await Promise.all([
       dispatch('global/fetchCategories', null, { root: true }),
-      dispatch('global/fetchFollowedTalents', null, { root: true }),
       dispatch('global/fetchCurrentCompetition', null, { root: true }),
       dispatch('global/fetchCompetitions', null, { root: true }),
     ])
