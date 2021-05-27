@@ -50,9 +50,14 @@ export default {
       const selectedAsset = event.assets.length ? event.assets[0].playback_id : ''
       this.event = event
       this.selectedAsset = selectedAsset
+
       this.$echo.channel(`event.${this.event.id}`).listen('EventIsAboutToEnd', () => {
         this.fetchOtherLiveEvents()
       })
+
+      if (this.$auth.loggedIn) {
+        await this.$api.events.view(this.event.id)
+      }
     } catch (e) {
       console.log(e)
       return this.$router.push('/')
@@ -99,12 +104,6 @@ export default {
     },
   },
 
-  async mounted() {
-    if (this.$auth.loggedIn && !this.$fetchState.pending) {
-      await this.$api.events.view(this.event.id)
-    }
-  },
-
   beforeDestroy() {
     if (this.event) {
       this.$echo.channel(`event.${this.event.id}`).stopListening('EventIsAboutToEnd')
@@ -127,7 +126,7 @@ export default {
   },
 
   head() {
-    if (!this.$fetchState.pending && this.event) return
+    if (!this.event) return
     const title = `${this.event.talent.name}, performing live on ${this.eventStartTimeZoneDate} (${this.timezoneFormatted}) on The Avenue`
     const meta = [
       { hid: 'twitter:title', name: 'twitter:title', content: title },
