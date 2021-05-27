@@ -74,6 +74,10 @@ module.exports = {
       listStyleType: {
         'lower-alpha': 'lower-alpha',
       },
+
+      height: {
+        '130': '130vh',
+      },
     },
   },
   variants: {},

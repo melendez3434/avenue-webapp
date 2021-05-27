@@ -26,4 +26,12 @@ export default {
   [INITIALIZE_STORE](state) {
     state.storeInitialized
   },
+<<<<<<< HEAD
+=======
+
+  [SET_LOADING_PAGE](state, value) {
+    state.loadingPage = value
+  },
+
+>>>>>>> b553634e01ec0719eea2ef248efe0afe6e5f6b55
 }
