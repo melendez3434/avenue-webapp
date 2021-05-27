@@ -82,7 +82,18 @@ const config = {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next', '@nuxtjs/gtm'],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
+    '@nuxtjs/gtm',
+    [
+      '@netsells/nuxt-hotjar',
+      {
+        id: process.env.HOTJAR_ID,
+        sv: process.env.HOTJAR_SV,
+      },
+    ],
+  ],
 
   /*
    ** Axios module configuration
