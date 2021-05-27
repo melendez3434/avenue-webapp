@@ -93,6 +93,7 @@ const config = {
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
     '@nuxtjs/gtm',
+    '@nuxtjs/proxy',
     [
       '@netsells/nuxt-hotjar',
       {
