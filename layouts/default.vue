@@ -160,7 +160,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import Navbar from '@/components/commons/Navbar'
 import UserAccessModal from '@/components/users/modals/UserAccessModal'
 import TalentSignUpModal from '@/components/talents/modals/TalentSignUpModal'
@@ -211,6 +211,10 @@ export default {
   },
 
   computed: {
+    ...mapState({
+      storeInitialized: state => state.global.storeInitialized,
+    }),
+
     isStreamingPage() {
       const isEvent = this.$route.path.includes('event')
       const isBroadcast = this.$route.path.includes('broadcast')

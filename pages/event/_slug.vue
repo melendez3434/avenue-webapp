@@ -50,7 +50,9 @@ export default {
       const selectedAsset = event.assets.length ? event.assets[0].playback_id : ''
       this.event = event
       this.selectedAsset = selectedAsset
-    } catch (error) {
+      this.$echo.channel(`event.${this.event.id}`).listen('EventIsAboutToEnd', () => {
+        this.fetchOtherLiveEvents()
+      })
       console.log(error)
       return this.$router.push('/')
     }
@@ -71,10 +73,10 @@ export default {
       return this.event.is_finished
     },
     showOtherEvents() {
-      return this.showModal && this.otherLiveEvents && this.otherLiveEvents.length > 0
+      return this.showModal && this.otherLiveEvents.length > 0
     },
     otherLiveEvents() {
-      if (!this.event && !this.$fetchState.pending) return null
+      if (!this.event && !this.$fetchState.pending) return []
       return this.otherEvents.slice(0, 4).filter(event => event.id != this.event.id)
     },
     activePlaybackId() {
@@ -100,15 +102,10 @@ export default {
     if (this.$auth.loggedIn && !this.$fetchState.pending) {
       await this.$api.events.view(this.event.id)
     }
-    if (!this.$fetchState.pending) {
-      this.$echo.channel(`event.${this.event.id}`).listen('EventIsAboutToEnd', () => {
-        this.fetchOtherLiveEvents()
-      })
-    }
   },
 
   beforeDestroy() {
-    if (!this.$fetchState.pending) {
+    if (this.event) {
       this.$echo.channel(`event.${this.event.id}`).stopListening('EventIsAboutToEnd')
     }
   },
@@ -129,34 +126,34 @@ export default {
   },
 
   head() {
-    if (!this.$fetchState.pending && this.event) {
-      const title = `${this.event.talent.name}, performing live on ${this.eventStartTimeZoneDate} (${this.timezoneFormatted}) on The Avenue`
-      const meta = [
-        { hid: 'twitter:title', name: 'twitter:title', content: title },
-        { hid: 'og:title', name: 'og:title', content: title },
-        { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
-      ]
-      if (this.event.talent.biography) {
-        meta.push({
-          hid: 'og:description',
-          name: 'og:description',
-          content: this.event.talent.biography,
-        })
-        meta.push({ hid: 'description', name: 'description', content: this.event.talent.biography })
-      }
-      if (this.event.talent.cover_photo) {
-        meta.push({
-          hid: 'twitter:image:src',
-          name: 'twitter:image:src',
-          content: this.event.talent.cover_photo,
-        })
-        meta.push({ hid: 'og:image', name: 'og:image', content: this.event.talent.cover_photo })
-      }
-      return {
-        title,
-        meta,
-      }
+    if (!this.$fetchState.pending && this.event) return
+    const title = `${this.event.talent.name}, performing live on ${this.eventStartTimeZoneDate} (${this.timezoneFormatted}) on The Avenue`
+    const meta = [
+      { hid: 'twitter:title', name: 'twitter:title', content: title },
+      { hid: 'og:title', name: 'og:title', content: title },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
+    ]
+    if (this.event.talent.biography) {
+      meta.push({
+        hid: 'og:description',
+        name: 'og:description',
+        content: this.event.talent.biography,
+      })
+      meta.push({ hid: 'description', name: 'description', content: this.event.talent.biography })
     }
+    if (this.event.talent.cover_photo) {
+      meta.push({
+        hid: 'twitter:image:src',
+        name: 'twitter:image:src',
+        content: this.event.talent.cover_photo,
+      })
+      meta.push({ hid: 'og:image', name: 'og:image', content: this.event.talent.cover_photo })
+    }
+    return {
+      title,
+      meta,
+    }
+
   },
 }
 </script>

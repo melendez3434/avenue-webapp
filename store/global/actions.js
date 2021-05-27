@@ -2,7 +2,6 @@ import {
   SET_CATEGORIES,
   SET_CURRENT_COMPETITION,
   SET_FOLLOWED_TALENTS,
-  SET_LOADING_PAGE,
   INITIALIZE_STORE,
   SET_COMPETITIONS,
 } from './mutation-types'
@@ -31,8 +30,6 @@ export default {
   },
 
   async initStore({ dispatch, commit }) {
-    commit(SET_LOADING_PAGE, true)
-
     await Promise.all([
       dispatch('global/fetchCategories', null, { root: true }),
       dispatch('global/fetchFollowedTalents', null, { root: true }),
@@ -41,6 +38,5 @@ export default {
     ])
 
     commit(INITIALIZE_STORE)
-    commit(SET_LOADING_PAGE, false)
   },
 }

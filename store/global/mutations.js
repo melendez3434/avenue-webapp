@@ -3,7 +3,6 @@ import {
   SET_CURRENT_COMPETITION,
   SET_FOLLOWED_TALENTS,
   INITIALIZE_STORE,
-  SET_LOADING_PAGE,
   SET_COMPETITIONS,
 } from './mutation-types'
 
@@ -26,9 +25,5 @@ export default {
 
   [INITIALIZE_STORE](state) {
     state.storeInitialized
-  },
-
-  [SET_LOADING_PAGE](state, value) {
-    state.loadingPage = value
   },
 }
