@@ -112,23 +112,6 @@ const config = {
     credentials: true,
   },
 
-  // proxy: {
-  //   '/api': {
-  //     target: `${process.env.BASE_URL}/api`,
-  //     pathRewrite: {
-  //       '^/api': '',
-  //     },
-  //     secure: process.env.SECURE,
-  //     changeOrigin: true,
-  //   },
-  //   '/backend': {
-  //     target: process.env.BASE_URL,
-  //     pathRewrite: {
-  //       '^/backend': '/',
-  //     },
-  //   },
-  // },
-
   auth: {
     cookie: {
       options: {
@@ -142,7 +125,7 @@ const config = {
     },
     strategies: {
       laravelSanctum: {
-        url: '/backend',
+        url: process.env.BASE_URL,
         user: { property: 'data' },
       },
     },
