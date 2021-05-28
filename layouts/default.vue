@@ -13,7 +13,7 @@
       height="auto"
       @before-open="beforeOpenUserAccess"
     >
-      <UserModalsUserAccessModal
+      <UsersModalsUserAccessModal
         :active-tab="modal.active"
         :title="modal.title"
         :subtitle="modal.subtitle"
@@ -186,7 +186,7 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import Navbar from '@/components/commons/Navbar'
-import UserAccessModal from '@/components/users/modals/UserAccessModal'
+import UsersModalsUserAccessModal from '@/components/users/modals/UsersModalsUserAccessModal'
 import IcClose from '@/assets/svg/close.svg?inline'
 import IcPhone from '@/assets/svg/phone.svg?inline'
 import IcAppStore from '@/assets/svg/appstore.svg?inline'
@@ -197,7 +197,7 @@ export default {
 
   components: {
     Navbar,
-    UserAccessModal,
+    UsersModalsUserAccessModal,
     IcClose,
     IcPhone,
     IcAppStore,
