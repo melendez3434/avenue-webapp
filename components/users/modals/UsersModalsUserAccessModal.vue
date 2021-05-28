@@ -48,7 +48,7 @@ import ForgotPasswordForm from '@/components/users/ForgotPasswordForm'
 import IcClose from '@/assets/svg/close_2.svg?inline'
 
 export default {
-  name: 'UserAccessModal',
+  name: 'UsersModalsUserAccessModal',
 
   components: {
     LoginForm,

@@ -13,7 +13,11 @@
       height="auto"
       @before-open="beforeOpenUserAccess"
     >
-      <UserAccessModal :active-tab="modal.active" :title="modal.title" :subtitle="modal.subtitle" />
+      <UserModalsUserAccessModal
+        :active-tab="modal.active"
+        :title="modal.title"
+        :subtitle="modal.subtitle"
+      />
     </modal>
 
     <modal
@@ -83,7 +87,7 @@
       scrollable
       height="auto"
     >
-      <AlreadySignedupModal @close="closeModal('already-signedup-modal')" />
+      <UsersModalsAlreadySignedupModal @close="closeModal('already-signedup-modal')" />
     </modal>
 
     <modal

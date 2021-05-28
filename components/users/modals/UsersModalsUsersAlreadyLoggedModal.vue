@@ -22,7 +22,7 @@
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
-  name: 'AlreadyLoggedModal',
+  name: 'UsersModalsAlreadyLoggedModal',
 
   components: {
     IcClose,
