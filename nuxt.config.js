@@ -108,26 +108,26 @@ const config = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    proxy: true,
+    baseURL: process.env.BASE_URL,
     credentials: true,
   },
 
-  proxy: {
-    '/api': {
-      target: `${process.env.BASE_URL}/api`,
-      pathRewrite: {
-        '^/api': '',
-      },
-      secure: process.env.SECURE,
-      changeOrigin: true,
-    },
-    '/backend': {
-      target: process.env.BASE_URL,
-      pathRewrite: {
-        '^/backend': '/',
-      },
-    },
-  },
+  // proxy: {
+  //   '/api': {
+  //     target: `${process.env.BASE_URL}/api`,
+  //     pathRewrite: {
+  //       '^/api': '',
+  //     },
+  //     secure: process.env.SECURE,
+  //     changeOrigin: true,
+  //   },
+  //   '/backend': {
+  //     target: process.env.BASE_URL,
+  //     pathRewrite: {
+  //       '^/backend': '/',
+  //     },
+  //   },
+  // },
 
   auth: {
     cookie: {
