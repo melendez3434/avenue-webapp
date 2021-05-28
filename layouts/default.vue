@@ -103,7 +103,7 @@
       scrollable
       height="auto"
     >
-      <AlreadyLoggedModal @close="$modal.hide('already-logged-modal')" />
+      <CompetitionAlreadyLoggedModal @close="$modal.hide('already-logged-modal')" />
     </modal>
 
     <modal
@@ -113,7 +113,7 @@
       scrollable
       height="auto"
     >
-      <NotTalentModal @close="$modal.hide('not-talent-modal')" />
+      <CompetitionNotTalentModal @close="$modal.hide('not-talent-modal')" />
     </modal>
 
     <modal
@@ -123,7 +123,7 @@
       scrollable
       height="auto"
     >
-      <AlreadyTalentModal @close="$modal.hide('already-talent-modal')" />
+      <CompetitionAlreadyTalentModal @close="$modal.hide('already-talent-modal')" />
     </modal>
 
     <modal
@@ -134,6 +134,16 @@
       height="auto"
     >
       <CompetitionWelcomeModal @close="$modal.hide('welcome-modal')" />
+    </modal>
+
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="no-stripe-modal"
+      scrollable
+      height="auto"
+    >
+      <CompetitionNoStripeModal @close="$modal.hide('no-stripe-modal')" />
     </modal>
 
     <modal
