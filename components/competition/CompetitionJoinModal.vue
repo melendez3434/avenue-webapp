@@ -103,7 +103,7 @@ import { required } from 'vuelidate/lib/validators'
 import IcPlus from '@/assets/svg/plus.svg?inline'
 
 export default {
-  name: 'JoinEventModal',
+  name: 'CompetitionJoinModal',
 
   auth: false,
 
@@ -170,7 +170,6 @@ export default {
         this.$router.go()
 
         this.$modal.show('welcome-modal')
-
       } catch (e) {
         if (!e.error || !e.error.response || !e.error.response.data) {
           console.log(e)

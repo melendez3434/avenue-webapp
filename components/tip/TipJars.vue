@@ -3,7 +3,7 @@
     class="h-20 md:h-80 landscape:h-20 bg-avenue-blue-light border-b-2 border-theavenue-background-extra-light"
   >
     <div class="p-5 landscape:p-2 flex space-x-1 md:space-x-4">
-      <Jar
+      <TipJar
         v-for="jar in jars"
         :id="jar.id"
         :key="jar.id"
@@ -23,13 +23,10 @@
 </template>
 
 <script>
-import Jar from '@/components/tip/Jar'
 import '@/assets/css/shake.css'
 
 export default {
   name: 'TipJars',
-
-  components: { Jar },
 
   props: {
     event: {

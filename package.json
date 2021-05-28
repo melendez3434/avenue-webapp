@@ -19,6 +19,7 @@
     "@nuxtjs/axios": "^5.10.3",
     "@nuxtjs/gtm": "2.3.2",
     "@nuxtjs/laravel-echo": "https://github.com/64robots/laravel-echo",
+    "@nuxtjs/proxy": "^2.1.0",
     "@sentry/node": "^5.29.2",
     "@sentry/vue": "^5.29.2",
     "@tailwindcss/ui": "^0.6.2",

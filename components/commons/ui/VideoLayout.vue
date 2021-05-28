@@ -46,14 +46,8 @@
 </template>
 
 <script>
-import ReportModal from '@/components/talents/modals/ReportModal'
-
 export default {
   name: 'VideoLayout',
-
-  components: {
-    ReportModal,
-  },
 
   props: {
     event: {

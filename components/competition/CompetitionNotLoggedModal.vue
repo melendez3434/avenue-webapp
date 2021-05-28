@@ -34,7 +34,7 @@ import IcTrophy from '@/assets/svg/trophy.svg?inline'
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
-  name: 'NotLoggedModal',
+  name: 'CompetitionNotLoggedModal',
 
   components: {
     IcTrophy,
