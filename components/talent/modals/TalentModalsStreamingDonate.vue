@@ -73,7 +73,7 @@ import { required, minValue, maxValue } from 'vuelidate/lib/validators'
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
-  name: 'StreamingDonateModal',
+  name: 'TalentModalsStreamingDonate',
 
   components: { IcClose },
 

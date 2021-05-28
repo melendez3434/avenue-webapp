@@ -27,11 +27,11 @@
       scrollable
       height="auto"
     >
-      <TalentSignUpModal />
+      <TalentModalsSignUp />
     </modal>
 
     <modal name="streaming-profile-modal" adaptive height="auto" width="350px">
-      <StreamingProfileModal />
+      <TalentModalsStreamingProfile />
     </modal>
 
     <modal
@@ -52,7 +52,7 @@
       scrollable
       @before-open="beforeOpenStreamingDonate"
     >
-      <StreamingDonateModal :event="streamingDonate.event" :jar="streamingDonate.jar" />
+      <TalentModalsStreamingDonate :event="streamingDonate.event" :jar="streamingDonate.jar" />
     </modal>
 
     <modal
@@ -127,7 +127,7 @@
       scrollable
       height="auto"
     >
-      <CompetitionAlreadyTalentModal @close="$modal.hide('already-talent-modal')" />
+      <TalentModalsAlreadyTalent @close="$modal.hide('already-talent-modal')" />
     </modal>
 
     <modal

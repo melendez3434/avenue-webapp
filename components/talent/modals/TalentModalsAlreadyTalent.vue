@@ -27,7 +27,7 @@
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
-  name: 'AlreadyTalentModal',
+  name: 'TalentModalsAlreadyTalent',
 
   components: {
     IcClose,

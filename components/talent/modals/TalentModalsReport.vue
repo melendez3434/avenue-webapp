@@ -41,7 +41,7 @@
 import IcClose from '@/assets/svg/close_2.svg?inline'
 
 export default {
-  name: 'ReportModal',
+  name: 'TalentModalsReport',
 
   components: { IcClose },
 
