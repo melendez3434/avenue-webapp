@@ -13,7 +13,11 @@
       height="auto"
       @before-open="beforeOpenUserAccess"
     >
-      <UserAccessModal :active-tab="modal.active" :title="modal.title" :subtitle="modal.subtitle" />
+      <UsersModalsUserAccessModal
+        :active-tab="modal.active"
+        :title="modal.title"
+        :subtitle="modal.subtitle"
+      />
     </modal>
 
     <modal
@@ -23,11 +27,11 @@
       scrollable
       height="auto"
     >
-      <TalentSignUpModal />
+      <TalentModalsSignUp />
     </modal>
 
     <modal name="streaming-profile-modal" adaptive height="auto" width="350px">
-      <StreamingProfileModal />
+      <TalentModalsStreamingProfile />
     </modal>
 
     <modal
@@ -48,7 +52,7 @@
       scrollable
       @before-open="beforeOpenStreamingDonate"
     >
-      <StreamingDonateModal :event="streamingDonate.event" :jar="streamingDonate.jar" />
+      <TalentModalsStreamingDonate :event="streamingDonate.event" :jar="streamingDonate.jar" />
     </modal>
 
     <modal
@@ -83,7 +87,7 @@
       scrollable
       height="auto"
     >
-      <AlreadySignedupModal @close="closeModal('already-signedup-modal')" />
+      <UsersModalsAlreadySignedupModal @close="closeModal('already-signedup-modal')" />
     </modal>
 
     <modal
@@ -123,7 +127,7 @@
       scrollable
       height="auto"
     >
-      <CompetitionAlreadyTalentModal @close="$modal.hide('already-talent-modal')" />
+      <TalentModalsAlreadyTalent @close="$modal.hide('already-talent-modal')" />
     </modal>
 
     <modal
@@ -182,7 +186,6 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import Navbar from '@/components/commons/Navbar'
-import UserAccessModal from '@/components/users/modals/UserAccessModal'
 import IcClose from '@/assets/svg/close.svg?inline'
 import IcPhone from '@/assets/svg/phone.svg?inline'
 import IcAppStore from '@/assets/svg/appstore.svg?inline'
@@ -193,7 +196,6 @@ export default {
 
   components: {
     Navbar,
-    UserAccessModal,
     IcClose,
     IcPhone,
     IcAppStore,

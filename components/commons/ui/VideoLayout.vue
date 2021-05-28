@@ -40,7 +40,7 @@
       scrollable
       height="auto"
     >
-      <ReportModal v-if="!talent" :talent="event.talent" />
+      <TalentModalsReport v-if="!talent" :talent="event.talent" />
     </modal>
   </div>
 </template>
