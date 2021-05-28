@@ -39,7 +39,7 @@
           scrollable
           height="auto"
         >
-          <DTalentModalsDeviceSettings
+          <TalentModalsDeviceSettings
             :video-sources="videoDevices"
             :audio-sources="audioDevices"
             :selected-audio="audioInput.value"

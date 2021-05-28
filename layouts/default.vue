@@ -186,7 +186,6 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import Navbar from '@/components/commons/Navbar'
-import UsersModalsUserAccessModal from '@/components/users/modals/UsersModalsUserAccessModal'
 import IcClose from '@/assets/svg/close.svg?inline'
 import IcPhone from '@/assets/svg/phone.svg?inline'
 import IcAppStore from '@/assets/svg/appstore.svg?inline'
@@ -197,7 +196,6 @@ export default {
 
   components: {
     Navbar,
-    UsersModalsUserAccessModal,
     IcClose,
     IcPhone,
     IcAppStore,
