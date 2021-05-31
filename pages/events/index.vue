@@ -6,25 +6,17 @@
       <div class=" text-center mt-20">
         <div class="flex flex-col md:flex-row items-center justify-center w-full md:space-x-6">
           <h1 class="text-4xl font-library text-center text-avenue-white-light text-light-white">
-            {{ currentCompetition.name }}
+            Competitions
           </h1>
-          <CompetitionIcon
-            v-if="currentCompetition.icon"
-            :icon="currentCompetition.icon"
-            class="text-3xl"
-            is-title
-          />
         </div>
-        <h6 class="mt-5 text-lg">
-          Four weeks competition featuring The Avenue’s top talent
-        </h6>
-        <h6 class="mt-5 text-xl font-bold leading-relaxed">
-          A cooking competition supporting Black chefs and Black-owned restaurants. Vote for your
-          favorite performers as they compete in our national competitions. Follow these artists on
-          our performers’ scoreboard, tracking their progress and tallying up their contributions to
-          charitable&nbsp;organizations.
-        </h6>
-        <JoinEventButton class="mt-10" :competition="currentCompetition" has-long-text />
+        <h2 class="mt-5 text-lg">
+          Featuring The Avenue’s top talent
+        </h2>
+        <h3 class="mt-5 text-xl font-bold leading-relaxed">
+          Vote for your favorite performers as they compete in our national competitions. Follow
+          these artists on our performers’ scoreboard, tracking their progress and tallying up their
+          contributions to charitable&nbsp;organizations.
+        </h3>
       </div>
     </section>
     <section class="container md:grid grid-cols-3 gap-6 mx-auto my-16">
@@ -53,11 +45,12 @@
     </section>
 
     <div class="container mx-auto mt-10">
-      <section v-if="currentCompetition" class="flex flex-wrap justify-center items-center gap-6">
-        <CompetitionListItem :competition="currentCompetition" />
-      </section>
-      <section v-else class="text-center">
-        <p class="text-lg">There are no active events at the moment</p>
+      <section class="flex flex-wrap justify-center items-center gap-6">
+        <CompetitionListItem
+          v-for="competition in competitions"
+          :key="competition.id"
+          :competition="competition"
+        />
       </section>
     </div>
   </div>
@@ -67,6 +60,7 @@ import { mapState } from 'vuex'
 import IcPodium from '@/assets/svg/podium.svg?inline'
 import IcLoveHand from '@/assets/svg/love_hand.svg?inline'
 import IcStars from '@/assets/svg/stars.svg?inline'
+import CompetitionListItem from '@/components/competition/CompetitionListItem.vue'
 
 export default {
   name: 'EventsPage',
@@ -82,12 +76,12 @@ export default {
 
   computed: {
     ...mapState({
-      currentCompetition: state => state.global.currentCompetition,
+      competitions: state => state.global.competitions,
     }),
   },
 
   middleware({ store, redirect }) {
-    if (!store.state.global.currentCompetition.id) {
+    if (!store.state.global.competitions) {
       return redirect('/')
     }
   },
