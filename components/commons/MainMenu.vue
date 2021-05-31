@@ -33,7 +33,7 @@
               v-model="search"
               placeholder="search artists"
               type="text"
-              class="w-11/12 rounded bg-white h-9 relative text-grey-dark text-xs p-2"
+              class="w-11/12 rounded bg-white h-9 relative text-grey-dark text-xs p-2 placeholder-gray-500"
               @keyup="fetchTalents"
             />
             <IcSearch class="w-6 h-6 absolute right-6 cursor-pointer" />
