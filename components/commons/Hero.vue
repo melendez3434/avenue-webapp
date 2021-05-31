@@ -14,7 +14,7 @@
       <div class="mt-6 md:mt-10 space-x-2 md:space-x-6">
         <button
           class="text-white font-semibold text-sm md:text-xl lg:text-2xl 3xl:text-3xl py-2 px-4 md:py-3 md:px-6 bg-theavenue-turquoise-neon transform scale-100 hover:scale-105"
-          @click="openSignup()"
+          @click="startWatching"
         >
           Start Watching
         </button>
@@ -37,10 +37,10 @@ export default {
   auth: false,
 
   methods: {
-    openSignup() {
+    startWatching() {
       !this.$auth.user
         ? this.$modal.show('user-access-modal', { active: 'signup' })
-        : this.$modal.show('already-logged-modal')
+        : this.$emit('scroll')
     },
   },
 }

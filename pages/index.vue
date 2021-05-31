@@ -2,11 +2,11 @@
   <div
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
-    <Hero />
+    <Hero @scroll="watchNow" />
     <div v-if="$fetchState.pending" class="h-screen">
       <base-spinner class="transform translate-y-2/4" />
     </div>
-    <div v-else>
+    <div v-else ref="events">
       <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
         <CompetitionMarqueeItem
           v-for="competition in competitions"
@@ -65,10 +65,8 @@ export default {
   async fetch() {
     try {
       const { data: events, meta } = await this.$api.events.list({ page: 0 })
-      const { data: competitions } = await this.$api.competitions.list()
       this.events = events
       this.meta = meta
-      this.competitions = competitions
     } catch (error) {
       console.warn(error)
     }
@@ -79,13 +77,12 @@ export default {
       maxModalShow: 4,
       events: [],
       meta: {},
-      competitions: [],
     }
   },
 
   computed: {
     ...mapState({
-      currentCompetition: state => state.global.currentCompetition,
+      competitions: state => state.global.competitions,
     }),
     isSuitableTalent() {
       return (
@@ -119,7 +116,6 @@ export default {
         event.is_live = true
         this.handleSocketEvent(event, 'updated')
       })
-    if (!this.currentCompetition.id) return
     if (localStorage.modalCounter) {
       this.modalCounter = localStorage.modalCounter
     } else {
@@ -192,6 +188,11 @@ export default {
     },
     closeModal(modal) {
       return this.$modal.hide(modal)
+    },
+    watchNow() {
+      this.$refs.events.scrollIntoView({
+        behavior: 'smooth',
+      })
     },
   },
 }

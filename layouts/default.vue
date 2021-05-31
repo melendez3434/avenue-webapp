@@ -103,16 +103,6 @@
     <modal
       width="100%"
       classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
-      name="already-logged-modal"
-      scrollable
-      height="auto"
-    >
-      <CompetitionAlreadyLoggedModal @close="$modal.hide('already-logged-modal')" />
-    </modal>
-
-    <modal
-      width="100%"
-      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
       name="not-talent-modal"
       scrollable
       height="auto"
