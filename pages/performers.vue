@@ -27,7 +27,7 @@
           </div>
           <button
             class="px-4 py-2 bg-white text-black text-lg 2xl:text-xl 3xl:text-2xl transform scale-100 hover:scale-105"
-            @click="openSignup()"
+            @click="openSignup"
           >
             Sign Up
           </button>

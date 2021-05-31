@@ -1,6 +1,10 @@
 <template>
-  <div class="w-full relative">
-    <img src="@/assets/images/hero.jpg" alt="man recording music on a studio" class="w-full" />
+  <div class="w-full max-h-3/4 relative overflow-hidden">
+    <img
+      src="@/assets/images/hero.jpg"
+      alt="man playing guitar on a stage"
+      class="w-full h-full object-cover"
+    />
     <div class="absolute top-6 sm:top-1/3 p-2 md:p-6 ">
       <h1 class="font-bold text-lg md:text-3xl lg:text-6xl 3xl:text-7xl leading-none">
         Stream Live.
