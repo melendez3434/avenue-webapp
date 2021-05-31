@@ -3,8 +3,14 @@
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
     <Hero @scroll="watchNow" />
-    <div v-if="$fetchState.pending" class="h-screen">
-      <base-spinner class="transform translate-y-2/4" />
+    <div v-if="$fetchState.pending">
+      <content-placeholders class=" w-full h-full">
+        <content-placeholders-img
+          v-for="(line, index) in 6"
+          :key="index"
+          class="my-1 h-10 w-full"
+        />
+      </content-placeholders>
     </div>
     <div v-else ref="events">
       <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
