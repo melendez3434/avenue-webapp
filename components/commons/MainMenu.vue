@@ -29,7 +29,7 @@
         </div>
         <el-dropdown-menu slot="dropdown" class="w-80">
           <fieldset class="w-full flex justify-center items-center mb-4">
-            <input
+            <input45
               v-model="search"
               placeholder="search artists"
               type="text"
@@ -224,16 +224,12 @@ export default {
   @apply font-library;
   @apply text-3xl;
   @apply text-theavenue-gray;
-  @apply mb-5;
+  @apply my-5;
 }
 
 .popper__arrow {
   display: hidden;
   visibility: hidden;
-}
-
-.popper__arrow::after {
-  margin-bottom: 1rem;
 }
 
 .el-popper.el-dropdown-menu .el-dropdown-menu__item:focus,
