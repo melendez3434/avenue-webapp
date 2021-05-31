@@ -3,7 +3,7 @@
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
     <Hero @scroll="watchNow" />
-    <div>
+    <div v-if="$fetchState.pending">
       <content-placeholders class=" w-full ">
         <content-placeholders-img
           v-for="(line, index) in 6"
@@ -12,7 +12,7 @@
         />
       </content-placeholders>
     </div>
-    <div ref="events">
+    <div v-else ref="events">
       <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
         <CompetitionMarqueeItem
           v-for="competition in competitions"
