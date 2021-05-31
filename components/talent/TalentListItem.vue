@@ -19,31 +19,36 @@
       <div
         class="container mx-auto flex items-end justify-between h-full text-theavenue-white z-10 mb-12"
       >
-        <TalentCard
-          :talent="talent"
-          class="hidden md:flex"
-          :category="talent.category.name"
-          link
-        />
+        <TalentCard :talent="talent" class="hidden md:flex" :category="talent.category.name" link />
       </div>
     </div>
   </el-collapse-item>
 </template>
 <script>
-
 export default {
   name: 'TalentListItem',
-
   props: {
     talent: {
       type: Object,
       required: true,
     },
   },
-
 }
 </script>
 <style>
 .el-collapse-item__header {
   @apply w-full;
   @apply p-0;
+  @apply h-full;
+  @apply text-6xl;
+  line-height: normal;
+}
+
+.el-collapse-item__content {
+  @apply p-0;
+}
+
+.el-collapse-item__wrap {
+  @apply border-none;
+}
+</style>
