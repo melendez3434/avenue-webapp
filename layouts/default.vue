@@ -87,7 +87,7 @@
       scrollable
       height="auto"
     >
-      <CompetitionAlreadySingedupModal @close="closeModal('already-signedup-modal')" />
+      <CompetitionAlreadySingedupModal @close="$modal.hide('already-signedup-modal')" />
     </modal>
 
     <modal
@@ -292,10 +292,6 @@ export default {
 
     beforeOpenJoinEventModal(data) {
       this.activeCompetition = data.params.competition
-    },
-
-    closeModal(modal) {
-      return this.$modal.hide(modal)
     },
   },
 }
