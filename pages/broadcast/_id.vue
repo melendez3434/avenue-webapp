@@ -151,31 +151,6 @@ export default {
     return next()
   },
 
-  async fetch() {
-    try {
-      const { data: talent } = await this.$api.talent.get(this.$route.params.id)
-      const { data: events } = await this.$api.events.list({
-        live: 1,
-        talent: this.$route.params.id,
-      })
-
-      let event = null
-
-      if (events.length) event = events[0]
-
-      if (!talent.stream_key) {
-        console.error('Invalid broadcast settings')
-        return this.$router.push('/')
-      }
-
-      this.events = events
-      this.event = event
-      this.talent = talent
-    } catch {
-      console.error('Invalid broadcast settings')
-    }
-  },
-
   data() {
     return {
       leaveWarning: "The video is processing, please don't leave the page",
@@ -198,6 +173,31 @@ export default {
       event: null,
       events: null,
       talent: null,
+    }
+  },
+
+  async fetch() {
+    try {
+      const { data: talent } = await this.$api.talent.get(this.$route.params.id)
+      const { data: events } = await this.$api.events.list({
+        live: 1,
+        talent: this.$route.params.id,
+      })
+
+      let event = null
+
+      if (events.length) event = events[0]
+
+      if (!talent.stream_key) {
+        console.error('Invalid broadcast settings')
+        return this.$router.push('/')
+      }
+
+      this.events = events
+      this.event = event
+      this.talent = talent
+    } catch {
+      console.error('Invalid broadcast settings')
     }
   },
 
@@ -323,6 +323,7 @@ export default {
         this.listenForEventToFinish()
       })
     } catch (error) {
+      console.error(error)
       this.error = true
     }
   },
