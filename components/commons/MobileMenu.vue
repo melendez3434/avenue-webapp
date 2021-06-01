@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import IcMenu from '@/assets/svg/hamburger.svg?inline'
 import IcClose from '@/assets/svg/close.svg?inline'
 
@@ -121,6 +121,7 @@ export default {
     },
 
     async logout() {
+      this.setBackToCompetition(false)
       await this.$auth.logout()
     },
 
@@ -148,6 +149,10 @@ export default {
       this.open = false
       this.$modal.show('user-access-modal', { active: 'signup' })
     },
+
+    ...mapActions({
+      setBackToCompetition: 'global/setBackToCompetition',
+    }),
   },
 }
 </script>

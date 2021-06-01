@@ -29,7 +29,7 @@ export default {
   methods: {
     async handleSignup() {
       try {
-        if (this.$auth.user.talent_id) {
+        if (this.$auth.user && this.$auth.user.talent_id) {
           const alreadyRegistered = await this.competition.talent.find(
             t => t.talent.id === this.user.talent_id
           )

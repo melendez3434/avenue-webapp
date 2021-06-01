@@ -37,7 +37,7 @@
 </template>
 <script>
 import { email, required } from 'vuelidate/lib/validators'
-import { mapActions, mapState } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'LoginForm',
@@ -75,7 +75,7 @@ export default {
         this.busy = false
         this.$modal.hide('user-access-modal')
         if (this.backToCompetitionSignup) {
-          const alreadyRegistered = await this.competition.talent.find(
+          const alreadyRegistered = this.competition.talent.find(
             t => t.talent.id === this.user.talent_id
           )
           if (alreadyRegistered) return this.$modal.show('already-signedup-modal')
@@ -87,10 +87,6 @@ export default {
       }
     },
   },
-
-  ...mapActions({
-    setBackToCompetition: 'global/setBackToCompetition',
-  }),
 
   validations: {
     form: {

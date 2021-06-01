@@ -28,7 +28,7 @@ export default {
     state.storeInitialized = true
   },
 
-  [SET_BACK_TO_COMPETITION_SIGNUP](state) {
-    state.backToCompetitionSignup = true
+  [SET_BACK_TO_COMPETITION_SIGNUP](state, value) {
+    state.backToCompetitionSignup = value
   },
 }

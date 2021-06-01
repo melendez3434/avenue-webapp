@@ -30,14 +30,13 @@ export default {
   async initStore({ dispatch, commit }) {
     await Promise.all([
       dispatch('global/fetchCategories', null, { root: true }),
-      dispatch('global/fetchCurrentCompetition', null, { root: true }),
       dispatch('global/fetchCompetitions', null, { root: true }),
     ])
 
     commit(INITIALIZE_STORE)
   },
 
-  async setBackToCompetition({ commit }) {
-    commit(SET_BACK_TO_COMPETITION_SIGNUP)
+  async setBackToCompetition({ commit }, value) {
+    commit(SET_BACK_TO_COMPETITION_SIGNUP, value)
   },
 }
