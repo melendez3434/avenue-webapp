@@ -4,4 +4,5 @@ export default () => ({
   currentCompetition: {},
   competitions: [],
   storeInitialized: false,
+  backToCompetitionSignup: false,
 })

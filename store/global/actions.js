@@ -4,6 +4,7 @@ import {
   SET_FOLLOWED_TALENTS,
   INITIALIZE_STORE,
   SET_COMPETITIONS,
+  BACK_TO_COMPETITION_SIGNUP,
 } from './mutation-types'
 
 export default {
@@ -17,11 +18,9 @@ export default {
     commit(SET_FOLLOWED_TALENTS, data)
   },
 
-  async fetchCurrentCompetition({ commit }) {
-    if (!process.env.BREAKING_BREAD_ID) return
-
-    const { data } = await this.$api.competitions.get(process.env.BREAKING_BREAD_ID)
-    commit(SET_CURRENT_COMPETITION, data)
+  async setCurrentCompetition({ commit, dispatch }, params) {
+    await Promise.all([dispatch('global/currentCompetition', null, { root: true })])
+    commit(SET_CURRENT_COMPETITION, params)
   },
 
   async fetchCompetitions({ commit }) {
@@ -37,5 +36,10 @@ export default {
     ])
 
     commit(INITIALIZE_STORE)
+  },
+
+  async setBackToCompetition({ commit, dispatch }) {
+    await Promise.all([dispatch('global/backToCompetitionSignup', null, { root: true })])
+    commit(BACK_TO_COMPETITION_SIGNUP)
   },
 }

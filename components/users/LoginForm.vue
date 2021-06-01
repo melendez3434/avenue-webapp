@@ -37,6 +37,7 @@
 </template>
 <script>
 import { email, required } from 'vuelidate/lib/validators'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'LoginForm',
@@ -50,6 +51,13 @@ export default {
       error: null,
       busy: false,
     }
+  },
+
+  computed: {
+    ...mapState({
+      backToCompetitionSignup: state => state.global.backToCompetitionSignup,
+      currentCompetition: state => state.global.currentCompetition,
+    }),
   },
 
   methods: {
@@ -66,12 +74,19 @@ export default {
         this.error = null
         this.busy = false
         this.$modal.hide('user-access-modal')
+        if (this.backToCompetitionSignup) {
+          this.$modal.show('join-event-modal', { competition: this.currentCompetition })
+        }
       } catch (e) {
         this.error = e.response ? e.response.data.error : null
         this.busy = false
       }
     },
   },
+
+  ...mapActions({
+    setBackToCompetition: 'global/setBackToCompetition',
+  }),
 
   validations: {
     form: {

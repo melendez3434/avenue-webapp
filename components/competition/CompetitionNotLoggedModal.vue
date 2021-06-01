@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions } from 'vuex'
 import IcTrophy from '@/assets/svg/trophy.svg?inline'
 import IcClose from '@/assets/svg/close.svg?inline'
 
@@ -41,13 +41,11 @@ export default {
     IcClose,
   },
 
-  computed: {
-    ...mapState({
-      currentCompetition: state => state.global.currentCompetition,
-    }),
-  },
-
   methods: {
+    ...mapActions({
+      setBackToCompetition: 'global/backToCompetition',
+    }),
+
     close() {
       return this.$emit('close')
     },
@@ -55,6 +53,7 @@ export default {
     buttonActions(modal, params) {
       this.$modal.hide('not-logged-modal')
       this.$modal.show(modal, params)
+      this.setBackToCompetition()
     },
   },
 }

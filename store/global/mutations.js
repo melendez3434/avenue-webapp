@@ -4,6 +4,7 @@ import {
   SET_FOLLOWED_TALENTS,
   INITIALIZE_STORE,
   SET_COMPETITIONS,
+  BACK_TO_COMPETITION_SIGNUP,
 } from './mutation-types'
 
 export default {
@@ -15,8 +16,8 @@ export default {
     state.followedTalents = talents
   },
 
-  [SET_CURRENT_COMPETITION](state, competition) {
-    state.currentCompetition = competition
+  [SET_CURRENT_COMPETITION](state) {
+    state.currentCompetition
   },
 
   [SET_COMPETITIONS](state, competitions) {
@@ -25,5 +26,9 @@ export default {
 
   [INITIALIZE_STORE](state) {
     state.storeInitialized
+  },
+
+  [BACK_TO_COMPETITION_SIGNUP](state) {
+    state.backToCompetitionSignup
   },
 }
