@@ -4,7 +4,7 @@ import {
   SET_FOLLOWED_TALENTS,
   INITIALIZE_STORE,
   SET_COMPETITIONS,
-  BACK_TO_COMPETITION_SIGNUP,
+  SET_BACK_TO_COMPETITION_SIGNUP,
 } from './mutation-types'
 
 export default {
@@ -38,6 +38,6 @@ export default {
   },
 
   async setBackToCompetition({ commit }) {
-    commit(BACK_TO_COMPETITION_SIGNUP)
+    commit(SET_BACK_TO_COMPETITION_SIGNUP)
   },
 }
