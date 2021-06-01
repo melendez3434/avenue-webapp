@@ -20,7 +20,7 @@
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
-  name: 'CompetitionAlreadySingedupModal',
+  name: 'CompetitionAlreadySingedup',
 
   components: {
     IcClose,
