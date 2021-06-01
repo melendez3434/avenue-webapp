@@ -196,6 +196,8 @@ export default {
       this.events = events
       this.event = event
       this.talent = talent
+
+      this.initializeBroadcast()
     } catch {
       console.error('Invalid broadcast settings')
     }
@@ -241,91 +243,6 @@ export default {
     hasDevices() {
       return !!this.videoDevices.length && !!this.audioDevices.length
     },
-  },
-
-  async mounted() {
-    this.socket = io(this.$config.wsUrl, {
-      transports: ['websocket', 'polling', 'flashsocket'],
-    })
-
-    window.onbeforeunload = event => {
-      if (this.serverProcessOpen) {
-        event.returnValue = this.leaveWarning
-      }
-    }
-
-    window.addEventListener('unload', () => {
-      if (this.serverProcessOpen) {
-        this.terminateServerProcess()
-      }
-    })
-
-    try {
-      await this.getMediaDevices()
-
-      this.video = this.$refs.video
-      this.video.onloadedmetadata = () => {
-        this.video.play()
-      }
-
-      this.socket.on(`${this.talent.stream_key}-error`, (text, forceKill) => {
-        if (!this.playing) return
-
-        this.showWarningAndStop(text)
-
-        if (!forceKill) return
-
-        if (
-          window.confirm(
-            'This stream is already live. Check your other open tabs and browsers. Do you want to force closing this one?'
-          )
-        ) {
-          this.terminateServerProcess()
-        }
-      })
-
-      this.socket.on(`${this.talent.stream_key}-reconnecting`, () => {
-        this.reconnections++
-        if (this.reconnections > this.$config.maxRetries) {
-          this.$modal.show('bad-connection-modal')
-          return this.showWarningAndStop()
-        }
-
-        this.startingStream = true
-        this.mediaRecorder.stop()
-        setTimeout(() => {
-          this.startStreaming()
-        }, 1000)
-      })
-
-      this.socket.on(`${this.talent.stream_key}-processed-chunk`, chunkId => {
-        const index = this.pendingChunks.indexOf(chunkId)
-        if (index > -1) {
-          this.pendingChunks.splice(index, 1)
-        }
-      })
-
-      this.$echo
-        .channel(`live.${this.talent.id}`)
-        .listen('StreamingIsLive', () => {
-          this.startingStream = false
-        })
-        .listen('StreamingIsIdle', () => {
-          this.stoppingStream = false
-        })
-
-      if (this.event) {
-        return this.listenForEventToFinish()
-      }
-
-      this.$echo.channel(`live.${this.talent.id}`).listen('TalentIsLiveNow', ({ event }) => {
-        this.event = event
-        this.listenForEventToFinish()
-      })
-    } catch (error) {
-      console.error(error)
-      this.error = true
-    }
   },
 
   beforeDestroy() {
@@ -482,6 +399,91 @@ export default {
     terminateServerProcess() {
       this.socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
       this.serverProcessOpen = false
+    },
+
+    async initializeBroadcast() {
+      this.socket = io(this.$config.wsUrl, {
+        transports: ['websocket', 'polling', 'flashsocket'],
+      })
+
+      window.onbeforeunload = event => {
+        if (this.serverProcessOpen) {
+          event.returnValue = this.leaveWarning
+        }
+      }
+
+      window.addEventListener('unload', () => {
+        if (this.serverProcessOpen) {
+          this.terminateServerProcess()
+        }
+      })
+
+      try {
+        await this.getMediaDevices()
+
+        this.video = this.$refs.video
+        this.video.onloadedmetadata = () => {
+          this.video.play()
+        }
+
+        this.socket.on(`${this.talent.stream_key}-error`, (text, forceKill) => {
+          if (!this.playing) return
+
+          this.showWarningAndStop(text)
+
+          if (!forceKill) return
+
+          if (
+            window.confirm(
+              'This stream is already live. Check your other open tabs and browsers. Do you want to force closing this one?'
+            )
+          ) {
+            this.terminateServerProcess()
+          }
+        })
+
+        this.socket.on(`${this.talent.stream_key}-reconnecting`, () => {
+          this.reconnections++
+          if (this.reconnections > this.$config.maxRetries) {
+            this.$modal.show('bad-connection-modal')
+            return this.showWarningAndStop()
+          }
+
+          this.startingStream = true
+          this.mediaRecorder.stop()
+          setTimeout(() => {
+            this.startStreaming()
+          }, 1000)
+        })
+
+        this.socket.on(`${this.talent.stream_key}-processed-chunk`, chunkId => {
+          const index = this.pendingChunks.indexOf(chunkId)
+          if (index > -1) {
+            this.pendingChunks.splice(index, 1)
+          }
+        })
+
+        this.$echo
+          .channel(`live.${this.talent.id}`)
+          .listen('StreamingIsLive', () => {
+            this.startingStream = false
+          })
+          .listen('StreamingIsIdle', () => {
+            this.stoppingStream = false
+          })
+
+        if (this.event) {
+          return this.listenForEventToFinish()
+        }
+
+        this.$echo.channel(`live.${this.talent.id}`).listen('TalentIsLiveNow', ({ event }) => {
+          this.event = event
+          this.listenForEventToFinish()
+        })
+      } catch (error) {
+        console.error(error)
+        this.error = true
+      }
     },
   },
 }
