@@ -87,7 +87,7 @@
       scrollable
       height="auto"
     >
-      <UsersModalsAlreadySignedupModal @close="closeModal('already-signedup-modal')" />
+      <CompetitionAlreadySingedupModal @close="closeModal('already-signedup-modal')" />
     </modal>
 
     <modal
