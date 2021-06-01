@@ -43,7 +43,7 @@ export default {
 
   methods: {
     ...mapActions({
-      setBackToCompetition: 'global/backToCompetition',
+      setBackToCompetition: 'global/setBackToCompetition',
     }),
 
     close() {

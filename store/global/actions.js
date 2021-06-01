@@ -18,8 +18,7 @@ export default {
     commit(SET_FOLLOWED_TALENTS, data)
   },
 
-  async setCurrentCompetition({ commit, dispatch }, params) {
-    await Promise.all([dispatch('global/currentCompetition', null, { root: true })])
+  async setCurrentCompetition({ commit }, params) {
     commit(SET_CURRENT_COMPETITION, params)
   },
 
@@ -38,8 +37,7 @@ export default {
     commit(INITIALIZE_STORE)
   },
 
-  async setBackToCompetition({ commit, dispatch }) {
-    await Promise.all([dispatch('global/backToCompetitionSignup', null, { root: true })])
+  async setBackToCompetition({ commit }) {
     commit(BACK_TO_COMPETITION_SIGNUP)
   },
 }
