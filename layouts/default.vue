@@ -87,7 +87,7 @@
       scrollable
       height="auto"
     >
-      <CompetitionAlreadySingedup @close="$modal.hide('already-signedup-modal')" />
+      <CompetitionAlreadySignedup @close="$modal.hide('already-signedup-modal')" />
     </modal>
 
     <modal
@@ -175,23 +175,19 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import Navbar from '@/components/commons/Navbar'
 import IcClose from '@/assets/svg/close.svg?inline'
 import IcPhone from '@/assets/svg/phone.svg?inline'
 import IcAppStore from '@/assets/svg/appstore.svg?inline'
 import IcGooglePlay from '@/assets/svg/googleplay.svg?inline'
-import CompetitionAlreadySingedup from '@/components/competition/CompetitionAlreadySingedup.vue'
 
 export default {
   name: 'DefaultLayout',
 
   components: {
-    Navbar,
     IcClose,
     IcPhone,
     IcAppStore,
     IcGooglePlay,
-    CompetitionAlreadySingedup,
   },
 
   data() {
