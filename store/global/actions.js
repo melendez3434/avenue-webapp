@@ -18,8 +18,8 @@ export default {
     commit(SET_FOLLOWED_TALENTS, data)
   },
 
-  async setCurrentCompetition({ commit }, params) {
-    commit(SET_CURRENT_COMPETITION, params)
+  async setCurrentCompetition({ commit }, competition) {
+    commit(SET_CURRENT_COMPETITION, competition)
   },
 
   async fetchCompetitions({ commit }) {

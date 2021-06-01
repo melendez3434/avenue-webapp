@@ -45,9 +45,9 @@ export default {
     },
 
     buttonActions(modal) {
+      this.setBackToCompetition()
       this.$modal.hide('not-talent-modal')
       this.$modal.show(modal)
-      this.setBackToCompetition()
     },
   },
 }

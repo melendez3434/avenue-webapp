@@ -51,9 +51,9 @@ export default {
     },
 
     buttonActions(modal, params) {
+      this.setBackToCompetition()
       this.$modal.hide('not-logged-modal')
       this.$modal.show(modal, params)
-      this.setBackToCompetition()
     },
   },
 }

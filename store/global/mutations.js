@@ -16,8 +16,8 @@ export default {
     state.followedTalents = talents
   },
 
-  [SET_CURRENT_COMPETITION](state) {
-    state.currentCompetition
+  [SET_CURRENT_COMPETITION](state, competition) {
+    state.currentCompetition = competition
   },
 
   [SET_COMPETITIONS](state, competitions) {
@@ -25,10 +25,10 @@ export default {
   },
 
   [INITIALIZE_STORE](state) {
-    state.storeInitialized
+    state.storeInitialized = true
   },
 
   [BACK_TO_COMPETITION_SIGNUP](state) {
-    state.backToCompetitionSignup
+    state.backToCompetitionSignup = true
   },
 }
