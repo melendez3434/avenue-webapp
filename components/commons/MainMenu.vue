@@ -29,7 +29,7 @@
         </div>
         <el-dropdown-menu slot="dropdown" class="w-80">
           <fieldset class="w-full flex justify-center items-center mb-4">
-            <input45
+            <input
               v-model="search"
               placeholder="search artists"
               type="text"
