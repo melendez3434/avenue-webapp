@@ -75,10 +75,6 @@ export default {
         this.busy = false
         this.$modal.hide('user-access-modal')
         if (this.backToCompetitionSignup) {
-          const alreadyRegistered = this.competition.talent.find(
-            t => t.talent.id === this.user.talent_id
-          )
-          if (alreadyRegistered) return this.$modal.show('already-signedup-modal')
           return this.$modal.show('join-event-modal', { competition: this.currentCompetition })
         }
       } catch (e) {
