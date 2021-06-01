@@ -73,6 +73,7 @@ const config = {
     '~/plugins/elementui.js',
     '~plugins/vue-js-modal.js',
     '~/plugins/sentry.client.js',
+    '~/plugins/placeholder',
   ],
 
   /*
