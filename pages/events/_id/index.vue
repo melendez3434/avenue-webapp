@@ -181,19 +181,19 @@ export default {
     IcScoreboard,
   },
 
+  data() {
+    return {
+      competition: { talent: [], rounds: [], sponsors: [] },
+      prizesPercentage: 5,
+    }
+  },
+
   async fetch() {
     try {
       const { data } = await this.$api.competitions.get(this.$route.params.id)
       this.competition = data
     } catch (error) {
       this.$router.replace({ name: 'events' })
-    }
-  },
-
-  data() {
-    return {
-      competition: { talent: [], rounds: [], sponsors: [] },
-      prizesPercentage: 5,
     }
   },
 
