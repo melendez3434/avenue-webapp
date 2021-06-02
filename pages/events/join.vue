@@ -3,15 +3,9 @@
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
     <div class="container mx-auto  text-center flex flex-col justify-center items-center  mt-20">
-      <div class="flex space-x-6 items-center justify-center">
-        <h1 class="text-3xl font-library text-center text-avenue-white-light text-light-white">
-          {{ competition.name }}
-        </h1>
-        <CompetitionIcon v-if="competition.icon" :icon="competition.icon" is-title />
-      </div>
-      <p class="mt-5 text-lg font-bold">
-        {{ competition.description }}
-      </p>
+      <h1 class="text-4xl font-library text-center text-avenue-white-light text-light-white">
+        Competitions
+      </h1>
     </div>
     <div class="container mx-auto mt-20 text-avenue-white-light">
       <h2 class="text-3xl">Rules and conditions</h2>
@@ -139,34 +133,37 @@
         </button>
       </div>
     </section>
-    <h2 class="container mx-auto text-center mt-20 mb-4 text-avenue-white-light text-xl">
-      What are you waiting for?
-    </h2>
-    <JoinEventButton class="mt-10" :competition="competition" has-long-text />
+    <div class="container mx-auto mt-10">
+      <section class="flex flex-col xl:grid grid-cols-2 justify-center items-center gap-6">
+        <CompetitionListItem
+          v-for="competition in competitions"
+          :key="competition.id"
+          :competition="competition"
+        />
+      </section>
+    </div>
+  </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'JoinEventPage',
 
   auth: false,
 
-  async fetch() {
-    try {
-      const { data } = await this.$api.competitions.get(this.$route.params.id)
-      this.competition = data
-    } catch (error) {
-      this.$router.replace({ name: 'events' })
-      console.error('There was an error trying to fetch the requested event')
+  data() {
+    return {
+      showRules: false,
     }
   },
 
-  data() {
-    return {
-      competition: {},
-      showRules: false,
-    }
+  computed: {
+    ...mapState({
+      competitions: state => state.global.competitions,
+    }),
   },
 
   methods: {
