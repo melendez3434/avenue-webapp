@@ -33,7 +33,7 @@
               v-model="search"
               placeholder="search artists"
               type="text"
-              class="w-11/12 rounded bg-theavenue-background-extra-light h-9 relative text-white text-xs p-2"
+              class="w-11/12 rounded bg-white h-9 relative text-grey-dark text-xs p-2 placeholder-gray-500"
               @keyup="fetchTalents"
             />
             <IcSearch class="w-6 h-6 absolute right-6 cursor-pointer" />
@@ -119,7 +119,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import IcArrowDown from '@/assets/svg/arrow_down.svg?inline'
 import IcSearch from '@/assets/svg/search.svg?inline'
 import debounce from 'lodash/debounce'
@@ -144,7 +144,6 @@ export default {
   computed: {
     ...mapState({
       categories: state => state.global.categories,
-      currentCompetition: state => state.global.currentCompetition,
       competitions: state => state.global.competitions,
     }),
 
@@ -190,6 +189,7 @@ export default {
     },
 
     async logout() {
+      this.setBackToCompetition(false)
       await this.$auth.logout()
     },
 
@@ -211,13 +211,17 @@ export default {
       }
       this.isLoading = false
     }, 500),
+
+    ...mapActions({
+      setBackToCompetition: 'global/setBackToCompetition',
+    }),
   },
 }
 </script>
 <style scoped>
 .el-popper.el-dropdown-menu {
   @apply bg-theavenue-background-light;
-  @apply border-none;
+  @apply border-gray-100;
 }
 
 .el-popper.el-dropdown-menu .el-dropdown-menu__item {
@@ -225,7 +229,7 @@ export default {
   @apply font-library;
   @apply text-3xl;
   @apply text-theavenue-gray;
-  @apply mb-5;
+  @apply my-5;
 }
 
 .popper__arrow {

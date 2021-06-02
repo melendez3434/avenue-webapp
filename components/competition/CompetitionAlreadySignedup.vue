@@ -7,12 +7,10 @@
       @click="close"
     />
     <div>
-      <h3 class="font-bold mb-6 text-2xl">Hi there!</h3>
-      <p class="font-bold">
-        You are already logged in. Click on any performance to start watching.
-      </p>
+      <h3 class="font-bold mb-6 text-2xl">Oops! There is an error</h3>
+      <p class="font-bold">It seems that you had already enrolled in this event</p>
     </div>
-    <R64Button class="mt-10" @click="close">
+    <R64Button class="mt-8" @click="close">
       Close
     </R64Button>
   </div>
@@ -22,7 +20,7 @@
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
-  name: 'AlreadyLoggedModal',
+  name: 'CompetitionAlreadySignedup',
 
   components: {
     IcClose,

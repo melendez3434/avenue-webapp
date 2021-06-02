@@ -1,9 +1,6 @@
 <template>
-  <div
-    v-if="!competition.id"
-    class="flex items-center justify-center bg-theavenue-background-light available-min-height"
-  >
-    Loading competition...
+  <div v-if="!competition.id" class="h-screen">
+    <base-spinner v-if="$fetchState.pending" class="transform translate-y-2/4" />
   </div>
   <div
     v-else
@@ -13,7 +10,7 @@
       <div class="flex flex-col md:flex-row items-center justify-center w-full md:space-x-6">
         <h1 class="text-3xl font-library text-center text-avenue-white-light text-light-white">
           <span>{{ competition.name }}</span>
-          <CompetitionIcon v-if="competition.icon" :icon="competition.icon" />
+          <CompetitionIcon v-if="competition.icon" :icon="competition.icon" is-title />
         </h1>
       </div>
       <p class="max-w-xl mx-auto text-avenue-white text-center mt-5 text-xl">
@@ -33,12 +30,12 @@
       <JoinEventButton has-long-text :competition="competition" />
     </section>
 
-    <section v-if="competition.sponsors.length" class="container md:mx-auto mt-20 w-full">
+    <section v-if="competition.sponsors.length" class="container md:mx-auto mt-20">
       <div class="flex flex-row gap-4 items-start mb-6">
         <IcSponsor class="h-8" />
         <h2 class="text-xl font-bold">Sponsors</h2>
       </div>
-      <div class="mt-5 grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-12 items-end">
+      <div class="mt-5 grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-12 items-end">
         <div v-for="sponsor in competition.sponsors" :key="sponsor.id">
           <img
             v-if="sponsor.logo"
@@ -166,11 +163,11 @@
 </template>
 <script>
 import spacetime from 'spacetime'
-import CompetitionTalentListItem from '@/components/competitions/CompetitionTalentListItem'
 import IcTrophy from '@/assets/svg/trophy.svg?inline'
 import IcPodium from '@/assets/svg/podium.svg?inline'
 import IcSponsor from '@/assets/svg/sponsor.svg?inline'
 import IcScoreboard from '@/assets/svg/scoreboard.svg?inline'
+import { mapState } from 'vuex'
 
 export default {
   name: 'EventDetailPage',
@@ -178,11 +175,17 @@ export default {
   auth: false,
 
   components: {
-    CompetitionTalentListItem,
     IcTrophy,
     IcPodium,
     IcSponsor,
     IcScoreboard,
+  },
+
+  data() {
+    return {
+      competition: { talent: [], rounds: [], sponsors: [] },
+      prizesPercentage: 5,
+    }
   },
 
   async fetch() {
@@ -194,14 +197,17 @@ export default {
     }
   },
 
-  data() {
-    return {
-      competition: { talent: [], rounds: [], sponsors: [] },
-      prizesPercentage: 5,
-    }
-  },
-
   computed: {
+    ...mapState({
+      user: state => state.auth.user,
+    }),
+
+    alreadyRegistered() {
+      if (!this.user) return false
+
+      return this.competition.talent.find(t => t.talent.id === this.user.talent_id) || false
+    },
+
     userTimezone() {
       return Intl.DateTimeFormat().resolvedOptions().timeZone
     },
@@ -272,7 +278,7 @@ export default {
     },
 
     showSignupBtn() {
-      return this.currentRound < 3 || this.eventIsFuture
+      return (this.currentRound < 3 || this.eventIsFuture) && !this.alreadyRegistered
     },
 
     lastRound() {

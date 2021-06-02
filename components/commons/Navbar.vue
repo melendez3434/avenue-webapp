@@ -44,6 +44,7 @@ import MobileMenu from '@/components/commons/MobileMenu'
 import Facebook from '@/assets/svg/facebook.svg?inline'
 import Instagram from '@/assets/svg/instagram.svg?inline'
 import Linkedin from '@/assets/svg/linkedin.svg?inline'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Navbar',
@@ -52,8 +53,13 @@ export default {
 
   methods: {
     async logout() {
+      this.setBackToCompetition(false)
       await this.$auth.logout()
     },
+
+    ...mapActions({
+      setBackToCompetition: 'global/setBackToCompetition',
+    }),
   },
 }
 </script>

@@ -1,8 +1,10 @@
 import {
   SET_CATEGORIES,
-  SET_COMPETITIONS,
   SET_CURRENT_COMPETITION,
   SET_FOLLOWED_TALENTS,
+  INITIALIZE_STORE,
+  SET_COMPETITIONS,
+  SET_BACK_TO_COMPETITION_SIGNUP,
 } from './mutation-types'
 
 export default {
@@ -20,5 +22,13 @@ export default {
 
   [SET_COMPETITIONS](state, competitions) {
     state.competitions = competitions
+  },
+
+  [INITIALIZE_STORE](state) {
+    state.storeInitialized = true
+  },
+
+  [SET_BACK_TO_COMPETITION_SIGNUP](state, value) {
+    state.backToCompetitionSignup = value
   },
 }

@@ -9,7 +9,14 @@ const config = {
     }),
   ],
 
-  components: true,
+  ssr: false,
+
+  components: [
+    '~/components',
+    '~/components/commons/ui',
+    '~/components/commons',
+    '~/components/talent/modals', // TODO: Rename and find a better path
+  ],
 
   publicRuntimeConfig: {
     baseURL: process.env.BASE_URL,
@@ -66,6 +73,7 @@ const config = {
     '~/plugins/elementui.js',
     '~plugins/vue-js-modal.js',
     '~/plugins/sentry.client.js',
+    '~/plugins/placeholder',
   ],
 
   /*
@@ -82,32 +90,27 @@ const config = {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next', '@nuxtjs/gtm'],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
+    '@nuxtjs/gtm',
+    '@nuxtjs/proxy',
+    [
+      '@netsells/nuxt-hotjar',
+      {
+        id: process.env.HOTJAR_ID,
+        sv: process.env.HOTJAR_SV,
+      },
+    ],
+  ],
 
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    proxy: true,
+    baseURL: process.env.BASE_URL,
     credentials: true,
-  },
-
-  proxy: {
-    '/api': {
-      target: `${process.env.BASE_URL}/api`,
-      pathRewrite: {
-        '^/api': '',
-      },
-      secure: process.env.SECURE,
-      changeOrigin: true,
-    },
-    '/backend': {
-      target: process.env.BASE_URL,
-      pathRewrite: {
-        '^/backend': '/',
-      },
-    },
   },
 
   auth: {
@@ -123,7 +126,7 @@ const config = {
     },
     strategies: {
       laravelSanctum: {
-        url: '/backend',
+        url: process.env.BASE_URL,
         user: { property: 'data' },
       },
     },

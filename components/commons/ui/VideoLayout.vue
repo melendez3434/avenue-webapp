@@ -40,20 +40,14 @@
       scrollable
       height="auto"
     >
-      <ReportModal v-if="!talent" :talent="event.talent" />
+      <TalentModalsReport v-if="!talent" :talent="event.talent" />
     </modal>
   </div>
 </template>
 
 <script>
-import ReportModal from '@/components/talents/modals/ReportModal'
-
 export default {
   name: 'VideoLayout',
-
-  components: {
-    ReportModal,
-  },
 
   props: {
     event: {

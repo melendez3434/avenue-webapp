@@ -125,7 +125,7 @@ const url = helpers.regex(
 )
 
 export default {
-  name: 'TalentSignUpModal',
+  name: 'TalentModalsSignUp',
 
   components: {
     MultipleInput,

@@ -7,11 +7,11 @@
       @click="close"
     />
     <div>
-      <h3 class="font-bold mb-6 text-2xl">Oops! There is an error</h3>
-      <p class="font-bold">It seems that you had already enrolled in this event</p>
+      <h3 class="font-bold mb-6 text-2xl">Welcome to the competition!</h3>
+      <p class="font-bold">You should have an email in your inbox</p>
     </div>
     <R64Button class="mt-8" @click="close">
-      Close
+      Got it!
     </R64Button>
   </div>
 </template>
@@ -20,7 +20,7 @@
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
-  name: 'AlreadySingedupModal',
+  name: 'CompetitionWelcomeModal',
 
   components: {
     IcClose,

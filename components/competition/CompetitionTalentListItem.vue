@@ -88,20 +88,8 @@
   </Collapse>
 </template>
 <script>
-import Collapse from '@/components/commons/ui/Collapse'
-import EventThumbnail from '@/components/events/EventThumbnail'
-import ShareButton from '@/components/commons/ui/ShareButton'
-import FollowButton from '@/components/commons/ui/FollowButton'
-
 export default {
   name: 'CompetitionTalentListItem',
-
-  components: {
-    Collapse,
-    EventThumbnail,
-    ShareButton,
-    FollowButton,
-  },
 
   props: {
     talent: {

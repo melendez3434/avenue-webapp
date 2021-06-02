@@ -36,7 +36,7 @@
 import IcClose from '@/assets/svg/close_2.svg?inline'
 
 export default {
-  name: 'DeviceSettingsModal',
+  name: 'TalentModalsDeviceSettings',
 
   components: { IcClose },
 

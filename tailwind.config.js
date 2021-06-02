@@ -78,6 +78,10 @@ module.exports = {
       height: {
         '130': '130vh',
       },
+
+      maxHeight: {
+        '3/4': '75vh',
+      },
     },
   },
   variants: {},

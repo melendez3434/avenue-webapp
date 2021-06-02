@@ -1,131 +1,146 @@
 <template>
-  <VideoLayout :event="event" :talent="talent">
-    <div slot="streaming" class="w-112">
-      <R64Button v-if="playing" full secondary :disabled="startingStream" @click="askToFinishEvent">
-        {{ startingStream ? 'Buffering Video ...' : 'Stop Stream' }}
-      </R64Button>
-      <R64Button v-else full :disabled="stoppingStream" @click="startStreaming">
-        {{ stoppingStream ? 'Please wait ...' : 'Start Stream' }}
-      </R64Button>
+  <div>
+    <div v-if="$fetchState.pending" class="h-screen">
+      <base-spinner class="transform translate-y-2/4" />
     </div>
-    <IcSettings
-      slot="settings"
-      class="cursor-pointer h-12"
-      :class="{ 'opacity-25 pointer-events-none': playing }"
-      @click="$modal.show('device-settings-modal')"
-    />
-    <div class="h-full relative bg-theavenue-black">
-      <div v-if="error">There was an error loading the media devices. Please try again.</div>
-      <div class="relative h-full">
-        <IcLive v-if="playing && !startingStream" class="w-32 absolute" />
-        <video ref="video" class="h-full w-full" muted />
-      </div>
+    <div v-else>
+      <VideoLayout :event="event" :talent="talent">
+        <div slot="streaming" class="w-112">
+          <R64Button
+            v-if="playing"
+            full
+            secondary
+            :disabled="startingStream"
+            @click="askToFinishEvent"
+          >
+            {{ startingStream ? 'Buffering Video ...' : 'Stop Stream' }}
+          </R64Button>
+          <R64Button v-else full :disabled="stoppingStream" @click="startStreaming">
+            {{ stoppingStream ? 'Please wait ...' : 'Start Stream' }}
+          </R64Button>
+        </div>
+        <IcSettings
+          slot="settings"
+          class="cursor-pointer h-12"
+          :class="{ 'opacity-25 pointer-events-none': playing }"
+          @click="$modal.show('device-settings-modal')"
+        />
+        <div class="h-full relative bg-theavenue-black">
+          <div v-if="error">There was an error loading the media devices. Please try again.</div>
+          <div class="relative h-full">
+            <IcLive v-if="playing && !startingStream" class="w-32 absolute" />
+            <video ref="video" class="h-full w-full" muted />
+          </div>
+        </div>
+        <modal
+          width="100%"
+          classes="max-w-md inset-x-0 m-auto"
+          name="device-settings-modal"
+          scrollable
+          height="auto"
+        >
+          <TalentModalsDeviceSettings
+            :video-sources="videoDevices"
+            :audio-sources="audioDevices"
+            :selected-audio="audioInput.value"
+            :selected-video="videoInput.value"
+            :selected-bitrate="bitrate"
+            @confirm="updateVideoStream"
+          />
+        </modal>
+        <modal
+          width="100%"
+          classes="max-w-md inset-x-0 m-auto"
+          name="finish-event-modal"
+          scrollable
+          height="auto"
+        >
+          <div class="text-center py-8">
+            <p class="text-xl text-avenue-white-light">Do you want to finish the event as well?</p>
+            <p class="text-xs text-avenue-white">
+              Payments are proccessed when the event is finished
+            </p>
+            <div class="flex items-center justify-center space-x-6 mt-5">
+              <R64Button outline @click="stopStreaming">No</R64Button>
+              <R64Button @click="stopStreamingAndFinishEvent">Yes</R64Button>
+            </div>
+          </div>
+        </modal>
+        <modal
+          width="100%"
+          classes="max-w-md inset-x-0 m-auto"
+          name="extend-event-modal"
+          scrollable
+          height="auto"
+        >
+          <div class="text-center py-8">
+            <p class="text-xl text-avenue-white-light">
+              Event time is almost over. Do you want to extend it for {{ extendMinutes }} minutes?
+            </p>
+            <p class="text-xs text-avenue-white">
+              Payments are proccessed when the event is finished
+            </p>
+            <div class="flex items-center justify-center space-x-6 mt-5">
+              <R64Button outline @click="stopStreamingAndFinishEvent">Finish Event</R64Button>
+              <R64Button @click="extendTime">Extend Time</R64Button>
+            </div>
+          </div>
+        </modal>
+        <modal
+          width="100%"
+          classes="max-w-md inset-x-0 m-auto"
+          name="pending-streaming-modal"
+          scrollable
+          height="auto"
+        >
+          <div class="text-center py-8">
+            <p class="text-xl text-avenue-white-light">
+              {{ leaveWarning }}
+            </p>
+            <div class="flex items-center justify-center space-x-6 mt-5">
+              <R64Button outline @click="$modal.hide('pending-streaming-modal')">Ok</R64Button>
+            </div>
+          </div>
+        </modal>
+        <modal
+          width="100%"
+          classes="max-w-md inset-x-0 m-auto"
+          name="bad-connection-modal"
+          scrollable
+          height="auto"
+        >
+          <div class="text-center py-8">
+            <p class="text-xl text-avenue-white-light">
+              Oops! It seems like you have a bad internet connection.
+            </p>
+            <p class="text-xs text-avenue-white">
+              We recommend that you try using
+              <a href="https://obsproject.com/" target="_blank">OBS</a>
+              instead of the browser to stream.
+            </p>
+            <p class="text-xl text-avenue-white-light">
+              Do you want to finish this stream?
+            </p>
+            <div class="flex items-center justify-center space-x-6 mt-5">
+              <R64Button outline @click="$modal.hide('bad-connection-modal')">No</R64Button>
+              <R64Button @click="stopStreaming">Yes</R64Button>
+            </div>
+          </div>
+        </modal>
+      </VideoLayout>
     </div>
-    <modal
-      width="100%"
-      classes="max-w-md inset-x-0 m-auto"
-      name="device-settings-modal"
-      scrollable
-      height="auto"
-    >
-      <DeviceSettingsModal
-        :video-sources="videoDevices"
-        :audio-sources="audioDevices"
-        :selected-audio="audioInput.value"
-        :selected-video="videoInput.value"
-        :selected-bitrate="bitrate"
-        @confirm="updateVideoStream"
-      />
-    </modal>
-    <modal
-      width="100%"
-      classes="max-w-md inset-x-0 m-auto"
-      name="finish-event-modal"
-      scrollable
-      height="auto"
-    >
-      <div class="text-center py-8">
-        <p class="text-xl text-avenue-white-light">Do you want to finish the event as well?</p>
-        <p class="text-xs text-avenue-white">Payments are proccessed when the event is finished</p>
-        <div class="flex items-center justify-center space-x-6 mt-5">
-          <R64Button outline @click="stopStreaming">No</R64Button>
-          <R64Button @click="stopStreamingAndFinishEvent">Yes</R64Button>
-        </div>
-      </div>
-    </modal>
-    <modal
-      width="100%"
-      classes="max-w-md inset-x-0 m-auto"
-      name="extend-event-modal"
-      scrollable
-      height="auto"
-    >
-      <div class="text-center py-8">
-        <p class="text-xl text-avenue-white-light">
-          Event time is almost over. Do you want to extend it for {{ extendMinutes }} minutes?
-        </p>
-        <p class="text-xs text-avenue-white">Payments are proccessed when the event is finished</p>
-        <div class="flex items-center justify-center space-x-6 mt-5">
-          <R64Button outline @click="stopStreamingAndFinishEvent">Finish Event</R64Button>
-          <R64Button @click="extendTime">Extend Time</R64Button>
-        </div>
-      </div>
-    </modal>
-    <modal
-      width="100%"
-      classes="max-w-md inset-x-0 m-auto"
-      name="pending-streaming-modal"
-      scrollable
-      height="auto"
-    >
-      <div class="text-center py-8">
-        <p class="text-xl text-avenue-white-light">
-          {{ leaveWarning }}
-        </p>
-        <div class="flex items-center justify-center space-x-6 mt-5">
-          <R64Button outline @click="$modal.hide('pending-streaming-modal')">Ok</R64Button>
-        </div>
-      </div>
-    </modal>
-    <modal
-      width="100%"
-      classes="max-w-md inset-x-0 m-auto"
-      name="bad-connection-modal"
-      scrollable
-      height="auto"
-    >
-      <div class="text-center py-8">
-        <p class="text-xl text-avenue-white-light">
-          Oops! It seems like you have a bad internet connection.
-        </p>
-        <p class="text-xs text-avenue-white">
-          We recommend that you try using
-          <a href="https://obsproject.com/" target="_blank">OBS</a>
-          instead of the browser to stream.
-        </p>
-        <p class="text-xl text-avenue-white-light">
-          Do you want to finish this stream?
-        </p>
-        <div class="flex items-center justify-center space-x-6 mt-5">
-          <R64Button outline @click="$modal.hide('bad-connection-modal')">No</R64Button>
-          <R64Button @click="stopStreaming">Yes</R64Button>
-        </div>
-      </div>
-    </modal>
-  </VideoLayout>
+  </div>
 </template>
 
 <script>
 import io from 'socket.io-client'
-import VideoLayout from '@/components/commons/ui/VideoLayout'
-import DeviceSettingsModal from '@/components/talents/modals/DeviceSettingsModal'
 import IcLive from '@/assets/svg/live_w_text.svg?inline'
 import IcSettings from '@/assets/svg/settings.svg?inline'
 
 export default {
   name: 'BroadcastChannel',
 
-  components: { VideoLayout, DeviceSettingsModal, IcLive, IcSettings },
+  components: { IcLive, IcSettings },
 
   beforeRouteLeave(to, from, next) {
     if (this.serverProcessOpen) {
@@ -134,24 +149,6 @@ export default {
     }
 
     return next()
-  },
-
-  async asyncData({ $api, params, error }) {
-    try {
-      const { data: talent } = await $api.talent.get(params.id)
-      const { data: events } = await $api.events.list({ live: 1, talent: params.id })
-
-      let event = null
-
-      if (events.length) event = events[0]
-
-      if (!talent.stream_key) return error('Invalid broadcast settings')
-
-      return { event, talent }
-    } catch (e) {
-      error('Invalid broadcast settings')
-      return { talent: {}, events: [] }
-    }
   },
 
   data() {
@@ -173,6 +170,36 @@ export default {
       bitrate: 1000,
       socket: null,
       reconnections: 0,
+      event: null,
+      events: null,
+      talent: null,
+    }
+  },
+
+  async fetch() {
+    try {
+      const { data: talent } = await this.$api.talent.get(this.$route.params.id)
+      const { data: events } = await this.$api.events.list({
+        live: 1,
+        talent: this.$route.params.id,
+      })
+
+      let event = null
+
+      if (events.length) event = events[0]
+
+      if (!talent.stream_key) {
+        console.error('Invalid broadcast settings')
+        return this.$router.push('/')
+      }
+
+      this.events = events
+      this.event = event
+      this.talent = talent
+
+      this.initializeBroadcast()
+    } catch {
+      console.error('Invalid broadcast settings')
     }
   },
 
@@ -216,90 +243,6 @@ export default {
     hasDevices() {
       return !!this.videoDevices.length && !!this.audioDevices.length
     },
-  },
-
-  async mounted() {
-    this.socket = io(this.$config.wsUrl, {
-      transports: ['websocket', 'polling', 'flashsocket'],
-    })
-
-    window.onbeforeunload = event => {
-      if (this.serverProcessOpen) {
-        event.returnValue = this.leaveWarning
-      }
-    }
-
-    window.addEventListener('unload', () => {
-      if (this.serverProcessOpen) {
-        this.terminateServerProcess()
-      }
-    })
-
-    try {
-      await this.getMediaDevices()
-
-      this.video = this.$refs.video
-      this.video.onloadedmetadata = () => {
-        this.video.play()
-      }
-
-      this.socket.on(`${this.talent.stream_key}-error`, (text, forceKill) => {
-        if (!this.playing) return
-
-        this.showWarningAndStop(text)
-
-        if (!forceKill) return
-
-        if (
-          window.confirm(
-            'This stream is already live. Check your other open tabs and browsers. Do you want to force closing this one?'
-          )
-        ) {
-          this.terminateServerProcess()
-        }
-      })
-
-      this.socket.on(`${this.talent.stream_key}-reconnecting`, () => {
-        this.reconnections++
-        if (this.reconnections > this.$config.maxRetries) {
-          this.$modal.show('bad-connection-modal')
-          return this.showWarningAndStop()
-        }
-
-        this.startingStream = true
-        this.mediaRecorder.stop()
-        setTimeout(() => {
-          this.startStreaming()
-        }, 1000)
-      })
-
-      this.socket.on(`${this.talent.stream_key}-processed-chunk`, chunkId => {
-        const index = this.pendingChunks.indexOf(chunkId)
-        if (index > -1) {
-          this.pendingChunks.splice(index, 1)
-        }
-      })
-
-      this.$echo
-        .channel(`live.${this.talent.id}`)
-        .listen('StreamingIsLive', () => {
-          this.startingStream = false
-        })
-        .listen('StreamingIsIdle', () => {
-          this.stoppingStream = false
-        })
-
-      if (this.event) {
-        return this.listenForEventToFinish()
-      }
-
-      this.$echo.channel(`live.${this.talent.id}`).listen('TalentIsLiveNow', ({ event }) => {
-        this.event = event
-        this.listenForEventToFinish()
-      })
-    } catch (error) {
-      this.error = true
-    }
   },
 
   beforeDestroy() {
@@ -456,6 +399,91 @@ export default {
     terminateServerProcess() {
       this.socket.emit('terminate-ffmpeg-process', this.talent.stream_key)
       this.serverProcessOpen = false
+    },
+
+    async initializeBroadcast() {
+      this.socket = io(this.$config.wsUrl, {
+        transports: ['websocket', 'polling', 'flashsocket'],
+      })
+
+      window.onbeforeunload = event => {
+        if (this.serverProcessOpen) {
+          event.returnValue = this.leaveWarning
+        }
+      }
+
+      window.addEventListener('unload', () => {
+        if (this.serverProcessOpen) {
+          this.terminateServerProcess()
+        }
+      })
+
+      try {
+        await this.getMediaDevices()
+
+        this.video = this.$refs.video
+        this.video.onloadedmetadata = () => {
+          this.video.play()
+        }
+
+        this.socket.on(`${this.talent.stream_key}-error`, (text, forceKill) => {
+          if (!this.playing) return
+
+          this.showWarningAndStop(text)
+
+          if (!forceKill) return
+
+          if (
+            window.confirm(
+              'This stream is already live. Check your other open tabs and browsers. Do you want to force closing this one?'
+            )
+          ) {
+            this.terminateServerProcess()
+          }
+        })
+
+        this.socket.on(`${this.talent.stream_key}-reconnecting`, () => {
+          this.reconnections++
+          if (this.reconnections > this.$config.maxRetries) {
+            this.$modal.show('bad-connection-modal')
+            return this.showWarningAndStop()
+          }
+
+          this.startingStream = true
+          this.mediaRecorder.stop()
+          setTimeout(() => {
+            this.startStreaming()
+          }, 1000)
+        })
+
+        this.socket.on(`${this.talent.stream_key}-processed-chunk`, chunkId => {
+          const index = this.pendingChunks.indexOf(chunkId)
+          if (index > -1) {
+            this.pendingChunks.splice(index, 1)
+          }
+        })
+
+        this.$echo
+          .channel(`live.${this.talent.id}`)
+          .listen('StreamingIsLive', () => {
+            this.startingStream = false
+          })
+          .listen('StreamingIsIdle', () => {
+            this.stoppingStream = false
+          })
+
+        if (this.event) {
+          return this.listenForEventToFinish()
+        }
+
+        this.$echo.channel(`live.${this.talent.id}`).listen('TalentIsLiveNow', ({ event }) => {
+          this.event = event
+          this.listenForEventToFinish()
+        })
+      } catch (error) {
+        console.error(error)
+        this.error = true
+      }
     },
   },
 }

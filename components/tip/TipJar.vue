@@ -30,7 +30,7 @@ import IcTipJarGreen from '@/assets/svg/tipjar_0.svg?inline'
 import IcTipJarColored from '@/assets/svg/tipjar_1.svg?inline'
 
 export default {
-  name: 'Jar',
+  name: 'TipJar',
 
   components: {
     IcTipJarGreen,

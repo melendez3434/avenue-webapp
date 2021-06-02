@@ -7,11 +7,13 @@
       @click="close"
     />
     <div>
-      <h3 class="font-bold mb-6 text-2xl">Welcome to the competition!</h3>
-      <p class="font-bold">You should have an email in your inbox</p>
+      <h3 class="font-bold mb-6 text-2xl">Hi there!</h3>
+      <p class="font-bold">
+        You are already logged in. Click on any performance to start watching.
+      </p>
     </div>
-    <R64Button class="mt-8" @click="close">
-      Got it!
+    <R64Button class="mt-10" @click="close">
+      Close
     </R64Button>
   </div>
 </template>
@@ -20,7 +22,7 @@
 import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
-  name: 'WelcomeModal',
+  name: 'UsersModalsAlreadyLoggedModal',
 
   components: {
     IcClose,

@@ -17,7 +17,7 @@
 </template>
 <script>
 export default {
-  name: 'StreamingProfileModal',
+  name: 'TalentModalsStreamingProfile',
 
   methods: {
     handleNo() {

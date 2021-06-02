@@ -2,90 +2,93 @@
   <div
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
-    <Hero />
-    <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
-      <CompetitionMarqueeItem
-        v-for="competition in competitions"
-        :key="competition.id"
-        :competition="competition"
-      />
-      <LiveEventListItem
-        v-for="event in events"
-        :key="event.id"
-        :event="event"
-        @ticketPurchased="refetchEvents"
-      />
-    </el-collapse>
-    <EventsNoResults v-if="!events.length" />
-
-    <div v-if="meta.total > meta.per_page" class="h-12 w-full">
-      <client-only>
-        <infinite-loading spinner="spiral" @infinite="fetchPage">
-          <div slot="no-more" class="mt-4">Thats all!</div>
-        </infinite-loading>
-      </client-only>
+    <Hero @scroll="watchNow" />
+    <div v-if="$fetchState.pending">
+      <content-placeholders class=" w-full ">
+        <content-placeholders-img
+          v-for="(line, index) in 6"
+          :key="index"
+          class="my-1 h-12 md:h-10 w-full"
+        />
+      </content-placeholders>
     </div>
-
-    <modal
-      width="100%"
-      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
-      name="talent-event-modal"
-      scrollable
-      height="auto"
-    >
-      <CompetitionModalAnnouncement @close="closeModal('talent-event-modal')">
-        Help charity organizations, engage your audience and win the prize!
-      </CompetitionModalAnnouncement>
-    </modal>
-
-    <modal
-      width="100%"
-      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
-      name="user-event-modal"
-      scrollable
-      height="auto"
-    >
-      <CompetitionModalAnnouncement @close="closeModal('user-event-modal')">
-        Support your favorite performers as they compete for weekly and overall prizes
-      </CompetitionModalAnnouncement>
-    </modal>
+    <div v-else ref="events">
+      <el-collapse accordion class="grid grid-cols-1 gap-y-1 bg-theavenue-black w-full">
+        <CompetitionMarqueeItem
+          v-for="competition in competitions"
+          :key="competition.id"
+          :competition="competition"
+        />
+        <EventListItem
+          v-for="event in events"
+          :key="event.id"
+          :event="event"
+          @ticketPurchased="refetchEvents"
+        />
+      </el-collapse>
+      <EventNoResults v-if="!events.length" />
+      <div v-if="meta.total > meta.per_page" class="h-12 w-full">
+        <client-only>
+          <infinite-loading spinner="spiral" @infinite="fetchPage">
+            <div slot="no-more" class="mt-4">Thats all!</div>
+          </infinite-loading>
+        </client-only>
+      </div>
+      <modal
+        width="100%"
+        classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+        name="talent-event-modal"
+        scrollable
+        height="auto"
+      >
+        <CompetitionModalAnnouncement @close="closeModal('talent-event-modal')">
+          Help charity organizations, engage your audience and win the prize!
+        </CompetitionModalAnnouncement>
+      </modal>
+      <modal
+        width="100%"
+        classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
+        name="user-event-modal"
+        scrollable
+        height="auto"
+      >
+        <CompetitionModalAnnouncement @close="closeModal('user-event-modal')">
+          Support your favorite performers as they compete for weekly and overall prizes
+        </CompetitionModalAnnouncement>
+      </modal>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import spacetime from 'spacetime'
-import CompetitionMarqueeItem from '@/components/events/CompetitionMarqueeItem'
-import LiveEventListItem from '@/components/events/LiveEventListItem'
-import Hero from '@/components/commons/Hero'
-import CompetitionModalAnnouncement from '@/components/competitions/CompetitionModalAnnouncement'
 export default {
   name: 'IndexPage',
+
   auth: false,
-  components: {
-    LiveEventListItem,
-    CompetitionModalAnnouncement,
-    CompetitionMarqueeItem,
-    Hero,
-  },
-  async asyncData({ $api }) {
+
+  async fetch() {
     try {
-      const { data: events, meta } = await $api.events.list({ page: 0 })
-      const { data: competitions } = await $api.competitions.list()
-      return { events, meta, competitions }
+      const { data: events, meta } = await this.$api.events.list({ page: 0 })
+      this.events = events
+      this.meta = meta
     } catch (error) {
       console.warn(error)
-      return { events: [], meta: {}, competitions: [] }
     }
   },
+
   data() {
     return {
       maxModalShow: 4,
+      events: [],
+      meta: {},
     }
   },
+
   computed: {
     ...mapState({
-      currentCompetition: state => state.global.currentCompetition,
+      competitions: state => state.global.competitions,
     }),
     isSuitableTalent() {
       return (
@@ -119,7 +122,6 @@ export default {
         event.is_live = true
         this.handleSocketEvent(event, 'updated')
       })
-    if (!this.currentCompetition.id) return
     if (localStorage.modalCounter) {
       this.modalCounter = localStorage.modalCounter
     } else {
@@ -192,6 +194,11 @@ export default {
     },
     closeModal(modal) {
       return this.$modal.hide(modal)
+    },
+    watchNow() {
+      this.$refs.events.scrollIntoView({
+        behavior: 'smooth',
+      })
     },
   },
 }

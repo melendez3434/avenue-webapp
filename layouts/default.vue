@@ -13,7 +13,11 @@
       height="auto"
       @before-open="beforeOpenUserAccess"
     >
-      <UserAccessModal :active-tab="modal.active" :title="modal.title" :subtitle="modal.subtitle" />
+      <UsersModalsUserAccessModal
+        :active-tab="modal.active"
+        :title="modal.title"
+        :subtitle="modal.subtitle"
+      />
     </modal>
 
     <modal
@@ -23,11 +27,11 @@
       scrollable
       height="auto"
     >
-      <TalentSignUpModal />
+      <TalentModalsSignUp />
     </modal>
 
     <modal name="streaming-profile-modal" adaptive height="auto" width="350px">
-      <StreamingProfileModal />
+      <TalentModalsStreamingProfile />
     </modal>
 
     <modal
@@ -48,7 +52,7 @@
       scrollable
       @before-open="beforeOpenStreamingDonate"
     >
-      <StreamingDonateModal :event="streamingDonate.event" :jar="streamingDonate.jar" />
+      <TalentModalsStreamingDonate :event="streamingDonate.event" :jar="streamingDonate.jar" />
     </modal>
 
     <modal
@@ -59,7 +63,7 @@
       scrollable
       @before-open="beforeOpenPurchaseTicket"
     >
-      <PurchaseTicketModal
+      <EventModalsPurchaseTicket
         :event="ticketPurchase.event"
         @ticketPurchased="ticketPurchase.callback()"
       />
@@ -69,11 +73,15 @@
       width="100%"
       classes="max-w-md inset-x-0 m-auto"
       name="join-event-modal"
+      :click-to-close="false"
       scrollable
       height="auto"
       @before-open="beforeOpenJoinEventModal"
     >
-      <JoinCompetitionModal :competition="activeCompetition" />
+      <CompetitionJoinModal
+        :competition="activeCompetition"
+        @close="$modal.hide('join-event-modal')"
+      />
     </modal>
 
     <modal
@@ -83,7 +91,7 @@
       scrollable
       height="auto"
     >
-      <AlreadySignedupModal @close="closeModal('already-signedup-modal')" />
+      <CompetitionAlreadySignedup @close="$modal.hide('already-signedup-modal')" />
     </modal>
 
     <modal
@@ -93,17 +101,7 @@
       scrollable
       height="auto"
     >
-      <NotLoggedModal @close="$modal.hide('not-logged-modal')" />
-    </modal>
-
-    <modal
-      width="100%"
-      classes="max-w-md md:max-w-2xl inset-x-0 m-auto"
-      name="already-logged-modal"
-      scrollable
-      height="auto"
-    >
-      <AlreadyLoggedModal @close="$modal.hide('already-logged-modal')" />
+      <CompetitionNotLoggedModal @close="$modal.hide('not-logged-modal')" />
     </modal>
 
     <modal
@@ -113,7 +111,7 @@
       scrollable
       height="auto"
     >
-      <NotTalentModal @close="$modal.hide('not-talent-modal')" />
+      <CompetitionNotTalentModal @close="$modal.hide('not-talent-modal')" />
     </modal>
 
     <modal
@@ -123,7 +121,7 @@
       scrollable
       height="auto"
     >
-      <AlreadyTalentModal @close="$modal.hide('already-talent-modal')" />
+      <TalentModalsAlreadyTalent @close="$modal.hide('already-talent-modal')" />
     </modal>
 
     <modal
@@ -133,7 +131,17 @@
       scrollable
       height="auto"
     >
-      <WelcomeModal @close="$modal.hide('welcome-modal')" />
+      <CompetitionWelcomeModal @close="$modal.hide('welcome-modal')" />
+    </modal>
+
+    <modal
+      width="100%"
+      classes="max-w-md inset-x-0 m-auto"
+      name="no-stripe-modal"
+      scrollable
+      height="auto"
+    >
+      <CompetitionNoStripeModal @close="$modal.hide('no-stripe-modal')" />
     </modal>
 
     <modal
@@ -170,14 +178,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import Navbar from '@/components/commons/Navbar'
-import UserAccessModal from '@/components/users/modals/UserAccessModal'
-import TalentSignUpModal from '@/components/talents/modals/TalentSignUpModal'
-import StreamingProfileModal from '@/components/talents/modals/StreamingProfileModal'
-import WarningModal from '@/components/talents/modals/WarningModal'
-import StreamingDonateModal from '@/components/talents/modals/StreamingDonateModal'
-import Footer from '@/components/commons/Footer'
+import { mapActions, mapState } from 'vuex'
 import IcClose from '@/assets/svg/close.svg?inline'
 import IcPhone from '@/assets/svg/phone.svg?inline'
 import IcAppStore from '@/assets/svg/appstore.svg?inline'
@@ -187,13 +188,6 @@ export default {
   name: 'DefaultLayout',
 
   components: {
-    Navbar,
-    UserAccessModal,
-    TalentSignUpModal,
-    StreamingProfileModal,
-    WarningModal,
-    Footer,
-    StreamingDonateModal,
     IcClose,
     IcPhone,
     IcAppStore,
@@ -221,6 +215,10 @@ export default {
   },
 
   computed: {
+    ...mapState({
+      storeInitialized: state => state.global.storeInitialized,
+    }),
+
     isStreamingPage() {
       const isEvent = this.$route.path.includes('event')
       const isBroadcast = this.$route.path.includes('broadcast')
@@ -259,8 +257,15 @@ export default {
     this.$modal.show('user-access-modal', { active })
   },
 
+  async created() {
+    if (!this.storeInitialized) {
+      await this.initStore()
+    }
+  },
+
   methods: {
     ...mapActions({
+      initStore: 'global/initStore',
       fetchFollowedTalents: 'global/fetchFollowedTalents',
     }),
 
@@ -289,10 +294,6 @@ export default {
 
     beforeOpenJoinEventModal(data) {
       this.activeCompetition = data.params.competition
-    },
-
-    closeModal(modal) {
-      return this.$modal.hide(modal)
     },
   },
 }
