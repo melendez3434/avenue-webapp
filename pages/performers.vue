@@ -3,13 +3,13 @@
     <section class="lg:relative lg:h-130 2xl:overflow-hidden">
       <img
         src="@/assets/images/singing_girl.jpg"
-        alt="man playing guitar smiling"
+        alt="woman singing in front of a microphone"
         class="w-full h-5/6 lg:h-4/6 xl:h-130 object-cover"
       />
       <div
-        class="lg:absolute bottom-0 bg-avenue-blue-dark w-full p-6 sm:p-20 lg:px-44 lg:py-12 xl:py-24 2xl:py-32"
+        class="lg:absolute bottom-0 bg-avenue-blue-dark w-full p-6 sm:p-20 lg:py-12 xl:py-16 2xl:py-32"
       >
-        <div class="mx-auto w-full md:w-2/3">
+        <div class="mx-auto w-full xl:w-2/3">
           <h1 class="font-semibold text-2xl lg:text-4xl 3xl:text-6xl">
             Stream Live. Bring Your Following. Get Paid.
           </h1>
