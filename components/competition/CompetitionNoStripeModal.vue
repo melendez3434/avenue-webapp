@@ -9,20 +9,25 @@
     <p class="text-3xl font-bold">Oops!</p>
     <p class="mt-8 text-lg font-bold">It seems that you haven't completed your Stripe account</p>
     <p class="my-5 text-lg px-6">
-      Do it to be able to receive and make payments
+      You need to do so to get paid for your earnings in the competition. Notice we will never
+      charge you anything.
+      <a href="https://stripe.com/" target="_blank">Stripe</a>
+      is a worldwide trusted payment service.
     </p>
-    <button
-      class="mx-auto my-4 border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white focus:outline-none cursor-pointer"
-      @click="completeStripe"
-    >
-      Complete
-    </button>
-    <button
-      class="mx-auto border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
-      @click="close"
-    >
-      Cancel
-    </button>
+    <div class="flex space-x-4">
+      <button
+        class="mx-auto my-4 border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white focus:outline-none cursor-pointer"
+        @click="completeStripe"
+      >
+        Complete
+      </button>
+      <button
+        class="mx-auto border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+        @click="close"
+      >
+        Cancel
+      </button>
+    </div>
   </div>
 </template>
 
