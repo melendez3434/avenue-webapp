@@ -30,7 +30,7 @@ export default {
     async handleSignup() {
       if (this.$auth.user && this.$auth.user.talent_id) {
         const alreadyRegistered = this.competition.talent.find(
-          t => t.talent.id === this.user.talent_id
+          t => t.talent.id === this.$auth.user.talent_id
         )
         if (alreadyRegistered) return this.$modal.show('already-signedup-modal')
       }
