@@ -190,6 +190,10 @@ export default {
     addNewCharity() {
       this.form.rounds_info.push({ charity: '', charity_website: '' })
     },
+
+    close() {
+      this.$emit('close')
+    },
   },
 
   validations() {
