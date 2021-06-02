@@ -119,7 +119,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import IcArrowDown from '@/assets/svg/arrow_down.svg?inline'
 import IcSearch from '@/assets/svg/search.svg?inline'
 import debounce from 'lodash/debounce'
@@ -189,6 +189,7 @@ export default {
     },
 
     async logout() {
+      this.setBackToCompetition(false)
       await this.$auth.logout()
     },
 
@@ -210,6 +211,10 @@ export default {
       }
       this.isLoading = false
     }, 500),
+
+    ...mapActions({
+      setBackToCompetition: 'global/setBackToCompetition',
+    }),
   },
 }
 </script>

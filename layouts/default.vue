@@ -73,11 +73,15 @@
       width="100%"
       classes="max-w-md inset-x-0 m-auto"
       name="join-event-modal"
+      :click-to-close="false"
       scrollable
       height="auto"
       @before-open="beforeOpenJoinEventModal"
     >
-      <CompetitionJoinModal :competition="activeCompetition" />
+      <CompetitionJoinModal
+        :competition="activeCompetition"
+        @close="$modal.hide('join-event-modal')"
+      />
     </modal>
 
     <modal
@@ -87,7 +91,7 @@
       scrollable
       height="auto"
     >
-      <UsersModalsAlreadySignedupModal @close="closeModal('already-signedup-modal')" />
+      <CompetitionAlreadySignedup @close="$modal.hide('already-signedup-modal')" />
     </modal>
 
     <modal
@@ -175,7 +179,6 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import Navbar from '@/components/commons/Navbar'
 import IcClose from '@/assets/svg/close.svg?inline'
 import IcPhone from '@/assets/svg/phone.svg?inline'
 import IcAppStore from '@/assets/svg/appstore.svg?inline'
@@ -185,7 +188,6 @@ export default {
   name: 'DefaultLayout',
 
   components: {
-    Navbar,
     IcClose,
     IcPhone,
     IcAppStore,
@@ -292,10 +294,6 @@ export default {
 
     beforeOpenJoinEventModal(data) {
       this.activeCompetition = data.params.competition
-    },
-
-    closeModal(modal) {
-      return this.$modal.hide(modal)
     },
   },
 }
