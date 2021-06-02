@@ -45,11 +45,12 @@
     </section>
 
     <div class="container mx-auto mt-10">
-      <section class="flex flex-wrap justify-center items-center gap-6">
+      <section class="flex flex-col xl:grid grid-cols-2 justify-center items-center gap-6">
         <CompetitionListItem
           v-for="competition in competitions"
           :key="competition.id"
           :competition="competition"
+          show-rules
         />
       </section>
     </div>
@@ -74,16 +75,16 @@ export default {
     IcStars,
   },
 
-  computed: {
-    ...mapState({
-      competitions: state => state.global.competitions,
-    }),
-  },
-
   middleware({ store, redirect }) {
     if (!store.state.global.competitions) {
       return redirect('/')
     }
+  },
+
+  computed: {
+    ...mapState({
+      competitions: state => state.global.competitions,
+    }),
   },
 }
 </script>

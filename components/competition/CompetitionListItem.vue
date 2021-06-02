@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border border-theavenue-yellow-neon p-6 rounded-lg text-center event-width"
+    class="border border-theavenue-yellow-neon p-6 rounded-lg text-center w-full"
     style="box-shadow: 0px 0px 10px rgba(255, 210, 67);"
   >
     <h1 class="text-3xl text-avenue-white-light font-library uppercase">
@@ -14,7 +14,8 @@
     <p class="mt-5 font-bold">Who will win this competition? You&nbsp;decide</p>
     <div class="mt-5 w-full flex flex-col justify-center items-center gap-6">
       <nuxt-link
-        :to="{ name: 'events-id-join', params: { id: competition.id } }"
+        v-if="showRules"
+        :to="{ name: 'events-join' }"
         class="text-theavenue-turquoise-neon font-bold"
       >
         Read the rules
@@ -41,6 +42,11 @@ export default {
       required: true,
       default: () => {},
     },
+
+    showRules: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
@@ -66,21 +72,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.event-width {
-  width: calc(33.3% - 1.5rem);
-}
-
-@media screen and (max-width: 1200px) {
-  .event-width {
-    width: calc(50% - 0.75rem);
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .event-width {
-    width: 100%;
-  }
-}
-</style>
