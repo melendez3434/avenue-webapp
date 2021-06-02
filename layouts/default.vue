@@ -73,11 +73,15 @@
       width="100%"
       classes="max-w-md inset-x-0 m-auto"
       name="join-event-modal"
+      :click-to-close="false"
       scrollable
       height="auto"
       @before-open="beforeOpenJoinEventModal"
     >
-      <CompetitionJoinModal :competition="activeCompetition" />
+      <CompetitionJoinModal
+        :competition="activeCompetition"
+        @close="$modal.hide('join-event-modal')"
+      />
     </modal>
 
     <modal

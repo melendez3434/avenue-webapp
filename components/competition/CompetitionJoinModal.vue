@@ -2,11 +2,17 @@
   <div
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
-    <section class="max-w-lg w-full mx-auto text-center mt-10">
+    <IcClose
+      class="cursor-pointer absolute top-4 right-4"
+      aria-role="button"
+      aria-label="close"
+      @click="close"
+    />
+    <section class="max-w-lg w-full mx-auto text-center mt-16">
       <h1 class="text-3xl">Welcome to {{ competition.name }}!</h1>
     </section>
 
-    <section class="max-w-lg w-full mx-auto mt-12">
+    <section class="max-w-lg w-full mx-auto mt-4">
       <form class="mt-3 px-6 pb-10 pt-5" @submit.prevent="join">
         <R64Input
           v-model="form.name"
@@ -101,6 +107,7 @@
 import { mapState } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
 import IcPlus from '@/assets/svg/plus.svg?inline'
+import IcClose from '@/assets/svg/close.svg?inline'
 
 export default {
   name: 'CompetitionJoinModal',
@@ -109,6 +116,7 @@ export default {
 
   components: {
     IcPlus,
+    IcClose,
   },
 
   props: {
