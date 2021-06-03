@@ -6,6 +6,7 @@
     v-else
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
+    <!-- <CompetitionWinner :competition-name="competition.name" /> -->
     <section class="container mx-auto mt-12">
       <div class="flex flex-col md:flex-row items-center justify-center w-full md:space-x-6">
         <h1 class="text-3xl font-library text-center text-avenue-white-light text-light-white">
