@@ -20,6 +20,7 @@ export default {
 
   async setCurrentCompetition({ commit }, competition) {
     commit(SET_CURRENT_COMPETITION, competition)
+    localStorage.currentCompetition = competition
   },
 
   async fetchCompetitions({ commit }) {
@@ -38,5 +39,6 @@ export default {
 
   async setBackToCompetition({ commit }, value) {
     commit(SET_BACK_TO_COMPETITION_SIGNUP, value)
+    localStorage.backToCompetition = value
   },
 }

@@ -30,8 +30,8 @@
       <TalentModalsSignUp />
     </modal>
 
-    <modal name="streaming-profile-modal" adaptive height="auto" width="350px">
-      <TalentModalsStreamingProfile />
+    <modal name="streaming-profile-modal" :click-to-close="false" adaptive height="auto">
+      <TalentModalsStreamingProfile @close="$modal.hide('streaming-profile-modal')" />
     </modal>
 
     <modal
