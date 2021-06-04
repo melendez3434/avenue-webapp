@@ -16,10 +16,9 @@
       <p class="max-w-xl mx-auto text-avenue-white text-center mt-5 text-xl">
         {{ competition.description }}
       </p>
-    </section>
-
-    <section class="container text-center mx-auto mt-5 text-gray-400">
-      <p>From {{ dateFrom }} to {{ dateTo }}</p>
+      <p class="container text-center mx-auto mt-5 text-gray-400">
+        From {{ dateFrom }} to {{ dateTo }}
+      </p>
     </section>
 
     <section
@@ -117,8 +116,8 @@
           <div class="w-full flex pl-8 pr-2 md:pl-16 md:pr-0 py-3 text-xxs md:text-base">
             <div class="flex-1">Artist</div>
             <div class="w-36 md:w-48 text-right">Restaurant</div>
-            <div class="w-32 md:w-48 text-right">Week Points</div>
-            <div class="w-32 md:w-52 md:pr-16 text-right">Total Points</div>
+            <div class="w-36 md:w-48 text-right">Week Points</div>
+            <div class="w-28 md:w-52 md:pr-16 text-right">Total Points</div>
           </div>
           <div>
             <CompetitionTalentListItem
@@ -150,7 +149,6 @@
 import spacetime from 'spacetime'
 import IcTrophy from '@/assets/svg/trophy.svg?inline'
 import IcPodium from '@/assets/svg/podium.svg?inline'
-import IcSponsor from '@/assets/svg/sponsor.svg?inline'
 import IcScoreboard from '@/assets/svg/scoreboard.svg?inline'
 import { mapState } from 'vuex'
 
@@ -162,7 +160,6 @@ export default {
   components: {
     IcTrophy,
     IcPodium,
-    IcSponsor,
     IcScoreboard,
   },
 
