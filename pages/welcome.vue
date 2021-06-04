@@ -23,13 +23,14 @@
 export default {
   name: 'WelcomePage',
 
-  middleware({ store, redirect }) {
-    if (!store.state.global.competitions) {
-      return redirect('/')
-    }
+  middleware({ redirect }) {
+    const backToCompetitionSignup = localStorage.setItem('backToCompetitionSignup')
+    const competition = localStorage.setItem('currentCompetition')
 
-    if (localStorage.backToCompetitionSignup && localStorage.currentCompetition) {
-      this.$modal.show('join-event-modal', { competition: store.global.currentCompetition })
+    if (backToCompetitionSignup) {
+      this.$modal.show('join-event-modal', { competition })
+      localStorage.removeItem('backToCompetitionSignup')
+      localStorage.removeItem('currentCompetition')
       redirect('/')
     }
   },
