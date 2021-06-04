@@ -54,11 +54,13 @@ export default {
   methods: {
     async logout() {
       this.setBackToCompetition(false)
+      this.setCurrentCompetition(null)
       await this.$auth.logout()
     },
 
     ...mapActions({
       setBackToCompetition: 'global/setBackToCompetition',
+      setCurrentCompetition: 'global/setCurrentCompetition',
     }),
   },
 }

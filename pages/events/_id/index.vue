@@ -6,7 +6,6 @@
     v-else
     class="mx-auto flex-1 flex flex-col justify-start text-avenue-white pb-12 bg-theavenue-background-light available-min-height"
   >
-    <!-- <CompetitionWinner :competition-name="competition.name" /> -->
     <section class="container mx-auto mt-12">
       <div class="flex flex-col md:flex-row items-center justify-center w-full md:space-x-6">
         <h1 class="text-3xl font-library text-center text-avenue-white-light text-light-white">
@@ -17,10 +16,9 @@
       <p class="max-w-xl mx-auto text-avenue-white text-center mt-5 text-xl">
         {{ competition.description }}
       </p>
-    </section>
-
-    <section class="container text-center mx-auto mt-5 text-gray-400">
-      <p>From {{ dateFrom }} to {{ dateTo }}</p>
+      <p class="container text-center mx-auto mt-5 text-gray-400">
+        From {{ dateFrom }} to {{ dateTo }}
+      </p>
     </section>
 
     <section
@@ -31,22 +29,7 @@
       <JoinEventButton has-long-text :competition="competition" />
     </section>
 
-    <section v-if="competition.sponsors.length" class="container md:mx-auto mt-20">
-      <div class="flex flex-row gap-4 items-start mb-6">
-        <IcSponsor class="h-8" />
-        <h2 class="text-xl font-bold">Sponsors</h2>
-      </div>
-      <div class="mt-5 grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-12 items-end">
-        <div v-for="sponsor in competition.sponsors" :key="sponsor.id">
-          <img
-            v-if="sponsor.logo"
-            :src="sponsor.logo"
-            :alt="`${sponsor.name} logo`"
-            class="w-full"
-          />
-        </div>
-      </div>
-    </section>
+    <CompetitionSponsors v-if="competition.sponsors.length" :sponsors="competition.sponsors" />
 
     <section v-if="eventIsFuture">
       <Countdown :start-date="competition.starts_at" />
@@ -166,7 +149,6 @@
 import spacetime from 'spacetime'
 import IcTrophy from '@/assets/svg/trophy.svg?inline'
 import IcPodium from '@/assets/svg/podium.svg?inline'
-import IcSponsor from '@/assets/svg/sponsor.svg?inline'
 import IcScoreboard from '@/assets/svg/scoreboard.svg?inline'
 import { mapState } from 'vuex'
 
@@ -178,7 +160,6 @@ export default {
   components: {
     IcTrophy,
     IcPodium,
-    IcSponsor,
     IcScoreboard,
   },
 
@@ -239,6 +220,10 @@ export default {
       return today.format('{month-short} {date-pad}')
     },
 
+    eventIsFinished() {
+      return false
+    },
+
     eventIsFuture() {
       const today = spacetime.now('UTC')
       const start = spacetime(this.competition.starts_at, 'UTC')
@@ -295,9 +280,8 @@ export default {
     lastWeekWinner() {
       if (this.lastRound) {
         return this.lastRound.winners[0].competition_talent.talent
-      } else {
-        return null
       }
+      return null
     },
 
     topFourScorers() {

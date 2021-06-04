@@ -40,7 +40,7 @@ export default {
       if (this.$auth.loggedIn && !this.$auth.user.talent_id) {
         return this.$modal.show('not-talent-modal')
       }
-      if (this.$auth.user.talent_id && !this.$auth.user.has_stripe_customer_id) {
+      if (this.$auth.user.talent_id && !this.$auth.user.has_confirmed_talent) {
         return this.$modal.show('no-stripe-modal')
       }
       return this.$modal.show('join-event-modal', { competition: this.competition })

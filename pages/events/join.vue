@@ -133,15 +133,15 @@
         </button>
       </div>
     </section>
-    <div class="container mx-auto mt-10">
-      <section class="flex flex-col xl:grid grid-cols-2 justify-center items-center gap-6">
+    <section class="container mx-auto mt-10">
+      <div class="flex flex-col xl:grid grid-cols-2 justify-center items-center gap-6">
         <CompetitionListItem
           v-for="competition in competitions"
           :key="competition.id"
           :competition="competition"
         />
-      </section>
-    </div>
+      </div>
+    </section>
   </div>
   </div>
 </template>

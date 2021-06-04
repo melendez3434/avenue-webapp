@@ -20,12 +20,14 @@
     <div class="px-2 pb-2 md:px-12 md:pb-12">
       <div class="w-full flex items-center justify-between">
         <div class="flex space-x-3 items-center">
-          <img
-            v-if="talent.talent.photo"
-            :src="talent.talent.photo"
-            :alt="`${talent.name}`"
-            class="w-10 h-10 rounded-full"
-          />
+          <nuxt-link :to="{ name: 'artist-id', params: { id: talent.talent.id } }">
+            <img
+              v-if="talent.talent.photo"
+              :src="talent.talent.photo"
+              :alt="`${talent.name}`"
+              class="w-10 h-10 rounded-full"
+            />
+          </nuxt-link>
           <!-- TODO: Nuxt link not working for some reason -->
           <nuxt-link
             :to="{ name: 'artist-id', params: { id: talent.talent.id } }"
@@ -62,14 +64,10 @@
       </div>
 
       <div class="mt-10">
-        <p class="font-bold">
-          Prizes:
-          <span class="font-normal" />
-        </p>
-        <p class="font-bold mt-3">
+        <p v-if="talent.charities" class="font-bold mt-3">
           Charities this performer is contributing to:
           <a
-            v-for="charity in talent.rounds"
+            v-for="charity in talent.charities"
             :key="charity.charity_website"
             :href="charity.charity_website"
             target="_blank"
@@ -108,10 +106,11 @@ export default {
     return {
       futurePerformances: [],
       pastPerformances: [],
+      fullTalent: {},
     }
   },
 
-  async fetchPastPerformances() {
+  async fetch() {
     try {
       const { past } = await this.$api.events.list({
         talent: this.talent.talent.id,
@@ -123,11 +122,20 @@ export default {
         past: false,
         competition: this.competitionId,
       })
+      const { talent } = await this.$api.events.talent(this.competitionId, this.talent.talent.id)
+      this.fullTalent = talent
       this.pastPerformances = past
       this.futurePerformances = future
     } catch {
       console.error("We couldn't fetch this events")
     }
+  },
+
+  computed: {
+    // weeklyPoints() {
+    //   let currentRound = this.talent.rounds.find(round => round.competition_round.current)
+    //   return currentRound.points
+    // },
   },
 }
 </script>
