@@ -1,5 +1,7 @@
 <template>
+  <base-spinner v-if="!storeInitialized" class="transform translate-y-2/4" />
   <div
+    v-else
     class="available-min-height bg-avenue-blue-light flex flex-col md:flex-row  items-center justify-center"
   >
     <div class="px-24 py-8 text-center flex flex-col items-center">
@@ -27,7 +29,14 @@ import { mapState } from 'vuex'
 export default {
   name: 'WelcomePage',
 
-  middleware({ redirect }) {
+  computed: {
+    ...mapState({
+      competitions: state => state.global.competitions,
+      storeInitialized: state => state.global.storeInitialized,
+    }),
+  },
+
+  created() {
     const backToCompetition = localStorage.getItem('backToCompetition')
     const competition = JSON.parse(localStorage.getItem('currentCompetition'))
 
@@ -35,14 +44,8 @@ export default {
       this.$modal.show('join-event-modal', { competition })
       localStorage.removeItem('currentCompetition')
       localStorage.removeItem('currentCompetition')
-      redirect('/')
+      this.$router.push('/')
     }
-  },
-
-  computed: {
-    ...mapState({
-      competitions: state => state.global.competitions,
-    }),
   },
 }
 </script>
