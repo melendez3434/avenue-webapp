@@ -220,6 +220,8 @@ export default {
       return today.format('{month-short} {date-pad}')
     },
 
+    eventIsFinished() {},
+
     eventIsFuture() {
       const today = spacetime.now('UTC')
       const start = spacetime(this.competition.starts_at, 'UTC')
@@ -276,9 +278,8 @@ export default {
     lastWeekWinner() {
       if (this.lastRound) {
         return this.lastRound.winners[0].competition_talent.talent
-      } else {
-        return null
       }
+      return null
     },
 
     topFourScorers() {

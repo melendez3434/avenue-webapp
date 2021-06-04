@@ -106,10 +106,11 @@ export default {
     return {
       futurePerformances: [],
       pastPerformances: [],
+      fullTalent: {},
     }
   },
 
-  async fetchPastPerformances() {
+  async fetch() {
     try {
       const { past } = await this.$api.events.list({
         talent: this.talent.talent.id,
@@ -121,11 +122,20 @@ export default {
         past: false,
         competition: this.competitionId,
       })
+      const { talent } = await this.$api.events.talent(this.competitionId, this.talent.talent.id)
+      this.fullTalent = talent
       this.pastPerformances = past
       this.futurePerformances = future
     } catch {
       console.error("We couldn't fetch this events")
     }
+  },
+
+  computed: {
+    // weeklyPoints() {
+    //   let currentRound = this.talent.rounds.find(round => round.competition_round.current)
+    //   return currentRound.points
+    // },
   },
 }
 </script>
