@@ -28,10 +28,10 @@ export default {
   name: 'WelcomePage',
 
   middleware({ redirect }) {
-    const backToCompetitionSignup = localStorage.getItem('backToCompetitionSignup')
+    const backToCompetition = localStorage.getItem('backToCompetition')
     const competition = JSON.parse(localStorage.getItem('currentCompetition'))
 
-    if (backToCompetitionSignup) {
+    if (backToCompetition) {
       this.$modal.show('join-event-modal', { competition })
       localStorage.removeItem('backToCompetitionSignup')
       localStorage.removeItem('currentCompetition')
