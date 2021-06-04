@@ -36,14 +36,17 @@ export default {
     }),
   },
 
-  created() {
+  mounted() {
     const backToCompetition = localStorage.getItem('backToCompetition')
     const competition = JSON.parse(localStorage.getItem('currentCompetition'))
+    console.log(backToCompetition)
+    console.log(competition)
 
     if (backToCompetition) {
       this.$modal.show('join-event-modal', { competition })
       localStorage.removeItem('backToCompetition')
       localStorage.removeItem('currentCompetition')
+      this.$router.push('/')
     }
   },
 }
