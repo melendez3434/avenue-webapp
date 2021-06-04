@@ -20,7 +20,7 @@ export default {
 
   async setCurrentCompetition({ commit }, competition) {
     commit(SET_CURRENT_COMPETITION, competition)
-    localStorage.setItem('currentCompetition', competition)
+    localStorage.setItem('currentCompetition', JSON.stringify(competition))
   },
 
   async fetchCompetitions({ commit }) {
