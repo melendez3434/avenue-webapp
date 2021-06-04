@@ -122,6 +122,7 @@ export default {
 
     async logout() {
       this.setBackToCompetition(false)
+      this.setCurrentCompetition(null)
       await this.$auth.logout()
     },
 
@@ -152,6 +153,7 @@ export default {
 
     ...mapActions({
       setBackToCompetition: 'global/setBackToCompetition',
+      setCurrentCompetition: 'global/setCurrentCompetition',
     }),
   },
 }

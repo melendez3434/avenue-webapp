@@ -68,6 +68,14 @@ export default {
 
   auth: false,
 
+  data() {
+    return {
+      maxModalShow: 4,
+      events: [],
+      meta: {},
+    }
+  },
+
   async fetch() {
     try {
       const { data: events, meta } = await this.$api.events.list({ page: 0 })
@@ -75,14 +83,6 @@ export default {
       this.meta = meta
     } catch (error) {
       console.warn(error)
-    }
-  },
-
-  data() {
-    return {
-      maxModalShow: 4,
-      events: [],
-      meta: {},
     }
   },
 

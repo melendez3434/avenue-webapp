@@ -4,42 +4,34 @@
       <p class="text-3xl font-bold">Welcome to The Avenue!</p>
       <p class="mt-8 text-lg font-bold">The Avenue hosts virtual competitions now!</p>
       <p class="mt-8 text-lg font-bold">
-        Do you want to join {{ currentCompetition.name }} competition?
+        Do you want to join a competition?
       </p>
-      <p class="my-5 text-lg px-6">
-        <slot />
-      </p>
-      <IcDish />
-      <button
-        class="uppercase border text-light-yellow border-theavenue-yellow-neon rounded px-3 py-0.5 text-theavenue-yellow-neon font-library text-2xl hover:text-light-white mt-10 focus:outline-none cursor-pointer"
-        @click="$modal.show('join-event-modal', { competition: currentCompetition })"
-      >
-        I'm in!
-      </button>
     </div>
+    <section class="container mx-auto mt-10">
+      <div class="flex flex-col xl:grid grid-cols-2 justify-center items-center gap-6">
+        <CompetitionListItem
+          v-for="competition in competitions"
+          :key="competition.id"
+          :competition="competition"
+        />
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import IcDish from '@/assets/svg/dish.svg?inline'
-
 export default {
   name: 'WelcomePage',
 
-  components: {
-    IcDish,
-  },
+  middleware({ redirect }) {
+    const backToCompetitionSignup = localStorage.getItem('backToCompetitionSignup')
+    const competition = localStorage.getItem('currentCompetition')
 
-  computed: {
-    ...mapState({
-      currentCompetition: state => state.global.currentCompetition,
-    }),
-  },
-
-  middleware({ store, redirect }) {
-    if (!store.state.global.currentCompetition.id) {
-      return redirect('/')
+    if (backToCompetitionSignup) {
+      this.$modal.show('join-event-modal', { competition })
+      localStorage.removeItem('backToCompetitionSignup')
+      localStorage.removeItem('currentCompetition')
+      redirect('/')
     }
   },
 }
