@@ -2,9 +2,9 @@
   <Collapse>
     <template slot="header">
       <div class="w-full flex">
-        <div class="flex-1 text-xxs md:text-xs">{{ talent.name }}</div>
+        <div class="flex-1 text-xxs md:text-xs whitespace-no-wrap">{{ talent.name }}</div>
         <a
-          class="w-48 text-xxs md:text-xs text-right ml-1 md:ml-0"
+          class="hidden md:block text-xxs md:text-xs text-right ml-1 md:ml-0 flex-1"
           :href="talent.website"
           target="_blank"
         >
@@ -12,9 +12,9 @@
         </a>
 
         <!-- TODO: Weekly points -->
-        <div class="w-48 text-right text-xxs md:text-xs">{{ talent.points }}</div>
+        <div class="w-16 md:w-48 text-right text-xxs md:text-xs">{{ talent.points }}</div>
         <!-- TODO: Total points -->
-        <div class="w-48 text-right text-xxs md:text-xs md:pr-12">{{ talent.points }}</div>
+        <div class="w-16 md:w-48 text-right text-xxs md:text-xs md:pr-12">{{ talent.points }}</div>
       </div>
     </template>
     <div class="px-2 pb-2 md:px-12 md:pb-12">
