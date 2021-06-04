@@ -41,7 +41,7 @@
         </span>
       </div>
 
-      <div v-if="futurePerformances.length" class="mt-10">
+      <!-- <div v-if="futurePerformances.length" class="mt-10">
         <p class="text-base md:text-lg">Future performances</p>
         <div class="mt-5 md:grid grid-cols-4 gap-5">
           <div v-for="performance in futurePerformances" :key="performance.id" class="text-center">
@@ -61,7 +61,7 @@
             <span class="block mt-3 text-xxs">{{ performance.starts_at }}</span>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="mt-10">
         <p v-if="talent.charities" class="font-bold mt-3">
