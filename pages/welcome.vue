@@ -24,8 +24,8 @@ export default {
   name: 'WelcomePage',
 
   middleware({ redirect }) {
-    const backToCompetitionSignup = localStorage.setItem('backToCompetitionSignup')
-    const competition = localStorage.setItem('currentCompetition')
+    const backToCompetitionSignup = localStorage.getItem('backToCompetitionSignup')
+    const competition = localStorage.getItem('currentCompetition')
 
     if (backToCompetitionSignup) {
       this.$modal.show('join-event-modal', { competition })
