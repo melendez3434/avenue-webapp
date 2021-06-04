@@ -33,7 +33,7 @@ export default {
 
     if (backToCompetition) {
       this.$modal.show('join-event-modal', { competition })
-      localStorage.removeItem('backToCompetitionSignup')
+      localStorage.removeItem('currentCompetition')
       localStorage.removeItem('currentCompetition')
       redirect('/')
     }
