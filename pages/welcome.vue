@@ -37,10 +37,8 @@ export default {
   },
 
   mounted() {
-    const backToCompetition = localStorage.getItem('backToCompetition')
+    const backToCompetition = localStorage.getItem('backToCompetition') === 'true'
     const competition = JSON.parse(localStorage.getItem('currentCompetition'))
-    console.log(backToCompetition)
-    console.log(competition)
 
     if (backToCompetition) {
       this.$modal.show('join-event-modal', { competition })
