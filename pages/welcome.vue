@@ -42,9 +42,8 @@ export default {
 
     if (backToCompetition) {
       this.$modal.show('join-event-modal', { competition })
+      localStorage.removeItem('backToCompetition')
       localStorage.removeItem('currentCompetition')
-      localStorage.removeItem('currentCompetition')
-      this.$router.push('/')
     }
   },
 }
