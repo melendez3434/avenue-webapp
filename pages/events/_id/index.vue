@@ -37,7 +37,11 @@
       :talent="competition.talent[0].talent"
     />
 
-    <CompetitionSponsors v-if="competition.sponsors.length" :sponsors="competition.sponsors" />
+    <CompetitionSponsors
+      v-if="competition.sponsors.length"
+      :sponsors="competition.sponsors"
+      class="mt-8"
+    />
 
     <section v-if="eventIsFuture">
       <Countdown :start-date="competition.starts_at" />
