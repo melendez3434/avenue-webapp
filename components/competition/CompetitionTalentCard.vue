@@ -5,13 +5,13 @@
   >
     <div class="flex items-center mb-4">
       <img
-        v-if="talent.talent.photo"
-        :src="talent.talent.photo"
+        v-if="talent.photo"
+        :src="talent.photo"
         :alt="`${talent.name}`"
         class="rounded-full w-12 h-12 mr-4"
       />
       <div v-else class="bg-gray-300 rounded-full w-12 h-12 mr-4" />
-      <nuxt-link :to="{ name: 'artist-id', params: { id: talent.talent.id } }" class="font-bold">
+      <nuxt-link :to="{ name: 'artist-id', params: { id: talent.id } }" class="font-bold">
         {{ talent.name }}
       </nuxt-link>
     </div>
@@ -27,6 +27,8 @@
 
 <script>
 export default {
+  name: 'CompetitionTalentCard',
+
   props: {
     talent: {
       type: Object,
