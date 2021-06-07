@@ -15,11 +15,11 @@
 
         <!-- TODO: Weekly points -->
         <div class="w-16 md:w-48 text-right text-xxs md:text-xs">
-          {{ board.competition_talent.points }}
+          {{ board.points }}
         </div>
         <!-- TODO: Total points -->
         <div class="w-16 md:w-48 text-right text-xxs md:text-xs md:pr-12">
-          {{ board.competition_talent.total_points }}
+          {{ board.total_points }}
         </div>
       </div>
     </template>
