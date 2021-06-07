@@ -92,7 +92,7 @@
 
       <div class="mt-10 flex items-center justify-center w-full space-x-6">
         <ShareButton />
-        <FollowButton :talent="board.competition_talent.talent.talent" />
+        <FollowButton :talent="board.competition_talent.talent" />
       </div>
     </div>
   </Collapse>

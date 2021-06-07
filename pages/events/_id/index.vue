@@ -44,77 +44,7 @@
     </section>
 
     <div v-else>
-      <section class="md:grid grid-cols-3 grid-rows-2 gap-12 mx-auto mt-12 container">
-        <div class="flex flex-col items-center justify-center gap-6 col-end-3 row-end-2">
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
-            Grand prize total
-          </h4>
-          <IcTrophy class="h-20" />
-          <span class="text-4xl lg:text-5xl font-league-gothic ">
-            {{ grandPrizeStatus }}
-          </span>
-        </div>
-        <div
-          class="col-start-2 flex flex-col items-center justify-center gap-6 mt-6 col-end-3 row-end-3"
-        >
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
-            Current Round's Prize Total
-          </h4>
-          <IcPodium class="h-20" />
-          <span class="text-4xl lg:text-5xl font-league-gothic">{{ weekPrizeStatus }}</span>
-        </div>
-        <div
-          v-if="lastWeekWinner"
-          class="flex flex-col items-center justify-center gap-6 md:mt-24 col-end-2 row-end-2"
-        >
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
-            Last week's winner
-          </h4>
-          <img
-            v-if="lastWeekWinner && lastWeekWinner.photo"
-            :src="lastWeekWinner.photo"
-            :alt="`${lastWeekWinner.name}`"
-            class="rounded-full w-24 h-24"
-          />
-          <span v-if="lastWeekWinner && lastWeekWinner.name" class="text-xs font-bold">
-            {{ lastWeekWinner.name }}
-          </span>
-        </div>
-        <div
-          v-if="topScorer"
-          class="flex flex-col items-center justify-center gap-6 md:mt-24 col-end-4 row-end-2"
-        >
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
-            Top scorer
-          </h4>
-          <img
-            v-if="topScorer.photo"
-            :src="topScorer.photo"
-            :alt="`${topScorer.name}`"
-            class="rounded-full w-24 h-24"
-          />
-          <span class="text-xs font-bold">{{ topScorer.name }}</span>
-        </div>
-      </section>
-      <section v-if="topFourScorers.length" class="container mx-auto mt-20">
-        <div>
-          <div class="flex flex-row gap-4 mb-6">
-            <IcPodium class="h-8" />
-            <h2 class="text-xl font-bold mt-1">Top four scores of the week</h2>
-          </div>
-          <p>
-            Watch them compite for the round prize on next Saturday’s face-off
-          </p>
-        </div>
-        <div class=" md:grid grid-flow-cols grid-cols-3 gap-6 mt-6">
-          <CompetitionTalentCard
-            v-for="scorer in topFourScorers"
-            :key="scorer.id"
-            is-faceoff
-            :talent="scorer"
-          />
-        </div>
-      </section>
+      <CompetitionOverallInfo />
       <section v-if="competition.talent.length" class="container mx-auto mt-20">
         <div class="flex flex-row gap-4 mb-6">
           <IcScoreboard class="h-8" />
@@ -146,7 +76,7 @@
         <CompetitionTalentCard
           v-for="talent in competition.talent"
           :key="talent.id"
-          :talent="talent"
+          :talent="talent.talent"
           class="md:w-1/3"
         />
       </div>
@@ -155,8 +85,6 @@
 </template>
 <script>
 import spacetime from 'spacetime'
-import IcTrophy from '@/assets/svg/trophy.svg?inline'
-import IcPodium from '@/assets/svg/podium.svg?inline'
 import IcScoreboard from '@/assets/svg/scoreboard.svg?inline'
 import { mapState } from 'vuex'
 
@@ -166,8 +94,6 @@ export default {
   auth: false,
 
   components: {
-    IcTrophy,
-    IcPodium,
     IcScoreboard,
   },
 
@@ -267,18 +193,6 @@ export default {
       return scores
     },
 
-    grandPrizeStatus() {
-      const totalPoints = this.scores.reduce((accumulator, current) => {
-        return accumulator + current
-      }, 0)
-      const grandPrizeStatus = Math.floor((totalPoints / 100) * this.prizesPercentage)
-      return grandPrizeStatus || 0
-    },
-
-    weekPrizeStatus() {
-      return Math.floor((this.currentRound.round_points / 100) * this.prizesPercentage) || 0
-    },
-
     showSignupBtn() {
       return (this.currentRound < 3 || this.eventIsFuture) && !this.alreadyRegistered
     },
@@ -291,35 +205,6 @@ export default {
         )
       }
       return lastRound
-    },
-
-    lastWeekWinner() {
-      if (this.lastRound) {
-        return this.lastRound.winners[0].competition_talent.talent
-      }
-      return null
-    },
-
-    topFourScorers() {
-      const topFourScores = this.scores.slice(0, 4)
-      const topScorers = this.competition.talent.filter(
-        scorer => topFourScores.includes(scorer.points) && scorer.points > 0
-      )
-      return topScorers
-    },
-
-    topScorer() {
-      let topScore = 0
-      let topScorer = null
-      if (this.competition.talent && this.competition.talent.length) {
-        for (let i = 0; i < this.competition.talent.length; i++) {
-          if (this.competition.talent[i].points && this.competition.talent[i].points > topScore) {
-            topScore = this.competition.talent[i].points
-            topScorer = this.competition.talent.find(talent => talent.points === topScore)
-          }
-        }
-      }
-      return topScorer
     },
   },
 }
