@@ -139,12 +139,5 @@ export default {
       console.error("We couldn't fetch this information")
     }
   },
-
-  computed: {
-    // weeklyPoints() {
-    //   let currentRound = this.talent.rounds.find(round => round.competition_round.current)
-    //   return currentRound.points
-    // },
-  },
 }
 </script>
