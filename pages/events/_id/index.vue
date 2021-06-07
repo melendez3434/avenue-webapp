@@ -129,9 +129,9 @@
           </div>
           <div>
             <CompetitionTalentListItem
-              v-for="talent in competition.talent"
-              :key="talent.talent.id"
-              :talent="talent"
+              v-for="board in boards"
+              :key="board.competition_talent.talent.id"
+              :board="board"
               :competition-id="competition.id"
               :style="{ order: scores.indexOf(talent.points, 0) }"
             />
@@ -144,9 +144,9 @@
       <h2 class="font-league-gothic text-3xl text-center uppercase">Meet the competitors</h2>
       <div class="md:flex justify-center flex-wrap gap-6 mt-6 w-full">
         <CompetitionTalentCard
-          v-for="board in boards"
-          :key="board.id"
-          :board="talent"
+          v-for="talent in competition.talent"
+          :key="talent.id"
+          :talent="talent"
           class="md:w-1/3"
         />
       </div>
