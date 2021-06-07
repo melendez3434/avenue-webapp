@@ -57,7 +57,7 @@
         <div class="md:container mx-auto mt-12">
           <div class="w-full flex pl-8 pr-2 md:pl-16 md:pr-0 py-3 text-xxs md:text-base">
             <div class="flex-1">Artist</div>
-            <div class="hidden md:block md:w-48 flex-1">Restaurant</div>
+            <div class="hidden md:block md:w-48 text-right flex-1">Restaurant</div>
             <div class="w-16 md:w-48 text-right whitespace-no-wrap">Week Points</div>
             <div class="w-16 md:w-52 md:pr-16 text-right whitespace-no-wrap">Total Points</div>
           </div>

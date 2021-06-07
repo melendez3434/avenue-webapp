@@ -39,7 +39,7 @@
             {{ lastWeekWinner.competition_talent.name }}
           </span>
         </div>
-        <div class="flex flex-col items-center justify-center gap-6 md:mt-32 col-end-4 row-end-2">
+        <div class="flex flex-col items-center justify-center gap-6 md:mt-36 col-end-4 row-end-2">
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Top scorer
           </h4>
