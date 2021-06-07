@@ -132,11 +132,7 @@ export default {
         this.competitionId,
         this.talent.talent.id
       )
-      const { data: board } = await this.$api.competitions.board(this.competitionId)
-      console.log(board)
-      console.log(talent)
-      console.log(future)
-      console.log(past)
+      const { data: board } = await this.$api.competitions.boards(this.competitionId)
       this.board = board
       this.fullTalent = talent
       this.pastPerformances = past
