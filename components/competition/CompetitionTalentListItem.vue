@@ -107,6 +107,7 @@ export default {
       futurePerformances: [],
       pastPerformances: [],
       fullTalent: {},
+      board: {},
     }
   },
 
@@ -126,7 +127,10 @@ export default {
         this.competitionId,
         this.talent.talent.id
       )
+      const { board } = await this.$api.competitions.board(this.competitionId)
       console.log(talent)
+      console.log(board)
+      this.board = board
       this.fullTalent = talent
       this.pastPerformances = past
       this.futurePerformances = future
