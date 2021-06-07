@@ -20,4 +20,8 @@ export default $axios => ({
   boards(competition) {
     return $axios.$get(`/api/competition-boards/${competition}`)
   },
+
+  overallInfo(competition) {
+    return $axios.$get(`/api/competition-overall-info/${competition}`)
+  },
 })
