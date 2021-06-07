@@ -67,7 +67,7 @@
           v-for="scorer in info.current_top_four_scorers"
           :key="scorer.id"
           is-faceoff
-          :talent="scorer"
+          :talent="scorer.competition_talent"
         />
       </div>
     </section>

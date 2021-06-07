@@ -114,7 +114,6 @@ export default {
       const { data: competition } = await this.$api.competitions.get(this.$route.params.id)
       const { data: boards } = await this.$api.competitions.boards(this.$route.params.id)
       this.boards = boards
-      console.log(boards)
       this.competition = competition
     } catch (error) {
       this.$router.replace({ name: 'events' })

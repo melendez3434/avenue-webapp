@@ -44,7 +44,7 @@
           </nuxt-link>
         </div>
         <span class="font-bold text-xs md:text-xs text-right">
-          {{ board.competition_talent.talent.city }}, {{ board.competition_talent.talent.state }}
+          {{ board.competition_talent.city }}, {{ board.competition_talent.state }}
         </span>
       </div>
 
