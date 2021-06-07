@@ -52,30 +52,35 @@
         </div>
       </div>
 
-      <div v-if="pastPerformances.length" class="mt-10">
-        <p class="text-base md:text-lg">Past performances</p>
-        <div class="mt-5 md:grid grid-cols-4 gap-5">
-          <div v-for="performance in pastPerformances" :key="performance.id" class="text-center">
-            <EventThumbnail width="w-full" height="h-32" />
-            <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
-            <span class="block mt-3 text-xxs">{{ performance.starts_at }}</span>
+      <div v-if="futurePerformances.length || pastPerformances.length">
+        <div v-if="pastPerformances.length" class="mt-10">
+          <p class="text-base md:text-lg">Past performances</p>
+          <div class="mt-5 md:grid grid-cols-4 gap-5">
+            <div v-for="performance in pastPerformances" :key="performance.id" class="text-center">
+              <EventThumbnail width="w-full" height="h-32" />
+              <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
+              <span class="block mt-3 text-xxs">{{ performance.starts_at }}</span>
+            </div>
           </div>
+        </div>
+        <div class="mt-10">
+          <p v-if="talent.charities" class="font-bold mt-3">
+            Charities this performer is contributing to:
+            <a
+              v-for="charity in talent.charities"
+              :key="charity.charity_website"
+              :href="charity.charity_website"
+              target="_blank"
+              class="font-normal"
+            >
+              {{ charity.charity }},
+            </a>
+          </p>
         </div>
       </div>
 
-      <div class="mt-10">
-        <p v-if="talent.charities" class="font-bold mt-3">
-          Charities this performer is contributing to:
-          <a
-            v-for="charity in talent.charities"
-            :key="charity.charity_website"
-            :href="charity.charity_website"
-            target="_blank"
-            class="font-normal"
-          >
-            {{ charity.charity }},
-          </a>
-        </p>
+      <div v-else>
+        <p class="mt-6">This artist hasn't streamed in the competition yet</p>
       </div>
 
       <div class="mt-10 flex items-center justify-center w-full space-x-6">
@@ -128,12 +133,16 @@ export default {
         this.talent.talent.id
       )
       const { data: board } = await this.$api.competitions.board(this.competitionId)
+      console.log(board)
+      console.log(talent)
+      console.log(future)
+      console.log(past)
       this.board = board
       this.fullTalent = talent
       this.pastPerformances = past
       this.futurePerformances = future
     } catch {
-      console.error("We couldn't fetch this events")
+      console.error("We couldn't fetch this information")
     }
   },
 

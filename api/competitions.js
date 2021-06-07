@@ -10,7 +10,6 @@ export default $axios => ({
   },
 
   talent(competition, talent) {
-    console.log(`${resource}/${competition}/talents/${talent}`)
     return $axios.$get(`${resource}/${competition}/talents/${talent}`)
   },
 
