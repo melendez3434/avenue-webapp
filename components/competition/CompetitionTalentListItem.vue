@@ -41,7 +41,7 @@
         </span>
       </div>
 
-      <!-- <div v-if="futurePerformances.length" class="mt-10">
+      <div v-if="futurePerformances.length" class="mt-10">
         <p class="text-base md:text-lg">Future performances</p>
         <div class="mt-5 md:grid grid-cols-4 gap-5">
           <div v-for="performance in futurePerformances" :key="performance.id" class="text-center">
@@ -61,7 +61,7 @@
             <span class="block mt-3 text-xxs">{{ performance.starts_at }}</span>
           </div>
         </div>
-      </div> -->
+      </div>
 
       <div class="mt-10">
         <p v-if="talent.charities" class="font-bold mt-3">
@@ -112,21 +112,20 @@ export default {
 
   async fetch() {
     try {
-      const { past } = await this.$api.events.list({
+      const { data: past } = await this.$api.events.list({
         talent: this.talent.talent.id,
         past: true,
         competition: this.competitionId,
       })
-      const { future } = await this.$api.events.list({
+      const { data: future } = await this.$api.events.list({
         talent: this.talent.talent.id,
         past: false,
         competition: this.competitionId,
       })
-      const { talent } = await this.$api.competitions.talent(
+      const { data: talent } = await this.$api.competitions.talent(
         this.competitionId,
         this.talent.talent.id
       )
-      console.log(talent)
       this.fullTalent = talent
       this.pastPerformances = past
       this.futurePerformances = future
