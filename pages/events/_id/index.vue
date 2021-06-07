@@ -29,6 +29,13 @@
       <JoinEventButton has-long-text :competition="competition" />
     </section>
 
+    <CompetitionWinner
+      v-if="eventIsFinished"
+      class="mt-8"
+      :competition-name="competition.name"
+      :talent="competition.talent[0].talent"
+    />
+
     <CompetitionSponsors v-if="competition.sponsors.length" :sponsors="competition.sponsors" />
 
     <section v-if="eventIsFuture">
@@ -221,7 +228,12 @@ export default {
     },
 
     eventIsFinished() {
-      return false
+      return spacetime('UTC').isAfter(spacetime(this.competition.ends_at, 'UTC'))
+    },
+
+    competitionWinner() {
+      // TODO: Fetch competition winner
+      return {}
     },
 
     eventIsFuture() {
