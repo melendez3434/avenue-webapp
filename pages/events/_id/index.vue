@@ -29,6 +29,7 @@
       <JoinEventButton has-long-text :competition="competition" />
     </section>
 
+    <!-- TODO: make this reflect the winner -->
     <CompetitionWinner
       v-if="eventIsFinished"
       class="mt-8"
@@ -143,9 +144,9 @@
       <h2 class="font-league-gothic text-3xl text-center uppercase">Meet the competitors</h2>
       <div class="md:flex justify-center flex-wrap gap-6 mt-6 w-full">
         <CompetitionTalentCard
-          v-for="talent in competition.talent"
-          :key="talent.id"
-          :talent="talent"
+          v-for="board in boards"
+          :key="board.id"
+          :board="talent"
           class="md:w-1/3"
         />
       </div>
@@ -174,13 +175,16 @@ export default {
     return {
       competition: { talent: [], rounds: [], sponsors: [] },
       prizesPercentage: 5,
+      boards: [],
     }
   },
 
   async fetch() {
     try {
-      const { data } = await this.$api.competitions.get(this.$route.params.id)
-      this.competition = data
+      const { data: competition } = await this.$api.competitions.get(this.$route.params.id)
+      const { data: boards } = await this.$api.competitions.boards(this.$route.params.id)
+      this.boards = boards
+      this.competition = competition
     } catch (error) {
       this.$router.replace({ name: 'events' })
     }

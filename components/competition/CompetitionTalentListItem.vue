@@ -2,42 +2,49 @@
   <Collapse>
     <template slot="header">
       <div class="w-full flex">
-        <div class="flex-1 text-xxs md:text-xs whitespace-no-wrap">{{ talent.name }}</div>
+        <div class="flex-1 text-xxs md:text-xs whitespace-no-wrap">
+          {{ board.competition_talent.name }}
+        </div>
         <a
           class="hidden md:block text-xxs md:text-xs text-right ml-1 md:ml-0 flex-1"
-          :href="talent.website"
+          :href="board.competition_talent.website"
           target="_blank"
         >
-          {{ talent.business_name }}
+          {{ board.competition_talent.business_name }}
         </a>
 
         <!-- TODO: Weekly points -->
-        <div class="w-16 md:w-48 text-right text-xxs md:text-xs">{{ talent.points }}</div>
+        <div class="w-16 md:w-48 text-right text-xxs md:text-xs">
+          {{ board.competition_talent.points }}
+        </div>
         <!-- TODO: Total points -->
-        <div class="w-16 md:w-48 text-right text-xxs md:text-xs md:pr-12">{{ talent.points }}</div>
+        <div class="w-16 md:w-48 text-right text-xxs md:text-xs md:pr-12">
+          {{ board.competition_talent.total_points }}
+        </div>
       </div>
     </template>
     <div class="px-2 pb-2 md:px-12 md:pb-12">
       <div class="w-full flex items-center justify-between">
         <div class="flex space-x-3 items-center">
-          <nuxt-link :to="{ name: 'artist-id', params: { id: talent.talent.id } }">
+          <nuxt-link
+            :to="{ name: 'artist-id', params: { id: board.competition_talent.talent.id } }"
+          >
             <img
-              v-if="talent.talent.photo"
-              :src="talent.talent.photo"
-              :alt="`${talent.name}`"
+              v-if="board.competition_talent.talent.photo"
+              :src="board.competition_talent.talent.photo"
+              :alt="`${board.competition_talent.name}`"
               class="w-10 h-10 rounded-full"
             />
           </nuxt-link>
-          <!-- TODO: Nuxt link not working for some reason -->
           <nuxt-link
-            :to="{ name: 'artist-id', params: { id: talent.talent.id } }"
+            :to="{ name: 'artist-id', params: { id: board.competition_talent.talent.id } }"
             class="font-bold text-xs md:text-xs"
           >
-            {{ talent.name }}
+            {{ board.competition_talent.name }}
           </nuxt-link>
         </div>
         <span class="font-bold text-xs md:text-xs text-right">
-          {{ talent.city }}, {{ talent.state }}
+          {{ board.competition_talent.talent.city }}, {{ board.competition_talent.talent.state }}
         </span>
       </div>
 
@@ -64,10 +71,10 @@
           </div>
         </div>
         <div class="mt-10">
-          <p v-if="talent.charities" class="font-bold mt-3">
+          <p v-if="board.competition_talent.talent.charities" class="font-bold mt-3">
             Charities this performer is contributing to:
             <a
-              v-for="charity in talent.charities"
+              v-for="charity in board.competition_talent.talent.charities"
               :key="charity.charity_website"
               :href="charity.charity_website"
               target="_blank"
@@ -85,7 +92,7 @@
 
       <div class="mt-10 flex items-center justify-center w-full space-x-6">
         <ShareButton />
-        <FollowButton :talent="talent.talent" />
+        <FollowButton :talent="board.competition_talent.talent.talent" />
       </div>
     </div>
   </Collapse>
@@ -95,7 +102,7 @@ export default {
   name: 'CompetitionTalentListItem',
 
   props: {
-    talent: {
+    board: {
       type: Object,
       default: () => ({}),
     },
@@ -111,30 +118,21 @@ export default {
     return {
       futurePerformances: [],
       pastPerformances: [],
-      fullTalent: {},
-      board: {},
     }
   },
 
   async fetch() {
     try {
       const { data: past } = await this.$api.events.list({
-        talent: this.talent.talent.id,
+        talent: this.board.competition_talent.talent.id,
         past: true,
         competition: this.competitionId,
       })
       const { data: future } = await this.$api.events.list({
-        talent: this.talent.talent.id,
+        talent: this.board.competition_talent.talent.id,
         past: false,
         competition: this.competitionId,
       })
-      const { data: talent } = await this.$api.competitions.talent(
-        this.competitionId,
-        this.talent.talent.id
-      )
-      const { data: board } = await this.$api.competitions.boards(this.competitionId)
-      this.board = board
-      this.fullTalent = talent
       this.pastPerformances = past
       this.futurePerformances = future
     } catch {
