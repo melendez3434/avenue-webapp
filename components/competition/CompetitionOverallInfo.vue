@@ -1,6 +1,9 @@
 <template>
   <div>
-    <section>
+    <div v-if="$fetchState.pending">
+      <base-spinner class="transform translate-y-2/4" />
+    </div>
+    <section v-else>
       <div
         v-if="topScorer && lastWeekWinner"
         class="md:grid grid-cols-3 grid-rows-2 gap-12 mx-auto mt-12 container"
@@ -35,11 +38,11 @@
             :alt="lastWeekWinner.competition_talent.name"
             class="rounded-full w-24 h-24"
           />
-          <span v-if="lastWeekWinner.name" class="text-xs font-bold">
+          <span class="text-xs font-bold">
             {{ lastWeekWinner.competition_talent.name }}
           </span>
         </div>
-        <div class="flex flex-col items-center justify-center gap-6 md:mt-36 col-end-4 row-end-2">
+        <div class="flex flex-col items-center justify-center gap-6 md:mt-32 col-end-4 row-end-2">
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Top scorer
           </h4>

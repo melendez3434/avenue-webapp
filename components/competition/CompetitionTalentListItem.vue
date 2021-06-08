@@ -12,12 +12,9 @@
         >
           {{ board.competition_talent.business_name }}
         </a>
-
-        <!-- TODO: Weekly points -->
         <div class="w-16 md:w-48 text-right text-xxs md:text-xs">
           {{ board.points }}
         </div>
-        <!-- TODO: Total points -->
         <div class="w-16 md:w-48 text-right text-xxs md:text-xs md:pr-12">
           {{ board.total_points }}
         </div>
@@ -47,7 +44,6 @@
           {{ board.competition_talent.city }}, {{ board.competition_talent.state }}
         </span>
       </div>
-
       <div v-if="futurePerformances.length" class="mt-10">
         <p class="text-base md:text-lg">Future performances</p>
         <div class="mt-5 md:grid grid-cols-4 gap-5">
@@ -58,7 +54,6 @@
           </div>
         </div>
       </div>
-
       <div v-if="futurePerformances.length || pastPerformances.length">
         <div v-if="pastPerformances.length" class="mt-10">
           <p class="text-base md:text-lg">Past performances</p>
@@ -85,11 +80,9 @@
           </p>
         </div>
       </div>
-
       <div v-else>
         <p class="mt-6">This artist hasn't streamed in the competition yet</p>
       </div>
-
       <div class="mt-10 flex items-center justify-center w-full space-x-6">
         <ShareButton />
         <FollowButton :talent="board.competition_talent.talent" />
