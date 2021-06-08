@@ -37,6 +37,16 @@
       :talent="competition.talent[0].talent"
     />
 
+    <div v-if="alreadyRegistered" class="container mx-auto mt-16">
+      <p>
+        Hello, {{ alreadyRegistered.name }}! Go to your
+        <button class="underline font-bold cursor-pointer text-sm" @click="goToDashboard">
+          dashboard
+        </button>
+        to manage your performances for the competition.
+      </p>
+    </div>
+
     <CompetitionSponsors
       v-if="competition.sponsors.length"
       :sponsors="competition.sponsors"
@@ -209,6 +219,12 @@ export default {
         )
       }
       return lastRound
+    },
+  },
+
+  methods: {
+    goToDashboard() {
+      window.open(this.$config.baseURL)
     },
   },
 }
