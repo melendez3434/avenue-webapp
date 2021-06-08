@@ -37,7 +37,7 @@
       :talent="competition.talent[0].talent"
     />
 
-    <div v-if="alreadyRegistered" class="container mx-auto mt-16">
+    <div v-if="alreadyRegistered" class="container mx-auto my-16 text-center">
       <p>
         Hello, {{ alreadyRegistered.name }}! Go to your
         <button class="underline font-bold cursor-pointer text-sm" @click="goToDashboard">
