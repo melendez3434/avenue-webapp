@@ -50,7 +50,11 @@
         <p class="text-base md:text-lg">Future performances</p>
         <div class="mt-5 md:grid grid-cols-4 gap-5">
           <div v-for="performance in futurePerformances" :key="performance.id" class="text-center">
-            <EventThumbnail width="w-full border border-gray-600" height="h-32" />
+            <EventThumbnail
+              :event="performance"
+              width="w-full border border-gray-600"
+              height="h-32"
+            />
             <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
             <span class="block mt-3 text-xxs">{{ performance.starts_at }}</span>
           </div>
@@ -60,10 +64,15 @@
         <div v-if="pastPerformances.length" class="mt-10">
           <p class="text-base md:text-lg">Past performances</p>
           <div class="mt-5 md:grid grid-cols-4 gap-5">
-            <div v-for="performance in pastPerformances" :key="performance.id" class="text-center">
-              <EventThumbnail width="w-full" height="h-32" />
-              <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
-              <span class="block mt-3 text-xxs">{{ performance.starts_at }}</span>
+            <div v-for="performance in pastPerformances" :key="performance.id">
+              <nuxt-link
+                :to="{ name: 'event-slug', params: { slug: performance.id } }"
+                class="flex flex-col justify-center items-center"
+              >
+                <EventThumbnail :event="performance" width="w-full" height="h-32" />
+                <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
+                <span class="block mt-3 text-xxs">{{ performance.starts_at }}</span>
+              </nuxt-link>
             </div>
           </div>
         </div>
