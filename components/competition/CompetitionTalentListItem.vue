@@ -5,13 +5,11 @@
         <div class="flex-1 text-xxs md:text-xs whitespace-no-wrap">
           {{ board.competition_talent.name }}
         </div>
-        <a
-          class="hidden md:block text-xxs md:text-xs text-right ml-1 md:ml-0 flex-1"
-          :href="board.competition_talent.website"
-          target="_blank"
-        >
-          {{ board.competition_talent.business_name }}
-        </a>
+        <div class="hidden md:block text-xxs md:text-xs text-right ml-1 md:ml-0 flex-1">
+          <a class="w-auto" :href="board.competition_talent.website" target="_blank">
+            {{ board.competition_talent.business_name }}
+          </a>
+        </div>
         <div class="w-16 md:w-48 text-right text-xxs md:text-xs">
           {{ board.points }}
         </div>
