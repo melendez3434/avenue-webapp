@@ -1,11 +1,16 @@
 <template>
   <div>
-    <section>
+    <div v-if="$fetchState.pending">
+      <base-spinner class="transform translate-y-2/4" />
+    </div>
+    <section v-else>
       <div
         v-if="topScorer && lastWeekWinner"
         class="md:grid grid-cols-3 grid-rows-2 gap-12 mx-auto mt-12 container"
       >
-        <div class="flex flex-col items-center justify-center gap-6 col-end-3 row-end-2">
+        <div
+          class="flex flex-col items-center justify-center gap-6 col-end-3 row-end-2 mb-14 md:mb-0"
+        >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Grand prize total
           </h4>
@@ -15,7 +20,7 @@
           </span>
         </div>
         <div
-          class="col-start-2 flex flex-col items-center justify-center gap-6 mt-6 col-end-3 row-end-3"
+          class="col-start-2 flex flex-col items-center justify-center gap-6 mt-6 col-end-3 row-end-3 mb-14 md:mb-0"
         >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Current Round's Prize Total
@@ -25,7 +30,9 @@
             {{ info.weekly_prize_status }}
           </span>
         </div>
-        <div class="flex flex-col items-center justify-center gap-6 md:mt-32 col-end-2 row-end-2">
+        <div
+          class="flex flex-col items-center justify-center gap-6 md:mt-32 col-end-2 row-end-2 mb-14 md:mb-0"
+        >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Last week's winner
           </h4>
@@ -35,11 +42,13 @@
             :alt="lastWeekWinner.competition_talent.name"
             class="rounded-full w-24 h-24"
           />
-          <span v-if="lastWeekWinner.name" class="text-xs font-bold">
+          <span class="text-xs font-bold">
             {{ lastWeekWinner.competition_talent.name }}
           </span>
         </div>
-        <div class="flex flex-col items-center justify-center gap-6 md:mt-36 col-end-4 row-end-2">
+        <div
+          class="flex flex-col items-center justify-center gap-6 md:mt-32 col-end-4 row-end-2 mb-14 md:mb-0"
+        >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Top scorer
           </h4>
@@ -56,7 +65,7 @@
         v-if="!lastWeekWinner"
         class="flex flex-no-wrap flex-col lg:flex-row justify-between gap-12 mx-auto mt-12 container max-w-screen-lg"
       >
-        <div class=" flex flex-col items-center justify-between gap-6">
+        <div class=" flex flex-col items-center justify-between gap-6 mb-14 md:mb-0">
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Current Round's Prize Total
           </h4>
@@ -65,7 +74,7 @@
             {{ info.weekly_prize_status }}
           </span>
         </div>
-        <div class="flex flex-col items-center justify-between gap-6">
+        <div class="flex flex-col items-center justify-between gap-6 mb-14 md:mb-0">
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Grand prize total
           </h4>
@@ -74,7 +83,10 @@
             {{ info.grand_prize_status }}
           </span>
         </div>
-        <div v-if="topScorer" class="flex flex-col items-center justify-between gap-3">
+        <div
+          v-if="topScorer"
+          class="flex flex-col items-center justify-between gap-3 mb-14 md:mb-0"
+        >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Top scorer
           </h4>

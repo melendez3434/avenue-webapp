@@ -5,19 +5,14 @@
         <div class="flex-1 text-xxs md:text-xs whitespace-no-wrap">
           {{ board.competition_talent.name }}
         </div>
-        <a
-          class="hidden md:block text-xxs md:text-xs text-right ml-1 md:ml-0 flex-1"
-          :href="board.competition_talent.website"
-          target="_blank"
-        >
-          {{ board.competition_talent.business_name }}
-        </a>
-
-        <!-- TODO: Weekly points -->
+        <div class="hidden md:block text-xxs md:text-xs text-right ml-1 md:ml-0 flex-1">
+          <a class="w-auto" :href="board.competition_talent.website" target="_blank">
+            {{ board.competition_talent.business_name }}
+          </a>
+        </div>
         <div class="w-16 md:w-48 text-right text-xxs md:text-xs">
           {{ board.points }}
         </div>
-        <!-- TODO: Total points -->
         <div class="w-16 md:w-48 text-right text-xxs md:text-xs md:pr-12">
           {{ board.total_points }}
         </div>
@@ -35,6 +30,7 @@
               :alt="`${board.competition_talent.name}`"
               class="w-10 h-10 rounded-full"
             />
+            <div v-else class="bg-gray-300 rounded-full w-10 h-10 mr-4" />
           </nuxt-link>
           <nuxt-link
             :to="{ name: 'artist-id', params: { id: board.competition_talent.talent.id } }"
@@ -43,11 +39,13 @@
             {{ board.competition_talent.name }}
           </nuxt-link>
         </div>
-        <span class="font-bold text-xs md:text-xs text-right">
+        <span
+          v-if="board.competition_talent.city && board.competition_talent.state"
+          class="font-bold text-xs md:text-xs text-right"
+        >
           {{ board.competition_talent.city }}, {{ board.competition_talent.state }}
         </span>
       </div>
-
       <div v-if="futurePerformances.length" class="mt-10">
         <p class="text-base md:text-lg">Future performances</p>
         <div class="mt-5 md:grid grid-cols-4 gap-5">
@@ -58,7 +56,6 @@
           </div>
         </div>
       </div>
-
       <div v-if="futurePerformances.length || pastPerformances.length">
         <div v-if="pastPerformances.length" class="mt-10">
           <p class="text-base md:text-lg">Past performances</p>
@@ -85,11 +82,9 @@
           </p>
         </div>
       </div>
-
       <div v-else>
         <p class="mt-6">This artist hasn't streamed in the competition yet</p>
       </div>
-
       <div class="mt-10 flex items-center justify-center w-full space-x-6">
         <ShareButton />
         <FollowButton :talent="board.competition_talent.talent" />

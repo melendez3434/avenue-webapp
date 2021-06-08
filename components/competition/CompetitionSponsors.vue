@@ -5,7 +5,7 @@
       <h2 class="text-xl font-bold">Sponsors</h2>
     </div>
     <div
-      class="flex flex-col md:flex-row flex-wrap space-y-4 justify-center md:justify-between md:items-center mt-5 w-full"
+      class="flex flex-col md:flex-row flex-wrap space-y-4 justify-center md:justify-between md:items-end mt-5 w-full"
     >
       <img
         v-for="sponsor in sponsors"
