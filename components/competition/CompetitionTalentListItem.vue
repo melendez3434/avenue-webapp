@@ -30,6 +30,7 @@
               :alt="`${board.competition_talent.name}`"
               class="w-10 h-10 rounded-full"
             />
+            <div v-else class="bg-gray-300 rounded-full w-10 h-10 mr-4" />
           </nuxt-link>
           <nuxt-link
             :to="{ name: 'artist-id', params: { id: board.competition_talent.talent.id } }"
