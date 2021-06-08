@@ -38,7 +38,10 @@
             {{ board.competition_talent.name }}
           </nuxt-link>
         </div>
-        <span class="font-bold text-xs md:text-xs text-right">
+        <span
+          v-if="board.competition_talent.city && board.competition_talent.state"
+          class="font-bold text-xs md:text-xs text-right"
+        >
           {{ board.competition_talent.city }}, {{ board.competition_talent.state }}
         </span>
       </div>
