@@ -2,7 +2,7 @@ const resource = '/api/events'
 
 export default $axios => ({
   list(params) {
-    return $axios.$get(`${resource}/`, { params })
+    return $axios.$get(`${resource}`, { params })
   },
 
   get(slug) {
@@ -38,6 +38,6 @@ export default $axios => ({
   },
 
   buyTicket(event_id) {
-    return $axios.$post('api/tickets/', { event_id })
+    return $axios.$post('api/tickets', { event_id })
   },
 })

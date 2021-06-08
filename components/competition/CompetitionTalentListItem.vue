@@ -123,9 +123,10 @@ export default {
         past: true,
         competition: this.competitionId,
       })
+
       const { data: future } = await this.$api.events.list({
         talent: this.board.competition_talent.talent.id,
-        past: false,
+        upcoming: true,
         competition: this.competitionId,
       })
       this.pastPerformances = past
