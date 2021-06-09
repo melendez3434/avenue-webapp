@@ -48,22 +48,26 @@
       </div>
       <div v-if="futurePerformances.length" class="mt-10">
         <p class="text-base md:text-lg">Future performances</p>
-        <div class="mt-5 md:grid grid-cols-4 gap-5">
+        <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
           <div v-for="performance in futurePerformances" :key="performance.id" class="text-center">
-            <EventThumbnail width="w-full border border-gray-600" height="h-32" />
+            <EventThumbnail class="" width="w-full" height="h-42" is-for-scoreboard />
             <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
-            <span class="block mt-3 text-xxs">{{ performance.starts_at }}</span>
+            <span class="block mt-1 text-xxs font-bold">
+              {{ setPerformanceDate(performance) }}. {{ setPerformanceStartTime(performance) }}
+            </span>
           </div>
         </div>
       </div>
       <div v-if="futurePerformances.length || pastPerformances.length">
         <div v-if="pastPerformances.length" class="mt-10">
           <p class="text-base md:text-lg">Past performances</p>
-          <div class="mt-5 md:grid grid-cols-4 gap-5">
+          <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
             <div v-for="performance in pastPerformances" :key="performance.id" class="text-center">
-              <EventThumbnail width="w-full" height="h-32" />
+              <EventThumbnail width="w-full" height="h-42" :event="performance" />
               <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
-              <span class="block mt-3 text-xxs">{{ performance.starts_at }}</span>
+              <span class="block mt-1 text-xxs font-bold">
+                {{ setPerformanceDate(performance) }}. {{ setPerformanceStartTime(performance) }}
+              </span>
             </div>
           </div>
         </div>
@@ -93,6 +97,8 @@
   </Collapse>
 </template>
 <script>
+import spacetime from 'spacetime'
+
 export default {
   name: 'CompetitionTalentListItem',
 
@@ -125,7 +131,7 @@ export default {
       })
       const { data: future } = await this.$api.events.list({
         talent: this.board.competition_talent.talent.id,
-        past: false,
+        upcoming: true,
         competition: this.competitionId,
       })
       this.pastPerformances = past
@@ -133,6 +139,20 @@ export default {
     } catch {
       console.error("We couldn't fetch this information")
     }
+  },
+
+  methods: {
+    setPerformanceDate(performance) {
+      return spacetime(performance.starts_at, 'UTC')
+        .goto(performance.timezone)
+        .format('{month-short} {date-pad}, {year}')
+    },
+
+    setPerformanceStartTime(performance) {
+      return spacetime(performance.starts_at, 'UTC')
+        .goto(performance.timezone)
+        .format('{hour}:{minute-pad}{ampm}')
+    },
   },
 }
 </script>
