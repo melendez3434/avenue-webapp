@@ -6,6 +6,7 @@
           {{ board.competition_talent.name }}
         </div>
         <div class="hidden md:block text-xxs md:text-xs text-right ml-1 md:ml-0 flex-1">
+          <font-awesome-icon :icon="['fas', 'external-link-alt']" />
           <a class="w-auto" :href="board.competition_talent.website" target="_blank">
             {{ board.competition_talent.business_name }}
           </a>

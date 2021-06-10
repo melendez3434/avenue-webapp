@@ -19,10 +19,10 @@
     </div>
     <blockquote class="italic h-12 overflow-hidden">{{ talent.motivation }}...</blockquote>
     <span
-      v-if="isFaceoff"
+      v-if="points !== null"
       class="mt-3 font-league-gothic uppercase text-lg justify-self-center text-center tracking-wider"
     >
-      {{ talent.points }} points
+      {{ points }} points
     </span>
   </div>
 </template>
@@ -37,9 +37,9 @@ export default {
       default: () => ({}),
     },
 
-    isFaceoff: {
-      type: Boolean,
-      default: false,
+    points: {
+      type: Number,
+      default: null,
     },
   },
 

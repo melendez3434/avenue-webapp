@@ -114,7 +114,7 @@
         <CompetitionTalentCard
           v-for="scorer in info.current_top_four_scorers"
           :key="scorer.id"
-          is-faceoff
+          :points="scorer.points"
           :talent="scorer.competition_talent"
         />
       </div>
@@ -155,10 +155,12 @@ export default {
 
   computed: {
     lastWeekWinner() {
+      if (!this.info.last_week_winners) return null
       return this.info.last_week_winners.length ? this.info.last_week_winners[0] : null
     },
 
     topScorer() {
+      if (!this.info.general_top_scorers) return null
       return this.info.general_top_scorers.length ? this.info.general_top_scorers[0] : null
     },
   },

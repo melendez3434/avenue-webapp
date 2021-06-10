@@ -1,17 +1,32 @@
 <template>
   <div>
     <p class="text-base md:text-lg">{{ time }} performances</p>
-    <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5">
-      <div class="text-center ">
-        <div class="overflow-hidden">
-          <EventThumbnail
-            width="w-full"
-            height="h-40"
-            :event="performance"
-            is-for-scoreboard
-            class="overflow-hidden"
-          />
-        </div>
+    <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
+      <nuxt-link
+        v-if="time === 'Past'"
+        :to="{ name: 'event-slug', params: { slug: performance.id } }"
+        class="text-center"
+      >
+        <EventThumbnail
+          width="w-full"
+          height="h-40"
+          :event="performance"
+          is-for-scoreboard
+          class="overflow-hidden"
+        />
+        <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
+        <span class="block mt-1 text-xxs font-bold">
+          {{ performanceDate }}. {{ performanceStartTime }}
+        </span>
+      </nuxt-link>
+      <div v-else class="text-center">
+        <EventThumbnail
+          width="w-full"
+          height="h-40"
+          :event="performance"
+          is-for-scoreboard
+          class="overflow-hidden"
+        />
         <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
         <span class="block mt-1 text-xxs font-bold">
           {{ performanceDate }}. {{ performanceStartTime }}
