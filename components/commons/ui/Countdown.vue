@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="loaded"
-    class=" mx-auto w-4/6 lg:w-1/2 mt-10 md:mt-20 h-auto text-theavenue-white border p-2 md:p-8 flex justify-around items-center"
+    class=" mx-auto w-5/6 lg:w-1/2 mt-10 md:mt-20 h-auto text-theavenue-white border p-2 md:p-8 flex justify-around items-center"
     style="box-shadow: 0px 0px 10px #FFFFFF;"
   >
     <div class="flex flex-col justify-center items-center w-1/4">
