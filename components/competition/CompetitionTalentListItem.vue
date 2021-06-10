@@ -46,53 +46,39 @@
           {{ board.competition_talent.city }}, {{ board.competition_talent.state }}
         </span>
       </div>
-      <div v-if="futurePerformances.length" class="mt-10">
-        <p class="text-base md:text-lg">Future performances</p>
-        <div class="mt-5 md:grid grid-cols-4 gap-5">
-          <div v-for="performance in futurePerformances" :key="performance.id" class="text-center">
-            <EventThumbnail
-              :event="performance"
-              width="w-full border border-gray-600"
-              height="h-32"
-            />
-            <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
-            <span class="block mt-3 text-xxs">{{ performance.starts_at }}</span>
-          </div>
+      <div v-if="pastPerformances.length || futurePerformances.length">
+        <div v-if="futurePerformances.length" class="mt-10">
+          <CompetitionPerformance
+            v-for="performance in futurePerformances"
+            :key="performance.id"
+            :performance="performance"
+            time="Future"
+          />
         </div>
-      </div>
-      <div v-if="futurePerformances.length || pastPerformances.length">
         <div v-if="pastPerformances.length" class="mt-10">
-          <p class="text-base md:text-lg">Past performances</p>
-          <div class="mt-5 md:grid grid-cols-4 gap-5">
-            <div v-for="performance in pastPerformances" :key="performance.id">
-              <nuxt-link
-                :to="{ name: 'event-slug', params: { slug: performance.id } }"
-                class="flex flex-col justify-center items-center"
-              >
-                <EventThumbnail :event="performance" width="w-full" height="h-32" />
-                <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
-                <span class="block mt-3 text-xxs">{{ performance.starts_at }}</span>
-              </nuxt-link>
-            </div>
-          </div>
-        </div>
-        <div class="mt-10">
-          <p v-if="board.competition_talent.talent.charities" class="font-bold mt-3">
-            Charities this performer is contributing to:
-            <a
-              v-for="charity in board.competition_talent.talent.charities"
-              :key="charity.charity_website"
-              :href="charity.charity_website"
-              target="_blank"
-              class="font-normal"
-            >
-              {{ charity.charity }},
-            </a>
-          </p>
+          <CompetitionPerformance
+            v-for="performance in pastPerformances"
+            :key="performance.id"
+            :performance="performance"
+          />
         </div>
       </div>
       <div v-else>
         <p class="mt-6">This artist hasn't streamed in the competition yet</p>
+      </div>
+      <div class="mt-10">
+        <p v-if="board.competition_talent.talent.charities" class="font-bold mt-3">
+          Charities this performer is contributing to:
+          <a
+            v-for="charity in board.competition_talent.talent.charities"
+            :key="charity.charity_website"
+            :href="charity.charity_website"
+            target="_blank"
+            class="font-normal"
+          >
+            {{ charity.charity }},
+          </a>
+        </p>
       </div>
       <div class="mt-10 flex items-center justify-center w-full space-x-6">
         <ShareButton />
@@ -101,6 +87,7 @@
     </div>
   </Collapse>
 </template>
+
 <script>
 export default {
   name: 'CompetitionTalentListItem',

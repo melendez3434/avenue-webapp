@@ -95,6 +95,10 @@
         />
       </div>
     </section>
+
+    <div class="container mt-10 mx-auto underline text-sm font-bold">
+      <nuxt-link :to="{ name: 'events-join' }">Read the rules</nuxt-link>
+    </div>
   </div>
 </template>
 <script>
