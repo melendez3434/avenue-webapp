@@ -8,7 +8,7 @@
   >
     <section class="container mx-auto mt-12">
       <div class="flex flex-col md:flex-row items-center justify-center w-full md:space-x-6">
-        <h1 class="text-3xl font-library text-center text-avenue-white-light text-light-white">
+        <h1 class="text-4xl font-library text-center text-avenue-white-light text-light-white">
           <span>{{ competition.name }}</span>
           <CompetitionIcon v-if="competition.icon" :icon="competition.icon" is-title />
         </h1>
