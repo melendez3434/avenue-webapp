@@ -43,7 +43,7 @@
             place (from Monday to Friday).
           </p>
           <p class="text-base mb-2">
-            During the competition, to give you and your business the best chance of winning, you
+            During the competition, to give you or your business the best chance of winning, you
             should host as many events as you can fit into your schedule involving as many of your
             followers as you can. You will need to get them comfortable with watching you perform on
             The Avenue. A good way to get your following to activate their cards for voting is to do
@@ -52,19 +52,15 @@
             starting from the second one, you get 50 points for the final FACE-OFF.
           </p>
           <p class="text-base mb-2">
-            Before competing, the performer must list the focus dish that will be streamed for each
-            week of the competition (a different dish for each week). You can stream other content
-            during each week to help build support and votes. All votes during the week will count
+            All votes/tips during the week will count
             towards your weekly competition total. After you sign up for an event, every time you
             schedule a new performance in the dashboard you will have a checkbox to let you indicate
-            if this performance is part of that event or not and if you are going to cook your dish
-            of the week or not. If you are going to cook the dish of the week you should also
-            indicate it in the title of your performance.
+            if this performance is part of that event or not.
           </p>
           <p class="text-base mb-2">
-            Each week of the competition, the event will start on Monday at 12 am EST and End 11:59
+            Each week of the competition, the competition will start on Monday at 12 am EST and End 11:59
             pm EST Friday. All the vote totals for each competitor will be displayed on the site for
-            all to see on the event’s page.
+            all to see on the competition's page.
           </p>
           <div class="mt-8">
             <h3 class="text-xl mb-3">Pre-Tournament</h3>
@@ -80,9 +76,9 @@
           <div class="mt-8">
             <h3 class="text-xl mb-3">Charity Mondays</h3>
             <p class="text-base mb-2">
-              Charity day is always Mondays. The earned money from that day will go to the charity
-              you chose for that specific week, but you will still get the points for that
-              performance. The performer will be responsible to deliver funds to the charity after
+              Charity day is always Mondays. The money earned that day will go to the charity
+              of you choice for that specific week, but you will still get the points for that
+              performance. You will be responsible to deliver funds to the charity after
               they are paid. You will want to have the charity promote your competition to support
               you and gain as many votes as you can.
             </p>
@@ -93,11 +89,9 @@
               The top 4 competitors of each week by Friday, as indicated by the competition board,
               will compete on Saturday from 12 pm EST to 12 am EST at the time of your choice. If
               there is a tie all that have the top 4 amount of votes will participate in the
-              FACE-OFF. You can stream that week’s competition dish as many times as you wish and
-              indicate that on the performance title, but you must cook it on the FACE-OFF too if
-              you qualify. You can stream other supporting content to accrue as many votes as you
+              FACE-OFF. You can stream other supporting content to accrue as many votes as you
               can. On Sunday we will announce the winner of that round and they will be declared
-              that round winner for their stated dish and receive the progressive total for that
+              that round winner and receive the progressive total for that
               round (5 percent of all the votes). In the event of a tie, the round will be split
               amongst the winners. There will be 4 FACE OFF challenges and a winner of winners if
               there is a tie for each round. The FACE-OFF totals will not be added to the
