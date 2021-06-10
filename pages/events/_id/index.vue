@@ -64,8 +64,12 @@
           <IcScoreboard class="h-8" />
           <h2 class="text-xl font-bold">Scoreboard</h2>
         </div>
-        <div class="md:container mx-auto mt-12">
-          <div class="w-full flex pl-8 pr-2 md:pl-16 md:pr-0 py-3 text-xxs md:text-base">
+        <h3 class="text-md">
+          <span>Current Round</span>
+          <span>{{ competition.current_round.round }}/{{ competition.rounds_amount }}</span>
+        </h3>
+        <div class="md:container mx-auto mt-6">
+          <div class="w-full flex pl-8 pr-2 md:pl-16 md:pr-0 py-3 text-xxs md:text-base font-bold">
             <div class="flex-1">Artist</div>
             <div class="hidden md:block md:w-48 text-right flex-1">Business</div>
             <div class="w-16 md:w-48 text-right whitespace-no-wrap">Week Points</div>
@@ -126,7 +130,11 @@ export default {
   async fetch() {
     try {
       const { data: competition } = await this.$api.competitions.get(this.$route.params.id)
-      const { data: boards } = await this.$api.competitions.boards(this.$route.params.id)
+      const currentRound = competition.current_round.id
+      const { data: boards } = await this.$api.competitions.board(
+        this.$route.params.id,
+        currentRound
+      )
       this.boards = boards
       this.competition = competition
     } catch (error) {

@@ -17,6 +17,10 @@ export default $axios => ({
     return $axios.$post(`${resource}/${id}/talents`, payload)
   },
 
+  board(competition, round) {
+    return $axios.$get(`/api/competition-boards/${competition}/rounds/${round}`)
+  },
+
   boards(competition) {
     return $axios.$get(`/api/competition-boards/${competition}`)
   },

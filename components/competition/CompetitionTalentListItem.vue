@@ -12,10 +12,10 @@
           </a>
         </div>
         <div class="w-16 md:w-48 text-right text-xxs md:text-xs">
-          {{ board.points }}
+          {{ points }}
         </div>
         <div class="w-16 md:w-48 text-right text-xxs md:text-xs md:pr-12">
-          {{ board.total_points }}
+          {{ totalPoints }}
         </div>
       </div>
     </template>
@@ -131,6 +131,17 @@ export default {
     } catch {
       console.error("We couldn't fetch this information")
     }
+  },
+
+  computed: {
+    points() {
+      return this.board.points || 0
+    },
+
+    totalPoints() {
+      const total = this.board.total_points || 0
+      return total + this.points
+    },
   },
 }
 </script>
