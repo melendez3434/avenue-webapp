@@ -5,7 +5,7 @@
     </div>
     <section v-else>
       <div
-        v-if="topScorer && lastWeekWinner"
+        v-if="topScorer && lastWeekWinner && info.grand_prize_status"
         class="md:grid grid-cols-3 grid-rows-2 gap-12 mx-auto mt-12 container"
       >
         <div
@@ -16,7 +16,7 @@
           </h4>
           <IcTrophy class="h-20" />
           <span class="text-4xl lg:text-5xl font-league-gothic ">
-            {{ info.grand_prize_status }}
+            {{ info.grand_prize_status || 0 }}
           </span>
         </div>
         <div
@@ -27,7 +27,7 @@
           </h4>
           <IcPodium class="h-20" />
           <span class="text-4xl lg:text-5xl font-league-gothic">
-            {{ info.weekly_prize_status }}
+            {{ info.weekly_prize_status || 0 }}
           </span>
         </div>
         <div
@@ -71,7 +71,7 @@
           </h4>
           <IcPodium class="h-20" />
           <span class="text-4xl lg:text-5xl font-league-gothic">
-            {{ info.weekly_prize_status }}
+            {{ info.weekly_prize_status || 0 }}
           </span>
         </div>
         <div class="flex flex-col items-center justify-between gap-6 mb-14 md:mb-0">
@@ -80,7 +80,7 @@
           </h4>
           <IcTrophy class="h-20" />
           <span class="text-4xl lg:text-5xl font-league-gothic ">
-            {{ info.grand_prize_status }}
+            {{ info.grand_prize_status || 0 }}
           </span>
         </div>
         <div
