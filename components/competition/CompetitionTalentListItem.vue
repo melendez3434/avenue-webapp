@@ -66,7 +66,8 @@
               <EventThumbnail width="w-full" height="h-42" :event="performance" is-for-scoreboard />
               <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
               <span class="block mt-1 text-xxs font-bold">
-                {{ setPerformanceDate(performance) }}. {{ setPerformanceStartTime(performance) }}
+                {{ setPerformanceDate(performance) }}.
+                {{ setPerformanceStartTime(performance) }}
               </span>
             </div>
           </div>
