@@ -216,10 +216,13 @@ export default {
   },
 
   watch: {
-    '$route.query.welcome'(welcome) {
-      if (!welcome) return
-      this.$modal.show('welcome-modal')
-      this.$fetch()
+    '$route.query.welcome': {
+      immediate: true,
+      handler(welcome) {
+        if (!welcome) return
+        this.$modal.show('welcome-modal')
+        this.$fetch()
+      },
     },
   },
 
