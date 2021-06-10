@@ -35,7 +35,9 @@ export default {
         if (alreadyRegistered) return this.$modal.show('already-signedup-modal')
       }
 
+      this.setBackToCompetition(true)
       this.setCurrentCompetition(this.competition)
+
       if (!this.$auth.user) return this.$modal.show('not-logged-modal')
       if (this.$auth.loggedIn && !this.$auth.user.talent_id) {
         return this.$modal.show('not-talent-modal')
@@ -48,6 +50,7 @@ export default {
 
     ...mapActions({
       setCurrentCompetition: 'global/setCurrentCompetition',
+      setBackToCompetition: 'global/setBackToCompetition',
     }),
   },
 }

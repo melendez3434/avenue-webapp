@@ -113,7 +113,7 @@ export default {
 
   data() {
     return {
-      competition: { talent: [], rounds: [], sponsors: [] },
+      competition: { talent: [], sponsors: [] },
       prizesPercentage: 5,
       boards: [],
     }
@@ -190,10 +190,6 @@ export default {
       return this.competition.sponsors && this.competition.sponsors.length
     },
 
-    currentRound() {
-      return this.competition.rounds.filter(round => round.current)
-    },
-
     scores() {
       let scores = []
       for (let i = 0; i < this.competition.talent.length; i++) {
@@ -208,17 +204,10 @@ export default {
     },
 
     showSignupBtn() {
-      return (this.currentRound < 3 || this.eventIsFuture) && !this.alreadyRegistered
-    },
-
-    lastRound() {
-      let lastRound = null
-      if (this.currentRound.round > 1) {
-        lastRound = this.competition.rounds.filter(
-          round => round.round === this.currentRound.round - 1
-        )
-      }
-      return lastRound
+      if (this.alreadyRegistered) return false
+      if (this.eventIsFuture) return true
+      if (!this.competition.current_round) return true
+      return this.competition.current_round.round < 3
     },
   },
 
