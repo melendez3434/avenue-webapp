@@ -1,9 +1,17 @@
 <template>
   <div>
     <p class="text-base md:text-lg">{{ time }} performances</p>
-    <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
-      <div class="text-center">
-        <EventThumbnail width="w-full" height="h-42" :event="performance" is-for-scoreboard />
+    <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5">
+      <div class="text-center ">
+        <div class="overflow-hidden">
+          <EventThumbnail
+            width="w-full"
+            height="h-40"
+            :event="performance"
+            is-for-scoreboard
+            class="overflow-hidden"
+          />
+        </div>
         <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
         <span class="block mt-1 text-xxs font-bold">
           {{ performanceDate }}. {{ performanceStartTime }}

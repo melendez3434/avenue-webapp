@@ -4,7 +4,12 @@
     :class="[width, height]"
     :style="{ border: addBorder ? '1px solid #a2a4a8' : 'none' }"
   >
-    <img v-if="event.thumbnail" class="object-cover" :src="event.thumbnail" alt="Event thumbnail" />
+    <img
+      v-if="event.thumbnail"
+      class="object-cover overflow-hidden"
+      :src="event.thumbnail"
+      alt="Event thumbnail"
+    />
     <img
       v-else-if="hasAssets"
       class="object-cover"
