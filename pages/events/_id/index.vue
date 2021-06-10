@@ -13,7 +13,7 @@
           <CompetitionIcon v-if="competition.icon" :icon="competition.icon" is-title />
         </h1>
       </div>
-      <p class="mx-auto text-avenue-white text-center mt-5 text-xl">
+      <p class="mx-auto text-avenue-white text-center mt-5 text-xl leading-loose">
         {{ competition.description }}
       </p>
       <p class="container text-center mx-auto mt-5 text-gray-400">
