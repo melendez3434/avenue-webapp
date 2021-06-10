@@ -6,8 +6,8 @@
     <div class="flex items-center mb-4">
       <nuxt-link :to="{ name: 'artist-id', params: { id: talent.id } }" class="font-bold">
         <img
-          v-if="talent.photo"
-          :src="talent.photo"
+          v-if="photo"
+          :src="photo"
           :alt="`${talent.name}`"
           class="rounded-full w-12 h-12 mr-4"
         />
@@ -40,6 +40,14 @@ export default {
     isFaceoff: {
       type: Boolean,
       default: false,
+    },
+  },
+
+  computed: {
+    photo() {
+      if (!this.talent.talent) return null
+
+      return this.talent.talent.photo
     },
   },
 }

@@ -90,7 +90,7 @@
         <CompetitionTalentCard
           v-for="talent in competition.talent"
           :key="talent.id"
-          :talent="talent.talent"
+          :talent="talent"
           class="md:w-1/3"
         />
       </div>
