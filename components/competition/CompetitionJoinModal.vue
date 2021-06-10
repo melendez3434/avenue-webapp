@@ -175,9 +175,11 @@ export default {
 
         this.$modal.hide('join-event-modal')
 
-        this.$router.go()
-
-        this.$modal.show('welcome-modal')
+        this.$router.replace({
+          name: 'events-id',
+          params: { id: this.competition.id },
+          query: { welcome: 1 },
+        })
       } catch (e) {
         if (!e.error || !e.error.response || !e.error.response.data) {
           console.log(e)

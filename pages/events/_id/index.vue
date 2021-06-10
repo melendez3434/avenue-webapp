@@ -215,6 +215,14 @@ export default {
     },
   },
 
+  watch: {
+    '$route.query.welcome'(welcome) {
+      if (!welcome) return
+      this.$modal.show('welcome-modal')
+      this.$fetch()
+    },
+  },
+
   methods: {
     goToDashboard() {
       window.open(this.$config.baseURL)
