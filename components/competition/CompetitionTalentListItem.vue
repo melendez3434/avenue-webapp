@@ -63,7 +63,7 @@
           <p class="text-base md:text-lg">Past performances</p>
           <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
             <div v-for="performance in pastPerformances" :key="performance.id" class="text-center">
-              <EventThumbnail width="w-full" height="h-42" :event="performance" />
+              <EventThumbnail width="w-full" height="h-42" :event="performance" is-for-scoreboard />
               <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
               <span class="block mt-1 text-xxs font-bold">
                 {{ setPerformanceDate(performance) }}. {{ setPerformanceStartTime(performance) }}

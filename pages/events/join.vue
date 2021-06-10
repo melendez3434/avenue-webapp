@@ -134,7 +134,7 @@
       </div>
     </section>
     <section class="container mx-auto mt-10">
-      <div class="flex flex-col xl:grid grid-cols-2 justify-center items-center gap-6">
+      <div class="flex flex-col justify-center xl:grid items-center gap-6" :style="{ gridTemplateColumns: hasMoreThanOneEvent ? '2' : '1'}">
         <CompetitionListItem
           v-for="competition in competitions"
           :key="competition.id"
@@ -164,6 +164,10 @@ export default {
     ...mapState({
       competitions: state => state.global.competitions,
     }),
+
+    hasMoreThanOneEvent() {
+      return this.competitions.length > 1
+    }
   },
 
   methods: {
