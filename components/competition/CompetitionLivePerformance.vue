@@ -10,7 +10,9 @@
       />
       <IcLive class="absolute top-2 left-2 w-14" />
       <div class="flex flex-col">
-        <span class="font-league-gothic uppercase text-2xl">{{ performance.talent.name }}</span>
+        <span class="font-league-gothic uppercase text-xl tracking-wide">
+          {{ performance.talent.name }}
+        </span>
         <span class="text-sm text-gray-400">{{ performance.category.name }}</span>
       </div>
     </nuxt-link>

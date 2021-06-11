@@ -47,15 +47,15 @@
           {{ board.competition_talent.city }}, {{ board.competition_talent.state }}
         </span>
       </div>
-      <div v-if="livePerformances.length" class="mt-10">
-        <CompetitionPerformance
-          v-for="performance in livePerformances"
-          :key="performance.id"
-          :performance="performance"
-          time="Live"
-        />
-      </div>
-      <div v-if="pastPerformances.length || futurePerformances.length">
+      <div v-if="pastPerformances.length || futurePerformances.length || livePerformances.length">
+        <div v-if="livePerformances.length" class="mt-10">
+          <CompetitionPerformance
+            v-for="performance in livePerformances"
+            :key="performance.id"
+            :performance="performance"
+            time="Live"
+          />
+        </div>
         <div v-if="futurePerformances.length" class="mt-10">
           <CompetitionPerformance
             v-for="performance in futurePerformances"
