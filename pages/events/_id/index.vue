@@ -58,6 +58,7 @@
     </section>
 
     <div v-else>
+      <CompetitionLiveGrid v-if="livePerformances.length" :live-performances="livePerformances" />
       <CompetitionOverallInfo />
       <section v-if="competition.talent.length" class="container mx-auto mt-20">
         <div class="flex flex-row gap-4 mb-6">
@@ -123,6 +124,7 @@ export default {
     return {
       competition: { talent: [], sponsors: [] },
       boards: [],
+      livePerformances: [],
     }
   },
 
@@ -134,6 +136,12 @@ export default {
         this.$route.params.id,
         currentRound
       )
+      const { data: live } = await this.$api.events.list({
+        live: 1,
+        competition: this.competition.id,
+      })
+
+      this.livePerformances = live
       this.boards = boards
       this.competition = competition
     } catch (error) {

@@ -36,13 +36,6 @@
         </p>
         <div v-show="showRules">
           <p class="text-base mb-2">
-            Each event consists of a five weeks competition where you will try to earn the biggest
-            amount of points you can. These points will be earned with tips from the users, as in
-            regular performances in The Avenue, at the rate of 1$ = 1 point. Viewers can tip during
-            the performance or at any other moment of the same week in which the performance took
-            place (from Monday to Friday).
-          </p>
-          <p class="text-base mb-2">
             During the competition, to give you or your business the best chance of winning, you
             should host as many events as you can fit into your schedule involving as many of your
             followers as you can. You will need to get them comfortable with watching you perform on

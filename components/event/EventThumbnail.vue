@@ -54,7 +54,9 @@ export default {
 
   computed: {
     hasAssets() {
-      return this.event.assets.length > 0 && this.event.assets[0].playback_id
+      if (!this.event.assets) return false
+      if (!this.event.assets.length < 1) return false
+      return this.event.assets[0] ? this.event.assets[0].playback_id : false
     },
 
     addBorder() {

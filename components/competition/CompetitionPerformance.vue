@@ -15,19 +15,6 @@
           {{ performanceDate }}. {{ performanceStartTime }}
         </span>
       </nuxt-link>
-      <div class="text-center">
-        <EventThumbnail
-          width="w-full"
-          height="h-40"
-          :event="performance"
-          is-for-scoreboard
-          class="overflow-hidden"
-        />
-        <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
-        <span class="block mt-1 text-xxs font-bold">
-          {{ performanceDate }}. {{ performanceStartTime }}
-        </span>
-      </div>
     </div>
   </div>
 </template>
