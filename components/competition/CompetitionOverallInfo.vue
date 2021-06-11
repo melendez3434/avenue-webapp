@@ -5,7 +5,6 @@
     </div>
     <section v-else>
       <div
-        v-if="topScorer && lastWeekWinner && info.grand_prize_status"
         class="md:grid grid-cols-3 grid-rows-2 gap-12 mx-auto mt-12 container"
       >
         <div
@@ -47,6 +46,7 @@
           </span>
         </div>
         <div
+          v-if="topScorer"
           class="flex flex-col items-center justify-center gap-6 md:mt-32 col-end-4 row-end-2 mb-14 md:mb-0"
         >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
@@ -104,9 +104,12 @@
       <div>
         <div class="flex flex-row gap-4 mb-6">
           <IcPodium class="h-8" />
-          <h2 class="text-xl font-bold mt-1">Top four scores of the week</h2>
+          <h2 v-if="isFaceOff" class="text-xl font-bold mt-1">
+            Currently performing on week face-off
+          </h2>
+          <h2 v-else class="text-xl font-bold mt-1">Top four scores of the week</h2>
         </div>
-        <p>
+        <p v-if="!isFaceOff">
           Watch them compite for the round prize on next Saturday’s face-off
         </p>
       </div>
@@ -114,7 +117,7 @@
         <CompetitionTalentCard
           v-for="scorer in info.current_top_four_scorers"
           :key="scorer.id"
-          :points="scorer.points"
+          :points="isFaceOff ? null : scorer.points"
           :talent="scorer.competition_talent"
         />
       </div>
@@ -132,6 +135,13 @@ export default {
   components: {
     IcTrophy,
     IcPodium,
+  },
+
+  props: {
+    isFaceOff: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
