@@ -52,13 +52,13 @@
             Top scorer
           </h4>
           <img
-            v-if="topScorer.competition_talent.talent.photo"
-            :src="topScorer.competition_talent.talent.photo"
-            :alt="`${topScorer.competition_talent.name}`"
+            v-if="topScorer.talent.photo"
+            :src="topScorer.talent.photo"
+            :alt="`${topScorer.name}`"
             class="rounded-full w-24 h-24"
           />
-          <div else class="w-24 h-24 rounded-full bg-gray-200" />
-          <span class="text-xs font-bold">{{ topScorer.competition_talent.name }}</span>
+          <div v-else class="w-24 h-24 rounded-full bg-gray-200" />
+          <span class="text-xs font-bold">{{ topScorer.name }}</span>
         </div>
       </div>
       <div
@@ -91,13 +91,13 @@
             Top scorer
           </h4>
           <img
-            v-if="topScorer.competition_talent.talent.photo"
-            :src="topScorer.competition_talent.talent.photo"
-            :alt="`${topScorer.competition_talent.name}`"
+            v-if="topScorer.talent.photo"
+            :src="topScorer.talent.photo"
+            :alt="`${topScorer.name}`"
             class="rounded-full w-24 h-24"
           />
-          <div else class="w-24 h-24 rounded-full bg-gray-200" />
-          <span class="text-xs font-bold">{{ topScorer.competition_talent.name }}</span>
+          <div v-else class="w-24 h-24 rounded-full bg-gray-200" />
+          <span class="text-xs font-bold">{{ topScorer.name }}</span>
         </div>
       </div>
     </section>
@@ -150,7 +150,7 @@ export default {
       prizesPercentage: 5,
       info: {
         last_week_winners: [],
-        general_top_scorers: [],
+        general_top_scorer: {},
         current_top_four_scorers: [],
       },
     }
@@ -172,8 +172,7 @@ export default {
     },
 
     topScorer() {
-      if (!this.info.general_top_scorers) return null
-      return this.info.general_top_scorers.length ? this.info.general_top_scorers[0] : null
+      return this.info.general_top_scorer
     },
 
     grandPrizeStatus() {

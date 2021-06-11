@@ -155,8 +155,7 @@ export default {
     },
 
     totalPoints() {
-      const total = this.board.total_points || 0
-      return total + this.points
+      return this.board.total_points || 0
     },
   },
 }
