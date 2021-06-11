@@ -17,7 +17,7 @@
           @click="scrollToAbout"
         />
         <div class="flex space-x-4 ">
-          <div if="sponsors.length" class="h-10 w-20 flex justify-center bg-white">
+          <div v-if="sponsors.length" class="h-10 w-20 flex justify-center bg-white">
             <img :src="currentSponsor.logo" alt="" />
           </div>
           <TalentSocialMedia :talent="talent" :event="event" />
