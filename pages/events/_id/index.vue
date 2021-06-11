@@ -139,7 +139,7 @@ export default {
       )
       const { data: live } = await this.$api.events.list({
         live: 1,
-        competition: this.competition.id,
+        competition: competition.id,
       })
 
       this.livePerformances = live
