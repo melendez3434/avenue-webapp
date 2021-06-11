@@ -55,17 +55,6 @@
             pm EST Friday. All the vote totals for each competitor will be displayed on the site for
             all to see on the competition's page.
           </p>
-          <!-- <div class="mt-8">
-            <h3 class="text-xl mb-3">Pre-Tournament</h3>
-            <p class="text-base mb-2">
-              Each competitor must attend the pre-tournament sponsor showcase. This event will take
-              place at any time the week before the event’s starting week. Attendees will receive
-              200 Avenue Votes (not tip jar votes) to spend on your performance. These points will
-              be added at the end of the competition to the total number of votes to help determine
-              the Champion. Notice that these points count for the final but they don’t represent
-              money.
-            </p>
-          </div> -->
           <div class="mt-8">
             <h3 class="text-xl mb-3">Charity Mondays</h3>
             <p class="text-base mb-2">

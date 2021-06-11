@@ -16,7 +16,10 @@
           :class="{ 'cursor-pointer': !page && talent.biography }"
           @click="scrollToAbout"
         />
-        <div class="flex space-x-4">
+        <div class="flex space-x-4 ">
+          <div if="sponsors.length" class="h-10 w-20 flex justify-center bg-white">
+            <img :src="currentSponsor.logo" alt="" />
+          </div>
           <TalentSocialMedia :talent="talent" :event="event" />
           <el-popover
             v-model="popover"
@@ -80,6 +83,20 @@ export default {
   data() {
     return {
       popover: false,
+      sponsors: [],
+      currentSponsor: {},
+      index: 0,
+    }
+  },
+
+  async fetch() {
+    try {
+      if (this.event.is_competition) {
+        const { data: competition } = await this.$api.competitions.get(this.event.competition.id)
+        this.sponsors = competition.sponsors
+      }
+    } catch {
+      console.error("Couldn't fetch the sponsors")
     }
   },
 
@@ -91,6 +108,14 @@ export default {
         'min-height': 'calc(100vh - 80px - 28rem - 76px)',
       }
     },
+  },
+
+  created() {
+    setInterval(() => {
+      this.currentSponsor = this.sponsors[this.index]
+      this.index++
+      if (this.index === this.sponsors.length) this.index = 0
+    }, 4000)
   },
 
   methods: {
