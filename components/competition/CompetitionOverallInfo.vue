@@ -166,11 +166,11 @@ export default {
     },
 
     grandPrizeStatus() {
-      return Math.floor((this.info.grand_prize_status * this.prizesPercentage) / 100)
+      return Math.round((this.info.grand_prize_status * this.prizesPercentage) / 100)
     },
 
     weekPrizeStatus() {
-      return Math.floor((this.info.weekly_prize_status * this.prizesPercentage) / 100)
+      return Math.round((this.info.weekly_prize_status * this.prizesPercentage) / 100)
     },
   },
 }

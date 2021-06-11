@@ -47,6 +47,14 @@
           {{ board.competition_talent.city }}, {{ board.competition_talent.state }}
         </span>
       </div>
+      <div v-if="livePerformances.length" class="mt-10">
+        <CompetitionPerformance
+          v-for="performance in livePerformances"
+          :key="performance.id"
+          :performance="performance"
+          time="Live"
+        />
+      </div>
       <div v-if="pastPerformances.length || futurePerformances.length">
         <div v-if="futurePerformances.length" class="mt-10">
           <CompetitionPerformance
@@ -110,6 +118,7 @@ export default {
     return {
       futurePerformances: [],
       pastPerformances: [],
+      livePerformances: [],
     }
   },
 
@@ -126,8 +135,14 @@ export default {
         upcoming: true,
         competition: this.competitionId,
       })
+
+      const { data: live } = await this.$api.events.list({
+        live: 1,
+        talent: this.board.competition_talent.talent.id,
+      })
       this.pastPerformances = past
       this.futurePerformances = future
+      this.livePerformances = live
     } catch {
       console.error("We couldn't fetch this information")
     }
