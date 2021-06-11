@@ -4,7 +4,7 @@
     style="box-shadow: 0px 0px 10px rgba(255, 210, 67);"
   >
     <div class="flex items-center mb-4">
-      <nuxt-link :to="{ name: 'artist-id', params: { id: talent.id } }" class="font-bold">
+      <nuxt-link :to="{ name: 'artist-id', params: { id: talent.talent.id } }" class="font-bold">
         <img
           v-if="photo"
           :src="photo"
@@ -13,7 +13,7 @@
         />
         <div v-else class="bg-gray-300 rounded-full w-12 h-12 mr-4" />
       </nuxt-link>
-      <nuxt-link :to="{ name: 'artist-id', params: { id: talent.id } }" class="font-bold">
+      <nuxt-link :to="{ name: 'artist-id', params: { id: talent.talent.id } }" class="font-bold">
         {{ talent.name }}
       </nuxt-link>
     </div>

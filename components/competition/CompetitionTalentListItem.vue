@@ -21,7 +21,7 @@
     </template>
     <div class="px-2 pb-2 md:px-12 md:pb-12">
       <div class="w-full flex items-center justify-between">
-        <div class="flex space-x-3 items-center">
+        <div class="flex space-x-2 lg:space-x-3 items-center">
           <nuxt-link
             :to="{ name: 'artist-id', params: { id: board.competition_talent.talent.id } }"
           >
@@ -31,7 +31,7 @@
               :alt="`${board.competition_talent.name}`"
               class="w-10 h-10 rounded-full"
             />
-            <div v-else class="bg-gray-300 rounded-full w-10 h-10 mr-4" />
+            <div v-else class="bg-gray-300 rounded-full w-10 h-10" />
           </nuxt-link>
           <nuxt-link
             :to="{ name: 'artist-id', params: { id: board.competition_talent.talent.id } }"
