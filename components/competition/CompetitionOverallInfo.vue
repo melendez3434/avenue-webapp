@@ -16,7 +16,7 @@
           </h4>
           <IcTrophy class="h-20" />
           <span class="text-4xl lg:text-5xl font-league-gothic ">
-            {{ info.grand_prize_status || 0 }}
+            {{ grandPrizeStatus || 0 }}
           </span>
         </div>
         <div
@@ -27,7 +27,7 @@
           </h4>
           <IcPodium class="h-20" />
           <span class="text-4xl lg:text-5xl font-league-gothic">
-            {{ info.weekly_prize_status || 0 }}
+            {{ weekPrizeStatus || 0 }}
           </span>
         </div>
         <div
@@ -71,7 +71,7 @@
           </h4>
           <IcPodium class="h-20" />
           <span class="text-4xl lg:text-5xl font-league-gothic">
-            {{ info.weekly_prize_status || 0 }}
+            {{ weekPrizeStatus || 0 }}
           </span>
         </div>
         <div class="flex flex-col items-center justify-between gap-6 mb-14 md:mb-0">
@@ -80,7 +80,7 @@
           </h4>
           <IcTrophy class="h-20" />
           <span class="text-4xl lg:text-5xl font-league-gothic ">
-            {{ info.grand_prize_status || 0 }}
+            {{ grandPrizeStatus || 0 }}
           </span>
         </div>
         <div
@@ -136,6 +136,7 @@ export default {
 
   data() {
     return {
+      prizesPercentage: 5,
       info: {
         last_week_winners: [],
         general_top_scorers: [],
@@ -162,6 +163,14 @@ export default {
     topScorer() {
       if (!this.info.general_top_scorers) return null
       return this.info.general_top_scorers.length ? this.info.general_top_scorers[0] : null
+    },
+
+    grandPrizeStatus() {
+      return Math.floor((this.info.grand_prize_status * this.prizesPercentage) / 100)
+    },
+
+    weekPrizeStatus() {
+      return Math.floor((this.info.weekly_prize_status * this.prizesPercentage) / 100)
     },
   },
 }

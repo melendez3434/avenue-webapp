@@ -122,7 +122,6 @@ export default {
   data() {
     return {
       competition: { talent: [], sponsors: [] },
-      prizesPercentage: 5,
       boards: [],
     }
   },
@@ -200,19 +199,6 @@ export default {
 
     hasSponsors() {
       return this.competition.sponsors && this.competition.sponsors.length
-    },
-
-    scores() {
-      let scores = []
-      for (let i = 0; i < this.competition.talent.length; i++) {
-        if (!scores.includes(this.competition.talent[i].points)) {
-          scores.push(this.competition.talent[i].points)
-        }
-      }
-      scores.sort(function(a, b) {
-        return b - a
-      })
-      return scores
     },
 
     showSignupBtn() {
