@@ -42,7 +42,7 @@
             :alt="lastWeekWinner.competition_talent.name"
             class="rounded-full w-24 h-24"
           />
-          <div else class="w-24 h-24 rounded-full bg-gray-200" />
+          <div v-else class="w-24 h-24 rounded-full bg-gray-200" />
           <span class="text-xs font-bold">
             {{ lastWeekWinner.competition_talent.name }}
           </span>
