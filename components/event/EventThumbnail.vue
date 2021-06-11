@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center justify-center overflow-hidden"
+    class="flex items-center justify-center overflow-hidden bg-gray-900"
     :class="[width, height]"
     :style="{ border: addBorder ? '1px solid #a2a4a8' : 'none' }"
   >
@@ -54,7 +54,9 @@ export default {
 
   computed: {
     hasAssets() {
-      return this.event.assets.length > 0 && this.event.assets[0].playback_id
+      if (!this.event.assets) return false
+      if (!this.event.assets.length < 1) return false
+      return this.event.assets[0] ? this.event.assets[0].playback_id : false
     },
 
     addBorder() {

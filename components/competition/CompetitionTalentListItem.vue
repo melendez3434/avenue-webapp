@@ -21,7 +21,7 @@
     </template>
     <div class="px-2 pb-2 md:px-12 md:pb-12">
       <div class="w-full flex items-center justify-between">
-        <div class="flex space-x-3 items-center">
+        <div class="flex space-x-2 lg:space-x-3 items-center">
           <nuxt-link
             :to="{ name: 'artist-id', params: { id: board.competition_talent.talent.id } }"
           >
@@ -31,7 +31,7 @@
               :alt="`${board.competition_talent.name}`"
               class="w-10 h-10 rounded-full"
             />
-            <div v-else class="bg-gray-300 rounded-full w-10 h-10 mr-4" />
+            <div v-else class="bg-gray-300 rounded-full w-10 h-10" />
           </nuxt-link>
           <nuxt-link
             :to="{ name: 'artist-id', params: { id: board.competition_talent.talent.id } }"
@@ -47,7 +47,15 @@
           {{ board.competition_talent.city }}, {{ board.competition_talent.state }}
         </span>
       </div>
-      <div v-if="pastPerformances.length || futurePerformances.length">
+      <div v-if="pastPerformances.length || futurePerformances.length || livePerformances.length">
+        <div v-if="livePerformances.length" class="mt-10">
+          <CompetitionPerformance
+            v-for="performance in livePerformances"
+            :key="performance.id"
+            :performance="performance"
+            time="Live"
+          />
+        </div>
         <div v-if="futurePerformances.length" class="mt-10">
           <CompetitionPerformance
             v-for="performance in futurePerformances"
@@ -110,6 +118,7 @@ export default {
     return {
       futurePerformances: [],
       pastPerformances: [],
+      livePerformances: [],
     }
   },
 
@@ -126,8 +135,15 @@ export default {
         upcoming: true,
         competition: this.competitionId,
       })
+
+      const { data: live } = await this.$api.events.list({
+        live: 1,
+        talent: this.board.competition_talent.talent.id,
+        competition: this.competitionId,
+      })
       this.pastPerformances = past
       this.futurePerformances = future
+      this.livePerformances = live
     } catch {
       console.error("We couldn't fetch this information")
     }
@@ -139,8 +155,7 @@ export default {
     },
 
     totalPoints() {
-      const total = this.board.total_points || 0
-      return total + this.points
+      return this.board.total_points || 0
     },
   },
 }

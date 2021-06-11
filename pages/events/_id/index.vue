@@ -58,14 +58,16 @@
     </section>
 
     <div v-else>
-      <CompetitionOverallInfo />
+      <CompetitionLiveGrid v-if="livePerformances.length" :live-performances="livePerformances" />
+      <CompetitionOverallInfo :is-face-off="isFaceOff" />
       <section v-if="competition.talent.length" class="container mx-auto mt-20">
         <div class="flex flex-row gap-4 mb-6">
           <IcScoreboard class="h-8" />
           <h2 class="text-xl font-bold">Scoreboard</h2>
         </div>
         <h3 class="text-md">
-          <span>Current Round</span>
+          <span v-if="isFaceOff">Face-Off</span>
+          <span v-else>Current Round</span>
           <span>{{ competition.current_round.round }}/{{ competition.rounds_amount }}</span>
         </h3>
         <div class="md:container mx-auto mt-6">
@@ -121,9 +123,9 @@ export default {
 
   data() {
     return {
-      competition: { talent: [], sponsors: [] },
-      prizesPercentage: 5,
+      competition: { talent: [], sponsors: [], current_round: {} },
       boards: [],
+      livePerformances: [],
     }
   },
 
@@ -135,6 +137,12 @@ export default {
         this.$route.params.id,
         currentRound
       )
+      const { data: live } = await this.$api.events.list({
+        live: 1,
+        competition: competition.id,
+      })
+
+      this.livePerformances = live
       this.boards = boards
       this.competition = competition
     } catch (error) {
@@ -187,9 +195,9 @@ export default {
       return spacetime('UTC').isAfter(spacetime(this.competition.ends_at, 'UTC'))
     },
 
-    competitionWinner() {
-      // TODO: Fetch competition winner
-      return {}
+    isFaceOff() {
+      // round-face-off
+      return this.competition.current_round.type === 'round-face-off'
     },
 
     eventIsFuture() {
@@ -200,19 +208,6 @@ export default {
 
     hasSponsors() {
       return this.competition.sponsors && this.competition.sponsors.length
-    },
-
-    scores() {
-      let scores = []
-      for (let i = 0; i < this.competition.talent.length; i++) {
-        if (!scores.includes(this.competition.talent[i].points)) {
-          scores.push(this.competition.talent[i].points)
-        }
-      }
-      scores.sort(function(a, b) {
-        return b - a
-      })
-      return scores
     },
 
     showSignupBtn() {

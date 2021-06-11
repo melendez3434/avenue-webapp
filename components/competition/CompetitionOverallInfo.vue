@@ -4,10 +4,7 @@
       <base-spinner class="transform translate-y-2/4" />
     </div>
     <section v-else>
-      <div
-        v-if="topScorer && lastWeekWinner && info.grand_prize_status"
-        class="md:grid grid-cols-3 grid-rows-2 gap-12 mx-auto mt-12 container"
-      >
+      <div class="md:grid grid-cols-3 grid-rows-2 gap-12 mx-auto mt-12 container">
         <div
           class="flex flex-col items-center justify-center gap-6 col-end-3 row-end-2 mb-14 md:mb-0"
         >
@@ -16,7 +13,7 @@
           </h4>
           <IcTrophy class="h-20" />
           <span class="text-4xl lg:text-5xl font-league-gothic ">
-            {{ info.grand_prize_status || 0 }}
+            {{ grandPrizeStatus || 0 }}
           </span>
         </div>
         <div
@@ -27,7 +24,7 @@
           </h4>
           <IcPodium class="h-20" />
           <span class="text-4xl lg:text-5xl font-league-gothic">
-            {{ info.weekly_prize_status || 0 }}
+            {{ weekPrizeStatus || 0 }}
           </span>
         </div>
         <div
@@ -42,23 +39,26 @@
             :alt="lastWeekWinner.competition_talent.name"
             class="rounded-full w-24 h-24"
           />
+          <div else class="w-24 h-24 rounded-full bg-gray-200" />
           <span class="text-xs font-bold">
             {{ lastWeekWinner.competition_talent.name }}
           </span>
         </div>
         <div
+          v-if="topScorer"
           class="flex flex-col items-center justify-center gap-6 md:mt-32 col-end-4 row-end-2 mb-14 md:mb-0"
         >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
             Top scorer
           </h4>
           <img
-            v-if="topScorer.competition_talent.talent.photo"
-            :src="topScorer.competition_talent.talent.photo"
-            :alt="`${topScorer.competition_talent.name}`"
+            v-if="topScorer.talent.photo"
+            :src="topScorer.talent.photo"
+            :alt="`${topScorer.name}`"
             class="rounded-full w-24 h-24"
           />
-          <span class="text-xs font-bold">{{ topScorer.competition_talent.name }}</span>
+          <div v-else class="w-24 h-24 rounded-full bg-gray-200" />
+          <span class="text-xs font-bold">{{ topScorer.name }}</span>
         </div>
       </div>
       <div
@@ -71,7 +71,7 @@
           </h4>
           <IcPodium class="h-20" />
           <span class="text-4xl lg:text-5xl font-league-gothic">
-            {{ info.weekly_prize_status || 0 }}
+            {{ weekPrizeStatus || 0 }}
           </span>
         </div>
         <div class="flex flex-col items-center justify-between gap-6 mb-14 md:mb-0">
@@ -80,7 +80,7 @@
           </h4>
           <IcTrophy class="h-20" />
           <span class="text-4xl lg:text-5xl font-league-gothic ">
-            {{ info.grand_prize_status || 0 }}
+            {{ grandPrizeStatus || 0 }}
           </span>
         </div>
         <div
@@ -91,12 +91,13 @@
             Top scorer
           </h4>
           <img
-            v-if="topScorer.competition_talent.talent.photo"
-            :src="topScorer.competition_talent.talent.photo"
-            :alt="`${topScorer.competition_talent.name}`"
+            v-if="topScorer.talent.photo"
+            :src="topScorer.talent.photo"
+            :alt="`${topScorer.name}`"
             class="rounded-full w-24 h-24"
           />
-          <span class="text-xs font-bold">{{ topScorer.competition_talent.name }}</span>
+          <div v-else class="w-24 h-24 rounded-full bg-gray-200" />
+          <span class="text-xs font-bold">{{ topScorer.name }}</span>
         </div>
       </div>
     </section>
@@ -104,9 +105,12 @@
       <div>
         <div class="flex flex-row gap-4 mb-6">
           <IcPodium class="h-8" />
-          <h2 class="text-xl font-bold mt-1">Top four scores of the week</h2>
+          <h2 v-if="isFaceOff" class="text-xl font-bold mt-1">
+            Currently performing on week face-off
+          </h2>
+          <h2 v-else class="text-xl font-bold mt-1">Top four scores of the week</h2>
         </div>
-        <p>
+        <p v-if="!isFaceOff">
           Watch them compite for the round prize on next Saturday’s face-off
         </p>
       </div>
@@ -114,7 +118,7 @@
         <CompetitionTalentCard
           v-for="scorer in info.current_top_four_scorers"
           :key="scorer.id"
-          :points="scorer.points"
+          :points="isFaceOff ? null : scorer.points"
           :talent="scorer.competition_talent"
         />
       </div>
@@ -134,11 +138,19 @@ export default {
     IcPodium,
   },
 
+  props: {
+    isFaceOff: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
   data() {
     return {
+      prizesPercentage: 5,
       info: {
         last_week_winners: [],
-        general_top_scorers: [],
+        general_top_scorer: {},
         current_top_four_scorers: [],
       },
     }
@@ -160,8 +172,15 @@ export default {
     },
 
     topScorer() {
-      if (!this.info.general_top_scorers) return null
-      return this.info.general_top_scorers.length ? this.info.general_top_scorers[0] : null
+      return this.info.general_top_scorer
+    },
+
+    grandPrizeStatus() {
+      return Math.round((this.info.grand_prize_status * this.prizesPercentage) / 100)
+    },
+
+    weekPrizeStatus() {
+      return Math.round((this.info.weekly_prize_status * this.prizesPercentage) / 100)
     },
   },
 }
