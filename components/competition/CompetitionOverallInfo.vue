@@ -4,9 +4,7 @@
       <base-spinner class="transform translate-y-2/4" />
     </div>
     <section v-else>
-      <div
-        class="md:grid grid-cols-3 grid-rows-2 gap-12 mx-auto mt-12 container"
-      >
+      <div class="md:grid grid-cols-3 grid-rows-2 gap-12 mx-auto mt-12 container">
         <div
           class="flex flex-col items-center justify-center gap-6 col-end-3 row-end-2 mb-14 md:mb-0"
         >
@@ -41,6 +39,7 @@
             :alt="lastWeekWinner.competition_talent.name"
             class="rounded-full w-24 h-24"
           />
+          <div else class="w-24 h-24 rounded-full bg-gray-200" />
           <span class="text-xs font-bold">
             {{ lastWeekWinner.competition_talent.name }}
           </span>
