@@ -132,6 +132,10 @@ export default {
   async fetch() {
     try {
       const { data: competition } = await this.$api.competitions.get(this.$route.params.id)
+      this.competition = competition
+
+      if (!competition.current_round) return
+
       const currentRound = competition.current_round.id
       const { data: boards } = await this.$api.competitions.board(
         this.$route.params.id,
@@ -144,8 +148,8 @@ export default {
 
       this.livePerformances = live
       this.boards = boards
-      this.competition = competition
     } catch (error) {
+      console.log(error)
       this.$router.replace({ name: 'events' })
     }
   },
