@@ -10,7 +10,7 @@
       />
       <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
       <span class="block mt-1 text-xxs font-bold">
-        {{ performanceDate }}. {{ performanceStartTime }}
+        {{ performanceDate }} - {{ performanceStartTime }}
       </span>
     </nuxt-link>
   </div>
