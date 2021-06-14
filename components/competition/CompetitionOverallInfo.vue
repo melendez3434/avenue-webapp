@@ -114,7 +114,7 @@
           <h2 v-else class="text-xl font-bold mt-1">Top four scores of the week</h2>
         </div>
         <p v-if="!isFaceOff">
-          Watch them compite for the round prize on next Saturday’s face-off
+          Watch them compete for the round prize on next Saturday’s face-off
         </p>
       </div>
       <div class=" md:grid grid-flow-cols grid-cols-3 gap-6 mt-6">
