@@ -12,7 +12,7 @@
             :icon="['fas', 'external-link-alt']"
           />
           <a class="w-auto" :href="board.competition_talent.website" target="_blank">
-            {{ board.competition_talent.business_name }}
+            {{ board.competition_talent.business_name || board.competition_talent.website }}
           </a>
         </div>
         <div class="w-16 md:w-48 text-right text-xxs md:text-xs lg:text-sm">
