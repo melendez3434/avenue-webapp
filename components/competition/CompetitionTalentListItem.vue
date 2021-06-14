@@ -88,9 +88,10 @@
         <p class="mt-6 lg:text-sm">This artist hasn't streamed in the competition yet</p>
       </div>
       <div class="mt-14">
-        <p v-if="charities" class="font-bold mt-3">
-          {{ talent.name }} is contributing to:
-          <span>{{ charities }}.</span>
+        <p v-if="charities" class="mt-3">
+          <span>{{ talent.name }} is contributing to</span>
+          <!-- eslint-disable-next-line -->
+          <span v-html="charities" />
         </p>
       </div>
       <div class="mt-10 flex items-center justify-center w-full space-x-6">
@@ -124,7 +125,6 @@ export default {
       pastPerformances: [],
       livePerformances: [],
       talent: {},
-      charities: [],
     }
   },
 
@@ -155,7 +155,6 @@ export default {
       this.pastPerformances = past
       this.futurePerformances = future
       this.livePerformances = live
-      this.charities = talent.charities.map(charity => charity.charity).split(',')
     } catch {
       console.error("We couldn't fetch this information")
     }
@@ -168,6 +167,17 @@ export default {
 
     totalPoints() {
       return this.board.total_points || 0
+    },
+
+    charities() {
+      if (!this.talent.charities) return null
+      if (!this.talent.charities.length) return null
+      return this.talent.charities
+        .map(
+          charity =>
+            `<a class="font-bold underline" href="${charity.charity_website}" target="_blank">${charity.charity}</a>`
+        )
+        .join(',')
     },
   },
 }
