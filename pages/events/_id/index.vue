@@ -74,7 +74,10 @@
           <div class="w-full flex pl-8 pr-2 md:pl-16 md:pr-0 py-3 text-xxs md:text-base font-bold">
             <div class="flex-1">Artist</div>
             <div class="hidden md:block md:w-48 text-right flex-1">Business</div>
-            <div class="w-16 md:w-48 text-right whitespace-no-wrap">Week Points</div>
+            <div v-if="isFaceOff" class="w-16 md:w-48 text-right whitespace-no-wrap">
+              Face Off Points
+            </div>
+            <div v-else class="w-16 md:w-48 text-right whitespace-no-wrap">Week Points</div>
             <div class="w-16 md:w-52 md:pr-16 text-right whitespace-no-wrap">Total Points</div>
           </div>
           <div>
@@ -196,7 +199,6 @@ export default {
     },
 
     isFaceOff() {
-      // round-face-off
       return this.competition.current_round.type === 'round-face-off'
     },
 

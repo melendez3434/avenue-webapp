@@ -55,7 +55,7 @@
               v-for="performance in livePerformances"
               :key="performance.id"
               :performance="performance"
-              time="Live"
+              live
             />
           </div>
         </div>
@@ -66,7 +66,6 @@
               v-for="performance in futurePerformances"
               :key="performance.id"
               :performance="performance"
-              time="Future"
             />
           </div>
         </div>
