@@ -1,12 +1,22 @@
 <template>
-  <div class="flex items-center justify-center overflow-hidden" :class="[width, height]">
-    <img v-if="event.thumbnail" :src="event.thumbnail" alt="Event thumbnail" />
+  <div
+    class="flex items-center justify-center overflow-hidden bg-gray-900"
+    :class="[width, height]"
+    :style="{ border: addBorder ? '1px solid #a2a4a8' : 'none' }"
+  >
+    <img
+      v-if="event.thumbnail"
+      class="object-cover overflow-hidden"
+      :src="event.thumbnail"
+      alt="Event thumbnail"
+    />
     <img
       v-else-if="hasAssets"
+      class="object-cover"
       :src="`https://image.mux.com/${event.assets[0].playback_id}/thumbnail.jpg`"
       alt="Event thumbnail"
     />
-    <Placeholder v-else title="Event thumbnail" class="h-full" />
+    <Placeholder v-else class="object-cover" title="Event thumbnail" />
   </div>
 </template>
 
@@ -33,13 +43,24 @@ export default {
 
     height: {
       type: String,
-      default: 'h-28',
+      default: 'h-32',
+    },
+
+    isForScoreboard: {
+      type: Boolean,
+      default: false,
     },
   },
 
   computed: {
     hasAssets() {
-      return this.event.assets.length > 0 && this.event.assets[0].playback_id
+      if (!this.event.assets) return false
+      if (!this.event.assets.length < 1) return false
+      return this.event.assets[0] ? this.event.assets[0].playback_id : false
+    },
+
+    addBorder() {
+      return this.isForScoreboard && !this.event.thumbnail && !this.event.assets.length
     },
   },
 }

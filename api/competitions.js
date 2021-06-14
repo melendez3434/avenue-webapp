@@ -16,4 +16,16 @@ export default $axios => ({
   talentSignUp(id, payload) {
     return $axios.$post(`${resource}/${id}/talents`, payload)
   },
+
+  board(competition, round) {
+    return $axios.$get(`/api/competition-boards/${competition}/rounds/${round}`)
+  },
+
+  boards(competition) {
+    return $axios.$get(`/api/competition-boards/${competition}`)
+  },
+
+  overallInfo(competition) {
+    return $axios.$get(`/api/competition-overall-info/${competition}`)
+  },
 })

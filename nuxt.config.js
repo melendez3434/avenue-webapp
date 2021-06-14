@@ -170,6 +170,7 @@ const config = {
         'faGuitar',
         'faCompactDisc',
         'faTicketAlt',
+        'faExternalLinkAlt',
       ],
     },
   },

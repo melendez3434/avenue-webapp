@@ -82,6 +82,10 @@ module.exports = {
       maxHeight: {
         '3/4': '75vh',
       },
+
+      scale: {
+        flip: '-1',
+      },
     },
   },
   variants: {},
