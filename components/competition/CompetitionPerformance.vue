@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="{ position: live ? 'relative' : '' }">
     <nuxt-link :to="{ name: 'event-slug', params: { slug: performance.id } }" class="text-center">
       <EventThumbnail
         width="w-full"
@@ -8,9 +8,10 @@
         is-for-scoreboard
         class="overflow-hidden"
       />
+      <IcLive v-if="live" class="absolute top-2 left-2 w-14" />
       <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
       <span class="block mt-1 text-xxs font-bold">
-        {{ performanceDate }}. {{ performanceStartTime }}
+        {{ performanceDate }} - {{ performanceStartTime }}
       </span>
     </nuxt-link>
   </div>
@@ -18,14 +19,22 @@
 
 <script>
 import spacetime from 'spacetime'
+import IcLive from '@/assets/svg/live_w_text_2.svg?inline?'
 
 export default {
   name: 'CompetitionPerformance',
+
+  components: { IcLive },
 
   props: {
     performance: {
       type: Object,
       default: () => ({}),
+    },
+
+    live: {
+      type: Boolean,
+      default: false,
     },
   },
 
