@@ -6,7 +6,11 @@
           {{ board.competition_talent.name }}
         </div>
         <div class="hidden md:block text-xxs md:text-xs lg:text-sm text-right ml-1 md:ml-0 flex-1">
-          <font-awesome-icon :icon="['fas', 'external-link-alt']" />
+          <font-awesome-icon
+            v-if="board.competition_talent.website"
+            class="hidden md:inline-block"
+            :icon="['fas', 'external-link-alt']"
+          />
           <a class="w-auto" :href="board.competition_talent.website" target="_blank">
             {{ board.competition_talent.business_name }}
           </a>
@@ -84,18 +88,10 @@
         <p class="mt-6 lg:text-sm">This artist hasn't streamed in the competition yet</p>
       </div>
       <div class="mt-14">
-        <p v-if="talent.charities && talent.charities.length" class="font-bold mt-3">
-          Charities this performer is contributing to:
-          <a
-            v-for="charity in talent.charities"
-            :key="charity.charity_website"
-            :href="charity.charity_website"
-            target="_blank"
-            class="font-normal"
-          >
-            <span v-if="talent.charities.length > 1">{{ charity.charity }}, &nbsp;</span>
-            <span v-else>{{ charity.charity }}</span>
-          </a>
+        <p v-if="charities" class="mt-3">
+          <span>{{ talent.name }} is contributing to</span>
+          <!-- eslint-disable-next-line -->
+          <span v-html="charities" />
         </p>
       </div>
       <div class="mt-10 flex items-center justify-center w-full space-x-6">
@@ -171,6 +167,17 @@ export default {
 
     totalPoints() {
       return this.board.total_points || 0
+    },
+
+    charities() {
+      if (!this.talent.charities) return null
+      if (!this.talent.charities.length) return null
+      return this.talent.charities
+        .map(
+          charity =>
+            `<a class="font-bold underline" href="${charity.charity_website}" target="_blank">${charity.charity}</a>`
+        )
+        .join(',')
     },
   },
 }

@@ -17,7 +17,7 @@
         {{ talent.name }}
       </nuxt-link>
     </div>
-    <blockquote class="italic h-12 overflow-hidden">{{ talent.motivation }}...</blockquote>
+    <blockquote class="italic h-12 truncate">{{ talent.motivation }}</blockquote>
     <span
       v-if="points !== null"
       class="mt-3 font-league-gothic uppercase text-lg justify-self-center text-center tracking-wider"
