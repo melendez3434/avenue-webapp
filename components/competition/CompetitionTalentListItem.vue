@@ -49,13 +49,13 @@
       </div>
       <div v-if="pastPerformances.length || futurePerformances.length || livePerformances.length">
         <div v-if="livePerformances.length" class="mt-10">
-          <p class="text-base md:text-lg lg:text-sm">Live performances</p>
+          <p class="text-base md:text-lg ">Live performances</p>
           <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
             <CompetitionPerformance
               v-for="performance in livePerformances"
               :key="performance.id"
               :performance="performance"
-              time="Live"
+              live
             />
           </div>
         </div>
@@ -66,7 +66,6 @@
               v-for="performance in futurePerformances"
               :key="performance.id"
               :performance="performance"
-              time="Future"
             />
           </div>
         </div>
