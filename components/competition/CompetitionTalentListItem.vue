@@ -49,27 +49,36 @@
       </div>
       <div v-if="pastPerformances.length || futurePerformances.length || livePerformances.length">
         <div v-if="livePerformances.length" class="mt-10">
-          <CompetitionPerformance
-            v-for="performance in livePerformances"
-            :key="performance.id"
-            :performance="performance"
-            time="Live"
-          />
+          <p class="text-base md:text-lg">Live performances</p>
+          <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
+            <CompetitionPerformance
+              v-for="performance in livePerformances"
+              :key="performance.id"
+              :performance="performance"
+              time="Live"
+            />
+          </div>
         </div>
         <div v-if="futurePerformances.length" class="mt-10">
-          <CompetitionPerformance
-            v-for="performance in futurePerformances"
-            :key="performance.id"
-            :performance="performance"
-            time="Future"
-          />
+          <p class="text-base md:text-lg">Future performances</p>
+          <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
+            <CompetitionPerformance
+              v-for="performance in futurePerformances"
+              :key="performance.id"
+              :performance="performance"
+              time="Future"
+            />
+          </div>
         </div>
         <div v-if="pastPerformances.length" class="mt-10">
-          <CompetitionPerformance
-            v-for="performance in pastPerformances"
-            :key="performance.id"
-            :performance="performance"
-          />
+          <p class="text-base md:text-lg">Past performances</p>
+          <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
+            <CompetitionPerformance
+              v-for="performance in pastPerformances"
+              :key="performance.id"
+              :performance="performance"
+            />
+          </div>
         </div>
       </div>
       <div v-else>
