@@ -7,7 +7,7 @@
         </div>
         <div class="hidden md:block text-xxs md:text-xs lg:text-sm text-right ml-1 md:ml-0 flex-1">
           <font-awesome-icon
-            v-if="board.competition_talent.website"
+            v-if="board.competition_talent.business_name"
             class="hidden md:inline-block"
             :icon="['fas', 'external-link-alt']"
           />
