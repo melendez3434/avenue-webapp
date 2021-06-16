@@ -51,9 +51,12 @@
           {{ board.competition_talent.city }}, {{ board.competition_talent.state }}
         </span>
       </div>
+      <div v-if="talent.motivation" class="my-6 text-lg">
+        <p>{{ talent.motivation }}</p>
+      </div>
       <div v-if="pastPerformances.length || futurePerformances.length || livePerformances.length">
         <div v-if="livePerformances.length" class="mt-10">
-          <p class="text-base md:text-lg ">Live performances</p>
+          <p class="text-base md:text-lg font-bold">Live performances</p>
           <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
             <CompetitionPerformance
               v-for="performance in livePerformances"
@@ -64,7 +67,7 @@
           </div>
         </div>
         <div v-if="futurePerformances.length" class="mt-10">
-          <p class="text-base md:text-lg">Future performances</p>
+          <p class="text-base md:text-lg font-bold">Future performances</p>
           <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
             <CompetitionPerformance
               v-for="performance in futurePerformances"
@@ -74,7 +77,7 @@
           </div>
         </div>
         <div v-if="pastPerformances.length" class="mt-10">
-          <p class="text-base md:text-lg">Past performances</p>
+          <p class="text-base md:text-lg font-bold">Past performances</p>
           <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
             <CompetitionPerformance
               v-for="performance in pastPerformances"
