@@ -88,7 +88,7 @@
         </div>
       </div>
       <div v-else>
-        <p class="mt-6 lg:text-sm">This artist hasn't streamed in the competition yet</p>
+        <p class="mt-6 lg:text-sm">{{ talent.name }} hasn't streamed in the competition yet</p>
       </div>
       <div class="mt-14">
         <p v-if="charities" class="mt-3">
