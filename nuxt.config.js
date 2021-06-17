@@ -26,6 +26,9 @@ const config = {
     sentryDSN: process.env.SENTRY_DSN,
     wsUrl: process.env.WS_URL,
     maxRetries: process.env.MAX_RETRIES || 0,
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID,
+    },
   },
 
   privateRuntimeConfig: {},
@@ -85,6 +88,7 @@ const config = {
     '@nuxtjs/laravel-echo',
     '@nuxtjs/device',
     '@nuxtjs/fontawesome',
+    '@nuxtjs/google-analytics',
   ],
 
   /*
@@ -178,6 +182,9 @@ const config = {
   gtm: {
     id: process.env.GOOGLE_TAG_MANAGER_ID,
     pageTracking: true,
+  },
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID,
   },
 }
 
