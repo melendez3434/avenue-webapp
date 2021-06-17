@@ -97,10 +97,10 @@
             v-if="topScorer.talent.photo"
             :src="topScorer.talent.photo"
             :alt="`${topScorer.name}`"
-            class="rounded-full w-24 h-24"
+            class="rounded-full w-28 h-28"
           />
-          <div v-else class="w-24 h-24 rounded-full bg-gray-200" />
-          <span class="text-xs font-bold">{{ topScorer.name }}</span>
+          <div v-else class="w-28 h-28 rounded-full bg-gray-200" />
+          <span class="font-bold mb-3">{{ topScorer.name }}</span>
         </div>
       </div>
     </section>
