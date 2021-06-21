@@ -24,11 +24,9 @@ const config = {
     videoBuffer: process.env.VIDEO_PLAYER_BUFFER,
     sentryEnabled: process.env.SENTRY_DISABLED !== 'true',
     sentryDSN: process.env.SENTRY_DSN,
+    gaId: process.env.GOOGLE_ANALYTICS_ID,
     wsUrl: process.env.WS_URL,
     maxRetries: process.env.MAX_RETRIES || 0,
-    googleAnalytics: {
-      id: process.env.GOOGLE_ANALYTICS_ID,
-    },
   },
 
   privateRuntimeConfig: {},
@@ -76,6 +74,7 @@ const config = {
     '~/plugins/elementui.js',
     '~plugins/vue-js-modal.js',
     '~/plugins/sentry.client.js',
+    '~/plugins/ga.client.js',
     '~/plugins/placeholder',
   ],
 
@@ -88,7 +87,6 @@ const config = {
     '@nuxtjs/laravel-echo',
     '@nuxtjs/device',
     '@nuxtjs/fontawesome',
-    '@nuxtjs/google-analytics',
   ],
 
   /*
@@ -97,7 +95,6 @@ const config = {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    '@nuxtjs/gtm',
     '@nuxtjs/proxy',
     [
       '@netsells/nuxt-hotjar',
@@ -177,14 +174,6 @@ const config = {
         'faExternalLinkAlt',
       ],
     },
-  },
-
-  gtm: {
-    id: process.env.GOOGLE_TAG_MANAGER_ID,
-    pageTracking: true,
-  },
-  googleAnalytics: {
-    id: process.env.GOOGLE_ANALYTICS_ID,
   },
 }
 
