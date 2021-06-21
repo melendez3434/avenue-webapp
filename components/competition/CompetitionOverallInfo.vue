@@ -6,44 +6,44 @@
     <section v-else>
       <div
         v-if="lastWeekWinner"
-        class="md:grid grid-cols-3 grid-rows-2 gap-12 mx-auto mt-12 container"
+        class="md:grid grid-cols-3 grid-rows-2 gap-12 2xl:gap-24 mx-auto mt-12 lg:mt-28 container"
       >
         <div
           class="flex flex-col items-center justify-center gap-6 col-end-3 row-end-2 mb-14 md:mb-0"
         >
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
+          <h4 class="font-league-gothic uppercase text-4xl lg:text-5xl xl:text-6xl">
             Grand prize total
           </h4>
-          <IcTrophy class="h-20" />
-          <span class="text-4xl lg:text-5xl font-league-gothic ">
+          <IcTrophy class="h-24 xl:h-36" />
+          <span class="text-5xl lg:text-6xl 2xl:text-8xl font-league-gothic ">
             {{ grandPrizeStatus || 0 }}
           </span>
         </div>
         <div
           class="col-start-2 flex flex-col items-center justify-center gap-6 mt-6 col-end-3 row-end-3 mb-14 md:mb-0"
         >
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl xl:text-5xl text-center">
             Current Round's Prize Total
           </h4>
-          <IcPodium class="h-20" />
-          <span class="text-4xl lg:text-5xl font-league-gothic">
+          <IcPodium class="h-20 xl:h-32" />
+          <span class="text-4xl lg:text-5xl 2xl:text-7xl font-league-gothic ">
             {{ weekPrizeStatus || 0 }}
           </span>
         </div>
         <div
           class="flex flex-col items-center justify-center gap-6 md:mt-32 col-end-2 row-end-2 mb-14 md:mb-0"
         >
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl xl:text-5xl">
             Last week's winner
           </h4>
           <img
             v-if="lastWeekWinner.competition_talent.talent.photo"
             :src="lastWeekWinner.competition_talent.talent.photo"
             :alt="lastWeekWinner.competition_talent.name"
-            class="rounded-full w-24 h-24"
+            class="rounded-full w-24 h-24 2xl:h-32 2xl:w-32"
           />
           <div v-else class="w-24 h-24 rounded-full bg-gray-200" />
-          <span class="text-xs font-bold">
+          <span class="xl:text-lg 2xl:text-xl font-bold">
             {{ lastWeekWinner.competition_talent.name }}
           </span>
         </div>
@@ -51,38 +51,38 @@
           v-if="topScorer"
           class="flex flex-col items-center justify-center gap-6 md:mt-32 col-end-4 row-end-2 mb-14 md:mb-0"
         >
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl xl:text-5xl">
             Top scorer
           </h4>
           <img
             v-if="topScorer.talent.photo"
             :src="topScorer.talent.photo"
             :alt="`${topScorer.name}`"
-            class="rounded-full w-24 h-24"
+            class="rounded-full w-24 h-24 2xl:h-32 2xl:w-32"
           />
           <div v-else class="w-24 h-24 rounded-full bg-gray-200" />
-          <span class="text-xs font-bold">{{ topScorer.name }}</span>
+          <span class="xl:text-lg font-bold">{{ topScorer.name }}</span>
         </div>
       </div>
       <div
         v-if="!lastWeekWinner"
-        class="flex flex-no-wrap flex-col lg:flex-row justify-between gap-12 mx-auto mt-12 container max-w-screen-lg"
+        class="flex flex-no-wrap flex-col lg:flex-row justify-between gap-12 mx-auto mt-12 container"
       >
         <div class=" flex flex-col items-center justify-between gap-6 mb-14 md:mb-0">
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl 2xl:text-5xl text-center">
             Current Round's Prize Total
           </h4>
-          <IcPodium class="h-20" />
-          <span class="text-4xl lg:text-5xl font-league-gothic">
+          <IcPodium class="h-20 2xl:h-32" />
+          <span class="text-4xl lg:text-5xl font-league-gothic 2xl:text-7xl">
             {{ weekPrizeStatus || 0 }}
           </span>
         </div>
         <div class="flex flex-col items-center justify-between gap-6 mb-14 md:mb-0">
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
+          <h4 class="font-league-gothic uppercase text-4xl 2xl:text-6xl">
             Grand prize total
           </h4>
-          <IcTrophy class="h-20" />
-          <span class="text-4xl lg:text-5xl font-league-gothic ">
+          <IcTrophy class="h-24 2xl:h-36" />
+          <span class="text-5xl 2xl:text-8xl font-league-gothic ">
             {{ grandPrizeStatus || 0 }}
           </span>
         </div>
@@ -90,17 +90,17 @@
           v-if="topScorer"
           class="flex flex-col items-center justify-between gap-3 mb-14 md:mb-0"
         >
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl">
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl 2xl:text-5xl">
             Top scorer
           </h4>
           <img
             v-if="topScorer.talent.photo"
             :src="topScorer.talent.photo"
             :alt="`${topScorer.name}`"
-            class="rounded-full w-28 h-28"
+            class="rounded-full w-28 h-28 2xl:h-36 2xl:w-36"
           />
           <div v-else class="w-28 h-28 rounded-full bg-gray-200" />
-          <span class="font-bold mb-3">{{ topScorer.name }}</span>
+          <span class="xl:text-lg font-bold mb-3">{{ topScorer.name }}</span>
         </div>
       </div>
     </section>
@@ -117,7 +117,7 @@
           Watch them compete for the round prize on next Saturday’s face-off
         </p>
       </div>
-      <div class=" md:grid grid-flow-cols grid-cols-3 gap-6 mt-6">
+      <div class=" md:grid grid-flow-cols grid-cols-3 2xl:grid-cols-4 2xl:grid-cols-5 gap-6 mt-6">
         <CompetitionTalentCard
           v-for="scorer in info.current_top_four_scorers"
           :key="scorer.id"

@@ -1,7 +1,6 @@
 <template>
   <div
     class="flex items-center justify-center overflow-hidden bg-gray-900"
-    :class="[width, height]"
     :style="{ border: addBorder ? '1px solid #a2a4a8' : 'none' }"
   >
     <img
@@ -34,16 +33,6 @@ export default {
       default: () => ({
         assets: [],
       }),
-    },
-
-    width: {
-      type: String,
-      default: 'w-48',
-    },
-
-    height: {
-      type: String,
-      default: 'h-32',
     },
 
     isForScoreboard: {

@@ -2,10 +2,12 @@
   <Collapse>
     <template slot="header">
       <div class="w-full flex">
-        <div class="flex-1 text-xxs md:text-xs lg:text-sm whitespace-no-wrap">
+        <div class="flex-1 text-xxs md:text-xs lg:text-base whitespace-no-wrap">
           {{ board.competition_talent.name }}
         </div>
-        <div class="hidden md:block text-xxs md:text-xs lg:text-sm text-right ml-1 md:ml-0 flex-1">
+        <div
+          class="hidden md:block text-xxs md:text-xs lg:text-base text-right ml-1 md:ml-0 flex-1"
+        >
           <font-awesome-icon
             v-if="board.competition_talent.website"
             class="hidden md:inline-block"
@@ -15,10 +17,10 @@
             {{ board.competition_talent.business_name || board.competition_talent.website }}
           </a>
         </div>
-        <div class="w-16 md:w-48 text-right text-xxs md:text-xs lg:text-sm">
+        <div class="w-16 md:w-48 text-right text-xxs md:text-xs lg:text-base">
           {{ points }}
         </div>
-        <div class="w-16 md:w-48 text-right text-xxs md:text-xs md:pr-12 lg:text-sm">
+        <div class="w-16 md:w-48 text-right text-xxs md:text-xs md:pr-12 lg:text-base">
           {{ totalPoints }}
         </div>
       </div>
@@ -39,25 +41,27 @@
           </nuxt-link>
           <nuxt-link
             :to="{ name: 'artist-id', params: { id: board.competition_talent.talent.id } }"
-            class="font-bold text-xs md:text-xs lg:text-sm"
+            class="font-bold text-xs md:text-xs lg:text-base"
           >
             {{ board.competition_talent.name }}
           </nuxt-link>
         </div>
         <span
           v-if="board.competition_talent.city && board.competition_talent.state"
-          class="font-bold text-xs md:text-xs lg:text-sm text-right"
+          class="font-bold text-xs md:text-xs lg:text-base text-right"
         >
           {{ board.competition_talent.city }}, {{ board.competition_talent.state }}
         </span>
       </div>
-      <div v-if="talent.motivation" class="my-6 text-lg">
+      <div v-if="talent.motivation" class="my-6 text-lg leading-loose">
         <p>{{ talent.motivation }}</p>
       </div>
       <div v-if="pastPerformances.length || futurePerformances.length || livePerformances.length">
         <div v-if="livePerformances.length" class="mt-10">
           <p class="text-base md:text-lg font-bold">Live performances</p>
-          <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
+          <div
+            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 h-42 lg:h-60"
+          >
             <CompetitionPerformance
               v-for="performance in livePerformances"
               :key="performance.id"
@@ -68,7 +72,9 @@
         </div>
         <div v-if="futurePerformances.length" class="mt-10">
           <p class="text-base md:text-lg font-bold">Future performances</p>
-          <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
+          <div
+            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 h-42 lg:h-60"
+          >
             <CompetitionPerformance
               v-for="performance in futurePerformances"
               :key="performance.id"
@@ -78,7 +84,9 @@
         </div>
         <div v-if="pastPerformances.length" class="mt-10">
           <p class="text-base md:text-lg font-bold">Past performances</p>
-          <div class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 h-42 lg:h-60">
+          <div
+            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 h-42 lg:h-60"
+          >
             <CompetitionPerformance
               v-for="performance in pastPerformances"
               :key="performance.id"
@@ -88,9 +96,9 @@
         </div>
       </div>
       <div v-else>
-        <p class="mt-6 lg:text-sm">{{ talent.name }} hasn't streamed in the competition yet</p>
+        <p class="mt-6 lg:text-base">{{ talent.name }} hasn't streamed in the competition yet</p>
       </div>
-      <div class="mt-14">
+      <div class="mt-4">
         <p v-if="charities" class="mt-3">
           <span>{{ talent.name }} is contributing to</span>
           <!-- eslint-disable-next-line -->
