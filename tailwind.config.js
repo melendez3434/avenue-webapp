@@ -83,6 +83,10 @@ module.exports = {
         '3/4': '75vh',
       },
 
+      minWidth: {
+        '1/4': '25%',
+      },
+
       scale: {
         flip: '-1',
       },

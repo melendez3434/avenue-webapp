@@ -10,7 +10,8 @@
           </span>
           <IcArrowDown class="w-10 h-10" />
         </div>
-        <el-dropdown-menu slot="dropdown">
+        <el-dropdown-menu slot="dropdown" class="min-w-1/4">
+          <BaseSpinner v-if="!storeInitialized" />
           <el-dropdown-item v-for="competition in competitions" :key="competition.name">
             <nuxt-link :to="{ name: 'events-id', params: { id: competition.id } }">
               {{ competition.name }}
@@ -38,7 +39,7 @@
             />
             <IcSearch class="w-6 h-6 absolute right-6 cursor-pointer" />
           </fieldset>
-          <base-spinner v-if="isLoading" />
+          <BaseSpinner v-if="isLoading" />
           <TalentsDropdown :talents="talents" />
           <nuxt-link
             v-if="showViewAll"
@@ -145,6 +146,7 @@ export default {
     ...mapState({
       categories: state => state.global.categories,
       competitions: state => state.global.competitions,
+      storeInitialized: state => state.global.storeInitialized,
     }),
 
     isAllGenres() {

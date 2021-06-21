@@ -1,12 +1,12 @@
 <template>
   <div>
     <div v-if="$fetchState.pending">
-      <base-spinner class="transform translate-y-2/4" />
+      <BaseSpinner class="transform translate-y-2/4" />
     </div>
     <section v-else>
       <div
         v-if="lastWeekWinner"
-        class="md:grid grid-cols-3 grid-rows-2 gap-12 2xl:gap-24 mx-auto mt-12 lg:mt-28 container"
+        class="md:grid grid-cols-3 grid-rows-2 gap-12 2xl:gap-24 mx-auto mt-12 lg:mt-28 container max-w-screen-2xl	"
       >
         <div
           class="flex flex-col items-center justify-center gap-6 col-end-3 row-end-2 mb-14 md:mb-0"
@@ -65,10 +65,10 @@
         </div>
       </div>
       <div
-        v-if="!lastWeekWinner"
-        class="flex flex-no-wrap flex-col lg:flex-row justify-between gap-12 mx-auto mt-12 container"
+        v-else
+        class="flex flex-no-wrap flex-col lg:flex-row justify-between gap-12 mx-auto mt-12 container max-w-screen-2xl	"
       >
-        <div class=" flex flex-col items-center justify-between gap-6 mb-14 md:mb-0">
+        <div class=" flex flex-col items-center justify-between gap-6 mb-14 md:mb-0 lg:mt-10">
           <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl 2xl:text-5xl text-center">
             Current Round's Prize Total
           </h4>
@@ -88,7 +88,7 @@
         </div>
         <div
           v-if="topScorer"
-          class="flex flex-col items-center justify-between gap-3 mb-14 md:mb-0"
+          class="flex flex-col items-center justify-between gap-3 mb-14 md:mb-0 lg:mt-10"
         >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl 2xl:text-5xl">
             Top scorer
