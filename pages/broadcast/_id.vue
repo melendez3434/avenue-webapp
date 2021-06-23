@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="$fetchState.pending" class="h-screen">
-      <base-spinner class="transform translate-y-2/4" />
+      <BaseSpinner class="transform translate-y-2/4" />
     </div>
     <div v-else>
       <VideoLayout :event="event" :talent="talent">

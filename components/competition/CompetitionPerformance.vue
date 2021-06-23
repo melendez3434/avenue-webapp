@@ -3,7 +3,7 @@
     <nuxt-link :to="{ name: 'event-slug', params: { slug: performance.id } }" class="text-center">
       <EventThumbnail
         width="w-full"
-        height="h-48"
+        height="h-48 2xl:h-64"
         :event="performance"
         is-for-scoreboard
         class="overflow-hidden"

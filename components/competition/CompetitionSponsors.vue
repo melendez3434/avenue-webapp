@@ -12,7 +12,7 @@
         :key="sponsor.id"
         :src="sponsor.logo"
         :alt="`${sponsor.name} logo`"
-        class="sponsor-item"
+        class="sponsor-item max-w-sm"
       />
     </div>
   </section>

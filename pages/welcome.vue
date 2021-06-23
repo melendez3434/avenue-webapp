@@ -1,5 +1,5 @@
 <template>
-  <base-spinner v-if="!storeInitialized" class="transform translate-y-2/4" />
+  <BaseSpinner v-if="!storeInitialized" class="transform translate-y-2/4" />
   <div
     v-else
     class="available-min-height bg-avenue-blue-light flex flex-col md:flex-row  items-center justify-center"
