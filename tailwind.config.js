@@ -87,6 +87,10 @@ module.exports = {
         '1/4': '25%',
       },
 
+      maxWidth: {
+        '3/5': '60%',
+      },
+
       scale: {
         flip: '-1',
       },

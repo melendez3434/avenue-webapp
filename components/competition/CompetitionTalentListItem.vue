@@ -60,7 +60,7 @@
         <div v-if="livePerformances.length" class="mt-10">
           <p class="text-base md:text-lg font-bold">Live performances</p>
           <div
-            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 h-42 lg:h-60"
+            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 h-42 lg:h-60 3xl:h-72"
           >
             <CompetitionPerformance
               v-for="performance in livePerformances"
@@ -73,7 +73,7 @@
         <div v-if="futurePerformances.length" class="mt-10">
           <p class="text-base md:text-lg font-bold">Future performances</p>
           <div
-            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 h-42 lg:h-60"
+            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 h-42 lg:h-60 3xl:h-72"
           >
             <CompetitionPerformance
               v-for="performance in futurePerformances"
@@ -85,7 +85,7 @@
         <div v-if="pastPerformances.length" class="mt-10">
           <p class="text-base md:text-lg font-bold">Past performances</p>
           <div
-            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 h-42 lg:h-60"
+            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 h-42 lg:h-60 3xl:h-72"
           >
             <CompetitionPerformance
               v-for="performance in pastPerformances"
@@ -98,7 +98,7 @@
       <div v-else>
         <p class="mt-6 lg:text-base">{{ talent.name }} hasn't streamed in the competition yet</p>
       </div>
-      <div class="mt-4">
+      <div class="mt-10">
         <p v-if="charities" class="mt-3">
           <span>{{ talent.name }} is contributing to</span>
           <!-- eslint-disable-next-line -->
