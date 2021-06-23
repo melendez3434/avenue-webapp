@@ -11,10 +11,10 @@
         <div
           class="flex flex-col items-center justify-center gap-6 col-end-3 row-end-2 mb-14 md:mb-0"
         >
-          <h4 class="font-league-gothic uppercase text-4xl lg:text-5xl xl:text-6xl">
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl 3xl:text-5xl text-center">
             Grand prize total
           </h4>
-          <IcTrophy class="h-24 xl:h-36" />
+          <IcTrophy class="h-20 2xl:h-32" />
           <span class="text-5xl lg:text-6xl 2xl:text-8xl font-league-gothic ">
             {{ grandPrizeStatus || 0 }}
           </span>
@@ -22,7 +22,9 @@
         <div
           class="col-start-2 flex flex-col items-center justify-center gap-6 mt-6 col-end-3 row-end-3 mb-14 md:mb-0"
         >
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl xl:text-5xl text-center">
+          <h4
+            class="font-league-gothic uppercase text-2xl lg:text-2xl xl:text-5xl text-center xl:max-w-3/5"
+          >
             Current Round's Prize Total
           </h4>
           <IcPodium class="h-20 xl:h-32" />
@@ -69,7 +71,9 @@
         class="flex flex-no-wrap flex-col lg:flex-row justify-between gap-12 mx-auto mt-12 container max-w-screen-2xl	"
       >
         <div class=" flex flex-col items-center justify-between gap-6 mb-14 md:mb-0 lg:mt-10">
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl 2xl:text-5xl text-center">
+          <h4
+            class="font-league-gothic uppercase text-2xl lg:text-2xl 2xl:text-5xl text-center xl:max-w-3/5"
+          >
             Current Round's Prize Total
           </h4>
           <IcPodium class="h-20 2xl:h-32" />
@@ -78,17 +82,17 @@
           </span>
         </div>
         <div class="flex flex-col items-center justify-between gap-6 mb-14 md:mb-0">
-          <h4 class="font-league-gothic uppercase text-4xl 2xl:text-6xl">
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl xl:text-5xl text-center">
             Grand prize total
           </h4>
-          <IcTrophy class="h-24 2xl:h-36" />
-          <span class="text-5xl 2xl:text-8xl font-league-gothic ">
+          <IcTrophy class="h-20 2xl:h-32" />
+          <span class="text-4xl lg:text-5xl font-league-gothic 2xl:text-7xl ">
             {{ grandPrizeStatus || 0 }}
           </span>
         </div>
         <div
           v-if="topScorer"
-          class="flex flex-col items-center justify-between gap-3 mb-14 md:mb-0 lg:mt-10"
+          class="flex flex-col items-center justify-between gap-3 mb-14 md:mb-0 lg:mt-10 px-20 3xl:px-28"
         >
           <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl 2xl:text-5xl">
             Top scorer
@@ -117,7 +121,9 @@
           Watch them compete for the round prize on next Saturday’s face-off
         </p>
       </div>
-      <div class=" md:grid grid-flow-cols grid-cols-3 2xl:grid-cols-4 2xl:grid-cols-5 gap-6 mt-6">
+      <div
+        class=" md:grid grid-flow-cols grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5 gap-6 mt-6"
+      >
         <CompetitionTalentCard
           v-for="scorer in info.current_top_four_scorers"
           :key="scorer.id"

@@ -3,10 +3,9 @@
     <nuxt-link :to="{ name: 'event-slug', params: { slug: performance.id } }" class="text-center">
       <EventThumbnail
         width="w-full"
-        height="h-48 2xl:h-64"
         :event="performance"
         is-for-scoreboard
-        class="overflow-hidden"
+        class=" h-48 3xl:h-64"
       />
       <IcLive v-if="live" class="absolute top-2 left-2 w-14" />
       <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>

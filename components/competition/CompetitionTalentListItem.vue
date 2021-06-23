@@ -98,7 +98,7 @@
       <div v-else>
         <p class="mt-6 lg:text-base">{{ talent.name }} hasn't streamed in the competition yet</p>
       </div>
-      <div class="mt-4">
+      <div class="mt-10">
         <p v-if="charities" class="mt-3">
           <span>{{ talent.name }} is contributing to</span>
           <!-- eslint-disable-next-line -->
