@@ -1,11 +1,36 @@
 <template>
-  <div>
+  <section>
     <div v-if="$fetchState.pending">
       <BaseSpinner class="transform translate-y-2/4" />
     </div>
-    <section v-else>
+    <div v-else>
       <div
-        v-if="lastWeekWinner"
+        v-if="!lastWeekWinner && !topScorer"
+        class="md:grid grid-cols-3 gap-12 2xl:gap-24 mx-auto mt-12 lg:mt-28 container max-w-screen-2xl	"
+      >
+        <div class="flex flex-col items-center justify-center gap-6 col-start-1 mb-14 md:mb-0">
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl xl:text-5xl text-center">
+            Grand prize total
+          </h4>
+          <IcTrophy class="h-20 2xl:h-32" />
+          <span class="text-5xl lg:text-6xl 2xl:text-8xl font-league-gothic ">
+            {{ grandPrizeStatus || 0 }}
+          </span>
+        </div>
+        <div class="flex flex-col items-center justify-center gap-6 mt-6 col-start-3 mb-14 md:mb-0">
+          <h4
+            class="font-league-gothic uppercase text-2xl lg:text-2xl xl:text-5xl text-center xl:max-w-3/5"
+          >
+            Current Round's Prize Total
+          </h4>
+          <IcPodium class="h-20 xl:h-32" />
+          <span class="text-4xl lg:text-5xl 2xl:text-7xl font-league-gothic ">
+            {{ weekPrizeStatus || 0 }}
+          </span>
+        </div>
+      </div>
+      <div
+        v-else-if="lastWeekWinner"
         class="md:grid grid-cols-3 grid-rows-2 gap-12 2xl:gap-24 mx-auto mt-12 lg:mt-28 container max-w-screen-2xl	"
       >
         <div
@@ -72,7 +97,7 @@
       >
         <div class=" flex flex-col items-center justify-between gap-6 mb-14 md:mb-0 lg:mt-10">
           <h4
-            class="font-league-gothic uppercase text-2xl lg:text-2xl 2xl:text-5xl text-center xl:max-w-3/5"
+            class="font-league-gothic uppercase text-2xl lg:text-3xl 2xl:text-5xl text-center xl:max-w-3/5"
           >
             Current Round's Prize Total
           </h4>
@@ -81,8 +106,8 @@
             {{ weekPrizeStatus || 0 }}
           </span>
         </div>
-        <div class="flex flex-col items-center justify-between gap-6 mb-14 md:mb-0">
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl xl:text-5xl text-center">
+        <div class="flex flex-col items-center gap-10 mb-14 md:mb-0">
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl 2xl:text-5xl text-center">
             Grand prize total
           </h4>
           <IcTrophy class="h-20 2xl:h-32" />
@@ -92,9 +117,9 @@
         </div>
         <div
           v-if="topScorer"
-          class="flex flex-col items-center justify-between gap-3 mb-14 md:mb-0 lg:mt-10 px-20 3xl:px-28"
+          class="flex flex-col items-center space-y-10 lg:space-y-20 mb-14 md:mb-0 lg:mt-10 px-20 3xl:px-28"
         >
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl 2xl:text-5xl">
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-3xl 2xl:text-5xl">
             Top scorer
           </h4>
           <img
@@ -104,10 +129,10 @@
             class="rounded-full w-28 h-28 2xl:h-36 2xl:w-36"
           />
           <div v-else class="w-28 h-28 rounded-full bg-gray-200" />
-          <span class="xl:text-lg font-bold mb-3">{{ topScorer.name }}</span>
+          <span class="2xl:text-lg font-bold mb-3">{{ topScorer.name }}</span>
         </div>
       </div>
-    </section>
+    </div>
     <section v-if="info.current_top_four_scorers.length" class="container mx-auto mt-20">
       <div>
         <div class="flex flex-row gap-4 mb-6">
@@ -132,7 +157,7 @@
         />
       </div>
     </section>
-  </div>
+  </section>
 </template>
 
 <script>
