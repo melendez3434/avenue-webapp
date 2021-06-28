@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="$fetchState.pending" class="h-screen">
-      <base-spinner class="transform translate-y-2/4" />
+      <BaseSpinner class="transform translate-y-2/4" />
     </div>
     <section v-else class="available-min-height">
       <TalentProfile :talent="talent" page />
@@ -29,6 +29,14 @@ export default {
   auth: false,
   name: 'ArtistPage',
 
+  data() {
+    return {
+      talent: null,
+      pastEvents: { list: null, meta: null },
+      upcomingEvents: { list: null, meta: null },
+    }
+  },
+
   async fetch() {
     try {
       const { data: talent } = await this.$api.talent.get(this.$route.params.id)
@@ -48,14 +56,6 @@ export default {
     } catch {
       console.error("We couldn't find this artist or events")
       this.$router.push('/')
-    }
-  },
-
-  data() {
-    return {
-      talent: null,
-      pastEvents: { list: null, meta: null },
-      upcomingEvents: { list: null, meta: null },
     }
   },
 

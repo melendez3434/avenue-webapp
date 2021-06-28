@@ -12,7 +12,7 @@
       :to="{ name: 'event-slug', params: { slug: event.id } }"
       class="sm:flex py-4 border-b-2 border-gray-900"
     >
-      <EventThumbnail :event="event" class="mr-6" />
+      <EventThumbnail :event="event" class="mr-6 h-60" />
       <div class="flex flex-col">
         <h3 class="font-league-gothic text-2xl uppercase tracking-wide text-left">
           {{ event.name }}

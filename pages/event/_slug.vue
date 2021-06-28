@@ -1,6 +1,6 @@
 <template>
   <section>
-    <base-spinner v-if="$fetchState.pending" class="transform translate-y-2/4" />
+    <BaseSpinner v-if="$fetchState.pending" class="transform translate-y-2/4" />
     <div v-else>
       <VideoLayout :event="event">
         <EventVideo
@@ -36,6 +36,15 @@ export default {
 
   auth: false,
 
+  data() {
+    return {
+      showModal: false,
+      otherEvents: [],
+      event: null,
+      selectedAsset: null,
+    }
+  },
+
   async fetch() {
     if (!this.$route.params.slug) return this.$router.push('/')
     try {
@@ -60,12 +69,33 @@ export default {
     }
   },
 
-  data() {
+  head() {
+    if (!this.event) return
+    const title = `${this.event.talent.name}, performing live on ${this.eventStartTimeZoneDate} (${this.timezoneFormatted}) on The Avenue`
+    const meta = [
+      { hid: 'twitter:title', name: 'twitter:title', content: title },
+      { hid: 'og:title', name: 'og:title', content: title },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
+    ]
+    if (this.event.talent.biography) {
+      meta.push({
+        hid: 'og:description',
+        name: 'og:description',
+        content: this.event.talent.biography,
+      })
+      meta.push({ hid: 'description', name: 'description', content: this.event.talent.biography })
+    }
+    if (this.event.talent.cover_photo) {
+      meta.push({
+        hid: 'twitter:image:src',
+        name: 'twitter:image:src',
+        content: this.event.talent.cover_photo,
+      })
+      meta.push({ hid: 'og:image', name: 'og:image', content: this.event.talent.cover_photo })
+    }
     return {
-      showModal: false,
-      otherEvents: [],
-      event: null,
-      selectedAsset: null,
+      title,
+      meta,
     }
   },
 
@@ -119,36 +149,6 @@ export default {
         console.error("Couldn't fetch other live events")
       }
     },
-  },
-
-  head() {
-    if (!this.event) return
-    const title = `${this.event.talent.name}, performing live on ${this.eventStartTimeZoneDate} (${this.timezoneFormatted}) on The Avenue`
-    const meta = [
-      { hid: 'twitter:title', name: 'twitter:title', content: title },
-      { hid: 'og:title', name: 'og:title', content: title },
-      { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
-    ]
-    if (this.event.talent.biography) {
-      meta.push({
-        hid: 'og:description',
-        name: 'og:description',
-        content: this.event.talent.biography,
-      })
-      meta.push({ hid: 'description', name: 'description', content: this.event.talent.biography })
-    }
-    if (this.event.talent.cover_photo) {
-      meta.push({
-        hid: 'twitter:image:src',
-        name: 'twitter:image:src',
-        content: this.event.talent.cover_photo,
-      })
-      meta.push({ hid: 'og:image', name: 'og:image', content: this.event.talent.cover_photo })
-    }
-    return {
-      title,
-      meta,
-    }
   },
 }
 </script>
