@@ -8,8 +8,8 @@
         class=" h-48 3xl:h-64"
       />
       <IcLive v-if="live" class="absolute top-2 left-2 w-14" />
-      <span class="block mt-3 font-bold text-xs">{{ performance.name }}</span>
-      <span class="block mt-1 text-xxs font-bold">
+      <span class="block mt-3 font-bold text-xs xl:text-base">{{ performance.name }}</span>
+      <span class="block mt-1 text-xxs xl:text-sm">
         {{ performanceDate }} - {{ performanceStartTime }}
       </span>
     </nuxt-link>
