@@ -36,7 +36,7 @@
         <div
           class="flex flex-col items-center justify-center gap-6 col-end-3 row-end-2 mb-14 md:mb-0"
         >
-          <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl 3xl:text-5xl text-center">
+          <h4 class="font-league-gothic uppercase text-2xl lg:text-2xl xl:text-5xl text-center">
             Grand prize total
           </h4>
           <IcTrophy class="h-20 2xl:h-32" />
