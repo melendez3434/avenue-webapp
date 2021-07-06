@@ -63,7 +63,7 @@
         <div v-if="livePerformances.length" class="mt-16">
           <p class="text-base md:text-lg font-bold">Live performances</p>
           <div
-            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 h-42 lg:h-60 3xl:h-72"
+            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 auto-rows-auto"
           >
             <CompetitionPerformance
               v-for="performance in livePerformances"
@@ -76,7 +76,7 @@
         <div v-if="futurePerformances.length" class="mt-16">
           <p class="text-base md:text-lg font-bold">Future performances</p>
           <div
-            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 h-42 lg:h-60 3xl:h-72"
+            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 auto-rows-auto"
           >
             <CompetitionPerformance
               v-for="performance in futurePerformances"
@@ -88,7 +88,7 @@
         <div v-if="pastPerformances.length" class="mt-16">
           <p class="text-base md:text-lg font-bold">Past performances</p>
           <div
-            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 h-42 lg:h-60 3xl:h-72"
+            class="mt-5 md:grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 auto-rows-auto"
           >
             <CompetitionPerformance
               v-for="performance in pastPerformances"
