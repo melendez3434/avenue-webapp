@@ -6,8 +6,10 @@
       <div class="relative h-auto md:video-height">
         <div v-if="event" class="absolute right-0 top-0 z-10 mt-4 mr-8 text-right">
           <div class="font-bold text-shadow">{{ event.name }}</div>
-          <div class="text-sm text-shadow">{{ usersOnline.length }} watching now</div>
-          <div class="text-sm text-shadow">{{ totalViews }} total views</div>
+          <div v-if="event.is_finished" class="text-sm text-shadow">
+            {{ event.watch_count }} total views
+          </div>
+          <div v-else class="text-sm text-shadow">{{ usersOnline.length }} watching now</div>
         </div>
         <slot v-if="inactiveStreaming" name="placeholder" />
         <slot v-else />
@@ -88,12 +90,6 @@ export default {
       if (!this.event) return {}
 
       return { ...this.event.talent, social_media_links: this.event.social_media_links }
-    },
-
-    totalViews() {
-      return this.event.watch_count < this.usersOnline.length
-        ? this.usersOnline.length
-        : this.event.watch_count
     },
   },
 
