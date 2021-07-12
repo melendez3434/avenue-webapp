@@ -29,14 +29,6 @@
       <JoinEventButton has-long-text :competition="competition" />
     </section>
 
-    <!-- TODO: make this reflect the winner -->
-    <CompetitionWinner
-      v-if="eventIsFinished"
-      class="mt-8"
-      :competition-name="competition.name"
-      :talent="competition.talent[0].talent"
-    />
-
     <div v-if="alreadyRegistered" class="container mx-auto my-16 text-center">
       <p>
         Hello, {{ alreadyRegistered.name }}! Go to your
@@ -59,7 +51,11 @@
 
     <div v-else>
       <CompetitionLiveGrid v-if="livePerformances.length" :live-performances="livePerformances" />
-      <CompetitionOverallInfo :is-face-off="isFaceOff" />
+      <CompetitionOverallInfo
+        :is-face-off="isFaceOff"
+        :competition-name="competition.name"
+        :event-is-finished="eventIsFinished"
+      />
       <section v-if="competition.talent.length" class="container mx-auto mt-20">
         <div class="flex flex-row gap-4 mb-6">
           <IcScoreboard class="h-8" />
@@ -67,8 +63,11 @@
         </div>
         <h3 class="text-md">
           <span v-if="isFaceOff">Face-Off</span>
+          <span v-else-if="isFinal">Final Face-Off</span>
           <span v-else>Current Round</span>
-          <span>{{ competition.current_round.round }}/{{ competition.rounds_amount }}</span>
+          <span v-if="!isFinal">
+            {{ competition.current_round.round }}/{{ competition.rounds_amount }}
+          </span>
         </h3>
         <div class="md:container mx-auto mt-6">
           <div class="w-full flex pl-8 pr-2 md:pl-16 md:pr-0 py-3 text-xxs md:text-base font-bold">
@@ -199,11 +198,15 @@ export default {
     },
 
     eventIsFinished() {
-      return spacetime('UTC').isAfter(spacetime(this.competition.ends_at, 'UTC'))
+      return spacetime.now('UTC').isAfter(spacetime(this.competition.ends_at, 'UTC'))
     },
 
     isFaceOff() {
       return this.competition.current_round.type === 'round-face-off'
+    },
+
+    isFinal() {
+      return this.competition.current_round.type === 'final-face-off'
     },
 
     eventIsFuture() {
