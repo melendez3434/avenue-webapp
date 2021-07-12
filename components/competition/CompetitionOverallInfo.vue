@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="container mx-auto">
     <div v-if="$fetchState.pending">
       <BaseSpinner class="transform translate-y-2/4" />
     </div>
@@ -102,7 +102,7 @@
         </div>
         <div
           v-else
-          class="flex flex-no-wrap flex-col lg:flex-row justify-between gap-12 mx-auto mt-12 container max-w-screen-2xl	"
+          class="container flex flex-no-wrap flex-col lg:flex-row justify-between gap-12 mx-auto mt-12 max-w-screen-2xl	"
         >
           <div class=" flex flex-col items-center justify-between gap-6 mb-14 md:mb-0 lg:mt-10">
             <h4
