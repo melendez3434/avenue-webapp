@@ -152,9 +152,12 @@
             <h2 v-if="isFaceOff" class="text-xl font-bold mt-1">
               Currently performing on week face-off
             </h2>
+            <h2 v-else-if="isFinal" class="text-xl font-bold mt-1">
+              Currently performing on the final face-off
+            </h2>
             <h2 v-else class="text-xl font-bold mt-1">Top four scores of the week</h2>
           </div>
-          <p v-if="!isFaceOff">
+          <p v-if="!isFaceOff && !isFinal">
             Watch them compete for the round prize on next Saturday’s face-off
           </p>
         </div>
@@ -187,6 +190,11 @@ export default {
 
   props: {
     isFaceOff: {
+      type: Boolean,
+      default: false,
+    },
+
+    isFinal: {
       type: Boolean,
       default: false,
     },

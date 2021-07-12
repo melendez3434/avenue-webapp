@@ -63,8 +63,11 @@
         </div>
         <h3 class="text-md">
           <span v-if="isFaceOff">Face-Off</span>
+          <span v-else-if="isFinal">Final Face-Off</span>
           <span v-else>Current Round</span>
-          <span>{{ competition.current_round.round }}/{{ competition.rounds_amount }}</span>
+          <span v-if="!isFinal">
+            {{ competition.current_round.round }}/{{ competition.rounds_amount }}
+          </span>
         </h3>
         <div class="md:container mx-auto mt-6">
           <div class="w-full flex pl-8 pr-2 md:pl-16 md:pr-0 py-3 text-xxs md:text-base font-bold">
@@ -200,6 +203,10 @@ export default {
 
     isFaceOff() {
       return this.competition.current_round.type === 'round-face-off'
+    },
+
+    isFinal() {
+      return this.competition.current_round.type === 'final-face-off'
     },
 
     eventIsFuture() {
