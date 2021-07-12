@@ -52,6 +52,11 @@ export default {
       if (event.is_ticketed && !event.ticketDetails.authPurchased) {
         return this.$router.push('/')
       }
+
+      // Increase the watch count
+      await this.$api.events.view(this.event.id)
+      event.watch_count++
+
       const selectedAsset = event.assets.length ? event.assets[0].playback_id : ''
       this.event = event
       this.selectedAsset = selectedAsset
@@ -59,10 +64,6 @@ export default {
       this.$echo.channel(`event.${this.event.id}`).listen('EventIsAboutToEnd', () => {
         this.fetchOtherLiveEvents()
       })
-
-      if (this.$auth.loggedIn) {
-        await this.$api.events.view(this.event.id)
-      }
     } catch (e) {
       console.log(e)
       return this.$router.push('/')
