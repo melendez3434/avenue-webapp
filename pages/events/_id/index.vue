@@ -29,14 +29,6 @@
       <JoinEventButton has-long-text :competition="competition" />
     </section>
 
-    <!-- TODO: make this reflect the winner -->
-    <CompetitionWinner
-      v-if="eventIsFinished"
-      class="mt-8"
-      :competition-name="competition.name"
-      :talent="competition.talent[0].talent"
-    />
-
     <div v-if="alreadyRegistered" class="container mx-auto my-16 text-center">
       <p>
         Hello, {{ alreadyRegistered.name }}! Go to your
@@ -59,7 +51,11 @@
 
     <div v-else>
       <CompetitionLiveGrid v-if="livePerformances.length" :live-performances="livePerformances" />
-      <CompetitionOverallInfo :is-face-off="isFaceOff" />
+      <CompetitionOverallInfo
+        :is-face-off="isFaceOff"
+        :competition-name="competition.name"
+        :event-is-finished="eventIsFinished"
+      />
       <section v-if="competition.talent.length" class="container mx-auto mt-20">
         <div class="flex flex-row gap-4 mb-6">
           <IcScoreboard class="h-8" />
@@ -199,7 +195,7 @@ export default {
     },
 
     eventIsFinished() {
-      return spacetime('UTC').isAfter(spacetime(this.competition.ends_at, 'UTC'))
+      return spacetime.now('UTC').isAfter(spacetime(this.competition.ends_at, 'UTC'))
     },
 
     isFaceOff() {

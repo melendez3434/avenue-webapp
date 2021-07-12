@@ -2,11 +2,15 @@
   <section>
     <div class="mx-auto flex flex-no-wrap justify-items-center justify-center gap-6">
       <Confetti class="h-40" />
-      <img :src="talent.photo" alt="faceoff winner photo" class="h-40 rounded-full" />
+      <img
+        :src="talent.competition_talent.talent.photo"
+        alt="faceoff winner photo"
+        class="h-40 rounded-full"
+      />
       <Confetti class="h-40 transform scale-x-flip" />
     </div>
     <div class="mx-auto mt-6 font-bold text-center">
-      <span>{{ talent.name }} Is The Winner Of {{ competitionName }}</span>
+      <span>{{ talent.competition_talent.name }} Is The Winner Of {{ competitionName }}</span>
     </div>
   </section>
 </template>
