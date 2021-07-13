@@ -54,7 +54,7 @@ export default {
       }
 
       // Increase the watch count
-      await this.$api.events.view(this.event.id)
+      await this.$api.events.view(event.id)
       event.watch_count++
 
       const selectedAsset = event.assets.length ? event.assets[0].playback_id : ''
