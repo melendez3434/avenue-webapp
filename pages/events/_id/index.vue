@@ -223,7 +223,7 @@ export default {
       if (this.alreadyRegistered) return false
       if (this.eventIsFuture) return true
       if (!this.competition.current_round) return true
-      return this.competition.current_round.round < 3
+      return spacetime(this.competition.ends_at, 'UTC').isAfter(spacetime.now('UTC'))
     },
   },
 
