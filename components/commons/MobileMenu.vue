@@ -23,7 +23,7 @@
           v-for="competition in competitions"
           :key="competition.id"
           :to="{ name: 'events-id', params: { id: competition.id } }"
-          class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
+          class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer text-center"
         >
           {{ competition.name }}
         </nuxt-link>
