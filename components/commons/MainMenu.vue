@@ -10,7 +10,7 @@
           </span>
           <IcArrowDown class="w-10 h-10" />
         </div>
-        <el-dropdown-menu slot="dropdown" class="min-w-1/4">
+        <el-dropdown-menu v-if="competitions" slot="dropdown" class="min-w-1/4">
           <BaseSpinner v-if="!storeInitialized" />
           <el-dropdown-item v-for="competition in competitions" :key="competition.name">
             <nuxt-link :to="{ name: 'events-id', params: { id: competition.id } }">
