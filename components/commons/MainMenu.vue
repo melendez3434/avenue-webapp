@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-end">
     <client-only>
-      <el-dropdown trigger="click" placement="top-start">
+      <el-dropdown v-if="competitions.length" trigger="click" placement="top-start">
         <div class="flex items-center">
           <span
             class="uppercase text-avenue-white-light font-library text-2xl hover:text-light-white mt-1 focus:outline-none cursor-pointer"
@@ -10,7 +10,7 @@
           </span>
           <IcArrowDown class="w-10 h-10" />
         </div>
-        <el-dropdown-menu v-if="competitions.length" slot="dropdown" class="min-w-1/4">
+        <el-dropdown-menu slot="dropdown" class="min-w-1/4">
           <BaseSpinner v-if="!storeInitialized" />
           <el-dropdown-item v-for="competition in competitions" :key="competition.name">
             <nuxt-link :to="{ name: 'events-id', params: { id: competition.id } }">
