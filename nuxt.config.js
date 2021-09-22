@@ -172,6 +172,7 @@ const config = {
         'faCompactDisc',
         'faTicketAlt',
         'faExternalLinkAlt',
+        'faHandHoldingHeart',
       ],
     },
   },
